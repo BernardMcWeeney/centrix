@@ -1,0 +1,703 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SERVICE_CATEGORIES, FLAGSHIP_SERVICES } from '../consts';
+
+const title = "Security Services | Waymark";
+const description = "Penetration testing, vulnerability management, and incident response services. Find vulnerabilities before attackers do.";
+
+// Get security-related services
+const securityServices = [
+  {
+    id: "penetration-testing",
+    title: "Penetration Testing",
+    description: "Find vulnerabilities before attackers do. External perimeter, web application, and Microsoft 365 identity testing.",
+    href: "/security/penetration-testing",
+    icon: "target",
+    color: "green",
+    featured: true,
+    stats: "1-2 weeks",
+    deliverables: ["Executive report", "Technical findings", "Remediation roadmap", "Retest included"],
+  },
+  {
+    id: "vulnerability-management",
+    title: "Vulnerability Management",
+    description: "Ongoing visibility of vulnerabilities with tracked remediation and measurable risk reduction.",
+    href: "/services/managed-security",
+    icon: "shield",
+    color: "blue",
+    stats: "Monthly",
+    deliverables: ["Monthly scans", "Prioritized fixes", "Risk trending", "Retest validation"],
+  },
+  {
+    id: "incident-response",
+    title: "Incident Response Retainer",
+    description: "Priority access and prepared runbooks before something goes wrong.",
+    href: "/services/incident-response",
+    icon: "alert",
+    color: "red",
+    stats: "Retainer",
+    deliverables: ["IR plan", "Tabletop exercises", "Priority response", "Readiness checks"],
+  },
+  {
+    id: "compromise-assessment",
+    title: "Compromise Assessment",
+    description: "Quick answer to 'are we currently breached?' with actionable next steps.",
+    href: "/services/incident-response",
+    icon: "search",
+    color: "purple",
+    stats: "2-3 days",
+    deliverables: ["Findings report", "Containment actions", "Remediation plan"],
+  },
+];
+
+const packages = [
+  {
+    name: "External Pen Test",
+    description: "Test your internet-facing footprint for vulnerabilities an attacker could exploit.",
+    includes: ["External network scan", "Manual exploitation", "Executive summary", "Technical report", "Remediation guidance", "30-day retest"],
+  },
+  {
+    name: "Web App Pen Test",
+    description: "Deep security testing of web applications and APIs.",
+    includes: ["OWASP Top 10 testing", "Authentication testing", "API security review", "Business logic testing", "Detailed findings", "Retest included"],
+  },
+  {
+    name: "M365 Identity Attack Simulation",
+    description: "Test your Microsoft 365 identity security against real-world attack techniques.",
+    includes: ["Password spray simulation", "Phishing simulation", "MFA bypass testing", "Conditional Access testing", "Identity risk report", "Hardening recommendations"],
+  },
+];
+
+const benefits = [
+  { title: "CREST Certified", description: "Our testers hold industry-recognized certifications", icon: "badge" },
+  { title: "Clear Reports", description: "Executive and technical reports with actionable fixes", icon: "document" },
+  { title: "Retest Included", description: "Verify your fixes with a follow-up test at no extra cost", icon: "check" },
+  { title: "No Disruption", description: "We work around your schedule to minimize impact", icon: "clock" },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-gradient"></div>
+      <div class="hero-grid"></div>
+    </div>
+    <div class="container-wide">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          Security Services
+        </div>
+        <h1 class="hero-title">Find vulnerabilities<br /><span class="hero-title-accent">before attackers do</span></h1>
+        <p class="hero-description">Penetration testing, vulnerability management, and incident response. We help you understand your risk and fix what matters.</p>
+        <div class="hero-actions">
+          <a href="/security/penetration-testing" class="btn-hero-primary">
+            Get a Pen Test Quote
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#services" class="btn-hero-secondary">View All Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="services-section">
+    <div class="container-wide">
+      <div class="section-header">
+        <span class="section-tag">Services</span>
+        <h2 class="section-title">Security services for every stage</h2>
+        <p class="section-description">From one-time assessments to ongoing security programs, we meet you where you are.</p>
+      </div>
+      <div class="services-grid">
+        {securityServices.map((service, index) => (
+          <a href={service.href} class={`service-card service-card-${service.color} ${service.featured ? 'featured' : ''}`}>
+            {service.featured && <div class="featured-badge">Most Popular</div>}
+            <div class="service-icon">
+              {service.icon === 'target' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>}
+              {service.icon === 'shield' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
+              {service.icon === 'alert' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>}
+              {service.icon === 'search' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>}
+            </div>
+            <h3 class="service-title">{service.title}</h3>
+            <p class="service-description">{service.description}</p>
+            <ul class="service-deliverables">
+              {service.deliverables.slice(0, 3).map((d) => (
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+                  {d}
+                </li>
+              ))}
+            </ul>
+            <div class="service-footer">
+              <span class="service-stat">{service.stats}</span>
+              <span class="service-arrow">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="packages-section">
+    <div class="container-wide">
+      <div class="section-header">
+        <span class="section-tag">Pen Testing Packages</span>
+        <h2 class="section-title">Choose your test type</h2>
+        <p class="section-description">All packages include an executive summary, technical report, and 30-day retest.</p>
+      </div>
+      <div class="packages-grid">
+        {packages.map((pkg) => (
+          <div class="package-card">
+            <h3 class="package-name">{pkg.name}</h3>
+            <p class="package-description">{pkg.description}</p>
+            <ul class="package-includes">
+              {pkg.includes.map((item) => (
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <a href="/contact?service=pen-test" class="btn-package">Request Quote</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits-section">
+    <div class="container-wide">
+      <div class="section-header">
+        <span class="section-tag">Why Waymark</span>
+        <h2 class="section-title">Security testing you can trust</h2>
+      </div>
+      <div class="benefits-grid">
+        {benefits.map((benefit) => (
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              {benefit.icon === 'badge' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15l-2 5 2-1 2 1-2-5z"/><circle cx="12" cy="8" r="6"/></svg>}
+              {benefit.icon === 'document' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>}
+              {benefit.icon === 'check' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>}
+              {benefit.icon === 'clock' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>}
+            </div>
+            <h3 class="benefit-title">{benefit.title}</h3>
+            <p class="benefit-description">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container-wide">
+      <div class="cta-card">
+        <div class="cta-content">
+          <h2 class="cta-title">Ready to test your defenses?</h2>
+          <p class="cta-description">Book a call to discuss your security testing needs. We'll recommend the right approach for your environment.</p>
+          <div class="cta-actions">
+            <a href="/contact" class="btn-cta-primary">
+              Book Consultation
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="/contact?service=pen-test" class="btn-cta-secondary">Request Quote</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  :root {
+    --accent: #22c55e;
+    --accent-light: rgba(34, 197, 94, 0.1);
+    --accent-glow: rgba(34, 197, 94, 0.3);
+  }
+
+  .hero {
+    position: relative;
+    padding: 8rem 0 5rem;
+    overflow: hidden;
+  }
+  @media (min-width: 1024px) {
+    .hero { padding: 10rem 0 6rem; }
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-glow), transparent),
+      linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(var(--border-primary) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--border-primary) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.3;
+    mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+  }
+
+  .hero .container-wide {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-content {
+    max-width: 42rem;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--accent-light);
+    border: 1px solid var(--accent);
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .hero-title { font-size: 3.5rem; }
+  }
+
+  .hero-title-accent {
+    background: linear-gradient(135deg, var(--accent), #10b981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .btn-hero-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    background: var(--accent);
+    color: white;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-hero-primary:hover {
+    background: #16a34a;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 30px -10px var(--accent-glow);
+  }
+
+  .btn-hero-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-weight: 500;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-hero-secondary:hover {
+    border-color: var(--border-hover);
+    background: var(--bg-secondary);
+  }
+
+  .services-section {
+    padding: 5rem 0;
+  }
+  @media (min-width: 1024px) {
+    .services-section { padding: 6rem 0; }
+  }
+
+  .section-header {
+    max-width: 42rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  @media (min-width: 768px) {
+    .section-title { font-size: 2.5rem; }
+  }
+
+  .section-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .service-card {
+    position: relative;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s;
+  }
+
+  .service-card:hover {
+    border-color: var(--card-accent);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+  }
+
+  .service-card.featured {
+    border-color: var(--accent);
+  }
+
+  .service-card-green { --card-accent: #22c55e; }
+  .service-card-blue { --card-accent: #3b82f6; }
+  .service-card-red { --card-accent: #ef4444; }
+  .service-card-purple { --card-accent: #8b5cf6; }
+
+  .featured-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.25rem 0.75rem;
+    background: var(--accent);
+    color: white;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 9999px;
+  }
+
+  .service-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--bg-secondary);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--card-accent);
+    margin-bottom: 1rem;
+  }
+
+  .service-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .service-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .service-deliverables {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    flex: 1;
+  }
+
+  .service-deliverables li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    padding: 0.25rem 0;
+  }
+
+  .service-deliverables svg {
+    color: var(--success);
+    flex-shrink: 0;
+  }
+
+  .service-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-primary);
+  }
+
+  .service-stat {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-tertiary);
+  }
+
+  .service-arrow {
+    color: var(--card-accent);
+    transition: transform 0.2s;
+  }
+  .service-card:hover .service-arrow {
+    transform: translateX(4px);
+  }
+
+  .packages-section {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+  }
+
+  .packages-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .packages-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .package-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .package-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .package-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .package-includes {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    flex: 1;
+  }
+
+  .package-includes li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    padding: 0.375rem 0;
+  }
+
+  .package-includes svg {
+    color: var(--success);
+    flex-shrink: 0;
+  }
+
+  .btn-package {
+    display: block;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-weight: 500;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-package:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  .benefits-section {
+    padding: 5rem 0;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .benefits-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .benefit-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+
+  .benefit-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--accent-light);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .benefit-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .benefit-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .cta-section {
+    padding: 5rem 0 6rem;
+  }
+
+  .cta-card {
+    background: linear-gradient(135deg, var(--accent) 0%, #10b981 100%);
+    border-radius: 1.5rem;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .cta-card { padding: 4rem; }
+  }
+
+  .cta-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .cta-description {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    max-width: 32rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .btn-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: white;
+    color: var(--accent);
+    font-weight: 600;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: white;
+    font-weight: 500;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-cta-secondary:hover {
+    border-color: white;
+    background: rgba(255, 255, 255, 0.1);
+  }
+</style>

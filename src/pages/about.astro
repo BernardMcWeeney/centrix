@@ -4,359 +4,522 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const title = "About Waymark";
 const description = "Learn about Waymark's mission to protect businesses with enterprise IT security and networking solutions.";
 
+const stats = [
+  { value: "500+", label: "Clients Protected" },
+  { value: "15+", label: "Years Experience" },
+  { value: "50+", label: "Security Experts" },
+  { value: "24/7", label: "SOC Coverage" },
+];
+
 const values = [
-	{
-		title: "Security First",
-		description: "Every solution we implement prioritizes protection.",
-	},
-	{
-		title: "Client Partnership",
-		description: "We're partners invested in your long-term success.",
-	},
-	{
-		title: "Continuous Innovation",
-		description: "We stay ahead with cutting-edge solutions.",
-	},
-	{
-		title: "Transparent Communication",
-		description: "No jargon, no hidden costs.",
-	},
+  {
+    title: "Security First",
+    description: "Every solution we implement prioritizes protection. Security isn't an afterthought—it's the foundation.",
+  },
+  {
+    title: "Client Partnership",
+    description: "We're partners invested in your long-term success. Your challenges are our challenges.",
+  },
+  {
+    title: "Continuous Innovation",
+    description: "We stay ahead with cutting-edge solutions. The threat landscape evolves, and so do we.",
+  },
+  {
+    title: "Transparent Communication",
+    description: "No jargon, no hidden costs. Clear, honest communication that empowers informed decisions.",
+  },
 ];
 
 const timeline = [
-	{ year: "2010", event: "Founded with a focus on SMB security" },
-	{ year: "2014", event: "Expanded to enterprise clients" },
-	{ year: "2017", event: "Launched 24/7 Security Operations Center" },
-	{ year: "2020", event: "Became Ubiquiti certified partner" },
-	{ year: "2024", event: "Reached 500+ active clients" },
+  { year: "2010", event: "Founded with a focus on SMB security", description: "Started with a mission to make enterprise security accessible." },
+  { year: "2014", event: "Expanded to enterprise clients", description: "Grew capabilities to serve larger organizations." },
+  { year: "2017", event: "Launched 24/7 Security Operations Center", description: "Round-the-clock monitoring and incident response." },
+  { year: "2020", event: "Became Ubiquiti certified partner", description: "Strategic partnership for enterprise networking." },
+  { year: "2024", event: "Reached 500+ active clients", description: "Milestone achievement in our growth journey." },
+];
+
+const partnerships = [
+  { name: "Microsoft", type: "Gold Partner" },
+  { name: "Ubiquiti", type: "Certified Partner" },
+  { name: "Google", type: "Cloud Partner" },
+  { name: "Cloudflare", type: "Partner" },
 ];
 ---
 
 <BaseLayout title={title} description={description}>
-	<!-- Hero Section -->
-	<section class="hero">
-		<div class="container-wide">
-			<div class="hero-content">
-				<span class="badge badge-primary">About Us</span>
-				<h1 class="hero-title">Securing Businesses Since 2010</h1>
-				<p class="hero-description">
-					Waymark was founded with a simple mission: make enterprise-grade security accessible to businesses of all sizes. Today, we protect over 500 organizations worldwide.
-				</p>
-			</div>
-		</div>
-	</section>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container-wide">
+      <div class="hero-content">
+        <div class="hero-eyebrow">About</div>
+        <h1 class="hero-title">Securing businesses<br/>since 2010</h1>
+        <p class="hero-description">
+          Waymark was founded with a simple mission: make enterprise-grade security accessible to businesses of all sizes. Today, we protect over 500 organizations worldwide.
+        </p>
+        <div class="hero-actions">
+          <a href="/contact" class="btn btn-primary btn-lg">
+            Work With Us
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/services" class="btn btn-secondary btn-lg">Our Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<!-- Mission Section -->
-	<section class="section-padding">
-		<div class="container-wide">
-			<div class="mission-grid">
-				<div class="mission-content">
-					<h2 class="section-title">Our Mission</h2>
-					<p class="mission-text">
-						To democratize enterprise security by providing world-class protection and expertise to organizations regardless of size or budget.
-					</p>
-					<p class="mission-description">
-						We believe every business deserves the same level of security protection that Fortune 500 companies enjoy. Through strategic partnerships with Microsoft and Ubiquiti, combined with our team's deep expertise, we deliver enterprise solutions at accessible price points.
-					</p>
-				</div>
+  <!-- Stats Bar -->
+  <section class="stats-section">
+    <div class="container-wide">
+      <div class="stats-grid">
+        {stats.map((stat) => (
+          <div class="stat-item">
+            <div class="stat-value">{stat.value}</div>
+            <div class="stat-label">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-				<div class="stats-grid">
-					<div class="stat-card">
-						<div class="stat-value">500+</div>
-						<div class="stat-label">Clients Protected</div>
-					</div>
-					<div class="stat-card">
-						<div class="stat-value">15+</div>
-						<div class="stat-label">Years Experience</div>
-					</div>
-					<div class="stat-card">
-						<div class="stat-value">50+</div>
-						<div class="stat-label">Security Experts</div>
-					</div>
-					<div class="stat-card">
-						<div class="stat-value">24/7</div>
-						<div class="stat-label">SOC Coverage</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+  <!-- Mission Section -->
+  <section class="mission-section">
+    <div class="container-wide">
+      <div class="mission-grid">
+        <div class="mission-content">
+          <div class="section-eyebrow">Our Mission</div>
+          <h2 class="mission-title">Democratizing enterprise security for all</h2>
+          <p class="mission-description">
+            We believe every business deserves the same level of security protection that Fortune 500 companies enjoy. Through strategic partnerships with Microsoft, Ubiquiti, and Google, combined with our team's deep expertise, we deliver enterprise solutions at accessible price points.
+          </p>
+          <ul class="mission-features">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+              Enterprise-grade protection at SMB pricing
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+              Proactive threat detection and response
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+              Strategic partnerships with industry leaders
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<!-- Values Section -->
-	<section class="section-padding section-alt">
-		<div class="container-wide">
-			<div class="section-header">
-				<h2 class="section-title">Our Values</h2>
-				<p class="section-description">
-					These principles guide everything we do.
-				</p>
-			</div>
+  <!-- Values Section -->
+  <section class="values-section">
+    <div class="container-wide">
+      <div class="section-header">
+        <div class="section-eyebrow">Our Values</div>
+        <h2 class="section-title">Principles that guide everything we do</h2>
+      </div>
+      <div class="values-grid">
+        {values.map((value) => (
+          <div class="value-card">
+            <h3 class="value-title">{value.title}</h3>
+            <p class="value-description">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-			<div class="values-grid">
-				{values.map((value) => (
-					<div class="value-card">
-						<h3 class="value-title">{value.title}</h3>
-						<p class="value-description">{value.description}</p>
-					</div>
-				))}
-			</div>
-		</div>
-	</section>
+  <!-- Timeline Section -->
+  <section class="timeline-section">
+    <div class="container-wide">
+      <div class="section-header">
+        <div class="section-eyebrow">Our Journey</div>
+        <h2 class="section-title">From startup to industry leader</h2>
+      </div>
+      <div class="timeline">
+        {timeline.map((item, index) => (
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="timeline-dot"></div>
+              {index < timeline.length - 1 && <div class="timeline-line"></div>}
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-year">{item.year}</div>
+              <h3 class="timeline-title">{item.event}</h3>
+              <p class="timeline-description">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-	<!-- Timeline Section -->
-	<section class="section-padding">
-		<div class="container-wide">
-			<div class="section-header">
-				<h2 class="section-title">Our Journey</h2>
-				<p class="section-description">
-					From a small consultancy to a leading security provider.
-				</p>
-			</div>
+  <!-- Partners Section -->
+  <section class="partners-section">
+    <div class="container-wide">
+      <div class="section-header">
+        <div class="section-eyebrow">Strategic Partners</div>
+        <h2 class="section-title">Powered by industry leaders</h2>
+      </div>
+      <div class="partners-grid">
+        {partnerships.map((partner) => (
+          <div class="partner-card">
+            <div class="partner-name">{partner.name}</div>
+            <div class="partner-type">{partner.type}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-			<div class="timeline">
-				{timeline.map((item) => (
-					<div class="timeline-item">
-						<div class="timeline-year">{item.year}</div>
-						<div class="timeline-event">{item.event}</div>
-					</div>
-				))}
-			</div>
-		</div>
-	</section>
-
-	<!-- CTA Section -->
-	<section class="section-padding section-alt">
-		<div class="container-wide">
-			<div class="cta-card">
-				<h2 class="cta-title">Ready to Work With Us?</h2>
-				<p class="cta-description">
-					Let's discuss how Waymark can protect your organization with enterprise-grade security.
-				</p>
-				<div class="cta-actions">
-					<a href="/contact" class="btn btn-primary btn-lg">Contact Us</a>
-					<a href="/services" class="btn btn-secondary btn-lg">View Services</a>
-				</div>
-			</div>
-		</div>
-	</section>
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container-wide">
+      <div class="cta-card">
+        <h2 class="cta-title">Ready to work with us?</h2>
+        <p class="cta-description">Let's discuss how Waymark can protect your organization with enterprise-grade security solutions.</p>
+        <div class="cta-actions">
+          <a href="/contact" class="btn btn-primary btn-lg">
+            Get Started
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/services" class="btn btn-secondary btn-lg">View Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
-	/* Hero */
-	.hero {
-		padding-top: 8rem;
-		padding-bottom: 5rem;
-		background-color: var(--bg-secondary);
-	}
+  /* Hero */
+  .hero {
+    padding: 8rem 0 4rem;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-primary);
+  }
 
-	@media (min-width: 768px) {
-		.hero {
-			padding-top: 10rem;
-			padding-bottom: 6rem;
-		}
-	}
+  @media (min-width: 768px) {
+    .hero { padding: 10rem 0 5rem; }
+  }
 
-	.hero-content {
-		max-width: 42rem;
-	}
+  .hero-content {
+    max-width: 40rem;
+  }
 
-	.hero-title {
-		font-size: 2.5rem;
-		font-weight: 700;
-		line-height: 1.1;
-		letter-spacing: -0.02em;
-		color: var(--text-primary);
-		margin: 1rem 0 1.5rem;
-	}
+  .hero-eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--brand-primary);
+    margin-bottom: 1rem;
+  }
 
-	@media (min-width: 768px) {
-		.hero-title {
-			font-size: 3rem;
-		}
-	}
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+  }
 
-	.hero-description {
-		font-size: 1.125rem;
-		line-height: 1.6;
-		color: var(--text-secondary);
-	}
+  @media (min-width: 768px) {
+    .hero-title { font-size: 3.5rem; }
+  }
 
-	/* Section Styles */
-	.section-alt {
-		background-color: var(--bg-secondary);
-	}
+  .hero-description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
 
-	.section-header {
-		text-align: center;
-		max-width: 42rem;
-		margin: 0 auto 3rem;
-	}
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
 
-	.section-title {
-		font-size: 2rem;
-		font-weight: 700;
-		color: var(--text-primary);
-		margin-bottom: 1rem;
-		letter-spacing: -0.02em;
-	}
+  /* Stats */
+  .stats-section {
+    padding: 2.5rem 0;
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-primary);
+  }
 
-	.section-description {
-		font-size: 1.125rem;
-		color: var(--text-secondary);
-		line-height: 1.6;
-	}
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
 
-	/* Mission Section */
-	.mission-grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 4rem;
-		align-items: center;
-	}
+  @media (min-width: 768px) {
+    .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  }
 
-	@media (min-width: 1024px) {
-		.mission-grid {
-			grid-template-columns: 1fr 1fr;
-		}
-	}
+  .stat-item { text-align: center; }
 
-	.mission-text {
-		font-size: 1.25rem;
-		color: var(--text-primary);
-		margin-bottom: 1.5rem;
-		font-weight: 500;
-	}
+  .stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
 
-	.mission-description {
-		font-size: 1rem;
-		color: var(--text-secondary);
-		line-height: 1.7;
-	}
+  .stat-label {
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+    margin-top: 0.25rem;
+  }
 
-	/* Stats Grid */
-	.stats-grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 1rem;
-	}
+  /* Mission */
+  .mission-section {
+    padding: 5rem 0;
+  }
 
-	.stat-card {
-		background-color: var(--bg-secondary);
-		border: 1px solid var(--border-primary);
-		border-radius: 0.75rem;
-		padding: 1.5rem;
-		text-align: center;
-	}
+  @media (min-width: 768px) {
+    .mission-section { padding: 6rem 0; }
+  }
 
-	.stat-value {
-		font-size: 2rem;
-		font-weight: 700;
-		color: var(--text-primary);
-		margin-bottom: 0.25rem;
-	}
+  .mission-content {
+    max-width: 40rem;
+  }
 
-	.stat-label {
-		font-size: 0.875rem;
-		color: var(--text-tertiary);
-	}
+  .mission-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.025em;
+  }
 
-	/* Values Grid */
-	.values-grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 1.5rem;
-	}
+  @media (min-width: 768px) {
+    .mission-title { font-size: 2.25rem; }
+  }
 
-	@media (min-width: 640px) {
-		.values-grid {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
+  .mission-description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
 
-	@media (min-width: 1024px) {
-		.values-grid {
-			grid-template-columns: repeat(4, 1fr);
-		}
-	}
+  .mission-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 
-	.value-card {
-		background-color: var(--bg-primary);
-		border: 1px solid var(--border-primary);
-		border-radius: 0.75rem;
-		padding: 1.5rem;
-		text-align: center;
-	}
+  .mission-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+  }
 
-	.value-title {
-		font-size: 1rem;
-		font-weight: 600;
-		color: var(--text-primary);
-		margin-bottom: 0.5rem;
-	}
+  .mission-features li svg {
+    color: var(--brand-primary);
+    flex-shrink: 0;
+  }
 
-	.value-description {
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-		line-height: 1.5;
-	}
+  /* Values */
+  .values-section {
+    padding: 5rem 0;
+    background-color: var(--bg-secondary);
+  }
 
-	/* Timeline */
-	.timeline {
-		max-width: 32rem;
-		margin: 0 auto;
-	}
+  @media (min-width: 768px) {
+    .values-section { padding: 6rem 0; }
+  }
 
-	.timeline-item {
-		display: flex;
-		gap: 1.5rem;
-		padding: 1.5rem 0;
-		border-bottom: 1px solid var(--border-primary);
-	}
+  .values-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 
-	.timeline-item:last-child {
-		border-bottom: none;
-	}
+  @media (min-width: 640px) {
+    .values-grid { grid-template-columns: repeat(2, 1fr); }
+  }
 
-	.timeline-year {
-		font-size: 0.875rem;
-		font-weight: 700;
-		color: var(--brand-primary);
-		min-width: 4rem;
-	}
+  @media (min-width: 1024px) {
+    .values-grid { grid-template-columns: repeat(4, 1fr); }
+  }
 
-	.timeline-event {
-		font-size: 0.9375rem;
-		color: var(--text-secondary);
-	}
+  .value-card {
+    padding: 1.5rem;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+  }
 
-	/* CTA */
-	.cta-card {
-		background-color: var(--bg-primary);
-		border: 1px solid var(--border-primary);
-		border-radius: 1rem;
-		padding: 4rem 2rem;
-		text-align: center;
-	}
+  .value-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
 
-	.cta-title {
-		font-size: 2rem;
-		font-weight: 700;
-		color: var(--text-primary);
-		margin-bottom: 1rem;
-		letter-spacing: -0.02em;
-	}
+  .value-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
 
-	.cta-description {
-		font-size: 1.125rem;
-		color: var(--text-secondary);
-		max-width: 32rem;
-		margin: 0 auto 2rem;
-	}
+  /* Timeline */
+  .timeline-section {
+    padding: 5rem 0;
+  }
 
-	.cta-actions {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		gap: 1rem;
-	}
+  @media (min-width: 768px) {
+    .timeline-section { padding: 6rem 0; }
+  }
+
+  .timeline {
+    max-width: 32rem;
+    margin: 0 auto;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .timeline-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .timeline-dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--brand-primary);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .timeline-line {
+    width: 1px;
+    flex: 1;
+    background-color: var(--border-primary);
+    margin-top: 0.5rem;
+  }
+
+  .timeline-content {
+    padding-bottom: 2rem;
+  }
+
+  .timeline-year {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    background-color: var(--brand-light);
+    color: var(--brand-primary);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .timeline-description {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Partners */
+  .partners-section {
+    padding: 5rem 0;
+    background-color: var(--bg-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .partners-section { padding: 6rem 0; }
+  }
+
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .partners-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .partner-card {
+    padding: 1.5rem;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+
+  .partner-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .partner-type {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 5rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .cta-section { padding: 6rem 0; }
+  }
+
+  .cta-card {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .cta-card { padding: 4rem 2rem; }
+  }
+
+  .cta-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.025em;
+  }
+
+  @media (min-width: 768px) {
+    .cta-title { font-size: 1.875rem; }
+  }
+
+  .cta-description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
 </style>

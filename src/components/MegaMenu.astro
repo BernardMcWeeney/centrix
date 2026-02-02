@@ -1,32 +1,32 @@
 ---
-import { SERVICE_CATEGORIES } from '../consts';
+// Service categories for mega menu
 
 // Group categories for mega menu layout
 const serviceGroups = [
   {
     title: "Security Services",
     categories: [
-      { id: "managed-security", title: "Managed Security", icon: "shield", description: "Continuous protection" },
-      { id: "incident-response", title: "Incident Response", icon: "alert", description: "Rapid response" },
-      { id: "configuration-reviews", title: "Security Reviews", icon: "check", description: "Configuration audits" },
+      { id: "managed-security", title: "Managed Security", icon: "shield", description: "Continuous protection", href: "/services/managed-security" },
+      { id: "incident-response", title: "Incident Response", icon: "alert", description: "Rapid response", href: "/services/incident-response" },
+      { id: "configuration-reviews", title: "Security Reviews", icon: "check", description: "Configuration audits", href: "/services/configuration-reviews" },
     ]
   },
   {
     title: "Microsoft & Cloud",
     categories: [
-      { id: "microsoft-365", title: "Microsoft 365", icon: "microsoft", description: "M365 platform services" },
-      { id: "intune", title: "Intune & Endpoint", icon: "device", description: "Device management" },
-      { id: "identity", title: "Identity & Access", icon: "user", description: "Entra ID security" },
-      { id: "google-workspace", title: "Google Workspace", icon: "google", description: "Google admin & security" },
+      { id: "microsoft-365", title: "Microsoft 365", icon: "microsoft", description: "M365 platform services", href: "/services/microsoft-365" },
+      { id: "intune", title: "Intune & Endpoint", icon: "device", description: "Device management", href: "/services/intune" },
+      { id: "identity", title: "Identity & Access", icon: "user", description: "Entra ID security", href: "/services/identity" },
+      { id: "google-workspace", title: "Google Workspace", icon: "google", description: "Google admin & security", href: "/services/google-workspace" },
     ]
   },
   {
     title: "Infrastructure & AI",
     categories: [
-      { id: "networking", title: "Networking", icon: "network", description: "UniFi & site tech" },
-      { id: "ai-services", title: "AI Services", icon: "ai", description: "AI strategy & implementation" },
-      { id: "migration", title: "Migration", icon: "migration", description: "Platform migrations" },
-      { id: "web-security", title: "Web Security", icon: "globe", description: "Application security" },
+      { id: "networking", title: "Networking", icon: "network", description: "UniFi & site tech", href: "/services/networking" },
+      { id: "ai-services", title: "AI Services", icon: "ai", description: "AI strategy & implementation", href: "/services/ai-services" },
+      { id: "migration", title: "Migration", icon: "migration", description: "Platform migrations", href: "/services/migration" },
+      { id: "web-security", title: "Web Security", icon: "globe", description: "Application security", href: "/services/web-security" },
     ]
   }
 ];
@@ -60,7 +60,7 @@ const quickLinks = [
                 <ul class="mega-list">
                   {group.categories.map((cat) => (
                     <li>
-                      <a href={`/services#${cat.id}`} class="mega-link">
+                      <a href={cat.href} class="mega-link">
                         <div class="mega-link-icon">
                           {cat.icon === "shield" && (
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -189,7 +189,7 @@ const quickLinks = [
             </a>
           </li>
           <li>
-            <a href="/services#ai-services" class="dropdown-link">
+            <a href="/services/ai-services" class="dropdown-link">
               <div class="dropdown-link-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
@@ -244,7 +244,7 @@ const quickLinks = [
               <ul>
                 {group.categories.map((cat) => (
                   <li>
-                    <a href={`/services#${cat.id}`} class="mobile-nav-sublink">{cat.title}</a>
+                    <a href={cat.href} class="mobile-nav-sublink">{cat.title}</a>
                   </li>
                 ))}
               </ul>
@@ -266,7 +266,7 @@ const quickLinks = [
         <ul class="mobile-nav-submenu">
           <li><a href="/solutions/microsoft-365" class="mobile-nav-sublink">Microsoft 365</a></li>
           <li><a href="/solutions/networking" class="mobile-nav-sublink">Networking</a></li>
-          <li><a href="/services#ai-services" class="mobile-nav-sublink">AI & Automation</a></li>
+          <li><a href="/services/ai-services" class="mobile-nav-sublink">AI & Automation</a></li>
         </ul>
       </li>
 

@@ -1,0 +1,1186 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = "AI Services & Copilot Readiness | Strategy to Implementation | Waymark";
+const description = "Transform your business with AI. From strategy and governance to Microsoft 365 Copilot deployment—we help you adopt AI safely and effectively.";
+
+const services = [
+  {
+    id: "copilot-readiness",
+    title: "Microsoft 365 Copilot Readiness",
+    description: "Prepare your environment for safe and effective Copilot deployment. Fix permissions, implement labels, and ensure AI is useful from day one.",
+    href: "/services/ai-services/copilot-readiness",
+    icon: "copilot",
+    features: ["Permissions Audit", "Sensitivity Labels", "Oversharing Fix", "Pilot Rollout"],
+    color: "purple",
+    featured: true,
+  },
+  {
+    id: "ai-strategy",
+    title: "AI Readiness & Strategy",
+    description: "A practical AI plan tied to business workflows, not hype. Identify high-impact use cases and build a roadmap that delivers results.",
+    href: "/services/ai-services/ai-strategy",
+    icon: "strategy",
+    features: ["Use Case Discovery", "ROI Analysis", "Risk Assessment", "Implementation Roadmap"],
+    color: "blue",
+  },
+  {
+    id: "ai-governance",
+    title: "AI Governance & Security",
+    description: "Adopt AI without data leakage and shadow AI chaos. Establish guardrails, policies, and controls for safe enterprise adoption.",
+    href: "/contact?service=ai-governance",
+    icon: "shield",
+    features: ["Acceptable Use Policy", "Data Protection", "Shadow AI Control", "Compliance"],
+    color: "green",
+  },
+  {
+    id: "ai-automation",
+    title: "AI Workflow Automation",
+    description: "Replace manual processes with AI-assisted workflows. Automate repetitive tasks and free your team for high-value work.",
+    href: "/contact?service=ai-automation",
+    icon: "workflow",
+    features: ["Process Analysis", "AI Integration", "Power Automate", "Custom Workflows"],
+    color: "orange",
+  },
+];
+
+const stats = [
+  { value: "70%", label: "Productivity Gain" },
+  { value: "50+", label: "Copilot Deployments" },
+  { value: "98%", label: "Adoption Success" },
+  { value: "2-3", label: "Weeks to Ready" },
+];
+
+const whyUs = [
+  {
+    title: "Security-First AI",
+    description: "We ensure your AI deployment doesn't expose sensitive data or create compliance risks.",
+    icon: "shield",
+  },
+  {
+    title: "Practical Approach",
+    description: "No hype, no buzzwords—just AI solutions that solve real business problems.",
+    icon: "target",
+  },
+  {
+    title: "Microsoft Expertise",
+    description: "Deep knowledge of M365 Copilot, Azure OpenAI, and the Microsoft AI stack.",
+    icon: "microsoft",
+  },
+  {
+    title: "Change Management",
+    description: "Training and adoption programs that ensure your team actually uses AI effectively.",
+    icon: "users",
+  },
+];
+
+const transformSteps = [
+  {
+    phase: "Assess",
+    title: "Understand Your Readiness",
+    description: "We audit your environment, permissions, and data to identify risks before AI deployment.",
+    icon: "search",
+  },
+  {
+    phase: "Plan",
+    title: "Build Your Strategy",
+    description: "Define use cases, governance policies, and a phased rollout plan tailored to your business.",
+    icon: "map",
+  },
+  {
+    phase: "Prepare",
+    title: "Fix the Foundations",
+    description: "Address oversharing, implement sensitivity labels, and configure AI guardrails.",
+    icon: "wrench",
+  },
+  {
+    phase: "Deploy",
+    title: "Launch with Confidence",
+    description: "Roll out AI to pilot groups, measure adoption, and scale across your organization.",
+    icon: "rocket",
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-gradient"></div>
+      <div class="hero-pattern"></div>
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="ai-particles">
+        {Array.from({length: 20}).map((_, i) => (
+          <div class="particle" style={`--delay: ${i * 0.3}s; --x: ${Math.random() * 100}%; --y: ${Math.random() * 100}%`}></div>
+        ))}
+      </div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <div class="badge-glow"></div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+          </svg>
+          <span>AI Services</span>
+        </div>
+        <h1 class="hero-title">
+          Unlock the Power of<br />
+          <span class="hero-accent">Artificial Intelligence</span>
+        </h1>
+        <p class="hero-description">
+          Transform your business with AI that's secure, practical, and delivers real results. From strategy to Copilot deployment—we make AI work for you.
+        </p>
+        <div class="hero-actions">
+          <a href="/services/ai-services/copilot-readiness" class="btn-primary">
+            <span>Get Copilot Ready</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </a>
+          <a href="/contact?service=ai-strategy" class="btn-secondary">Book AI Strategy Session</a>
+        </div>
+      </div>
+
+      <!-- AI Visual -->
+      <div class="hero-visual">
+        <div class="ai-brain">
+          <div class="brain-ring brain-ring-1"></div>
+          <div class="brain-ring brain-ring-2"></div>
+          <div class="brain-ring brain-ring-3"></div>
+          <div class="brain-core">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="url(#ai-gradient)" stroke-width="1.5">
+              <defs>
+                <linearGradient id="ai-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#8b5cf6" />
+                  <stop offset="100%" stop-color="#3b82f6" />
+                </linearGradient>
+              </defs>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+            </svg>
+          </div>
+          <div class="brain-nodes">
+            <div class="node node-1"></div>
+            <div class="node node-2"></div>
+            <div class="node node-3"></div>
+            <div class="node node-4"></div>
+            <div class="node node-5"></div>
+            <div class="node node-6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        {stats.map((stat) => (
+          <div class="stat-item">
+            <div class="stat-value">{stat.value}</div>
+            <div class="stat-label">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Transformation Journey -->
+  <section class="transform-section">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">Your AI Journey</span>
+        <h2 class="section-title">From uncertainty to AI-powered success</h2>
+        <p class="section-description">A proven path to safe, effective AI adoption for your organization.</p>
+      </div>
+
+      <div class="transform-timeline">
+        {transformSteps.map((step, i) => (
+          <div class="transform-step" style={`--step-index: ${i}`}>
+            <div class="step-connector"></div>
+            <div class="step-marker">
+              <span class="step-phase">{step.phase}</span>
+            </div>
+            <div class="step-content">
+              <div class="step-icon">
+                {step.icon === 'search' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>}
+                {step.icon === 'map' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" /></svg>}
+                {step.icon === 'wrench' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" /></svg>}
+                {step.icon === 'rocket' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" /></svg>}
+              </div>
+              <h3 class="step-title">{step.title}</h3>
+              <p class="step-description">{step.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our AI Services</span>
+        <h2 class="section-title">Solutions for every stage of AI adoption</h2>
+        <p class="section-description">Whether you're just starting or ready to scale, we have the expertise to help.</p>
+      </div>
+
+      <div class="services-grid">
+        {services.map((service, i) => (
+          <a href={service.href} class={`service-card service-${service.color} ${service.featured ? 'featured' : ''}`} style={`animation-delay: ${i * 0.1}s`}>
+            {service.featured && <div class="featured-badge">Most Popular</div>}
+            <div class="service-icon">
+              {service.icon === 'copilot' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" /></svg>}
+              {service.icon === 'strategy' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" /></svg>}
+              {service.icon === 'shield' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>}
+              {service.icon === 'workflow' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg>}
+            </div>
+            <h3 class="service-title">{service.title}</h3>
+            <p class="service-description">{service.description}</p>
+            <div class="service-features">
+              {service.features.map((feature) => (
+                <span class="feature-tag">{feature}</span>
+              ))}
+            </div>
+            <span class="service-link">
+              Learn more
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section class="why-section">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">Why Waymark</span>
+        <h2 class="section-title">AI expertise you can trust</h2>
+        <p class="section-description">We bring enterprise AI capabilities to businesses of all sizes—securely and practically.</p>
+      </div>
+
+      <div class="why-grid">
+        {whyUs.map((item, i) => (
+          <div class="why-card" style={`animation-delay: ${i * 0.1}s`}>
+            <div class="why-icon">
+              {item.icon === 'shield' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>}
+              {item.icon === 'target' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.87c1.355 0 2.697.055 4.024.165C17.155 8.51 18 9.473 18 10.608v2.513m-3-4.87v-1.5m-6 1.5v-1.5m12 9.75l-1.5.75a3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0L3 16.5m15-3.38a48.474 48.474 0 00-6-.37c-2.032 0-4.034.125-6 .37m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.17c0 .62-.504 1.124-1.125 1.124H4.125A1.125 1.125 0 013 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 016 13.12M12.265 3.11a.375.375 0 11-.53 0L12 2.845l.265.265zm-3 0a.375.375 0 11-.53 0L9 2.845l.265.265zm6 0a.375.375 0 11-.53 0L15 2.845l.265.265z" /></svg>}
+              {item.icon === 'microsoft' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg>}
+              {item.icon === 'users' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" /></svg>}
+            </div>
+            <h3 class="why-title">{item.title}</h3>
+            <p class="why-description">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-glow"></div>
+        <div class="cta-content">
+          <h2 class="cta-title">Ready to embrace AI?</h2>
+          <p class="cta-description">Get a free consultation and see how AI can transform your business—safely and effectively.</p>
+          <div class="cta-actions">
+            <a href="/contact?service=ai" class="btn-cta-primary">
+              <span>Book AI Consultation</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
+            <a href="/services" class="btn-cta-secondary">View All Services</a>
+          </div>
+        </div>
+        <div class="cta-pattern"></div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  :root {
+    --accent: #8b5cf6;
+    --accent-secondary: #3b82f6;
+    --accent-light: rgba(139, 92, 246, 0.1);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    padding: 8rem 0 6rem;
+    overflow: hidden;
+  }
+
+  @media (min-width: 1024px) {
+    .hero {
+      padding: 10rem 0 8rem;
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 50%, rgba(139, 92, 246, 0.03) 100%);
+  }
+
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--border-primary) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: 0.5;
+    mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+  }
+
+  .hero-orb-1 {
+    top: 10%;
+    right: 20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+    animation: float 20s ease-in-out infinite;
+  }
+
+  .hero-orb-2 {
+    bottom: 20%;
+    left: 10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+    animation: float 15s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(30px, -30px); }
+  }
+
+  .ai-particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    left: var(--x);
+    top: var(--y);
+    opacity: 0;
+    animation: particle-float 8s ease-in-out infinite;
+    animation-delay: var(--delay);
+  }
+
+  @keyframes particle-float {
+    0%, 100% { opacity: 0; transform: translateY(0); }
+    50% { opacity: 0.6; transform: translateY(-50px); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+  }
+
+  .hero-badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--accent-light);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 9999px;
+    color: var(--accent);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+
+  .badge-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 200%; }
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 4rem;
+    }
+  }
+
+  .hero-accent {
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-description {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.75rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    color: white;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 1.75rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-weight: 500;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+  }
+
+  /* Hero Visual */
+  .hero-visual {
+    display: none;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .ai-brain {
+    position: relative;
+    width: 320px;
+    height: 320px;
+  }
+
+  .brain-ring {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 50%;
+  }
+
+  .brain-ring-1 {
+    animation: ring-rotate 20s linear infinite;
+  }
+
+  .brain-ring-2 {
+    inset: 30px;
+    animation: ring-rotate 15s linear infinite reverse;
+  }
+
+  .brain-ring-3 {
+    inset: 60px;
+    border-style: dashed;
+    animation: ring-rotate 25s linear infinite;
+  }
+
+  @keyframes ring-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .brain-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 50%;
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.2); }
+    50% { box-shadow: 0 0 60px rgba(139, 92, 246, 0.4); }
+  }
+
+  .brain-nodes .node {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    border-radius: 50%;
+    animation: node-pulse 2s ease-in-out infinite;
+  }
+
+  .node-1 { top: 20%; left: 50%; transform: translateX(-50%); animation-delay: 0s; }
+  .node-2 { top: 35%; right: 15%; animation-delay: 0.3s; }
+  .node-3 { bottom: 35%; right: 15%; animation-delay: 0.6s; }
+  .node-4 { bottom: 20%; left: 50%; transform: translateX(-50%); animation-delay: 0.9s; }
+  .node-5 { bottom: 35%; left: 15%; animation-delay: 1.2s; }
+  .node-6 { top: 35%; left: 15%; animation-delay: 1.5s; }
+
+  @keyframes node-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.3); opacity: 1; }
+  }
+
+  .node-1, .node-4 {
+    animation-name: node-pulse-center;
+  }
+
+  @keyframes node-pulse-center {
+    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.8; }
+    50% { transform: translateX(-50%) scale(1.3); opacity: 1; }
+  }
+
+  /* Stats */
+  .stats-section {
+    padding: 3rem 0;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-primary);
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    margin-top: 0.25rem;
+  }
+
+  /* Transform Section */
+  .transform-section {
+    padding: 6rem 0;
+  }
+
+  @media (min-width: 1024px) {
+    .transform-section {
+      padding: 8rem 0;
+    }
+  }
+
+  .transform-timeline {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .transform-timeline {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+  }
+
+  .transform-step {
+    position: relative;
+    text-align: center;
+    animation: fadeInUp 0.5s ease-out both;
+    animation-delay: calc(var(--step-index) * 0.15s);
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .step-connector {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .step-connector {
+      display: block;
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--border-primary), rgba(139, 92, 246, 0.3));
+    }
+
+    .transform-step:last-child .step-connector {
+      display: none;
+    }
+  }
+
+  .step-marker {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .step-phase {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 50%;
+  }
+
+  .step-content {
+    padding: 0 1rem;
+  }
+
+  .step-icon {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 0.75rem;
+    margin: 0 auto 1rem;
+  }
+
+  .step-title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Section Styles */
+  .section-header {
+    max-width: 560px;
+    margin-bottom: 4rem;
+  }
+
+  .section-header.centered {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  .section-description {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* Services */
+  .services-section {
+    padding: 6rem 0;
+    background: var(--bg-secondary);
+  }
+
+  @media (min-width: 1024px) {
+    .services-section {
+      padding: 8rem 0;
+    }
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .service-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    animation: fadeInUp 0.5s ease-out both;
+  }
+
+  .service-card.featured {
+    border-color: rgba(139, 92, 246, 0.3);
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    padding: 0.25rem 0.75rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    color: white;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 9999px;
+  }
+
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  }
+
+  .service-card.service-purple:hover {
+    border-color: #8b5cf6;
+    box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.2);
+  }
+
+  .service-card.service-blue:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.2);
+  }
+
+  .service-card.service-green:hover {
+    border-color: #10b981;
+    box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.2);
+  }
+
+  .service-card.service-orange:hover {
+    border-color: #f97316;
+    box-shadow: 0 25px 50px -12px rgba(249, 115, 22, 0.2);
+  }
+
+  .service-icon {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s;
+  }
+
+  .service-purple .service-icon {
+    background: rgba(139, 92, 246, 0.1);
+    color: #8b5cf6;
+  }
+
+  .service-blue .service-icon {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+  }
+
+  .service-green .service-icon {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+  }
+
+  .service-orange .service-icon {
+    background: rgba(249, 115, 22, 0.1);
+    color: #f97316;
+  }
+
+  .service-card:hover .service-icon {
+    transform: scale(1.1);
+  }
+
+  .service-purple:hover .service-icon {
+    background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+    color: white;
+  }
+
+  .service-blue:hover .service-icon {
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    color: white;
+  }
+
+  .service-green:hover .service-icon {
+    background: linear-gradient(135deg, #10b981, #34d399);
+    color: white;
+  }
+
+  .service-orange:hover .service-icon {
+    background: linear-gradient(135deg, #f97316, #fb923c);
+    color: white;
+  }
+
+  .service-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .service-description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    flex: 1;
+  }
+
+  .service-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-tag {
+    padding: 0.375rem 0.75rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+  }
+
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-weight: 500;
+    transition: gap 0.2s;
+  }
+
+  .service-purple .service-link { color: #8b5cf6; }
+  .service-blue .service-link { color: #3b82f6; }
+  .service-green .service-link { color: #10b981; }
+  .service-orange .service-link { color: #f97316; }
+
+  .service-card:hover .service-link {
+    gap: 0.625rem;
+  }
+
+  /* Why Us */
+  .why-section {
+    padding: 6rem 0;
+  }
+
+  @media (min-width: 1024px) {
+    .why-section {
+      padding: 8rem 0;
+    }
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .why-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .why-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .why-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s;
+    animation: fadeInUp 0.5s ease-out both;
+  }
+
+  .why-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+
+  .why-icon {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 0.75rem;
+    margin: 0 auto 1.25rem;
+    transition: all 0.3s;
+  }
+
+  .why-card:hover .why-icon {
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    color: white;
+  }
+
+  .why-title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .why-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 6rem 0;
+    background: var(--bg-secondary);
+  }
+
+  @media (min-width: 1024px) {
+    .cta-section {
+      padding: 8rem 0;
+    }
+  }
+
+  .cta-card {
+    position: relative;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1.5rem;
+    padding: 4rem 2rem;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .cta-card {
+      padding: 5rem 3rem;
+    }
+  }
+
+  .cta-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+    filter: blur(60px);
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .cta-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  .cta-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .btn-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    color: white;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  }
+
+  .btn-cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+  }
+
+  .btn-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: var(--text-primary);
+    font-weight: 500;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-cta-secondary:hover {
+    border-color: var(--accent);
+  }
+
+  .cta-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--border-primary) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.5;
+  }
+</style>

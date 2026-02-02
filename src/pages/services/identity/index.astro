@@ -1,0 +1,327 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = "Identity & Access Management | Entra ID Security | Waymark";
+const description = "Secure your identity infrastructure with Entra ID security reviews, OAuth cleanup, SSO onboarding, and identity governance. Protect your organization's front door.";
+
+const services = [
+  {
+    id: "entra-security",
+    title: "Entra ID Security Review",
+    description: "Comprehensive identity security assessment covering authentication, authorization, and access controls.",
+    href: "/services/identity/entra-security",
+    icon: "shield",
+    features: ["Configuration Audit", "Risk Assessment", "Recommendations", "Priority Actions"],
+    color: "rose",
+    featured: true,
+  },
+  {
+    id: "oauth-cleanup",
+    title: "OAuth App & Consent Cleanup",
+    description: "Remove risky third-party access and lock down consent. Take control of what apps can access your data.",
+    href: "/contact?service=oauth-cleanup",
+    icon: "app",
+    features: ["Risky App Removal", "Consent Review", "Governance Setup", "Monitoring"],
+    color: "orange",
+  },
+  {
+    id: "sso-onboarding",
+    title: "SSO Application Onboarding",
+    description: "Secure single sign-on for business applications. Streamlined, secure access to all your apps.",
+    href: "/contact?service=sso-onboarding",
+    icon: "link",
+    features: ["SAML/OIDC Config", "Access Policies", "Testing", "Documentation"],
+    color: "blue",
+  },
+  {
+    id: "identity-governance",
+    title: "Identity Governance Setup",
+    description: "Access reviews, lifecycle management, and entitlement management for automated identity governance.",
+    href: "/contact?service=identity-governance",
+    icon: "workflow",
+    features: ["Access Reviews", "Lifecycle Policies", "Entitlements", "Reporting"],
+    color: "purple",
+  },
+];
+
+const stats = [
+  { value: "80%", label: "of breaches involve identity" },
+  { value: "100+", label: "Identity Reviews" },
+  { value: "Zero", label: "Trust Architecture" },
+  { value: "24/7", label: "Access Control" },
+];
+
+const whyUs = [
+  {
+    title: "Identity Experts",
+    description: "Deep expertise in Entra ID, Conditional Access, and the Microsoft identity stack.",
+    icon: "user",
+  },
+  {
+    title: "Security Focus",
+    description: "Every recommendation prioritizes security without sacrificing usability.",
+    icon: "shield",
+  },
+  {
+    title: "Practical Approach",
+    description: "We implement what works in the real world, not theoretical best practices.",
+    icon: "target",
+  },
+  {
+    title: "Clear Outcomes",
+    description: "Fixed scope, clear deliverables, and measurable security improvements.",
+    icon: "check",
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-gradient"></div>
+      <div class="hero-pattern"></div>
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <div class="badge-glow"></div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+          </svg>
+          <span>Identity & Access</span>
+        </div>
+        <h1 class="hero-title">
+          Identity &<br />
+          <span class="hero-accent">Access Management</span>
+        </h1>
+        <p class="hero-description">
+          Your identity is your perimeter. Secure it with Entra ID security reviews, OAuth cleanup, and zero-trust access controls that protect your organization's front door.
+        </p>
+        <div class="hero-actions">
+          <a href="/services/identity/entra-security" class="btn-primary">
+            <span>Start Identity Assessment</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </a>
+          <a href="/contact?service=identity" class="btn-secondary">Book Consultation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        {stats.map((stat) => (
+          <div class="stat-item">
+            <div class="stat-value">{stat.value}</div>
+            <div class="stat-label">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our Services</span>
+        <h2 class="section-title">Identity & access solutions</h2>
+        <p class="section-description">Comprehensive identity security from assessment to implementation.</p>
+      </div>
+
+      <div class="services-grid">
+        {services.map((service, i) => (
+          <a href={service.href} class={`service-card service-${service.color} ${service.featured ? 'featured' : ''}`} style={`animation-delay: ${i * 0.1}s`}>
+            {service.featured && <div class="featured-badge">Most Popular</div>}
+            <div class="service-icon">
+              {service.icon === 'shield' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>}
+              {service.icon === 'app' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg>}
+              {service.icon === 'link' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>}
+              {service.icon === 'workflow' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>}
+            </div>
+            <h3 class="service-title">{service.title}</h3>
+            <p class="service-description">{service.description}</p>
+            <div class="service-features">
+              {service.features.map((feature) => (
+                <span class="feature-tag">{feature}</span>
+              ))}
+            </div>
+            <span class="service-link">
+              Learn more
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section class="why-section">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">Why Waymark</span>
+        <h2 class="section-title">Identity expertise you can trust</h2>
+        <p class="section-description">We bring enterprise identity security to organizations of all sizes.</p>
+      </div>
+
+      <div class="why-grid">
+        {whyUs.map((item, i) => (
+          <div class="why-card" style={`animation-delay: ${i * 0.1}s`}>
+            <div class="why-icon">
+              {item.icon === 'user' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>}
+              {item.icon === 'shield' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>}
+              {item.icon === 'target' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.87c1.355 0 2.697.055 4.024.165C17.155 8.51 18 9.473 18 10.608v2.513m-3-4.87v-1.5m-6 1.5v-1.5m12 9.75l-1.5.75a3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0L3 16.5m15-3.38a48.474 48.474 0 00-6-.37c-2.032 0-4.034.125-6 .37m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.17c0 .62-.504 1.124-1.125 1.124H4.125A1.125 1.125 0 013 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 016 13.12" /></svg>}
+              {item.icon === 'check' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>}
+            </div>
+            <h3 class="why-title">{item.title}</h3>
+            <p class="why-description">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-glow"></div>
+        <div class="cta-content">
+          <h2 class="cta-title">Ready to secure your identity?</h2>
+          <p class="cta-description">Get a free consultation and see how we can strengthen your identity security posture.</p>
+          <div class="cta-actions">
+            <a href="/contact?service=identity" class="btn-cta-primary">
+              <span>Book Free Consultation</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
+            <a href="/services" class="btn-cta-secondary">View All Services</a>
+          </div>
+        </div>
+        <div class="cta-pattern"></div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  :root {
+    --accent: #e11d48;
+    --accent-secondary: #f97316;
+    --accent-light: rgba(225, 29, 72, 0.1);
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .hero { position: relative; padding: 8rem 0 6rem; overflow: hidden; }
+  @media (min-width: 1024px) { .hero { padding: 10rem 0 8rem; } }
+
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-gradient { position: absolute; inset: 0; background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 50%, rgba(225, 29, 72, 0.03) 100%); }
+  .hero-pattern { position: absolute; inset: 0; background-image: radial-gradient(var(--border-primary) 1px, transparent 1px); background-size: 32px 32px; opacity: 0.5; mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%); }
+  .hero-orb { position: absolute; border-radius: 50%; filter: blur(80px); }
+  .hero-orb-1 { top: 10%; right: 20%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(225, 29, 72, 0.2) 0%, transparent 70%); animation: float 20s ease-in-out infinite; }
+  .hero-orb-2 { bottom: 20%; left: 10%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%); animation: float 15s ease-in-out infinite reverse; }
+  @keyframes float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(30px, -30px); } }
+
+  .hero-content { position: relative; z-index: 1; max-width: 600px; }
+  .hero-badge { position: relative; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: var(--accent-light); border: 1px solid rgba(225, 29, 72, 0.2); border-radius: 9999px; color: var(--accent); font-size: 0.8125rem; font-weight: 600; margin-bottom: 1.5rem; overflow: hidden; }
+  .badge-glow { position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(225, 29, 72, 0.3), transparent); animation: shimmer 3s infinite; }
+  @keyframes shimmer { 0% { left: -100%; } 100% { left: 200%; } }
+
+  .hero-title { font-size: 3.5rem; font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 1.5rem; }
+  @media (min-width: 768px) { .hero-title { font-size: 4rem; } }
+  .hero-accent { background: linear-gradient(135deg, var(--accent), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-description { font-size: 1.25rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 2rem; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+  .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 1.75rem; background: linear-gradient(135deg, var(--accent), var(--accent-secondary)); color: white; font-weight: 500; border-radius: 0.5rem; text-decoration: none; transition: all 0.3s; box-shadow: 0 4px 15px rgba(225, 29, 72, 0.3); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(225, 29, 72, 0.4); }
+  .btn-secondary { display: inline-flex; align-items: center; padding: 1rem 1.75rem; background: var(--bg-primary); color: var(--text-primary); font-weight: 500; border: 1px solid var(--border-primary); border-radius: 0.5rem; text-decoration: none; transition: all 0.2s; }
+  .btn-secondary:hover { border-color: var(--accent); }
+
+  .stats-section { padding: 3rem 0; background: var(--bg-secondary); border-top: 1px solid var(--border-primary); border-bottom: 1px solid var(--border-primary); }
+  .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+  .stat-item { text-align: center; }
+  .stat-value { font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, var(--accent), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .stat-label { font-size: 0.875rem; color: var(--text-tertiary); margin-top: 0.25rem; }
+
+  .section-header { max-width: 560px; margin-bottom: 4rem; }
+  .section-header.centered { text-align: center; margin-left: auto; margin-right: auto; }
+  .section-tag { display: inline-block; padding: 0.25rem 0.75rem; background: var(--accent-light); color: var(--accent); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 9999px; margin-bottom: 1rem; }
+  .section-title { font-size: 2.25rem; font-weight: 700; color: var(--text-primary); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1rem; }
+  @media (min-width: 768px) { .section-title { font-size: 2.5rem; } }
+  .section-description { font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.7; }
+
+  .services-section { padding: 6rem 0; }
+  @media (min-width: 1024px) { .services-section { padding: 8rem 0; } }
+  .services-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+  @media (min-width: 768px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  .service-card { position: relative; display: flex; flex-direction: column; padding: 2.5rem; background: var(--bg-primary); border: 1px solid var(--border-primary); border-radius: 1.5rem; text-decoration: none; transition: all 0.3s; animation: fadeInUp 0.5s ease-out both; }
+  .service-card.featured { border-color: rgba(225, 29, 72, 0.3); }
+  .featured-badge { position: absolute; top: 1.5rem; right: 1.5rem; padding: 0.25rem 0.75rem; background: linear-gradient(135deg, var(--accent), var(--accent-secondary)); color: white; font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 9999px; }
+  .service-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
+  .service-card.service-rose:hover { border-color: #e11d48; box-shadow: 0 25px 50px -12px rgba(225, 29, 72, 0.2); }
+  .service-card.service-orange:hover { border-color: #f97316; box-shadow: 0 25px 50px -12px rgba(249, 115, 22, 0.2); }
+  .service-card.service-blue:hover { border-color: #3b82f6; box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.2); }
+  .service-card.service-purple:hover { border-color: #8b5cf6; box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.2); }
+
+  .service-icon { width: 4rem; height: 4rem; display: flex; align-items: center; justify-content: center; border-radius: 1rem; margin-bottom: 1.5rem; transition: all 0.3s; }
+  .service-rose .service-icon { background: rgba(225, 29, 72, 0.1); color: #e11d48; }
+  .service-orange .service-icon { background: rgba(249, 115, 22, 0.1); color: #f97316; }
+  .service-blue .service-icon { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+  .service-purple .service-icon { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; }
+  .service-card:hover .service-icon { transform: scale(1.1); }
+  .service-rose:hover .service-icon { background: linear-gradient(135deg, #e11d48, #f43f5e); color: white; }
+  .service-orange:hover .service-icon { background: linear-gradient(135deg, #f97316, #fb923c); color: white; }
+  .service-blue:hover .service-icon { background: linear-gradient(135deg, #3b82f6, #6366f1); color: white; }
+  .service-purple:hover .service-icon { background: linear-gradient(135deg, #8b5cf6, #a78bfa); color: white; }
+
+  .service-title { font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; }
+  .service-description { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; flex: 1; }
+  .service-features { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .feature-tag { padding: 0.375rem 0.75rem; background: var(--bg-secondary); border: 1px solid var(--border-primary); border-radius: 9999px; font-size: 0.8125rem; color: var(--text-secondary); }
+  .service-link { display: inline-flex; align-items: center; gap: 0.375rem; font-weight: 500; transition: gap 0.2s; }
+  .service-rose .service-link { color: #e11d48; }
+  .service-orange .service-link { color: #f97316; }
+  .service-blue .service-link { color: #3b82f6; }
+  .service-purple .service-link { color: #8b5cf6; }
+  .service-card:hover .service-link { gap: 0.625rem; }
+
+  .why-section { padding: 6rem 0; background: var(--bg-secondary); }
+  @media (min-width: 1024px) { .why-section { padding: 8rem 0; } }
+  .why-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+  @media (min-width: 640px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .why-grid { grid-template-columns: repeat(4, 1fr); } }
+  .why-card { background: var(--bg-primary); border: 1px solid var(--border-primary); border-radius: 1rem; padding: 2rem; text-align: center; transition: all 0.3s; animation: fadeInUp 0.5s ease-out both; }
+  .why-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .why-icon { width: 3rem; height: 3rem; display: flex; align-items: center; justify-content: center; background: var(--accent-light); color: var(--accent); border-radius: 0.75rem; margin: 0 auto 1.25rem; transition: all 0.3s; }
+  .why-card:hover .why-icon { background: linear-gradient(135deg, var(--accent), var(--accent-secondary)); color: white; }
+  .why-title { font-size: 1.0625rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; }
+  .why-description { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.6; }
+
+  .cta-section { padding: 6rem 0; }
+  @media (min-width: 1024px) { .cta-section { padding: 8rem 0; } }
+  .cta-card { position: relative; background: var(--bg-primary); border: 1px solid var(--border-primary); border-radius: 1.5rem; padding: 4rem 2rem; text-align: center; overflow: hidden; }
+  @media (min-width: 768px) { .cta-card { padding: 5rem 3rem; } }
+  .cta-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60%; height: 60%; background: radial-gradient(circle, rgba(225, 29, 72, 0.15) 0%, transparent 70%); filter: blur(60px); }
+  .cta-content { position: relative; z-index: 1; }
+  .cta-title { font-size: 2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem; }
+  @media (min-width: 768px) { .cta-title { font-size: 2.5rem; } }
+  .cta-description { font-size: 1.125rem; color: var(--text-secondary); margin-bottom: 2rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .cta-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+  .btn-cta-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: linear-gradient(135deg, var(--accent), var(--accent-secondary)); color: white; font-weight: 500; border-radius: 0.5rem; text-decoration: none; transition: all 0.3s; box-shadow: 0 4px 15px rgba(225, 29, 72, 0.3); }
+  .btn-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(225, 29, 72, 0.4); }
+  .btn-cta-secondary { display: inline-flex; align-items: center; padding: 1rem 2rem; background: transparent; color: var(--text-primary); font-weight: 500; border: 1px solid var(--border-primary); border-radius: 0.5rem; text-decoration: none; transition: all 0.2s; }
+  .btn-cta-secondary:hover { border-color: var(--accent); }
+  .cta-pattern { position: absolute; inset: 0; background-image: radial-gradient(var(--border-primary) 1px, transparent 1px); background-size: 24px 24px; opacity: 0.5; }
+</style>

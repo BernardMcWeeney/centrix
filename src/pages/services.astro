@@ -1,840 +1,644 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { FLAGSHIP_SERVICES, SERVICE_CATEGORIES, RECURRING_PLANS } from '../consts';
-import type { Service, ServiceType } from '../consts';
+import { RECURRING_PLANS } from '../consts';
 
-const title = "Services";
-const description = "Productized security services with fixed scope, clear outcomes, and measurable results. From assessment to managed services.";
+const title = "Security Services | Waymark";
+const description = "Transform your security posture with productized services. From assessments to managed security - clear outcomes, fixed pricing.";
 
-// Icon component helper
-function getIcon(icon: string): string {
-	const icons: Record<string, string> = {
-		shield: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />`,
-		microsoft: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />`,
-		network: `<path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />`,
-		monitor: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />`,
-		lock: `<path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />`,
-		device: `<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5h3m-6.75 2.25h10.5a2.25 2.25 0 002.25-2.25v-15a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 4.5v15a2.25 2.25 0 002.25 2.25z" />`,
-		ai: `<path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />`,
-		alert: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />`,
-		migration: `<path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />`,
-		endpoint: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />`,
-		user: `<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />`,
-		globe: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />`,
-		check: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />`,
-		settings: `<path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />`,
-		search: `<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />`,
-		key: `<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />`,
-		mail: `<path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />`,
-		database: `<path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />`,
-		eye: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />`,
-		cloud: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />`,
-		users: `<path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />`,
-		tag: `<path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" /><path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />`,
-		activity: `<path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />`,
-		blueprint: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />`,
-		mobile: `<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />`,
-		windows: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />`,
-		google: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18zM9.75 12h4.5M12 9.75v4.5" />`,
-		merge: `<path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />`,
-		building: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />`,
-		code: `<path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />`,
-		workflow: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zm0 9.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />`,
-		beaker: `<path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />`,
-		graduation: `<path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />`,
-		share: `<path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />`,
-		link: `<path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />`,
-		app: `<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 002.25-2.25V6a2.25 2.25 0 00-2.25-2.25H6A2.25 2.25 0 003.75 6v2.25A2.25 2.25 0 006 10.5zm0 9.75h2.25A2.25 2.25 0 0010.5 18v-2.25a2.25 2.25 0 00-2.25-2.25H6a2.25 2.25 0 00-2.25 2.25V18A2.25 2.25 0 006 20.25zm9.75-9.75H18a2.25 2.25 0 002.25-2.25V6A2.25 2.25 0 0018 3.75h-2.25A2.25 2.25 0 0013.5 6v2.25a2.25 2.25 0 002.25 2.25z" />`,
-	};
-	return icons[icon] || icons.shield;
-}
+const categories = [
+  {
+    id: "microsoft-365",
+    title: "Microsoft 365",
+    description: "Comprehensive M365 security assessments and implementation",
+    href: "/services/microsoft-365",
+    icon: "microsoft",
+    stats: "500+ tenants secured"
+  },
+  {
+    id: "networking",
+    title: "Network Infrastructure",
+    description: "Enterprise-grade networking with UniFi deployment",
+    href: "/services/networking",
+    icon: "network",
+    stats: "200+ sites deployed"
+  },
+  {
+    id: "ai-services",
+    title: "AI Services",
+    description: "Strategic AI adoption with security-first implementation",
+    href: "/services/ai-services",
+    icon: "ai",
+    stats: "50+ AI pilots delivered"
+  },
+  {
+    id: "managed-security",
+    title: "Managed Security",
+    description: "24/7 monitoring, vulnerability management, incident response",
+    href: "/services/managed-security",
+    icon: "shield",
+    stats: "10K+ alerts triaged monthly"
+  },
+  {
+    id: "intune",
+    title: "Endpoint Management",
+    description: "Modern device management with Intune and zero-trust",
+    href: "/services/intune",
+    icon: "device",
+    stats: "50K+ devices managed"
+  },
+  {
+    id: "identity",
+    title: "Identity & Access",
+    description: "Entra ID hardening and identity governance",
+    href: "/services/identity",
+    icon: "user",
+    stats: "Zero breaches"
+  },
+];
 
-function getServiceTypeBadge(type: ServiceType): string {
-	const badges: Record<ServiceType, string> = {
-		assessment: "type-badge type-badge-assessment",
-		implementation: "type-badge type-badge-implementation",
-		managed: "type-badge type-badge-managed",
-	};
-	return badges[type];
-}
-
-function getServiceTypeLabel(type: ServiceType): string {
-	const labels: Record<ServiceType, string> = {
-		assessment: "Assessment",
-		implementation: "Implementation",
-		managed: "Managed",
-	};
-	return labels[type];
-}
+const stats = [
+  { value: "500+", label: "Clients Protected" },
+  { value: "99.9%", label: "Client Retention" },
+  { value: "<4hr", label: "Avg Response Time" },
+  { value: "Zero", label: "Major Breaches" },
+];
 ---
 
 <BaseLayout title={title} description={description}>
-	<!-- Hero Section -->
-	<section class="hero">
-		<div class="container-wide">
-			<div class="hero-content">
-				<span class="badge badge-primary">Productized Services</span>
-				<h1 class="hero-title">
-					Security Services with <span class="hero-title-accent">Clear Outcomes</span>
-				</h1>
-				<p class="hero-description">
-					Fixed scope. Defined deliverables. Predictable pricing. Every service designed to deliver measurable results for your business.
-				</p>
-				<div class="hero-actions">
-					<a href="#flagship" class="btn btn-primary">
-						View Flagship Products
-						<svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-						</svg>
-					</a>
-					<a href="#plans" class="btn btn-secondary">
-						See Recurring Plans
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container-wide">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Services</div>
+        <h1 class="hero-title">Security services.<br/>Fixed pricing.</h1>
+        <p class="hero-description">
+          Stop worrying about security. Start focusing on growth. Our productized services deliver measurable outcomes with predictable pricing.
+        </p>
+        <div class="hero-actions">
+          <a href="#categories" class="btn btn-primary btn-lg">
+            Explore Services
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+          </a>
+          <a href="/contact" class="btn btn-secondary btn-lg">Book a Consultation</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<!-- Flagship Products Section -->
-	<section id="flagship" class="section-padding scroll-mt-24">
-		<div class="container-wide">
-			<div class="section-header">
-				<span class="badge badge-primary">Featured</span>
-				<h2 class="section-title">Flagship Products</h2>
-				<p class="section-description">
-					Our most popular services. Each designed to deliver specific outcomes with clear deliverables.
-				</p>
-			</div>
+  <!-- Stats Bar -->
+  <section class="stats-section">
+    <div class="container-wide">
+      <div class="stats-grid">
+        {stats.map((stat) => (
+          <div class="stat-item">
+            <div class="stat-value">{stat.value}</div>
+            <div class="stat-label">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-			<div class="flagship-grid">
-				{FLAGSHIP_SERVICES.map((service) => (
-					<div class="flagship-card group">
-						<div class="flagship-card-header">
-							<div class="icon-box">
-								<svg class="w-5 h-5" style="color: var(--brand-primary);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" set:html={getIcon(service.icon)} />
-							</div>
-							<div class="flagship-card-badges">
-								{service.types.map((type) => (
-									<span class={getServiceTypeBadge(type)}>{getServiceTypeLabel(type)}</span>
-								))}
-							</div>
-						</div>
-						<h3 class="flagship-card-title">{service.shortTitle || service.title}</h3>
-						<p class="flagship-card-description">{service.description}</p>
-						<div class="flagship-card-footer">
-							<span class="flagship-card-timeframe">{service.timeframe}</span>
-							<a href="/contact" class="flagship-card-link">
-								Learn more
-								<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-									<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-								</svg>
-							</a>
-						</div>
-					</div>
-				))}
-			</div>
-		</div>
-	</section>
+  <!-- Categories Section -->
+  <section id="categories" class="categories-section">
+    <div class="container-wide">
+      <div class="section-header">
+        <div class="section-eyebrow">Service Categories</div>
+        <h2 class="section-title">Choose your path to security</h2>
+        <p class="section-desc">Expert services across every aspect of your IT security landscape.</p>
+      </div>
 
-	<!-- Recurring Plans Section -->
-	<section id="plans" class="section-padding section-alt scroll-mt-24">
-		<div class="container-wide">
-			<div class="section-header">
-				<span class="badge badge-neutral">Recurring Revenue</span>
-				<h2 class="section-title">Managed Security Plans</h2>
-				<p class="section-description">
-					Ongoing protection with predictable monthly pricing. Choose the level that fits your needs.
-				</p>
-			</div>
+      <div class="categories-grid">
+        {categories.map((category) => (
+          <a href={category.href} class="category-card">
+            <div class="category-icon">
+              {category.icon === 'microsoft' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg>}
+              {category.icon === 'network' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z"/></svg>}
+              {category.icon === 'ai' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>}
+              {category.icon === 'shield' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>}
+              {category.icon === 'device' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.5 19.5h3m-6.75 2.25h10.5a2.25 2.25 0 002.25-2.25v-15a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 4.5v15a2.25 2.25 0 002.25 2.25z"/></svg>}
+              {category.icon === 'user' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>}
+            </div>
+            <h3 class="category-title">{category.title}</h3>
+            <p class="category-description">{category.description}</p>
+            <div class="category-footer">
+              <span class="category-stat">{category.stats}</span>
+              <span class="category-arrow">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
 
-			<div class="plans-grid">
-				{RECURRING_PLANS.map((plan) => (
-					<div class:list={["plan-card", plan.featured && "plan-card-featured"]}>
-						{plan.featured && (
-							<div class="plan-card-badge">
-								<span class="badge badge-success">{plan.tagline}</span>
-							</div>
-						)}
-						<div class="plan-card-header">
-							<h3 class="plan-card-title">{plan.name}</h3>
-							{!plan.featured && <p class="plan-card-tagline">{plan.tagline}</p>}
-							<p class="plan-card-description">{plan.description}</p>
-						</div>
-						<div class="plan-card-price">
-							<span class="plan-price">{plan.monthlyPrice}</span>
-						</div>
-						<ul class="plan-features">
-							{plan.includes.map((item) => (
-								<li class="plan-feature">
-									<svg class="plan-feature-check" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-										<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-									</svg>
-									<span>{item}</span>
-								</li>
-							))}
-						</ul>
-						{plan.addOns && plan.addOns.length > 0 && (
-							<div class="plan-addons">
-								<p class="plan-addons-label">Optional add-ons:</p>
-								<div class="plan-addons-list">
-									{plan.addOns.map((addon) => (
-										<span class="plan-addon">{addon}</span>
-									))}
-								</div>
-							</div>
-						)}
-						<a href="/contact" class:list={["btn w-full", plan.featured ? "btn-primary" : "btn-secondary"]}>
-							Get Started
-						</a>
-					</div>
-				))}
-			</div>
-		</div>
-	</section>
+  <!-- Process Section -->
+  <section class="process-section">
+    <div class="container-wide">
+      <div class="section-header">
+        <div class="section-eyebrow">How It Works</div>
+        <h2 class="section-title">Your journey to security</h2>
+        <p class="section-desc">Every engagement follows our proven methodology for consistent, measurable results.</p>
+      </div>
 
-	<!-- Full Catalogue Section -->
-	<section id="catalogue" class="section-padding scroll-mt-24">
-		<div class="container-wide">
-			<div class="section-header">
-				<span class="badge badge-primary">Full Catalogue</span>
-				<h2 class="section-title">All Services</h2>
-				<p class="section-description">
-					Complete list of productized services organized by category.
-				</p>
-			</div>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Discover</h3>
+          <p class="step-description">We assess your current state, identify gaps, and understand your goals.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Design</h3>
+          <p class="step-description">We create a roadmap with clear milestones and fixed-scope deliverables.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Deliver</h3>
+          <p class="step-description">We execute the plan with minimal disruption and maximum transparency.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <h3 class="step-title">Sustain</h3>
+          <p class="step-description">We provide ongoing support, monitoring, and continuous improvement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-			<div class="catalogue-list">
-				{SERVICE_CATEGORIES.map((category) => (
-					<div class="category-section" id={category.id}>
-						<div class="category-header">
-							<div class="icon-box">
-								<svg class="w-5 h-5" style="color: var(--brand-primary);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" set:html={getIcon(category.icon)} />
-							</div>
-							<div class="category-info">
-								<h3 class="category-title">{category.title}</h3>
-								<p class="category-description">{category.description}</p>
-							</div>
-						</div>
-						<div class="category-services">
-							{category.services.map((service) => (
-								<div class="service-item group">
-									<div class="service-item-badges">
-										{service.types.map((type) => (
-											<span class={getServiceTypeBadge(type)}>{getServiceTypeLabel(type)}</span>
-										))}
-									</div>
-									<h4 class="service-item-title">{service.title}</h4>
-									<p class="service-item-description">{service.description}</p>
-									<div class="service-item-footer">
-										<span class="service-item-timeframe">{service.timeframe}</span>
-										<span class="service-item-deliverables">{service.deliverables.length} deliverables</span>
-									</div>
-								</div>
-							))}
-						</div>
-					</div>
-				))}
-			</div>
-		</div>
-	</section>
+  <!-- Plans Section -->
+  <section id="plans" class="plans-section">
+    <div class="container-wide">
+      <div class="section-header">
+        <div class="section-eyebrow">Managed Security Plans</div>
+        <h2 class="section-title">Continuous protection, predictable pricing</h2>
+        <p class="section-desc">Choose the level of protection that fits your organization's needs.</p>
+      </div>
 
-	<!-- How It Works Section -->
-	<section class="section-padding section-alt">
-		<div class="container-wide">
-			<div class="section-header">
-				<h2 class="section-title">How Our Products Work</h2>
-				<p class="section-description">
-					Every service follows the same pattern: clear scope, defined deliverables, predictable results.
-				</p>
-			</div>
+      <div class="plans-grid">
+        {RECURRING_PLANS.map((plan) => (
+          <div class={`plan-card ${plan.featured ? 'featured' : ''}`}>
+            {plan.featured && <div class="plan-badge">Most Popular</div>}
+            <div class="plan-header">
+              <h3 class="plan-name">{plan.name}</h3>
+              <p class="plan-tagline">{plan.tagline}</p>
+            </div>
+            <div class="plan-price">
+              <span class="price-text">{plan.monthlyPrice}</span>
+              <span class="price-period">/month</span>
+            </div>
+            <ul class="plan-features">
+              {plan.includes.map((item) => (
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <a href={`/contact?plan=${plan.id}`} class={`plan-btn ${plan.featured ? 'plan-btn-primary' : 'plan-btn-secondary'}`}>
+              Get Started
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-			<div class="process-grid">
-				<div class="process-step">
-					<div class="process-step-number">1</div>
-					<h3 class="process-step-title">Assessment</h3>
-					<p class="process-step-description">Find risk, produce a backlog, and prioritize what matters. Typically 5-10 days.</p>
-				</div>
-				<div class="process-step">
-					<div class="process-step-number process-step-number-mid">2</div>
-					<h3 class="process-step-title">Implementation</h3>
-					<p class="process-step-description">Build and configure. Fixed scope sprints from 1-4 weeks with clear deliverables.</p>
-				</div>
-				<div class="process-step">
-					<div class="process-step-number process-step-number-end">3</div>
-					<h3 class="process-step-title">Managed</h3>
-					<p class="process-step-description">Ongoing monitoring, changes, tuning, and reporting. Monthly recurring engagement.</p>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- CTA Section -->
-	<section class="section-padding">
-		<div class="container-wide">
-			<div class="cta-card">
-				<h2 class="cta-title">Ready to Get Started?</h2>
-				<p class="cta-description">
-					Contact us for a free consultation. We'll help you identify the right services for your security needs.
-				</p>
-				<div class="cta-actions">
-					<a href="/contact" class="btn btn-primary btn-lg">
-						Schedule Consultation
-						<svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-						</svg>
-					</a>
-					<a href="/solutions/microsoft-365" class="btn btn-secondary btn-lg">
-						Explore M365 Services
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container-wide">
+      <div class="cta-card">
+        <h2 class="cta-title">Ready to transform your security?</h2>
+        <p class="cta-description">Let's start with a conversation. No pressure, no commitment.</p>
+        <div class="cta-actions">
+          <a href="/contact" class="btn btn-primary btn-lg">
+            Schedule Free Consultation
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/about" class="btn btn-secondary btn-lg">Learn About Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
-	/* Hero Section */
-	.hero {
-		padding-top: 8rem;
-		padding-bottom: 5rem;
-		background-color: var(--bg-secondary);
-	}
-
-	@media (min-width: 768px) {
-		.hero {
-			padding-top: 10rem;
-			padding-bottom: 6rem;
-		}
-	}
-
-	.hero-content {
-		max-width: 48rem;
-	}
-
-	.hero-title {
-		font-size: 2.5rem;
-		font-weight: 700;
-		line-height: 1.1;
-		letter-spacing: -0.02em;
-		color: var(--text-primary);
-		margin: 1rem 0 1.5rem;
-	}
-
-	@media (min-width: 768px) {
-		.hero-title {
-			font-size: 3rem;
-		}
-	}
-
-	@media (min-width: 1024px) {
-		.hero-title {
-			font-size: 3.5rem;
-		}
-	}
-
-	.hero-title-accent {
-		color: var(--brand-primary);
-	}
-
-	.hero-description {
-		font-size: 1.125rem;
-		line-height: 1.6;
-		color: var(--text-secondary);
-		margin-bottom: 2rem;
-		max-width: 36rem;
-	}
-
-	.hero-actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1rem;
-	}
-
-	/* Section Styles */
-	.section-alt {
-		background-color: var(--bg-secondary);
-	}
-
-	.section-header {
-		text-align: center;
-		max-width: 48rem;
-		margin: 0 auto 4rem;
-	}
-
-	.section-title {
-		font-size: 2rem;
-		font-weight: 700;
-		color: var(--text-primary);
-		margin: 1rem 0;
-		letter-spacing: -0.02em;
-	}
-
-	@media (min-width: 768px) {
-		.section-title {
-			font-size: 2.25rem;
-		}
-	}
-
-	.section-description {
-		font-size: 1.125rem;
-		color: var(--text-secondary);
-		line-height: 1.6;
-	}
-
-	/* Type Badges */
-	.type-badge {
-		display: inline-flex;
-		padding: 0.125rem 0.5rem;
-		font-size: 0.6875rem;
-		font-weight: 500;
-		border-radius: 9999px;
-		text-transform: uppercase;
-		letter-spacing: 0.025em;
-	}
-
-	.type-badge-assessment {
-		background-color: var(--brand-light);
-		color: var(--brand-primary);
-	}
-
-	.type-badge-implementation {
-		background-color: var(--success-light);
-		color: var(--success);
-	}
-
-	.type-badge-managed {
-		background-color: var(--bg-tertiary);
-		color: var(--text-secondary);
-	}
-
-	/* Flagship Grid */
-	.flagship-grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 1.5rem;
-	}
-
-	@media (min-width: 640px) {
-		.flagship-grid {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-
-	@media (min-width: 1024px) {
-		.flagship-grid {
-			grid-template-columns: repeat(3, 1fr);
-		}
-	}
-
-	.flagship-card {
-		background-color: var(--bg-primary);
-		border: 1px solid var(--border-primary);
-		border-radius: 0.75rem;
-		padding: 1.5rem;
-		transition: border-color 0.15s ease, box-shadow 0.15s ease;
-	}
-
-	.flagship-card:hover {
-		border-color: var(--border-secondary);
-		box-shadow: var(--shadow-md);
-	}
-
-	.flagship-card-header {
-		display: flex;
-		align-items: flex-start;
-		gap: 1rem;
-		margin-bottom: 1rem;
-	}
-
-	.flagship-card-badges {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.375rem;
-	}
-
-	.flagship-card-title {
-		font-size: 1rem;
-		font-weight: 600;
-		color: var(--text-primary);
-		margin-bottom: 0.5rem;
-		transition: color 0.15s ease;
-	}
-
-	.flagship-card:hover .flagship-card-title {
-		color: var(--brand-primary);
-	}
-
-	.flagship-card-description {
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-		line-height: 1.6;
-		margin-bottom: 1rem;
-	}
-
-	.flagship-card-footer {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding-top: 1rem;
-		border-top: 1px solid var(--border-primary);
-	}
-
-	.flagship-card-timeframe {
-		font-size: 0.75rem;
-		color: var(--text-tertiary);
-	}
-
-	.flagship-card-link {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.25rem;
-		font-size: 0.875rem;
-		font-weight: 500;
-		color: var(--brand-primary);
-		text-decoration: none;
-		transition: color 0.15s ease;
-	}
-
-	.flagship-card-link:hover {
-		color: var(--brand-hover);
-	}
-
-	/* Plans Grid */
-	.plans-grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 2rem;
-		max-width: 72rem;
-		margin: 0 auto;
-	}
-
-	@media (min-width: 768px) {
-		.plans-grid {
-			grid-template-columns: repeat(3, 1fr);
-		}
-	}
-
-	.plan-card {
-		position: relative;
-		background-color: var(--bg-primary);
-		border: 1px solid var(--border-primary);
-		border-radius: 1rem;
-		padding: 2rem;
-		transition: border-color 0.15s ease, box-shadow 0.15s ease;
-	}
-
-	.plan-card:hover {
-		border-color: var(--border-secondary);
-		box-shadow: var(--shadow-md);
-	}
-
-	.plan-card-featured {
-		border: 2px solid var(--brand-primary);
-		box-shadow: var(--shadow-md);
-	}
-
-	.plan-card-featured:hover {
-		box-shadow: var(--shadow-lg);
-	}
-
-	.plan-card-badge {
-		position: absolute;
-		top: -0.75rem;
-		left: 50%;
-		transform: translateX(-50%);
-	}
-
-	.plan-card-header {
-		text-align: center;
-		margin-bottom: 1.5rem;
-	}
-
-	.plan-card-title {
-		font-size: 1.25rem;
-		font-weight: 700;
-		color: var(--text-primary);
-		margin-bottom: 0.25rem;
-	}
-
-	.plan-card-tagline {
-		font-size: 0.875rem;
-		color: var(--text-tertiary);
-	}
-
-	.plan-card-description {
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-		margin-top: 0.5rem;
-	}
-
-	.plan-card-price {
-		text-align: center;
-		padding: 1rem 0;
-		border-top: 1px solid var(--border-primary);
-		border-bottom: 1px solid var(--border-primary);
-		margin-bottom: 1.5rem;
-	}
-
-	.plan-price {
-		font-size: 1.5rem;
-		font-weight: 700;
-		color: var(--text-primary);
-	}
-
-	.plan-features {
-		list-style: none;
-		padding: 0;
-		margin: 0 0 1.5rem;
-	}
-
-	.plan-feature {
-		display: flex;
-		align-items: flex-start;
-		gap: 0.75rem;
-		padding: 0.5rem 0;
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-	}
-
-	.plan-feature-check {
-		width: 1.25rem;
-		height: 1.25rem;
-		flex-shrink: 0;
-		color: var(--success);
-		margin-top: 0.125rem;
-	}
-
-	.plan-addons {
-		padding-top: 1rem;
-		border-top: 1px solid var(--border-primary);
-		margin-bottom: 1.5rem;
-	}
-
-	.plan-addons-label {
-		font-size: 0.75rem;
-		color: var(--text-tertiary);
-		margin-bottom: 0.5rem;
-	}
-
-	.plan-addons-list {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.375rem;
-	}
-
-	.plan-addon {
-		font-size: 0.75rem;
-		padding: 0.25rem 0.5rem;
-		background-color: var(--bg-tertiary);
-		border-radius: 0.25rem;
-		color: var(--text-secondary);
-	}
-
-	/* Catalogue */
-	.catalogue-list {
-		display: flex;
-		flex-direction: column;
-		gap: 4rem;
-	}
-
-	.category-section {
-		padding-bottom: 3rem;
-		border-bottom: 1px solid var(--border-primary);
-	}
-
-	.category-section:last-child {
-		border-bottom: none;
-		padding-bottom: 0;
-	}
-
-	.category-header {
-		display: flex;
-		align-items: flex-start;
-		gap: 1rem;
-		margin-bottom: 2rem;
-	}
-
-	.category-info {
-		flex: 1;
-	}
-
-	.category-title {
-		font-size: 1.5rem;
-		font-weight: 700;
-		color: var(--text-primary);
-		margin-bottom: 0.25rem;
-	}
-
-	.category-description {
-		font-size: 0.9375rem;
-		color: var(--text-secondary);
-	}
-
-	.category-services {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 1rem;
-	}
-
-	@media (min-width: 640px) {
-		.category-services {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-
-	@media (min-width: 1024px) {
-		.category-services {
-			grid-template-columns: repeat(3, 1fr);
-		}
-	}
-
-	.service-item {
-		background-color: var(--bg-primary);
-		border: 1px solid var(--border-primary);
-		border-radius: 0.75rem;
-		padding: 1.25rem;
-		transition: border-color 0.15s ease, box-shadow 0.15s ease;
-	}
-
-	.service-item:hover {
-		border-color: var(--border-secondary);
-		box-shadow: var(--shadow-sm);
-	}
-
-	.service-item-badges {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.375rem;
-		margin-bottom: 0.75rem;
-	}
-
-	.service-item-title {
-		font-size: 0.9375rem;
-		font-weight: 600;
-		color: var(--text-primary);
-		margin-bottom: 0.5rem;
-		transition: color 0.15s ease;
-	}
-
-	.service-item:hover .service-item-title {
-		color: var(--brand-primary);
-	}
-
-	.service-item-description {
-		font-size: 0.8125rem;
-		color: var(--text-secondary);
-		line-height: 1.5;
-		margin-bottom: 0.75rem;
-	}
-
-	.service-item-footer {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding-top: 0.75rem;
-		border-top: 1px solid var(--border-primary);
-	}
-
-	.service-item-timeframe,
-	.service-item-deliverables {
-		font-size: 0.6875rem;
-		color: var(--text-tertiary);
-	}
-
-	/* Process Grid */
-	.process-grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 2rem;
-		max-width: 48rem;
-		margin: 0 auto;
-	}
-
-	@media (min-width: 768px) {
-		.process-grid {
-			grid-template-columns: repeat(3, 1fr);
-		}
-	}
-
-	.process-step {
-		text-align: center;
-	}
-
-	.process-step-number {
-		width: 3.5rem;
-		height: 3.5rem;
-		background-color: var(--brand-primary);
-		border-radius: 0.75rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin: 0 auto 1rem;
-		font-size: 1.25rem;
-		font-weight: 700;
-		color: #ffffff;
-	}
-
-	.process-step-number-mid {
-		background: linear-gradient(135deg, var(--brand-primary), var(--success));
-	}
-
-	.process-step-number-end {
-		background-color: var(--success);
-	}
-
-	.process-step-title {
-		font-size: 1.125rem;
-		font-weight: 600;
-		color: var(--text-primary);
-		margin-bottom: 0.5rem;
-	}
-
-	.process-step-description {
-		font-size: 0.875rem;
-		color: var(--text-secondary);
-		line-height: 1.6;
-	}
-
-	/* CTA Section */
-	.cta-card {
-		background-color: var(--bg-secondary);
-		border: 1px solid var(--border-primary);
-		border-radius: 1rem;
-		padding: 4rem 2rem;
-		text-align: center;
-	}
-
-	@media (min-width: 768px) {
-		.cta-card {
-			padding: 5rem 4rem;
-		}
-	}
-
-	.cta-title {
-		font-size: 2rem;
-		font-weight: 700;
-		color: var(--text-primary);
-		margin-bottom: 1rem;
-		letter-spacing: -0.02em;
-	}
-
-	@media (min-width: 768px) {
-		.cta-title {
-			font-size: 2.25rem;
-		}
-	}
-
-	.cta-description {
-		font-size: 1.125rem;
-		color: var(--text-secondary);
-		max-width: 36rem;
-		margin: 0 auto 2.5rem;
-	}
-
-	.cta-actions {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		gap: 1rem;
-	}
+  /* Hero */
+  .hero {
+    padding: 8rem 0 4rem;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  @media (min-width: 768px) {
+    .hero { padding: 10rem 0 5rem; }
+  }
+
+  .hero-content {
+    max-width: 40rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--brand-primary);
+    margin-bottom: 1rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-title { font-size: 3.5rem; }
+  }
+
+  .hero-description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  /* Stats */
+  .stats-section {
+    padding: 2.5rem 0;
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+    margin-top: 0.25rem;
+  }
+
+  /* Categories */
+  .categories-section {
+    padding: 5rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .categories-section { padding: 6rem 0; }
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .categories-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .categories-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .category-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+
+  .category-card:hover {
+    border-color: var(--brand-primary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .category-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--brand-light);
+    color: var(--brand-primary);
+    border-radius: 0.375rem;
+    margin-bottom: 1rem;
+  }
+
+  .category-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .category-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+
+  .category-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-primary);
+  }
+
+  .category-stat {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+  }
+
+  .category-arrow {
+    color: var(--brand-primary);
+    transition: transform 0.15s ease;
+  }
+
+  .category-card:hover .category-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Process */
+  .process-section {
+    padding: 5rem 0;
+    background-color: var(--bg-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .process-section { padding: 6rem 0; }
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .process-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .process-step {
+    text-align: center;
+  }
+
+  .step-number {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--brand-primary);
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 0.375rem;
+    margin-bottom: 1rem;
+  }
+
+  .step-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-description {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Plans */
+  .plans-section {
+    padding: 5rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .plans-section { padding: 6rem 0; }
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .plans-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .plan-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    transition: all 0.15s ease;
+  }
+
+  .plan-card:hover {
+    border-color: var(--border-secondary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .plan-card.featured {
+    border-color: var(--brand-primary);
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: -0.625rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.25rem 0.75rem;
+    background-color: var(--brand-primary);
+    color: white;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 9999px;
+    white-space: nowrap;
+  }
+
+  .plan-header {
+    text-align: center;
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+  }
+
+  .plan-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .plan-tagline {
+    font-size: 0.75rem;
+    color: var(--brand-primary);
+    font-weight: 500;
+  }
+
+  .plan-price {
+    text-align: center;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border-primary);
+    border-bottom: 1px solid var(--border-primary);
+    margin-bottom: 1rem;
+  }
+
+  .price-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .price-period {
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+  }
+
+  .plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+    flex: 1;
+  }
+
+  .plan-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.375rem 0;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+  }
+
+  .plan-features li svg {
+    color: var(--success);
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+
+  .plan-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+
+  .plan-btn-primary {
+    background-color: var(--brand-primary);
+    color: white;
+  }
+
+  .plan-btn-primary:hover {
+    background-color: var(--brand-hover);
+    color: white;
+  }
+
+  .plan-btn-secondary {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-primary);
+  }
+
+  .plan-btn-secondary:hover {
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 5rem 0;
+    background-color: var(--bg-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .cta-section { padding: 6rem 0; }
+  }
+
+  .cta-card {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .cta-card { padding: 4rem 2rem; }
+  }
+
+  .cta-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.025em;
+  }
+
+  @media (min-width: 768px) {
+    .cta-title { font-size: 1.875rem; }
+  }
+
+  .cta-description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
 </style>

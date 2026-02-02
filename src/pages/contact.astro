@@ -6,532 +6,456 @@ const title = "Contact Us";
 const description = "Get in touch with Waymark for IT security consulting, Microsoft 365 solutions, and network infrastructure services.";
 
 const contactMethods = [
-	{
-		title: "Email Us",
-		description: "Send us a message and we'll respond within 24 hours.",
-		value: COMPANY_INFO.email,
-		href: `mailto:${COMPANY_INFO.email}`,
-		icon: "email",
-	},
-	{
-		title: "Call Us",
-		description: "Speak directly with our security experts.",
-		value: COMPANY_INFO.phone,
-		href: `tel:${COMPANY_INFO.phone.replace(/\D/g, '')}`,
-		icon: "phone",
-	},
-	{
-		title: "Visit Us",
-		description: "Come to our office for an in-person consultation.",
-		value: COMPANY_INFO.address,
-		icon: "location",
-	},
+  {
+    title: "Email Us",
+    description: "Send us a message and we'll respond within 24 hours.",
+    value: COMPANY_INFO.email,
+    href: `mailto:${COMPANY_INFO.email}`,
+    icon: "email",
+  },
+  {
+    title: "Call Us",
+    description: "Speak directly with our security experts.",
+    value: COMPANY_INFO.phone,
+    href: `tel:${COMPANY_INFO.phone.replace(/\D/g, '')}`,
+    icon: "phone",
+  },
+  {
+    title: "Visit Us",
+    description: "Come to our office for an in-person consultation.",
+    value: COMPANY_INFO.address,
+    icon: "location",
+  },
 ];
 
 const services = [
-	"Security Assessment",
-	"Microsoft 365 Security",
-	"Network Infrastructure",
-	"24/7 Monitoring",
-	"Security Consulting",
-	"Compliance Services",
-	"Other",
+  "Security Assessment",
+  "Microsoft 365 Security",
+  "Network Infrastructure",
+  "24/7 Monitoring",
+  "Security Consulting",
+  "Compliance Services",
+  "Other",
 ];
 
 const faqs = [
-	{
-		q: "What's included in a free security assessment?",
-		a: "Our free assessment includes a review of your current security posture, identification of critical vulnerabilities, and a prioritized roadmap of recommendations.",
-	},
-	{
-		q: "Do you offer emergency support?",
-		a: "Yes, we provide 24/7 emergency support for security incidents. Clients with monitoring contracts have priority response.",
-	},
-	{
-		q: "What size businesses do you work with?",
-		a: "We work with businesses of all sizes, from startups to enterprises. Our solutions scale to meet your needs.",
-	},
-	{
-		q: "How long does implementation typically take?",
-		a: "Implementation timelines vary based on scope. Basic M365 security deploys in 1-2 weeks, while network projects may take 4-8 weeks.",
-	},
+  {
+    q: "What's included in a free security assessment?",
+    a: "Our free assessment includes a review of your current security posture, identification of critical vulnerabilities, and a prioritized roadmap of recommendations.",
+  },
+  {
+    q: "Do you offer emergency support?",
+    a: "Yes, we provide 24/7 emergency support for security incidents. Clients with monitoring contracts have priority response.",
+  },
+  {
+    q: "What size businesses do you work with?",
+    a: "We work with businesses of all sizes, from startups to enterprises. Our solutions scale to meet your needs.",
+  },
+  {
+    q: "How long does implementation typically take?",
+    a: "Implementation timelines vary based on scope. Basic M365 security deploys in 1-2 weeks, while network projects may take 4-8 weeks.",
+  },
 ];
 ---
 
 <BaseLayout title={title} description={description}>
-	<!-- Hero Section -->
-	<section class="hero">
-		<div class="container-wide">
-			<div class="hero-content">
-				<span class="badge badge-primary">Contact</span>
-				<h1 class="hero-title">Get in Touch</h1>
-				<p class="hero-description">
-					Ready to strengthen your security? Contact us for a free consultation with our experts.
-				</p>
-			</div>
-		</div>
-	</section>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container-wide">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Contact</div>
+        <h1 class="hero-title">Get in touch</h1>
+        <p class="hero-description">
+          Ready to strengthen your security? Contact us for a free consultation with our experts.
+        </p>
+      </div>
+    </div>
+  </section>
 
-	<!-- Contact Section -->
-	<section class="section-padding">
-		<div class="container-wide">
-			<div class="contact-grid">
-				<!-- Contact Form -->
-				<div class="form-section">
-					<h2 class="form-title">Send Us a Message</h2>
-					<form class="contact-form" action="#" method="POST">
-						<div class="form-row">
-							<div class="form-group">
-								<label for="firstName" class="form-label">First Name</label>
-								<input
-									type="text"
-									id="firstName"
-									name="firstName"
-									required
-									class="form-input"
-									placeholder="John"
-								/>
-							</div>
-							<div class="form-group">
-								<label for="lastName" class="form-label">Last Name</label>
-								<input
-									type="text"
-									id="lastName"
-									name="lastName"
-									required
-									class="form-input"
-									placeholder="Doe"
-								/>
-							</div>
-						</div>
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="container-wide">
+      <div class="contact-grid">
+        <!-- Contact Form -->
+        <div class="form-section">
+          <h2 class="form-title">Send us a message</h2>
+          <form class="contact-form" action="#" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" id="firstName" name="firstName" required class="form-input" placeholder="John" />
+              </div>
+              <div class="form-group">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" id="lastName" name="lastName" required class="form-input" placeholder="Doe" />
+              </div>
+            </div>
 
-						<div class="form-group">
-							<label for="email" class="form-label">Email</label>
-							<input
-								type="email"
-								id="email"
-								name="email"
-								required
-								class="form-input"
-								placeholder="john@company.com"
-							/>
-						</div>
+            <div class="form-group">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" name="email" required class="form-input" placeholder="john@company.com" />
+            </div>
 
-						<div class="form-group">
-							<label for="company" class="form-label">Company</label>
-							<input
-								type="text"
-								id="company"
-								name="company"
-								class="form-input"
-								placeholder="Acme Inc."
-							/>
-						</div>
+            <div class="form-group">
+              <label for="company" class="form-label">Company</label>
+              <input type="text" id="company" name="company" class="form-input" placeholder="Acme Inc." />
+            </div>
 
-						<div class="form-group">
-							<label for="service" class="form-label">Service Interested In</label>
-							<select id="service" name="service" class="form-select">
-								<option value="">Select a service</option>
-								{services.map((service) => (
-									<option value={service}>{service}</option>
-								))}
-							</select>
-						</div>
+            <div class="form-group">
+              <label for="service" class="form-label">Service Interested In</label>
+              <select id="service" name="service" class="form-select">
+                <option value="">Select a service</option>
+                {services.map((service) => (
+                  <option value={service}>{service}</option>
+                ))}
+              </select>
+            </div>
 
-						<div class="form-group">
-							<label for="message" class="form-label">Message</label>
-							<textarea
-								id="message"
-								name="message"
-								rows="5"
-								required
-								class="form-textarea"
-								placeholder="Tell us about your security needs..."
-							></textarea>
-						</div>
+            <div class="form-group">
+              <label for="message" class="form-label">Message</label>
+              <textarea id="message" name="message" rows="4" required class="form-textarea" placeholder="Tell us about your security needs..."></textarea>
+            </div>
 
-						<button type="submit" class="btn btn-primary btn-lg submit-btn">
-							Send Message
-							<svg class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-								<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-							</svg>
-						</button>
-					</form>
-				</div>
+            <button type="submit" class="btn btn-primary btn-lg submit-btn">
+              Send Message
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </form>
+        </div>
 
-				<!-- Contact Info -->
-				<div class="info-section">
-					<h2 class="info-title">Contact Information</h2>
-					<p class="info-description">
-						Prefer to reach out directly? Contact us using any of the methods below.
-					</p>
+        <!-- Contact Info -->
+        <div class="info-section">
+          <h2 class="info-title">Contact Information</h2>
+          <p class="info-description">Prefer to reach out directly? Contact us using any of the methods below.</p>
 
-					<div class="contact-methods">
-						{contactMethods.map((method) => (
-							<div class="contact-card">
-								<div class="contact-icon">
-									{method.icon === "email" && (
-										<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-											<path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-										</svg>
-									)}
-									{method.icon === "phone" && (
-										<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-											<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-										</svg>
-									)}
-									{method.icon === "location" && (
-										<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-											<path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-											<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-										</svg>
-									)}
-								</div>
-								<div class="contact-content">
-									<h3 class="contact-title">{method.title}</h3>
-									<p class="contact-description">{method.description}</p>
-									{method.href ? (
-										<a href={method.href} class="contact-link">{method.value}</a>
-									) : (
-										<span class="contact-value">{method.value}</span>
-									)}
-								</div>
-							</div>
-						))}
-					</div>
+          <div class="contact-methods">
+            {contactMethods.map((method) => (
+              <div class="contact-card">
+                <div class="contact-icon">
+                  {method.icon === "email" && (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                    </svg>
+                  )}
+                  {method.icon === "phone" && (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                    </svg>
+                  )}
+                  {method.icon === "location" && (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                    </svg>
+                  )}
+                </div>
+                <div class="contact-content">
+                  <h3 class="contact-title">{method.title}</h3>
+                  <p class="contact-description">{method.description}</p>
+                  {method.href ? (
+                    <a href={method.href} class="contact-link">{method.value}</a>
+                  ) : (
+                    <span class="contact-value">{method.value}</span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
 
-					<!-- Response Time -->
-					<div class="response-card">
-						<svg class="response-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-						</svg>
-						<div>
-							<h3 class="response-title">Fast Response Time</h3>
-							<p class="response-description">We typically respond within 4 business hours</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+          <div class="response-card">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div>
+              <h3 class="response-title">Fast Response Time</h3>
+              <p class="response-description">We typically respond within 4 business hours</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<!-- FAQ Section -->
-	<section class="section-padding section-alt">
-		<div class="container-wide">
-			<div class="section-header">
-				<h2 class="section-title">Frequently Asked Questions</h2>
-				<p class="section-description">
-					Quick answers to common questions. Can't find what you're looking for? Contact us.
-				</p>
-			</div>
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container-wide">
+      <div class="section-header">
+        <div class="section-eyebrow">FAQ</div>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
 
-			<div class="faq-grid">
-				{faqs.map((faq) => (
-					<div class="faq-card">
-						<h3 class="faq-question">{faq.q}</h3>
-						<p class="faq-answer">{faq.a}</p>
-					</div>
-				))}
-			</div>
-		</div>
-	</section>
+      <div class="faq-grid">
+        {faqs.map((faq) => (
+          <div class="faq-card">
+            <h3 class="faq-question">{faq.q}</h3>
+            <p class="faq-answer">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
-	/* Hero */
-	.hero {
-		padding-top: 8rem;
-		padding-bottom: 5rem;
-		background-color: var(--bg-secondary);
-	}
+  /* Hero */
+  .hero {
+    padding: 8rem 0 4rem;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-primary);
+  }
 
-	@media (min-width: 768px) {
-		.hero {
-			padding-top: 10rem;
-			padding-bottom: 6rem;
-		}
-	}
+  @media (min-width: 768px) {
+    .hero { padding: 10rem 0 5rem; }
+  }
 
-	.hero-content {
-		max-width: 42rem;
-	}
+  .hero-content {
+    max-width: 32rem;
+  }
 
-	.hero-title {
-		font-size: 2.5rem;
-		font-weight: 700;
-		line-height: 1.1;
-		letter-spacing: -0.02em;
-		color: var(--text-primary);
-		margin: 1rem 0 1.5rem;
-	}
+  .hero-eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--brand-primary);
+    margin-bottom: 1rem;
+  }
 
-	@media (min-width: 768px) {
-		.hero-title {
-			font-size: 3rem;
-		}
-	}
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
 
-	.hero-description {
-		font-size: 1.125rem;
-		line-height: 1.6;
-		color: var(--text-secondary);
-	}
+  @media (min-width: 768px) {
+    .hero-title { font-size: 3rem; }
+  }
 
-	/* Section Styles */
-	.section-alt {
-		background-color: var(--bg-secondary);
-	}
+  .hero-description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
 
-	.section-header {
-		text-align: center;
-		max-width: 42rem;
-		margin: 0 auto 3rem;
-	}
+  /* Contact Section */
+  .contact-section {
+    padding: 5rem 0;
+  }
 
-	.section-title {
-		font-size: 2rem;
-		font-weight: 700;
-		color: var(--text-primary);
-		margin-bottom: 1rem;
-		letter-spacing: -0.02em;
-	}
+  @media (min-width: 768px) {
+    .contact-section { padding: 6rem 0; }
+  }
 
-	.section-description {
-		font-size: 1.125rem;
-		color: var(--text-secondary);
-		line-height: 1.6;
-	}
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
 
-	/* Contact Grid */
-	.contact-grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 4rem;
-	}
+  @media (min-width: 1024px) {
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+  }
 
-	@media (min-width: 1024px) {
-		.contact-grid {
-			grid-template-columns: 1fr 1fr;
-		}
-	}
+  /* Form */
+  .form-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+  }
 
-	/* Form Section */
-	.form-title {
-		font-size: 1.5rem;
-		font-weight: 700;
-		color: var(--text-primary);
-		margin-bottom: 1.5rem;
-	}
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-	.contact-form {
-		display: flex;
-		flex-direction: column;
-		gap: 1.25rem;
-	}
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 
-	.form-row {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 1.25rem;
-	}
+  @media (min-width: 640px) {
+    .form-row { grid-template-columns: 1fr 1fr; }
+  }
 
-	@media (min-width: 640px) {
-		.form-row {
-			grid-template-columns: 1fr 1fr;
-		}
-	}
+  .form-label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 0.375rem;
+  }
 
-	.form-group {
-		display: flex;
-		flex-direction: column;
-	}
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.375rem;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    transition: border-color 0.15s ease;
+  }
 
-	.form-label {
-		font-size: 0.875rem;
-		font-weight: 500;
-		color: var(--text-secondary);
-		margin-bottom: 0.5rem;
-	}
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: var(--text-muted);
+  }
 
-	.form-input,
-	.form-select,
-	.form-textarea {
-		padding: 0.75rem 1rem;
-		background-color: var(--bg-primary);
-		border: 1px solid var(--border-primary);
-		border-radius: 0.5rem;
-		color: var(--text-primary);
-		font-size: 1rem;
-		transition: border-color 0.2s, box-shadow 0.2s;
-	}
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+  }
 
-	.form-input::placeholder,
-	.form-textarea::placeholder {
-		color: var(--text-tertiary);
-	}
+  .form-textarea {
+    resize: none;
+  }
 
-	.form-input:focus,
-	.form-select:focus,
-	.form-textarea:focus {
-		outline: none;
-		border-color: var(--brand-primary);
-		box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-	}
+  .submit-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
 
-	.form-textarea {
-		resize: none;
-	}
+  /* Info */
+  .info-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
 
-	.submit-btn {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 0.5rem;
-		width: 100%;
-		margin-top: 0.5rem;
-	}
+  .info-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
 
-	.btn-icon {
-		width: 1.25rem;
-		height: 1.25rem;
-	}
+  .contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
 
-	/* Info Section */
-	.info-title {
-		font-size: 1.5rem;
-		font-weight: 700;
-		color: var(--text-primary);
-		margin-bottom: 0.75rem;
-	}
+  .contact-card {
+    display: flex;
+    gap: 0.875rem;
+    padding: 1rem;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+  }
 
-	.info-description {
-		font-size: 1rem;
-		color: var(--text-secondary);
-		margin-bottom: 2rem;
-	}
+  .contact-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--brand-light);
+    color: var(--brand-primary);
+    border-radius: 0.375rem;
+    flex-shrink: 0;
+  }
 
-	.contact-methods {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		margin-bottom: 2rem;
-	}
+  .contact-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.125rem;
+  }
 
-	.contact-card {
-		display: flex;
-		gap: 1rem;
-		padding: 1.25rem;
-		background-color: var(--bg-secondary);
-		border: 1px solid var(--border-primary);
-		border-radius: 0.75rem;
-	}
+  .contact-description {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    margin-bottom: 0.375rem;
+  }
 
-	.contact-icon {
-		width: 2.5rem;
-		height: 2.5rem;
-		flex-shrink: 0;
-		color: var(--brand-primary);
-	}
+  .contact-link {
+    font-size: 0.8125rem;
+    color: var(--brand-primary);
+    text-decoration: none;
+  }
 
-	.contact-icon svg {
-		width: 100%;
-		height: 100%;
-	}
+  .contact-link:hover {
+    text-decoration: underline;
+  }
 
-	.contact-content {
-		flex: 1;
-	}
+  .contact-value {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+  }
 
-	.contact-title {
-		font-size: 1rem;
-		font-weight: 600;
-		color: var(--text-primary);
-		margin-bottom: 0.25rem;
-	}
+  .response-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background-color: var(--success-light);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    color: var(--success);
+  }
 
-	.contact-description {
-		font-size: 0.875rem;
-		color: var(--text-tertiary);
-		margin-bottom: 0.5rem;
-	}
+  .response-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
 
-	.contact-link {
-		font-size: 0.9375rem;
-		color: var(--brand-primary);
-		text-decoration: none;
-		transition: color 0.2s;
-	}
+  .response-description {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+  }
 
-	.contact-link:hover {
-		color: var(--brand-dark);
-	}
+  /* FAQ */
+  .faq-section {
+    padding: 5rem 0;
+    background-color: var(--bg-secondary);
+  }
 
-	.contact-value {
-		font-size: 0.9375rem;
-		color: var(--text-secondary);
-	}
+  @media (min-width: 768px) {
+    .faq-section { padding: 6rem 0; }
+  }
 
-	/* Response Card */
-	.response-card {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-		padding: 1.25rem;
-		background-color: var(--bg-secondary);
-		border: 1px solid var(--border-primary);
-		border-radius: 0.75rem;
-	}
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 48rem;
+    margin: 0 auto;
+  }
 
-	.response-icon {
-		width: 2rem;
-		height: 2rem;
-		flex-shrink: 0;
-		color: var(--success);
-	}
+  @media (min-width: 768px) {
+    .faq-grid { grid-template-columns: repeat(2, 1fr); }
+  }
 
-	.response-title {
-		font-size: 0.9375rem;
-		font-weight: 600;
-		color: var(--text-primary);
-	}
+  .faq-card {
+    padding: 1.25rem;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+  }
 
-	.response-description {
-		font-size: 0.875rem;
-		color: var(--text-tertiary);
-	}
+  .faq-question {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
 
-	/* FAQ Grid */
-	.faq-grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 1.5rem;
-		max-width: 48rem;
-		margin: 0 auto;
-	}
-
-	@media (min-width: 768px) {
-		.faq-grid {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-
-	.faq-card {
-		background-color: var(--bg-primary);
-		border: 1px solid var(--border-primary);
-		border-radius: 0.75rem;
-		padding: 1.5rem;
-	}
-
-	.faq-question {
-		font-size: 1rem;
-		font-weight: 600;
-		color: var(--text-primary);
-		margin-bottom: 0.75rem;
-	}
-
-	.faq-answer {
-		font-size: 0.9375rem;
-		color: var(--text-secondary);
-		line-height: 1.6;
-	}
+  .faq-answer {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
 </style>

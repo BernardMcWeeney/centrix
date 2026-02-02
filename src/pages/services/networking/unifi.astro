@@ -1,0 +1,1608 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = "UniFi Network Solutions | Enterprise Networking | Waymark";
+const description = "Professional UniFi network design, deployment, and management. Enterprise-grade Wi-Fi, switching, cameras, and access control from certified UniFi experts.";
+
+const features = [
+  {
+    title: "Wi-Fi 6/6E Coverage",
+    description: "Seamless wireless coverage with enterprise-grade access points, roaming, and band steering.",
+    icon: "wifi",
+  },
+  {
+    title: "PoE+ Switching",
+    description: "Power and connect all your devices with managed switches featuring VLAN segmentation.",
+    icon: "switch",
+  },
+  {
+    title: "Security Gateways",
+    description: "Next-gen firewalls with IDS/IPS, threat management, and VPN connectivity.",
+    icon: "shield",
+  },
+  {
+    title: "Protect Cameras",
+    description: "High-definition surveillance with AI detection, local NVR storage, and remote viewing.",
+    icon: "camera",
+  },
+  {
+    title: "Access Control",
+    description: "Smart door access with NFC, mobile credentials, and detailed audit logging.",
+    icon: "lock",
+  },
+  {
+    title: "VoIP Phones",
+    description: "Crystal-clear communication with UniFi Talk desk phones and mobile apps.",
+    icon: "phone",
+  },
+];
+
+const useCases = [
+  { title: "Corporate Offices", description: "Reliable connectivity for hybrid workforces", icon: "building" },
+  { title: "Retail & Hospitality", description: "Guest Wi-Fi and POS connectivity", icon: "store" },
+  { title: "Warehouses", description: "Coverage across large industrial spaces", icon: "warehouse" },
+  { title: "Multi-Site", description: "Centralized management across locations", icon: "globe" },
+];
+
+const process = [
+  { step: "01", title: "Site Survey", description: "We assess your space, requirements, and existing infrastructure to design the optimal solution." },
+  { step: "02", title: "Design", description: "Detailed network architecture with equipment specs, placement plans, and VLAN strategy." },
+  { step: "03", title: "Deploy", description: "Professional installation with cable management, configuration, and security hardening." },
+  { step: "04", title: "Handover", description: "Complete documentation, admin training, and optional ongoing managed support." },
+];
+
+const packages = [
+  {
+    name: "Design Only",
+    description: "Network architecture and planning",
+    price: "2,500",
+    features: [
+      "Site survey & assessment",
+      "Network design document",
+      "Equipment recommendations",
+      "VLAN & segmentation plan",
+      "Bill of materials",
+    ],
+    cta: "Get Design",
+    featured: false,
+  },
+  {
+    name: "Design + Deploy",
+    description: "Full design and implementation",
+    price: "From 8,000",
+    features: [
+      "Everything in Design",
+      "Professional installation",
+      "Configuration & hardening",
+      "Network diagrams",
+      "Admin training",
+      "30-day support",
+    ],
+    cta: "Get Quote",
+    featured: true,
+  },
+  {
+    name: "Full Stack",
+    description: "Complete site technology",
+    price: "Custom",
+    features: [
+      "Everything in Deploy",
+      "Protect cameras",
+      "Access control",
+      "VoIP phones",
+      "Ongoing management",
+      "Priority support",
+    ],
+    cta: "Contact Sales",
+    featured: false,
+  },
+];
+
+const faqs = [
+  {
+    question: "What's included in a UniFi deployment?",
+    answer: "A typical deployment includes site survey, network design, equipment procurement, professional installation, configuration with security hardening, VLAN setup, documentation, and admin training. We handle everything from planning to handover."
+  },
+  {
+    question: "Do you supply the UniFi equipment?",
+    answer: "Yes, we can procure all equipment at competitive pricing, or work with equipment you've already purchased. We're UniFi certified partners with access to the full product lineup."
+  },
+  {
+    question: "How long does a typical deployment take?",
+    answer: "Design takes about 1 week. Implementation typically takes 1-2 weeks for a standard office. Larger deployments or full site technology (cameras, access control) may take 2-4 weeks."
+  },
+  {
+    question: "Can you manage the network after deployment?",
+    answer: "Absolutely. Our managed network operations service includes 24/7 monitoring, firmware updates, configuration backups, monthly health reports, and priority support for any issues."
+  },
+  {
+    question: "Do you support multi-site deployments?",
+    answer: "Yes, we specialize in multi-site networks with centralized management. All sites are managed through a single UniFi console with site-to-site VPN connectivity."
+  },
+];
+
+const testimonial = {
+  quote: "Waymark transformed our office network. The UniFi system they designed handles 200+ devices without a hiccup, and the camera system gives us complete visibility across our facility.",
+  author: "James Mitchell",
+  role: "Operations Director",
+  company: "Apex Manufacturing",
+};
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "UniFi Network Solutions",
+  "description": description,
+  "brand": { "@type": "Brand", "name": "Waymark" },
+  "offers": {
+    "@type": "AggregateOffer",
+    "lowPrice": "2500",
+    "priceCurrency": "USD",
+    "offerCount": "3"
+  }
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-gradient"></div>
+      <div class="hero-pattern"></div>
+    </div>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+            </svg>
+            <span>UniFi Certified Partner</span>
+          </div>
+          <h1 class="hero-title">
+            Enterprise networking,<br />
+            <span class="hero-accent">beautifully simple</span>
+          </h1>
+          <p class="hero-description">
+            Professional UniFi network design and deployment. From Wi-Fi and switching to cameras and access control—one unified platform, expertly configured.
+          </p>
+          <div class="hero-actions">
+            <a href="#packages" class="btn-primary">
+              <span>View Packages</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </a>
+            <a href="/contact?service=unifi" class="btn-secondary">
+              <span>Get a Quote</span>
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-value">500+</span>
+              <span class="stat-label">Networks Deployed</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">99.9%</span>
+              <span class="stat-label">Uptime SLA</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">24/7</span>
+              <span class="stat-label">Support Available</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="network-diagram">
+            <div class="diagram-header">
+              <div class="diagram-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="diagram-title">Network Topology</span>
+            </div>
+            <div class="diagram-content">
+              <!-- Central Gateway -->
+              <div class="node gateway">
+                <div class="node-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" /></svg>
+                </div>
+                <span class="node-label">Dream Machine Pro</span>
+                <span class="node-status online">Online</span>
+              </div>
+
+              <!-- Connection Lines -->
+              <svg class="connections" viewBox="0 0 400 200">
+                <line x1="200" y1="60" x2="80" y2="140" stroke="currentColor" stroke-width="2" stroke-dasharray="4"/>
+                <line x1="200" y1="60" x2="200" y2="140" stroke="currentColor" stroke-width="2" stroke-dasharray="4"/>
+                <line x1="200" y1="60" x2="320" y2="140" stroke="currentColor" stroke-width="2" stroke-dasharray="4"/>
+              </svg>
+
+              <!-- Devices Row -->
+              <div class="devices-row">
+                <div class="device">
+                  <div class="device-icon switch">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25z" /></svg>
+                  </div>
+                  <span>Switch Pro 48</span>
+                </div>
+                <div class="device">
+                  <div class="device-icon ap">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" /></svg>
+                  </div>
+                  <span>U6 Enterprise</span>
+                </div>
+                <div class="device">
+                  <div class="device-icon camera">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" /></svg>
+                  </div>
+                  <span>Protect G4</span>
+                </div>
+              </div>
+
+              <!-- Stats Bar -->
+              <div class="diagram-stats">
+                <div class="diagram-stat">
+                  <span class="value">156</span>
+                  <span class="label">Clients</span>
+                </div>
+                <div class="diagram-stat">
+                  <span class="value">2.4 Gbps</span>
+                  <span class="label">Throughput</span>
+                </div>
+                <div class="diagram-stat">
+                  <span class="value">12ms</span>
+                  <span class="label">Latency</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating Elements -->
+          <div class="float-card float-1">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>All systems healthy</span>
+          </div>
+          <div class="float-card float-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+            <span>Threat blocked</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Full Stack</span>
+        <h2 class="section-title">One platform, complete coverage</h2>
+        <p class="section-description">UniFi brings networking, security cameras, access control, and phones into one beautifully integrated system.</p>
+      </div>
+      <div class="features-grid">
+        {features.map((feature, i) => (
+          <div class="feature-card" style={`animation-delay: ${i * 0.1}s`}>
+            <div class="feature-icon">
+              {feature.icon === 'wifi' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" /></svg>}
+              {feature.icon === 'switch' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25z" /></svg>}
+              {feature.icon === 'shield' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>}
+              {feature.icon === 'camera' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" /></svg>}
+              {feature.icon === 'lock' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>}
+              {feature.icon === 'phone' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>}
+            </div>
+            <h3 class="feature-title">{feature.title}</h3>
+            <p class="feature-description">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="usecases-section">
+    <div class="container">
+      <div class="usecases-grid">
+        <div class="usecases-content">
+          <span class="section-tag">Who It's For</span>
+          <h2 class="section-title">Built for any environment</h2>
+          <p class="section-description">From small offices to multi-site enterprises, UniFi scales to meet your needs with consistent performance and centralized management.</p>
+          <div class="usecases-list">
+            {useCases.map((useCase) => (
+              <div class="usecase-item">
+                <div class="usecase-icon">
+                  {useCase.icon === 'building' && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" /></svg>}
+                  {useCase.icon === 'store' && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z" /></svg>}
+                  {useCase.icon === 'warehouse' && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" /></svg>}
+                  {useCase.icon === 'globe' && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>}
+                </div>
+                <div class="usecase-text">
+                  <strong>{useCase.title}</strong>
+                  <span>{useCase.description}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="usecases-visual">
+          <div class="visual-card">
+            <img src="/images/unifi-office.svg" alt="UniFi network deployment" class="visual-placeholder" />
+            <div class="visual-overlay">
+              <div class="overlay-content">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" /></svg>
+                <span>Enterprise Wi-Fi Coverage</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="process-section">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">Our Process</span>
+        <h2 class="section-title">From survey to support</h2>
+        <p class="section-description">A proven methodology that ensures every deployment is designed right, installed professionally, and supported long-term.</p>
+      </div>
+      <div class="process-grid">
+        {process.map((step, i) => (
+          <div class="process-card" style={`animation-delay: ${i * 0.15}s`}>
+            <div class="process-number">{step.step}</div>
+            <h3 class="process-title">{step.title}</h3>
+            <p class="process-description">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Packages -->
+  <section id="packages" class="packages-section">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">Packages</span>
+        <h2 class="section-title">Choose your engagement</h2>
+        <p class="section-description">Whether you need design consultation or full deployment with ongoing support, we have you covered.</p>
+      </div>
+      <div class="packages-grid">
+        {packages.map((pkg, i) => (
+          <div class={`package-card ${pkg.featured ? 'featured' : ''}`} style={`animation-delay: ${i * 0.1}s`}>
+            {pkg.featured && <div class="package-badge">Most Popular</div>}
+            <div class="package-header">
+              <h3 class="package-name">{pkg.name}</h3>
+              <p class="package-description">{pkg.description}</p>
+            </div>
+            <div class="package-price">
+              <span class="price-currency">$</span>
+              <span class="price-amount">{pkg.price}</span>
+            </div>
+            <ul class="package-features">
+              {pkg.features.map((feature) => (
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <a href={`/contact?service=unifi&package=${pkg.name.toLowerCase().replace(/\s+/g, '-')}`} class={`package-cta ${pkg.featured ? 'primary' : 'secondary'}`}>
+              {pkg.cta}
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="testimonial-section">
+    <div class="container">
+      <div class="testimonial-card">
+        <div class="testimonial-quote">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+        </div>
+        <blockquote class="testimonial-text">{testimonial.quote}</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">{testimonial.author.split(' ').map(n => n[0]).join('')}</div>
+          <div class="author-info">
+            <strong>{testimonial.author}</strong>
+            <span>{testimonial.role}, {testimonial.company}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="faq-grid">
+        <div class="faq-header">
+          <span class="section-tag">FAQ</span>
+          <h2 class="section-title">Common questions</h2>
+          <p class="section-description">Everything you need to know about our UniFi services.</p>
+          <a href="/contact?service=unifi" class="faq-contact">
+            <span>Have other questions?</span>
+            <span class="contact-link">Get in touch →</span>
+          </a>
+        </div>
+        <div class="faq-list">
+          {faqs.map((faq, i) => (
+            <details class="faq-item" style={`animation-delay: ${i * 0.1}s`}>
+              <summary class="faq-question">
+                <span>{faq.question}</span>
+                <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+              </summary>
+              <div class="faq-answer">{faq.answer}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-glow"></div>
+        <div class="cta-content">
+          <h2 class="cta-title">Ready to upgrade your network?</h2>
+          <p class="cta-description">Get a free consultation and custom quote for your UniFi deployment.</p>
+          <div class="cta-actions">
+            <a href="/contact?service=unifi" class="btn-cta-primary">
+              <span>Get Free Quote</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
+            <a href="/services/networking" class="btn-cta-secondary">Back to Networking</a>
+          </div>
+        </div>
+        <div class="cta-pattern"></div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Variables */
+  :root {
+    --accent: #f97316;
+    --accent-light: rgba(249, 115, 22, 0.1);
+    --accent-hover: #ea580c;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    padding: 8rem 0 6rem;
+    overflow: hidden;
+  }
+
+  @media (min-width: 1024px) {
+    .hero {
+      padding: 10rem 0 8rem;
+    }
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 50%, rgba(249, 115, 22, 0.03) 100%);
+  }
+
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--border-primary) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: 0.5;
+    mask-image: radial-gradient(ellipse at 70% 50%, black 0%, transparent 70%);
+  }
+
+  .hero-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--accent-light);
+    border: 1px solid rgba(249, 115, 22, 0.2);
+    border-radius: 9999px;
+    color: var(--accent);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 3.5rem;
+    }
+  }
+
+  .hero-accent {
+    background: linear-gradient(135deg, var(--accent), #fb923c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    max-width: 480px;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    background: linear-gradient(135deg, var(--accent), #fb923c);
+    color: white;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-weight: 500;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    background: var(--bg-secondary);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-primary);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .stat-label {
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+  }
+
+  /* Hero Visual */
+  .hero-visual {
+    display: none;
+    position: relative;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-visual {
+      display: block;
+    }
+  }
+
+  .network-diagram {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  }
+
+  .diagram-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.25rem;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .diagram-dots {
+    display: flex;
+    gap: 0.375rem;
+  }
+
+  .diagram-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .diagram-dots span:nth-child(1) { background: #ef4444; }
+  .diagram-dots span:nth-child(2) { background: #eab308; }
+  .diagram-dots span:nth-child(3) { background: #22c55e; }
+
+  .diagram-title {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .diagram-content {
+    padding: 2rem;
+    position: relative;
+    min-height: 320px;
+  }
+
+  .node {
+    position: absolute;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.75rem;
+  }
+
+  .node-icon {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 0.5rem;
+  }
+
+  .node-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .node-status {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+  }
+
+  .node-status.online {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+  }
+
+  .connections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--border-primary);
+    pointer-events: none;
+  }
+
+  .devices-row {
+    position: absolute;
+    bottom: 5rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 1rem;
+  }
+
+  .device {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .device-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    color: white;
+  }
+
+  .device-icon.switch { background: linear-gradient(135deg, #3b82f6, #6366f1); }
+  .device-icon.ap { background: linear-gradient(135deg, var(--accent), #fb923c); }
+  .device-icon.camera { background: linear-gradient(135deg, #8b5cf6, #a855f7); }
+
+  .device span {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+  }
+
+  .diagram-stats {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-primary);
+  }
+
+  .diagram-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .diagram-stat .value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .diagram-stat .label {
+    font-size: 0.6875rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .float-card {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .float-card svg { color: #22c55e; }
+
+  .float-1 { top: -1rem; right: -1rem; }
+  .float-2 { bottom: 6rem; left: -2rem; animation-delay: -2s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* Section Styles */
+  .section-header {
+    max-width: 560px;
+    margin-bottom: 4rem;
+  }
+
+  .section-header.centered {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  .section-description {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* Features */
+  .features-section {
+    padding: 6rem 0;
+    background: var(--bg-secondary);
+  }
+
+  @media (min-width: 1024px) {
+    .features-section {
+      padding: 8rem 0;
+    }
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .features-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .feature-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.3s;
+    animation: fadeInUp 0.5s ease-out both;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .feature-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -15px rgba(249, 115, 22, 0.15);
+  }
+
+  .feature-icon {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 0.75rem;
+    margin-bottom: 1.25rem;
+    transition: all 0.3s;
+  }
+
+  .feature-card:hover .feature-icon {
+    background: linear-gradient(135deg, var(--accent), #fb923c);
+    color: white;
+  }
+
+  .feature-title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Use Cases */
+  .usecases-section {
+    padding: 6rem 0;
+  }
+
+  @media (min-width: 1024px) {
+    .usecases-section {
+      padding: 8rem 0;
+    }
+  }
+
+  .usecases-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .usecases-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .usecases-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .usecase-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.75rem;
+    transition: all 0.2s;
+  }
+
+  .usecase-item:hover {
+    border-color: var(--accent);
+  }
+
+  .usecase-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .usecase-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .usecase-text strong {
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+  }
+
+  .usecase-text span {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+  }
+
+  .usecases-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .visual-card {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .visual-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+  }
+
+  .visual-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(251, 146, 60, 0.1));
+  }
+
+  .overlay-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--accent);
+    text-align: center;
+  }
+
+  .overlay-content span {
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  /* Process */
+  .process-section {
+    padding: 6rem 0;
+    background: var(--bg-secondary);
+  }
+
+  @media (min-width: 1024px) {
+    .process-section {
+      padding: 8rem 0;
+    }
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .process-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .process-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .process-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    animation: fadeInUp 0.5s ease-out both;
+    transition: all 0.3s;
+  }
+
+  .process-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+
+  .process-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), #fb923c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+  }
+
+  .process-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .process-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Packages */
+  .packages-section {
+    padding: 6rem 0;
+  }
+
+  @media (min-width: 1024px) {
+    .packages-section {
+      padding: 8rem 0;
+    }
+  }
+
+  .packages-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .packages-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .package-card {
+    position: relative;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s;
+    animation: fadeInUp 0.5s ease-out both;
+  }
+
+  .package-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .package-card.featured {
+    border-color: var(--accent);
+    box-shadow: 0 20px 40px -15px rgba(249, 115, 22, 0.2);
+  }
+
+  .package-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.375rem 1rem;
+    background: linear-gradient(135deg, var(--accent), #fb923c);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    white-space: nowrap;
+  }
+
+  .package-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .package-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .package-description {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+  }
+
+  .package-price {
+    text-align: center;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border-primary);
+    border-bottom: 1px solid var(--border-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .price-currency {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    vertical-align: top;
+  }
+
+  .price-amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .package-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .package-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+  }
+
+  .package-features svg {
+    flex-shrink: 0;
+    color: var(--accent);
+    margin-top: 0.125rem;
+  }
+
+  .package-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 1.5rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .package-cta.primary {
+    background: linear-gradient(135deg, var(--accent), #fb923c);
+    color: white;
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+  }
+
+  .package-cta.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
+  }
+
+  .package-cta.secondary {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-primary);
+  }
+
+  .package-cta.secondary:hover {
+    border-color: var(--accent);
+  }
+
+  /* Testimonial */
+  .testimonial-section {
+    padding: 6rem 0;
+    background: var(--bg-secondary);
+  }
+
+  @media (min-width: 1024px) {
+    .testimonial-section {
+      padding: 8rem 0;
+    }
+  }
+
+  .testimonial-card {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .testimonial-quote {
+    color: var(--accent);
+    opacity: 0.3;
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial-text {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  @media (min-width: 768px) {
+    .testimonial-text {
+      font-size: 1.5rem;
+    }
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .author-avatar {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--accent), #fb923c);
+    color: white;
+    font-weight: 600;
+    border-radius: 50%;
+  }
+
+  .author-info {
+    text-align: left;
+  }
+
+  .author-info strong {
+    display: block;
+    color: var(--text-primary);
+  }
+
+  .author-info span {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+  }
+
+  /* FAQ */
+  .faq-section {
+    padding: 6rem 0;
+  }
+
+  @media (min-width: 1024px) {
+    .faq-section {
+      padding: 8rem 0;
+    }
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  @media (min-width: 1024px) {
+    .faq-grid {
+      grid-template-columns: 1fr 2fr;
+    }
+  }
+
+  .faq-header {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .faq-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 2rem;
+    text-decoration: none;
+  }
+
+  .faq-contact span:first-child {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+  }
+
+  .contact-link {
+    font-weight: 500;
+    color: var(--accent);
+    transition: color 0.2s;
+  }
+
+  .faq-contact:hover .contact-link {
+    color: var(--accent-hover);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    animation: fadeInUp 0.5s ease-out both;
+    transition: border-color 0.2s;
+  }
+
+  .faq-item[open] {
+    border-color: var(--accent);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    color: var(--text-tertiary);
+    transition: transform 0.2s;
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    padding: 0 1.5rem 1.25rem;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 6rem 0;
+    background: var(--bg-secondary);
+  }
+
+  @media (min-width: 1024px) {
+    .cta-section {
+      padding: 8rem 0;
+    }
+  }
+
+  .cta-card {
+    position: relative;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1.5rem;
+    padding: 4rem 2rem;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .cta-card {
+      padding: 5rem 3rem;
+    }
+  }
+
+  .cta-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
+    filter: blur(60px);
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .cta-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  .cta-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .btn-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--accent), #fb923c);
+    color: white;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+  }
+
+  .btn-cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
+  }
+
+  .btn-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: var(--text-primary);
+    font-weight: 500;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-cta-secondary:hover {
+    border-color: var(--accent);
+    background: var(--bg-secondary);
+  }
+
+  .cta-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--border-primary) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.5;
+  }
+</style>

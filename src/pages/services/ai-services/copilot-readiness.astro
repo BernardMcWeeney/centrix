@@ -1,0 +1,1419 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = "Microsoft 365 Copilot Readiness | Prepare for AI Success | Waymark";
+const description = "Get your Microsoft 365 environment ready for Copilot. We audit permissions, implement sensitivity labels, fix oversharing, and ensure AI works safely from day one.";
+
+const deliverables = [
+  {
+    title: "Copilot Readiness Report",
+    description: "Comprehensive assessment of your environment's AI readiness with risk scoring.",
+    icon: "document",
+  },
+  {
+    title: "Permissions Hygiene Review",
+    description: "Detailed analysis of sharing settings and oversharing risks across SharePoint and OneDrive.",
+    icon: "shield",
+  },
+  {
+    title: "Sensitivity Labels Strategy",
+    description: "Labeling taxonomy and implementation plan to protect sensitive information.",
+    icon: "tag",
+  },
+  {
+    title: "Remediation Backlog",
+    description: "Prioritized list of fixes to address before Copilot deployment.",
+    icon: "checklist",
+  },
+  {
+    title: "Pilot Rollout Plan",
+    description: "Phased deployment strategy with user selection and success metrics.",
+    icon: "rocket",
+  },
+  {
+    title: "Training Materials",
+    description: "User guides and prompt libraries to maximize Copilot adoption.",
+    icon: "book",
+  },
+];
+
+const process = [
+  {
+    step: "01",
+    title: "Discovery & Audit",
+    description: "We connect to your tenant and analyze permissions, sharing settings, sensitivity labels, and data classification readiness.",
+    duration: "Days 1-3",
+  },
+  {
+    step: "02",
+    title: "Risk Assessment",
+    description: "Identify oversharing risks, permission sprawl, and sensitive data exposure that Copilot could surface.",
+    duration: "Days 4-5",
+  },
+  {
+    step: "03",
+    title: "Remediation Planning",
+    description: "Build a prioritized backlog of fixes and implement quick wins to reduce immediate risk.",
+    duration: "Days 6-8",
+  },
+  {
+    step: "04",
+    title: "Governance Setup",
+    description: "Configure sensitivity labels, DLP policies, and Copilot-specific controls.",
+    duration: "Days 9-12",
+  },
+  {
+    step: "05",
+    title: "Pilot & Training",
+    description: "Launch Copilot to a pilot group, measure adoption, and train users for success.",
+    duration: "Days 13-15",
+  },
+];
+
+const risks = [
+  {
+    title: "Data Oversharing",
+    description: "Copilot can surface any content users have access to—including files they shouldn't see.",
+    icon: "eye",
+    severity: "high",
+  },
+  {
+    title: "Sensitive Data Exposure",
+    description: "Without labels, Copilot may include confidential information in AI-generated responses.",
+    icon: "alert",
+    severity: "high",
+  },
+  {
+    title: "Permission Sprawl",
+    description: "Years of 'Everyone' and 'Anyone' links create hidden access paths Copilot will find.",
+    icon: "users",
+    severity: "medium",
+  },
+  {
+    title: "Shadow AI Risk",
+    description: "Users may turn to consumer AI tools, leaking data outside your control.",
+    icon: "cloud",
+    severity: "medium",
+  },
+];
+
+const pricing = {
+  name: "Copilot Readiness Assessment",
+  price: "From $4,500",
+  description: "Complete preparation for Microsoft 365 Copilot deployment",
+  features: [
+    "Tenant permissions audit",
+    "Oversharing risk analysis",
+    "Sensitivity labels strategy",
+    "Remediation backlog",
+    "Pilot rollout plan",
+    "User training materials",
+    "30-day post-launch support",
+  ],
+  timeline: "2-3 weeks",
+};
+
+const addOns = [
+  { name: "Full remediation implementation", price: "+$3,000" },
+  { name: "Extended pilot support (90 days)", price: "+$2,000" },
+  { name: "Executive AI strategy workshop", price: "+$1,500" },
+  { name: "Custom prompt library development", price: "+$1,000" },
+];
+
+const faqs = [
+  {
+    question: "Why do we need Copilot readiness before deploying?",
+    answer: "Copilot has access to everything your users can see. Without proper permissions hygiene, Copilot can surface sensitive documents, expose confidential data, and create compliance risks. Our assessment ensures your environment is secure before AI amplifies any existing issues.",
+  },
+  {
+    question: "What's the biggest risk of deploying Copilot unprepared?",
+    answer: "Data oversharing. Most organizations have years of accumulated 'Everyone' and 'Anyone' links in SharePoint. Copilot will find and surface this content—potentially exposing salary data, HR documents, or confidential projects to anyone who asks.",
+  },
+  {
+    question: "Do you need admin access to our tenant?",
+    answer: "Yes, we require Global Reader access (read-only) to analyze your environment. For remediation work, we'll need specific admin roles depending on the fixes required. All access is temporary and removed upon project completion.",
+  },
+  {
+    question: "How long until we can deploy Copilot?",
+    answer: "Most organizations are Copilot-ready within 2-3 weeks of starting our assessment. Organizations with significant oversharing issues may need additional remediation time, which we'll identify during the audit phase.",
+  },
+  {
+    question: "Can you help with Copilot licensing decisions?",
+    answer: "Yes, we'll help you understand which Copilot licenses make sense for your organization and which users should be included in initial rollout groups based on role and readiness.",
+  },
+  {
+    question: "What about ongoing governance after Copilot is deployed?",
+    answer: "We provide 30 days of post-launch support included, with extended support packages available. We also offer managed AI governance services for ongoing monitoring and optimization.",
+  },
+];
+
+const testimonials = [
+  {
+    quote: "Waymark found sharing issues we didn't know existed. If we'd deployed Copilot without their assessment, anyone could have asked about executive compensation.",
+    author: "IT Director",
+    company: "Professional Services Firm",
+    metric: "200+ oversharing issues fixed",
+  },
+  {
+    quote: "The permissions audit alone was worth it. We thought we had things locked down, but the reality was very different.",
+    author: "CISO",
+    company: "Healthcare Organization",
+    metric: "95% permissions cleanup",
+  },
+  {
+    quote: "Our Copilot adoption rate is 85% after 60 days. The training materials and prompt library made all the difference.",
+    author: "Digital Transformation Lead",
+    company: "Manufacturing Company",
+    metric: "85% adoption rate",
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-gradient"></div>
+      <div class="hero-pattern"></div>
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <nav class="breadcrumb">
+          <a href="/services">Services</a>
+          <span class="separator">/</span>
+          <a href="/services/ai-services">AI Services</a>
+          <span class="separator">/</span>
+          <span class="current">Copilot Readiness</span>
+        </nav>
+
+        <div class="hero-badge">
+          <div class="badge-glow"></div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+          </svg>
+          <span>Assessment + Implementation</span>
+        </div>
+
+        <h1 class="hero-title">
+          Microsoft 365<br />
+          <span class="hero-accent">Copilot Readiness</span>
+        </h1>
+
+        <p class="hero-description">
+          Prepare your environment for safe and effective AI deployment. We audit permissions, fix oversharing risks, and ensure Copilot works for you—not against you.
+        </p>
+
+        <div class="hero-outcome">
+          <div class="outcome-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+            </svg>
+          </div>
+          <div class="outcome-text">
+            <span class="outcome-label">Outcome</span>
+            <span class="outcome-value">Copilot is useful and safe from day one.</span>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="/contact?service=copilot-readiness" class="btn-primary">
+            <span>Start Assessment</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </a>
+          <a href="#pricing" class="btn-secondary">View Pricing</a>
+        </div>
+
+        <div class="hero-meta">
+          <div class="meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>2-3 weeks</span>
+          </div>
+          <div class="meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>Fixed scope & price</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Risk Section -->
+  <section class="risk-section">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">The Problem</span>
+        <h2 class="section-title">Why you can't just turn on Copilot</h2>
+        <p class="section-description">Copilot amplifies your existing data governance—good or bad. Here's what unprepared organizations face.</p>
+      </div>
+
+      <div class="risk-grid">
+        {risks.map((risk, i) => (
+          <div class={`risk-card risk-${risk.severity}`} style={`animation-delay: ${i * 0.1}s`}>
+            <div class="risk-icon">
+              {risk.icon === 'eye' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>}
+              {risk.icon === 'alert' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>}
+              {risk.icon === 'users' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>}
+              {risk.icon === 'cloud' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" /></svg>}
+            </div>
+            <div class="risk-severity">{risk.severity} risk</div>
+            <h3 class="risk-title">{risk.title}</h3>
+            <p class="risk-description">{risk.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Deliverables -->
+  <section class="deliverables-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What You Get</span>
+        <h2 class="section-title">Complete Copilot readiness package</h2>
+        <p class="section-description">Everything you need to deploy Copilot safely and maximize adoption.</p>
+      </div>
+
+      <div class="deliverables-grid">
+        {deliverables.map((item, i) => (
+          <div class="deliverable-card" style={`animation-delay: ${i * 0.1}s`}>
+            <div class="deliverable-icon">
+              {item.icon === 'document' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>}
+              {item.icon === 'shield' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>}
+              {item.icon === 'tag' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" /><path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" /></svg>}
+              {item.icon === 'checklist' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>}
+              {item.icon === 'rocket' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" /></svg>}
+              {item.icon === 'book' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>}
+            </div>
+            <h3 class="deliverable-title">{item.title}</h3>
+            <p class="deliverable-description">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="process-section">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">How It Works</span>
+        <h2 class="section-title">Your path to Copilot success</h2>
+        <p class="section-description">A proven process that gets you from assessment to adoption.</p>
+      </div>
+
+      <div class="process-timeline">
+        {process.map((step, i) => (
+          <div class="process-step" style={`animation-delay: ${i * 0.1}s`}>
+            <div class="step-number">{step.step}</div>
+            <div class="step-content">
+              <div class="step-duration">{step.duration}</div>
+              <h3 class="step-title">{step.title}</h3>
+              <p class="step-description">{step.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">Investment</span>
+        <h2 class="section-title">Transparent, fixed pricing</h2>
+        <p class="section-description">No surprises. Know exactly what you're getting and what it costs.</p>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-glow"></div>
+        <div class="pricing-header">
+          <h3 class="pricing-name">{pricing.name}</h3>
+          <div class="pricing-price">
+            <span class="price-value">{pricing.price}</span>
+          </div>
+          <p class="pricing-description">{pricing.description}</p>
+          <div class="pricing-timeline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>{pricing.timeline}</span>
+          </div>
+        </div>
+
+        <div class="pricing-features">
+          <h4 class="features-title">What's included:</h4>
+          <ul class="features-list">
+            {pricing.features.map((feature) => (
+              <li class="feature-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="pricing-addons">
+          <h4 class="addons-title">Optional add-ons:</h4>
+          <ul class="addons-list">
+            {addOns.map((addon) => (
+              <li class="addon-item">
+                <span class="addon-name">{addon.name}</span>
+                <span class="addon-price">{addon.price}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="pricing-cta">
+          <a href="/contact?service=copilot-readiness" class="btn-pricing">
+            <span>Get Started</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </a>
+          <p class="pricing-note">Free consultation included. No commitment required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">Success Stories</span>
+        <h2 class="section-title">Organizations that got Copilot right</h2>
+        <p class="section-description">See how our clients deployed AI safely and effectively.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        {testimonials.map((testimonial, i) => (
+          <div class="testimonial-card" style={`animation-delay: ${i * 0.15}s`}>
+            <div class="testimonial-metric">{testimonial.metric}</div>
+            <blockquote class="testimonial-quote">"{testimonial.quote}"</blockquote>
+            <div class="testimonial-author">
+              <div class="author-info">
+                <div class="author-name">{testimonial.author}</div>
+                <div class="author-company">{testimonial.company}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">FAQ</span>
+        <h2 class="section-title">Common questions</h2>
+        <p class="section-description">Everything you need to know about Copilot readiness.</p>
+      </div>
+
+      <div class="faq-grid">
+        {faqs.map((faq, i) => (
+          <div class="faq-item" style={`animation-delay: ${i * 0.1}s`}>
+            <h3 class="faq-question">{faq.question}</h3>
+            <p class="faq-answer">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-glow"></div>
+        <div class="cta-content">
+          <h2 class="cta-title">Ready for AI that works?</h2>
+          <p class="cta-description">Get a free consultation and see exactly what's needed to deploy Copilot safely in your organization.</p>
+          <div class="cta-actions">
+            <a href="/contact?service=copilot-readiness" class="btn-cta-primary">
+              <span>Book Free Consultation</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
+            <a href="/services/ai-services" class="btn-cta-secondary">View All AI Services</a>
+          </div>
+        </div>
+        <div class="cta-pattern"></div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  :root {
+    --accent: #8b5cf6;
+    --accent-secondary: #3b82f6;
+    --accent-light: rgba(139, 92, 246, 0.1);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    padding: 8rem 0 6rem;
+    overflow: hidden;
+  }
+
+  @media (min-width: 1024px) {
+    .hero {
+      padding: 10rem 0 8rem;
+    }
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 50%, rgba(139, 92, 246, 0.03) 100%);
+  }
+
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--border-primary) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: 0.5;
+    mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+  }
+
+  .hero-orb-1 {
+    top: 10%;
+    right: 20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+    animation: float 20s ease-in-out infinite;
+  }
+
+  .hero-orb-2 {
+    bottom: 20%;
+    left: 10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+    animation: float 15s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(30px, -30px); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+  }
+
+  .breadcrumb a {
+    color: var(--text-tertiary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--accent);
+  }
+
+  .breadcrumb .separator {
+    color: var(--text-tertiary);
+  }
+
+  .breadcrumb .current {
+    color: var(--text-secondary);
+  }
+
+  .hero-badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--accent-light);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 9999px;
+    color: var(--accent);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+
+  .badge-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 200%; }
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 3.5rem;
+    }
+  }
+
+  .hero-accent {
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-description {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .hero-outcome {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .outcome-icon {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border-radius: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .outcome-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    margin-bottom: 0.25rem;
+  }
+
+  .outcome-value {
+    font-size: 1.0625rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.75rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    color: white;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 1.75rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-weight: 500;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+  }
+
+  .meta-item svg {
+    color: var(--accent);
+  }
+
+  /* Section Styles */
+  .section-header {
+    max-width: 560px;
+    margin-bottom: 4rem;
+  }
+
+  .section-header.centered {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  .section-description {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* Risk Section */
+  .risk-section {
+    padding: 6rem 0;
+    background: var(--bg-secondary);
+  }
+
+  @media (min-width: 1024px) {
+    .risk-section {
+      padding: 8rem 0;
+    }
+  }
+
+  .risk-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .risk-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .risk-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.3s;
+    animation: fadeInUp 0.5s ease-out both;
+  }
+
+  .risk-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .risk-card.risk-high:hover {
+    border-color: #ef4444;
+    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.1);
+  }
+
+  .risk-card.risk-medium:hover {
+    border-color: #f59e0b;
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.1);
+  }
+
+  .risk-icon {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .risk-high .risk-icon {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+  }
+
+  .risk-medium .risk-icon {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+  }
+
+  .risk-severity {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .risk-high .risk-severity { color: #ef4444; }
+  .risk-medium .risk-severity { color: #f59e0b; }
+
+  .risk-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .risk-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Deliverables */
+  .deliverables-section {
+    padding: 6rem 0;
+  }
+
+  @media (min-width: 1024px) {
+    .deliverables-section {
+      padding: 8rem 0;
+    }
+  }
+
+  .deliverables-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .deliverables-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .deliverables-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .deliverable-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.3s;
+    animation: fadeInUp 0.5s ease-out both;
+  }
+
+  .deliverable-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+
+  .deliverable-icon {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 0.75rem;
+    margin-bottom: 1.25rem;
+    transition: all 0.3s;
+  }
+
+  .deliverable-card:hover .deliverable-icon {
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    color: white;
+  }
+
+  .deliverable-title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .deliverable-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Process */
+  .process-section {
+    padding: 6rem 0;
+    background: var(--bg-secondary);
+  }
+
+  @media (min-width: 1024px) {
+    .process-section {
+      padding: 8rem 0;
+    }
+  }
+
+  .process-timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .process-step {
+    display: flex;
+    gap: 1.5rem;
+    animation: fadeInUp 0.5s ease-out both;
+  }
+
+  .step-number {
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 1rem;
+    flex-shrink: 0;
+  }
+
+  .step-content {
+    flex: 1;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .process-step:last-child .step-content {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .step-duration {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* Pricing */
+  .pricing-section {
+    padding: 6rem 0;
+  }
+
+  @media (min-width: 1024px) {
+    .pricing-section {
+      padding: 8rem 0;
+    }
+  }
+
+  .pricing-card {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1.5rem;
+    padding: 3rem;
+    overflow: hidden;
+  }
+
+  .pricing-glow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 200px;
+    background: radial-gradient(ellipse at top, rgba(139, 92, 246, 0.15), transparent);
+    pointer-events: none;
+  }
+
+  .pricing-header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .pricing-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .pricing-price {
+    margin-bottom: 1rem;
+  }
+
+  .price-value {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .pricing-description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .pricing-timeline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-secondary);
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+
+  .pricing-timeline svg {
+    color: var(--accent);
+  }
+
+  .pricing-features {
+    margin-bottom: 2rem;
+  }
+
+  .features-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    margin-bottom: 1rem;
+  }
+
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    color: var(--text-primary);
+  }
+
+  .feature-item svg {
+    color: #10b981;
+    flex-shrink: 0;
+  }
+
+  .pricing-addons {
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .addons-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    margin-bottom: 1rem;
+  }
+
+  .addons-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .addon-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9375rem;
+  }
+
+  .addon-name {
+    color: var(--text-secondary);
+  }
+
+  .addon-price {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .pricing-cta {
+    text-align: center;
+  }
+
+  .btn-pricing {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    color: white;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+    margin-bottom: 1rem;
+  }
+
+  .btn-pricing:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+  }
+
+  .pricing-note {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+  }
+
+  /* Testimonials */
+  .testimonials-section {
+    padding: 6rem 0;
+    background: var(--bg-secondary);
+  }
+
+  @media (min-width: 1024px) {
+    .testimonials-section {
+      padding: 8rem 0;
+    }
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .testimonials-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .testimonial-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.3s;
+    animation: fadeInUp 0.5s ease-out both;
+  }
+
+  .testimonial-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+
+  .testimonial-metric {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-quote {
+    font-size: 1rem;
+    color: var(--text-primary);
+    line-height: 1.7;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .author-name {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .author-company {
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+  }
+
+  /* FAQ */
+  .faq-section {
+    padding: 6rem 0;
+  }
+
+  @media (min-width: 1024px) {
+    .faq-section {
+      padding: 8rem 0;
+    }
+  }
+
+  .faq-grid {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .faq-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.3s;
+    animation: fadeInUp 0.5s ease-out both;
+  }
+
+  .faq-item:hover {
+    border-color: var(--accent);
+  }
+
+  .faq-question {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .faq-answer {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 6rem 0;
+    background: var(--bg-secondary);
+  }
+
+  @media (min-width: 1024px) {
+    .cta-section {
+      padding: 8rem 0;
+    }
+  }
+
+  .cta-card {
+    position: relative;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1.5rem;
+    padding: 4rem 2rem;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .cta-card {
+      padding: 5rem 3rem;
+    }
+  }
+
+  .cta-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+    filter: blur(60px);
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .cta-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  .cta-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .btn-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    color: white;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  }
+
+  .btn-cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+  }
+
+  .btn-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: var(--text-primary);
+    font-weight: 500;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-cta-secondary:hover {
+    border-color: var(--accent);
+  }
+
+  .cta-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--border-primary) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.5;
+  }
+</style>

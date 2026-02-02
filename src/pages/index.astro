@@ -1,369 +1,405 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE_TITLE, SITE_DESCRIPTION, SERVICE_CATEGORIES } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, RECURRING_PLANS } from '../consts';
 
-const stats = [
-  { value: '12', label: 'Service Categories' },
-  { value: '50+', label: 'Productized Services' },
-  { value: '24/7', label: 'Support Available' },
-  { value: '100%', label: 'Fixed Pricing' },
-];
-
-const serviceHighlights = [
+// 4 Pillars - Primary navigation/categorization
+const pillars = [
   {
-    id: 'managed-security',
-    title: 'Managed Security',
-    description: 'Continuous protection with vulnerability management, monitoring, and incident response.',
+    title: 'Security',
+    description: 'Pen testing, vulnerability management, and incident response',
+    href: '/security',
     icon: 'shield',
-    features: ['Vulnerability Management', 'Attack Surface Monitoring', 'Dark Web Monitoring', 'SOC-lite Foundations'],
-    color: 'blue',
+    color: 'green'
   },
   {
-    id: 'microsoft-365',
-    title: 'Microsoft 365',
-    description: 'Complete M365 security from assessment to managed operations.',
+    title: 'Microsoft',
+    description: 'M365 security, Intune, Defender, and Conditional Access',
+    href: '/microsoft',
     icon: 'microsoft',
-    features: ['Security Assessment', 'Conditional Access', 'Defender Stack', 'Tenant Management'],
-    color: 'purple',
+    color: 'blue'
   },
   {
-    id: 'ai-services',
-    title: 'AI Services',
-    description: 'AI strategy, Copilot readiness, and workflow automation.',
+    title: 'AI',
+    description: 'Copilot readiness, AI governance, and safe enablement',
+    href: '/ai',
     icon: 'ai',
-    features: ['AI Readiness & Strategy', 'Copilot Readiness', 'AI Governance', 'Workflow Automation'],
-    color: 'green',
+    color: 'purple'
   },
   {
-    id: 'networking',
-    title: 'Networking',
-    description: 'Enterprise-grade UniFi networks with full site technology.',
+    title: 'Networks',
+    description: 'UniFi deployments with security-first design',
+    href: '/networks',
     icon: 'network',
-    features: ['UniFi Full Stack', 'Site Technology', 'Managed Operations', 'Security Reviews'],
-    color: 'orange',
+    color: 'orange'
   },
 ];
 
-const allCategories = [
-  { title: 'Managed Security', count: 6, href: '/services#managed-security' },
-  { title: 'Microsoft 365', count: 11, href: '/services#microsoft-365' },
-  { title: 'Intune & Endpoint', count: 6, href: '/services#intune' },
-  { title: 'Identity & Access', count: 4, href: '/services#identity' },
-  { title: 'Google Workspace', count: 2, href: '/services#google-workspace' },
-  { title: 'Migration Services', count: 2, href: '/services#migration' },
-  { title: 'Networking', count: 4, href: '/services#networking' },
-  { title: 'Web Security', count: 3, href: '/services#web-security' },
-  { title: 'AI Services', count: 6, href: '/services#ai-services' },
-  { title: 'Incident Response', count: 3, href: '/services#incident-response' },
-  { title: 'Security Reviews', count: 5, href: '/services#configuration-reviews' },
+// 6 Hero Offers - The money-makers
+const heroOffers = [
+  {
+    id: 'penetration-testing',
+    title: 'Penetration Testing',
+    description: 'Find vulnerabilities before attackers do. External, web app, and M365 identity testing.',
+    href: '/security/penetration-testing',
+    timeframe: '1-2 weeks',
+    color: 'green',
+    deliverables: ['Executive report', 'Technical findings', 'Remediation roadmap', 'Retest option'],
+  },
+  {
+    id: 'm365-security-assessment',
+    title: 'M365 Security Assessment',
+    description: 'Comprehensive evaluation of your Microsoft 365 security posture with actionable recommendations.',
+    href: '/services/microsoft-365',
+    timeframe: '5-10 days',
+    color: 'blue',
+    deliverables: ['Risk score', 'Top 20 fixes', '30/60/90 roadmap'],
+  },
+  {
+    id: 'conditional-access',
+    title: 'Conditional Access Hardening',
+    description: 'Zero-trust access controls with properly configured policies.',
+    href: '/services/microsoft-365/conditional-access',
+    timeframe: '1-2 weeks',
+    color: 'blue',
+    deliverables: ['CA policy set', 'Emergency access', 'Testing docs'],
+  },
+  {
+    id: 'intune-baseline',
+    title: 'Intune Baseline Setup',
+    description: 'Modern endpoint management with security-first configuration.',
+    href: '/services/intune',
+    timeframe: '2-4 weeks',
+    color: 'blue',
+    deliverables: ['Security baselines', 'Compliance policies', 'App deployment'],
+  },
+  {
+    id: 'copilot-prep',
+    title: 'Copilot Readiness',
+    description: 'Prepare your environment for safe and effective Copilot deployment.',
+    href: '/services/ai-services/copilot',
+    timeframe: '2-3 weeks',
+    color: 'purple',
+    deliverables: ['Permissions review', 'Data hygiene', 'Pilot plan'],
+  },
+  {
+    id: 'unifi-deploy',
+    title: 'UniFi Network Deploy',
+    description: 'Enterprise-grade UniFi infrastructure with VLAN segmentation and security.',
+    href: '/services/networking/unifi',
+    timeframe: '1-2 weeks',
+    color: 'orange',
+    deliverables: ['Network design', 'VLAN setup', 'Documentation'],
+  },
 ];
 
-const partners = [
-  'Microsoft Partner',
-  'UniFi Certified',
-  'Cloudflare Partner',
+// Testimonials
+const testimonials = [
+  {
+    quote: "Waymark transformed our security posture. We went from firefighting alerts to proactive threat prevention.",
+    author: "IT Director",
+    company: "Financial Services Firm",
+  },
+  {
+    quote: "Fixed scope, clear deliverables, no surprises. Exactly what we needed from a security partner.",
+    author: "CTO",
+    company: "Manufacturing Company",
+  },
+];
+
+// Process steps
+const processSteps = [
+  {
+    step: 1,
+    title: 'Scope',
+    description: 'Fixed requirements, clear deliverables, agreed price',
+  },
+  {
+    step: 2,
+    title: 'Deliver',
+    description: 'We execute with regular updates and no surprises',
+  },
+  {
+    step: 3,
+    title: 'Handover',
+    description: 'Documentation, knowledge transfer, and support',
+  },
+  {
+    step: 4,
+    title: 'Support',
+    description: 'Optional ongoing management or on-demand help',
+  },
+];
+
+// FAQs
+const faqs = [
+  {
+    question: 'How does fixed-scope pricing work?',
+    answer: 'We agree on deliverables, timeline, and price upfront. No hourly billing, no scope creep. If requirements change, we discuss it openly and adjust together.',
+  },
+  {
+    question: 'What if we need something not listed?',
+    answer: 'Our catalogue covers the most common needs, but we regularly handle custom requests. Book a call and we\'ll scope it properly.',
+  },
+  {
+    question: 'How quickly can you start?',
+    answer: 'Most projects can start within 1-2 weeks. For urgent security needs like incident response, we offer priority scheduling.',
+  },
+  {
+    question: 'Do you work with businesses outside Ireland?',
+    answer: 'Yes. While we\'re based in Ireland, we work with clients across the UK and EU. Network deployments require on-site presence.',
+  },
 ];
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <!-- Hero Section -->
   <section class="hero">
+    <div class="hero-bg"></div>
     <div class="container-wide">
-      <div class="hero-grid">
-        <div class="hero-content">
-          <div class="hero-badge">
-            <span class="hero-badge-dot"></span>
-            <span>Productized IT Security Services</span>
-          </div>
-
-          <h1 class="hero-title">
-            Security that scales<br/>
-            <span class="hero-accent">with your business</span>
-          </h1>
-
-          <p class="hero-description">
-            From Microsoft 365 security to AI readiness, we deliver fixed-scope services with clear outcomes and predictable pricing. No hourly billing surprises.
-          </p>
-
-          <div class="hero-actions">
-            <a href="/contact" class="btn btn-primary btn-lg">
-              Get Started
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </a>
-            <a href="/services" class="btn btn-secondary btn-lg">
-              Browse Services
-            </a>
-          </div>
-
-          <div class="hero-partners">
-            {partners.map((partner) => (
-              <span class="partner-badge">{partner}</span>
-            ))}
-          </div>
-        </div>
-
-        <div class="hero-visual">
-          <div class="hero-card-stack">
-            <div class="hero-card hero-card-1">
-              <div class="hero-card-icon blue">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                </svg>
-              </div>
-              <div>
-                <div class="hero-card-title">Security Assessment</div>
-                <div class="hero-card-desc">M365 tenant review complete</div>
-              </div>
-              <span class="hero-card-badge green">Done</span>
-            </div>
-
-            <div class="hero-card hero-card-2">
-              <div class="hero-card-icon purple">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-                </svg>
-              </div>
-              <div>
-                <div class="hero-card-title">AI Readiness</div>
-                <div class="hero-card-desc">Copilot deployment ready</div>
-              </div>
-              <span class="hero-card-badge blue">Active</span>
-            </div>
-
-            <div class="hero-card hero-card-3">
-              <div class="hero-card-icon orange">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
-                </svg>
-              </div>
-              <div>
-                <div class="hero-card-title">Network Deployed</div>
-                <div class="hero-card-desc">UniFi stack configured</div>
-              </div>
-              <span class="hero-card-badge green">Done</span>
-            </div>
-          </div>
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Security, Microsoft, AI & Networks.<br/>
+          <span class="gradient-text">Fixed scope. Clear outcomes.</span>
+        </h1>
+        <p class="hero-description">
+          We help Irish businesses secure their technology with productized services.
+          Know exactly what you'll get, what it costs, and when it's done.
+        </p>
+        <div class="hero-actions">
+          <a href="/contact" class="btn btn-primary btn-lg">
+            Book a 15-Minute Fit Check
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#pricing" class="btn btn-secondary btn-lg">View Pricing</a>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Stats Bar -->
-  <section class="stats-bar">
-    <div class="container-wide">
-      <div class="stats-grid">
-        {stats.map((stat) => (
-          <div class="stat-item">
-            <span class="stat-value">{stat.value}</span>
-            <span class="stat-label">{stat.label}</span>
-          </div>
+      <!-- 4 Pillars Grid -->
+      <div class="pillars-grid">
+        {pillars.map((pillar) => (
+          <a href={pillar.href} class={`pillar-card pillar-${pillar.color}`}>
+            <div class={`pillar-icon icon-box icon-box-${pillar.color}`}>
+              {pillar.icon === 'shield' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+                </svg>
+              )}
+              {pillar.icon === 'microsoft' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="3" width="8" height="8" rx="1"/>
+                  <rect x="13" y="3" width="8" height="8" rx="1"/>
+                  <rect x="3" y="13" width="8" height="8" rx="1"/>
+                  <rect x="13" y="13" width="8" height="8" rx="1"/>
+                </svg>
+              )}
+              {pillar.icon === 'ai' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/>
+                </svg>
+              )}
+              {pillar.icon === 'network' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z"/>
+                </svg>
+              )}
+            </div>
+            <div class="pillar-content">
+              <h3 class="pillar-title">{pillar.title}</h3>
+              <p class="pillar-desc">{pillar.description}</p>
+            </div>
+            <svg class="pillar-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Services Highlight Section -->
-  <section class="section-padding">
+  <!-- 6 Hero Offers Section -->
+  <section class="offers-section">
     <div class="container-wide">
       <div class="section-header">
-        <span class="badge badge-primary">Our Services</span>
-        <h2 class="section-title">Everything you need to secure your business</h2>
-        <p class="section-description">
-          Comprehensive security services across 12 categories, from assessments to fully managed operations.
-        </p>
+        <div class="section-eyebrow">Featured Services</div>
+        <h2 class="section-title">Start here</h2>
+        <p class="section-desc">Our most popular engagements. Fixed scope, clear deliverables, predictable pricing.</p>
       </div>
 
-      <div class="services-showcase">
-        {serviceHighlights.map((service) => (
-          <a href={`/services#${service.id}`} class="service-showcase-card">
-            <div class={`service-icon ${service.color}`}>
-              {service.icon === 'shield' && (
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                </svg>
-              )}
-              {service.icon === 'microsoft' && (
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
-                </svg>
-              )}
-              {service.icon === 'ai' && (
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
-                </svg>
-              )}
-              {service.icon === 'network' && (
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
-                </svg>
-              )}
+      <div class="offers-grid">
+        {heroOffers.map((offer) => (
+          <a href={offer.href} class="offer-card">
+            <div class="offer-header">
+              <span class={`offer-badge offer-badge-${offer.color}`}>{offer.timeframe}</span>
             </div>
-            <h3 class="service-showcase-title">{service.title}</h3>
-            <p class="service-showcase-desc">{service.description}</p>
-            <ul class="service-features">
-              {service.features.map((feature) => (
-                <li>{feature}</li>
+            <h3 class="offer-title">{offer.title}</h3>
+            <p class="offer-desc">{offer.description}</p>
+            <ul class="offer-deliverables">
+              {offer.deliverables.map((d) => (
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+                  {d}
+                </li>
               ))}
             </ul>
-            <span class="service-link">
-              View services
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
+            <span class="offer-link">
+              Learn more
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </span>
           </a>
         ))}
       </div>
+
+      <div class="offers-cta">
+        <a href="/services" class="btn btn-secondary">View All Services</a>
+      </div>
     </div>
   </section>
 
-  <!-- All Categories Grid -->
-  <section class="section-padding section-alt">
+  <!-- Proof Section -->
+  <section class="proof-section">
+    <div class="container-wide">
+      <div class="proof-grid">
+        <!-- Partner Badges -->
+        <div class="proof-partners">
+          <h3 class="proof-label">Certified Partner</h3>
+          <div class="partner-badges">
+            <div class="partner-badge">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="8" height="8" rx="1"/>
+                <rect x="13" y="3" width="8" height="8" rx="1"/>
+                <rect x="3" y="13" width="8" height="8" rx="1"/>
+                <rect x="13" y="13" width="8" height="8" rx="1"/>
+              </svg>
+              <span>Microsoft Partner</span>
+            </div>
+            <div class="partner-badge">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0"/>
+              </svg>
+              <span>UniFi Certified</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="proof-testimonials">
+          {testimonials.map((t) => (
+            <div class="testimonial-card">
+              <div class="testimonial-rating">
+                {[...Array(5)].map(() => (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                ))}
+              </div>
+              <blockquote class="testimonial-quote">"{t.quote}"</blockquote>
+              <div class="testimonial-author">
+                <span class="author-role">{t.author}</span>
+                <span class="author-company">{t.company}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="process-section">
     <div class="container-wide">
       <div class="section-header">
-        <span class="badge badge-neutral">Full Catalogue</span>
-        <h2 class="section-title">Browse all service categories</h2>
-        <p class="section-description">
-          Every service follows our productized model: fixed scope, clear deliverables, predictable pricing.
-        </p>
+        <div class="section-eyebrow">How It Works</div>
+        <h2 class="section-title">Productized projects, not open-ended consulting</h2>
+        <p class="section-desc">Every engagement follows the same clear pattern. You know what you're getting before we start.</p>
       </div>
 
-      <div class="categories-grid">
-        {allCategories.map((cat) => (
-          <a href={cat.href} class="category-card">
-            <span class="category-title">{cat.title}</span>
-            <span class="category-count">{cat.count} services</span>
-          </a>
+      <div class="process-grid">
+        {processSteps.map((step) => (
+          <div class="process-step">
+            <div class="step-number">{step.step}</div>
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-desc">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Plans Section -->
+  <section class="plans-section" id="pricing">
+    <div class="container-wide">
+      <div class="section-header">
+        <div class="section-eyebrow">Recurring Plans</div>
+        <h2 class="section-title">Ongoing security management</h2>
+        <p class="section-desc">For organizations that want continuous protection, not just one-off projects.</p>
+      </div>
+
+      <div class="plans-grid">
+        {RECURRING_PLANS.map((plan) => (
+          <div class={`plan-card ${plan.featured ? 'plan-featured' : ''}`}>
+            {plan.featured && <div class="plan-badge">Most Popular</div>}
+            <div class="plan-header">
+              <h3 class="plan-name">{plan.name}</h3>
+              <p class="plan-tagline">{plan.tagline}</p>
+            </div>
+            <p class="plan-description">{plan.description}</p>
+            <ul class="plan-includes">
+              {plan.includes.slice(0, 6).map((item) => (
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+                  {item}
+                </li>
+              ))}
+              {plan.includes.length > 6 && (
+                <li class="plan-more">+ {plan.includes.length - 6} more</li>
+              )}
+            </ul>
+            <a href="/contact" class="btn btn-secondary btn-full">Get a Quote</a>
+          </div>
         ))}
       </div>
 
-      <div class="section-cta">
-        <a href="/services" class="btn btn-primary btn-lg">
-          View Complete Catalogue
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-          </svg>
-        </a>
-      </div>
+      <p class="plans-note">
+        Not sure which plan? <a href="/contact">Book a call</a> and we'll help you choose.
+      </p>
     </div>
   </section>
 
-  <!-- AI Section (Key Differentiator) -->
-  <section class="section-padding">
+  <!-- FAQ Section -->
+  <section class="faq-section">
     <div class="container-wide">
-      <div class="ai-section">
-        <div class="ai-content">
-          <span class="badge badge-primary">New for 2026</span>
-          <h2 class="ai-title">AI-Ready Security</h2>
-          <p class="ai-description">
-            Prepare your organization for AI adoption with our comprehensive readiness services. From Microsoft 365 Copilot to custom AI workflows, we ensure your data is protected while enabling innovation.
-          </p>
+      <div class="section-header">
+        <div class="section-eyebrow">FAQ</div>
+        <h2 class="section-title">Common questions</h2>
+      </div>
 
-          <div class="ai-services-list">
-            <div class="ai-service-item">
-              <div class="ai-service-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <div>
-                <strong>AI Readiness & Strategy</strong>
-                <span>Business-aligned AI roadmap</span>
-              </div>
-            </div>
-            <div class="ai-service-item">
-              <div class="ai-service-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <div>
-                <strong>Copilot Readiness</strong>
-                <span>Safe M365 Copilot deployment</span>
-              </div>
-            </div>
-            <div class="ai-service-item">
-              <div class="ai-service-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <div>
-                <strong>AI Governance</strong>
-                <span>Policies and controls</span>
-              </div>
-            </div>
-            <div class="ai-service-item">
-              <div class="ai-service-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <div>
-                <strong>Workflow Automation</strong>
-                <span>AI-powered processes</span>
-              </div>
-            </div>
-          </div>
-
-          <a href="/services#ai-services" class="btn btn-primary">
-            Explore AI Services
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-          </a>
-        </div>
-
-        <div class="ai-visual">
-          <div class="ai-graphic">
-            <div class="ai-orbit ai-orbit-1"></div>
-            <div class="ai-orbit ai-orbit-2"></div>
-            <div class="ai-center">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
-              </svg>
-            </div>
-            <div class="ai-node ai-node-1">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
-              </svg>
-            </div>
-            <div class="ai-node ai-node-2">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-              </svg>
-            </div>
-            <div class="ai-node ai-node-3">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-              </svg>
-            </div>
-          </div>
-        </div>
+      <div class="faq-grid">
+        {faqs.map((faq) => (
+          <details class="faq-item">
+            <summary class="faq-question">
+              {faq.question}
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <p class="faq-answer">{faq.answer}</p>
+          </details>
+        ))}
       </div>
     </div>
   </section>
 
   <!-- CTA Section -->
-  <section class="section-padding section-alt">
+  <section class="cta-section">
     <div class="container-wide">
-      <div class="cta-section">
-        <h2 class="cta-title">Ready to get started?</h2>
-        <p class="cta-description">
-          Book a free consultation to discuss your security needs. We'll recommend the right services for your business.
-        </p>
-        <div class="cta-actions">
-          <a href="/contact" class="btn btn-primary btn-lg">
-            Schedule Consultation
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-          </a>
-          <a href="/services" class="btn btn-secondary btn-lg">
-            View All Services
-          </a>
+      <div class="cta-card">
+        <div class="cta-glow"></div>
+        <div class="cta-content">
+          <h2 class="cta-title">Ready to get started?</h2>
+          <p class="cta-description">Book a 15-minute call. We'll discuss your needs and recommend the right approach.</p>
+          <div class="cta-actions">
+            <a href="/contact" class="btn btn-primary btn-lg">
+              Book Consultation
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="/contact" class="btn btn-secondary btn-lg">Request a Quote</a>
+          </div>
         </div>
       </div>
     </div>
@@ -373,79 +409,45 @@ const partners = [
 <style>
   /* Hero */
   .hero {
-    padding: 8rem 0 4rem;
+    position: relative;
+    padding: 6rem 0 3rem;
     overflow: hidden;
   }
 
   @media (min-width: 768px) {
-    .hero {
-      padding: 10rem 0 6rem;
-    }
+    .hero { padding: 8rem 0 4rem; }
   }
 
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
-
-  @media (min-width: 1024px) {
-    .hero-grid {
-      grid-template-columns: 1fr 1fr;
-    }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(37, 99, 235, 0.12), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 50%, rgba(139, 92, 246, 0.08), transparent);
+    z-index: -1;
   }
 
   .hero-content {
-    max-width: 36rem;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border-primary);
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-badge-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--success);
-    border-radius: 50%;
+    text-align: center;
+    max-width: 48rem;
+    margin: 0 auto 3rem;
   }
 
   .hero-title {
-    font-size: 2.75rem;
+    font-size: 2.25rem;
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.15;
     letter-spacing: -0.03em;
     color: var(--text-primary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
 
   @media (min-width: 768px) {
-    .hero-title {
-      font-size: 3.5rem;
-    }
+    .hero-title { font-size: 3rem; }
   }
 
   @media (min-width: 1024px) {
-    .hero-title {
-      font-size: 4rem;
-    }
-  }
-
-  .hero-accent {
-    background: linear-gradient(135deg, var(--brand-primary), #8b5cf6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    .hero-title { font-size: 3.5rem; }
   }
 
   .hero-description {
@@ -453,602 +455,659 @@ const partners = [
     line-height: 1.7;
     color: var(--text-secondary);
     margin-bottom: 2rem;
-  }
-
-  @media (min-width: 768px) {
-    .hero-description {
-      font-size: 1.25rem;
-    }
+    max-width: 36rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 2.5rem;
+    justify-content: center;
+    gap: 0.75rem;
   }
 
-  .hero-partners {
+  /* Pillars Grid */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .pillars-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .pillar-card {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.75rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
   }
 
-  .partner-badge {
-    padding: 0.375rem 0.875rem;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
-    border-radius: 0.375rem;
+  .pillar-card:hover {
+    border-color: var(--brand-primary);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .pillar-icon {
+    flex-shrink: 0;
+  }
+
+  .pillar-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .pillar-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .pillar-desc {
     font-size: 0.8125rem;
     color: var(--text-tertiary);
-  }
-
-  /* Hero Visual */
-  .hero-visual {
+    line-height: 1.4;
     display: none;
   }
 
   @media (min-width: 1024px) {
-    .hero-visual {
-      display: flex;
-      justify-content: center;
+    .pillar-card {
+      flex-direction: column;
+      text-align: center;
+      padding: 1.5rem;
     }
+    .pillar-desc { display: block; }
+    .pillar-arrow { display: none; }
   }
 
-  .hero-card-stack {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-    height: 300px;
-  }
-
-  .hero-card {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 1.25rem;
-    background: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-    width: 320px;
-  }
-
-  .hero-card-1 {
-    top: 0;
-    left: 0;
-    animation: float-1 6s ease-in-out infinite;
-  }
-
-  .hero-card-2 {
-    top: 90px;
-    left: 60px;
-    animation: float-2 6s ease-in-out infinite;
-  }
-
-  .hero-card-3 {
-    top: 180px;
-    left: 20px;
-    animation: float-3 6s ease-in-out infinite;
-  }
-
-  @keyframes float-1 {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-
-  @keyframes float-2 {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-  }
-
-  @keyframes float-3 {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-  }
-
-  .hero-card-icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .pillar-arrow {
     flex-shrink: 0;
-  }
-
-  .hero-card-icon.blue {
-    background: rgba(59, 130, 246, 0.1);
-    color: #3b82f6;
-  }
-
-  .hero-card-icon.purple {
-    background: rgba(139, 92, 246, 0.1);
-    color: #8b5cf6;
-  }
-
-  .hero-card-icon.orange {
-    background: rgba(249, 115, 22, 0.1);
-    color: #f97316;
-  }
-
-  .hero-card-title {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--text-primary);
-  }
-
-  .hero-card-desc {
-    font-size: 0.8125rem;
     color: var(--text-tertiary);
+    transition: transform 0.2s ease;
   }
 
-  .hero-card-badge {
-    margin-left: auto;
-    padding: 0.25rem 0.625rem;
-    border-radius: 9999px;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  .pillar-card:hover .pillar-arrow {
+    transform: translateX(4px);
   }
 
-  .hero-card-badge.green {
-    background: rgba(34, 197, 94, 0.1);
-    color: #22c55e;
-  }
-
-  .hero-card-badge.blue {
-    background: rgba(59, 130, 246, 0.1);
-    color: #3b82f6;
-  }
-
-  /* Stats Bar */
-  .stats-bar {
-    padding: 2.5rem 0;
-    background: var(--bg-secondary);
-    border-top: 1px solid var(--border-primary);
-    border-bottom: 1px solid var(--border-primary);
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+  /* Offers Section */
+  .offers-section {
+    padding: 4rem 0;
+    background-color: var(--bg-secondary);
   }
 
   @media (min-width: 768px) {
-    .stats-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
+    .offers-section { padding: 5rem 0; }
   }
 
-  .stat-item {
-    text-align: center;
-  }
-
-  .stat-value {
-    display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    letter-spacing: -0.02em;
-  }
-
-  .stat-label {
-    font-size: 0.875rem;
-    color: var(--text-tertiary);
-  }
-
-  /* Section Styles */
-  .section-alt {
-    background: var(--bg-secondary);
-  }
-
-  .section-header {
-    text-align: center;
-    max-width: 40rem;
-    margin: 0 auto 3rem;
-  }
-
-  .section-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0.75rem 0;
-    letter-spacing: -0.02em;
-  }
-
-  @media (min-width: 768px) {
-    .section-title {
-      font-size: 2.5rem;
-    }
-  }
-
-  .section-description {
-    font-size: 1.0625rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  .section-cta {
-    text-align: center;
-    margin-top: 3rem;
-  }
-
-  /* Services Showcase */
-  .services-showcase {
+  .offers-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   @media (min-width: 640px) {
-    .services-showcase {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    .offers-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (min-width: 1024px) {
-    .services-showcase {
-      grid-template-columns: repeat(4, 1fr);
-    }
+    .offers-grid { grid-template-columns: repeat(3, 1fr); }
   }
 
-  .service-showcase-card {
+  .offer-card {
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
-    background: var(--bg-primary);
+    background-color: var(--bg-primary);
     border: 1px solid var(--border-primary);
     border-radius: 1rem;
     text-decoration: none;
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    transition: all 0.25s ease;
   }
 
-  .service-showcase-card:hover {
+  .offer-card:hover {
     border-color: var(--brand-primary);
-    box-shadow: 0 8px 16px -4px rgb(0 0 0 / 0.1);
+    box-shadow: var(--shadow-lg);
     transform: translateY(-2px);
   }
 
-  .service-icon {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
+  .offer-header {
+    margin-bottom: 0.75rem;
   }
 
-  .service-icon.blue {
-    background: rgba(59, 130, 246, 0.1);
-    color: #3b82f6;
+  .offer-badge {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
   }
 
-  .service-icon.purple {
-    background: rgba(139, 92, 246, 0.1);
-    color: #8b5cf6;
+  .offer-badge-green {
+    background-color: rgba(34, 197, 94, 0.1);
+    color: var(--success);
   }
 
-  .service-icon.green {
-    background: rgba(34, 197, 94, 0.1);
-    color: #22c55e;
+  .offer-badge-blue {
+    background-color: rgba(37, 99, 235, 0.1);
+    color: var(--brand-primary);
   }
 
-  .service-icon.orange {
-    background: rgba(249, 115, 22, 0.1);
-    color: #f97316;
+  .offer-badge-purple {
+    background-color: rgba(139, 92, 246, 0.1);
+    color: var(--accent-purple);
   }
 
-  .service-showcase-title {
+  .offer-badge-orange {
+    background-color: rgba(249, 115, 22, 0.1);
+    color: var(--accent-orange);
+  }
+
+  .offer-title {
     font-size: 1.125rem;
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 0.5rem;
   }
 
-  .service-showcase-desc {
+  .offer-desc {
     font-size: 0.875rem;
     color: var(--text-secondary);
-    line-height: 1.5;
+    line-height: 1.6;
     margin-bottom: 1rem;
-    flex: 1;
   }
 
-  .service-features {
+  .offer-deliverables {
     list-style: none;
     padding: 0;
     margin: 0 0 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.375rem;
+    flex: 1;
   }
 
-  .service-features li {
+  .offer-deliverables li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 0.8125rem;
-    color: var(--text-tertiary);
-    padding-left: 1rem;
-    position: relative;
+    color: var(--text-secondary);
+    padding: 0.25rem 0;
   }
 
-  .service-features li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.5em;
-    width: 4px;
-    height: 4px;
-    background: var(--border-secondary);
-    border-radius: 50%;
+  .offer-deliverables svg {
+    flex-shrink: 0;
+    color: var(--success);
   }
 
-  .service-link {
-    display: flex;
+  .offer-link {
+    display: inline-flex;
     align-items: center;
     gap: 0.375rem;
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--brand-primary);
-    margin-top: auto;
+    transition: gap 0.2s ease;
   }
 
-  .service-showcase-card:hover .service-link svg {
-    transform: translateX(4px);
+  .offer-card:hover .offer-link {
+    gap: 0.625rem;
   }
 
-  .service-link svg {
-    transition: transform 0.2s;
+  .offers-cta {
+    text-align: center;
+    margin-top: 2rem;
   }
 
-  /* Categories Grid */
-  .categories-grid {
+  /* Proof Section */
+  .proof-section {
+    padding: 4rem 0;
+    border-top: 1px solid var(--border-primary);
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .proof-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  @media (min-width: 640px) {
-    .categories-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: start;
   }
 
   @media (min-width: 1024px) {
-    .categories-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
+    .proof-grid { grid-template-columns: 1fr 2fr; gap: 4rem; }
   }
 
-  .category-card {
+  .proof-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    margin-bottom: 1rem;
+  }
+
+  .partner-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .partner-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.25rem;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    color: var(--text-secondary);
+  }
+
+  .partner-badge span {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .proof-testimonials {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .proof-testimonials { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .testimonial-card {
+    padding: 1.5rem;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+  }
+
+  .testimonial-rating {
+    display: flex;
+    gap: 0.125rem;
+    color: #fbbf24;
+    margin-bottom: 0.75rem;
+  }
+
+  .testimonial-quote {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-author {
     display: flex;
     flex-direction: column;
-    padding: 1.25rem;
-    background: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 0.75rem;
-    text-decoration: none;
-    transition: border-color 0.2s, background-color 0.2s;
+    gap: 0.125rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-primary);
   }
 
-  .category-card:hover {
-    border-color: var(--brand-primary);
-    background: var(--brand-light);
-  }
-
-  .category-title {
-    font-size: 0.9375rem;
+  .author-role {
+    font-size: 0.875rem;
     font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .author-company {
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+  }
+
+  /* Process Section */
+  .process-section {
+    padding: 4rem 0;
+    background-color: var(--bg-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .process-section { padding: 5rem 0; }
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .process-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .process-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .process-step {
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .step-number {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--brand-primary);
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+  }
+
+  .step-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-desc {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* Plans Section */
+  .plans-section {
+    padding: 4rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .plans-section { padding: 5rem 0; }
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .plans-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .plan-card {
+    position: relative;
+    padding: 1.5rem;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .plan-featured {
+    border-color: var(--brand-primary);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.25rem 0.75rem;
+    background-color: var(--brand-primary);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    white-space: nowrap;
+  }
+
+  .plan-header {
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-primary);
+    margin-bottom: 1rem;
+  }
+
+  .plan-name {
+    font-size: 1.25rem;
+    font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 0.25rem;
   }
 
-  .category-count {
+  .plan-tagline {
     font-size: 0.8125rem;
     color: var(--text-tertiary);
   }
 
-  /* AI Section */
-  .ai-section {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 4rem;
-    align-items: center;
+  .plan-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1rem;
   }
 
-  @media (min-width: 1024px) {
-    .ai-section {
-      grid-template-columns: 1fr 1fr;
-    }
+  .plan-includes {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    flex: 1;
   }
 
-  .ai-content {
-    max-width: 32rem;
+  .plan-includes li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    padding: 0.375rem 0;
   }
 
-  .ai-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0.75rem 0;
-    letter-spacing: -0.02em;
+  .plan-includes svg {
+    flex-shrink: 0;
+    color: var(--success);
+    margin-top: 0.125rem;
+  }
+
+  .plan-more {
+    color: var(--text-tertiary);
+    font-style: italic;
+  }
+
+  .btn-full {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .plans-note {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+  }
+
+  .plans-note a {
+    color: var(--brand-primary);
+    text-decoration: none;
+  }
+
+  .plans-note a:hover {
+    text-decoration: underline;
+  }
+
+  /* FAQ Section */
+  .faq-section {
+    padding: 4rem 0;
+    background-color: var(--bg-secondary);
   }
 
   @media (min-width: 768px) {
-    .ai-title {
-      font-size: 2.5rem;
-    }
+    .faq-section { padding: 5rem 0; }
   }
 
-  .ai-description {
-    font-size: 1.0625rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 2rem;
+  .faq-grid {
+    max-width: 48rem;
+    margin: 0 auto;
   }
 
-  .ai-services-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 2rem;
+  .faq-item {
+    border-bottom: 1px solid var(--border-primary);
   }
 
-  .ai-service-item {
+  .faq-item:first-child {
+    border-top: 1px solid var(--border-primary);
+  }
+
+  .faq-question {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-  }
-
-  .ai-service-icon {
-    width: 2rem;
-    height: 2rem;
-    background: var(--success-light);
-    color: var(--success);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .ai-service-item strong {
-    display: block;
-    font-size: 0.9375rem;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.25rem 0;
+    font-size: 1rem;
     font-weight: 500;
     color: var(--text-primary);
+    cursor: pointer;
+    list-style: none;
   }
 
-  .ai-service-item span {
-    font-size: 0.8125rem;
-    color: var(--text-tertiary);
-  }
-
-  /* AI Visual */
-  .ai-visual {
+  .faq-question::-webkit-details-marker {
     display: none;
-    justify-content: center;
-    align-items: center;
   }
 
-  @media (min-width: 1024px) {
-    .ai-visual {
-      display: flex;
-    }
+  .faq-chevron {
+    flex-shrink: 0;
+    color: var(--text-tertiary);
+    transition: transform 0.2s ease;
   }
 
-  .ai-graphic {
-    position: relative;
-    width: 280px;
-    height: 280px;
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
   }
 
-  .ai-orbit {
-    position: absolute;
-    border: 1px solid var(--border-primary);
-    border-radius: 50%;
-  }
-
-  .ai-orbit-1 {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    animation: spin 20s linear infinite;
-  }
-
-  .ai-orbit-2 {
-    width: 70%;
-    height: 70%;
-    top: 15%;
-    left: 15%;
-    border-style: dashed;
-    animation: spin 15s linear infinite reverse;
-  }
-
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  .ai-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 5rem;
-    height: 5rem;
-    background: linear-gradient(135deg, var(--brand-primary), #8b5cf6);
-    border-radius: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    box-shadow: 0 8px 24px -4px rgba(99, 102, 241, 0.3);
-  }
-
-  .ai-node {
-    position: absolute;
-    width: 2.5rem;
-    height: 2.5rem;
-    background: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .faq-answer {
+    font-size: 0.9375rem;
     color: var(--text-secondary);
-  }
-
-  .ai-node-1 {
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .ai-node-2 {
-    bottom: 20%;
-    left: 0;
-  }
-
-  .ai-node-3 {
-    bottom: 20%;
-    right: 0;
+    line-height: 1.6;
+    padding-bottom: 1.25rem;
   }
 
   /* CTA Section */
   .cta-section {
-    text-align: center;
-    max-width: 40rem;
-    margin: 0 auto;
-  }
-
-  .cta-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-    letter-spacing: -0.02em;
+    padding: 4rem 0 5rem;
   }
 
   @media (min-width: 768px) {
-    .cta-title {
-      font-size: 2.5rem;
-    }
+    .cta-section { padding: 5rem 0 6rem; }
+  }
+
+  .cta-card {
+    position: relative;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+    border: 1px solid var(--border-primary);
+    border-radius: 1.5rem;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .cta-card { padding: 4rem 2rem; }
+  }
+
+  .cta-glow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 50%;
+    background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.15), transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.025em;
+  }
+
+  @media (min-width: 768px) {
+    .cta-title { font-size: 2rem; }
   }
 
   .cta-description {
-    font-size: 1.0625rem;
+    font-size: 1rem;
     color: var(--text-secondary);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    max-width: 32rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .cta-actions {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.75rem;
+  }
+
+  /* Section Utilities */
+  .section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--brand-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.025em;
+  }
+
+  @media (min-width: 768px) {
+    .section-title { font-size: 2.25rem; }
+  }
+
+  .section-desc {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 36rem;
+    margin: 0 auto;
+    line-height: 1.6;
   }
 </style>
