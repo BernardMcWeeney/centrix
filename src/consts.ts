@@ -1,15 +1,15 @@
-// Waymark - IT Security & Consultancy
+// Centrix - IT Security & Consultancy
 // Global site configuration
 
-export const SITE_TITLE = "Waymark";
+export const SITE_TITLE = "Centrix";
 export const SITE_DESCRIPTION = "Enterprise IT Security, Cloud, & Network Solutions. Productized security services with fixed scope, clear outcomes, and measurable results.";
 
 export const SITE_TAGLINE = "Security. Simplified.";
 
 export const COMPANY_INFO = {
-  name: "Waymark",
+  name: "Centrix",
   tagline: "IT Security & Consultancy",
-  email: "hello@waymark.io",
+  email: "hello@centrix.io",
   phone: "+1 (555) 123-4567",
   address: "123 Security Lane, Tech District",
 };
@@ -25,9 +25,9 @@ export const NAV_LINKS = [
 ];
 
 export const SOCIAL_LINKS = {
-  linkedin: "https://linkedin.com/company/waymark",
-  twitter: "https://twitter.com/waymark",
-  github: "https://github.com/waymark",
+  linkedin: "https://linkedin.com/company/centrix",
+  twitter: "https://twitter.com/centrix",
+  github: "https://github.com/centrix",
 };
 
 // Service type definitions
