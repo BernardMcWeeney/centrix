@@ -1,0 +1,20 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cloudflare/agent-skills-discovery-rfc/main/schema/v0.2.0.json",
+  "version": "0.2.0",
+  "skills": [
+    {
+      "name": "contact-centrix",
+      "type": "markdown",
+      "description": "Book a 15-minute fit check or request a quote from Centrix",
+      "url": "/agent-skills/contact/SKILL.md",
+      "sha256": "9d4860658c2128ea3154913225285804d768a4e46799ed12514854340c865a06"
+    },
+    {
+      "name": "centrix-services",
+      "type": "markdown",
+      "description": "Discover Centrix productised IT security, Microsoft 365, AI, and networking services",
+      "url": "/agent-skills/services/SKILL.md",
+      "sha256": "9b60e3693366bd26df96dbbb2f84959baed4461f3ce38460d95e91e8d522863e"
+    }
+  ]
+}

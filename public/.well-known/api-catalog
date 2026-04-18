@@ -1,0 +1,43 @@
+{
+  "linkset": [
+    {
+      "anchor": "/",
+      "service-doc": [
+        {
+          "href": "/llms.txt",
+          "type": "text/markdown",
+          "title": "Centrix site description for AI agents"
+        },
+        {
+          "href": "/",
+          "type": "text/html",
+          "title": "Centrix homepage"
+        }
+      ],
+      "service-meta": [
+        {
+          "href": "/sitemap-index.xml",
+          "type": "application/xml",
+          "title": "Sitemap index"
+        },
+        {
+          "href": "/rss.xml",
+          "type": "application/rss+xml",
+          "title": "Blog RSS feed"
+        }
+      ],
+      "related": [
+        {
+          "href": "/services",
+          "type": "text/html",
+          "title": "Full service catalogue"
+        },
+        {
+          "href": "/contact",
+          "type": "text/html",
+          "title": "Contact / book a consultation"
+        }
+      ]
+    }
+  ]
+}

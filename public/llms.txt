@@ -1,0 +1,65 @@
+# Centrix — IT Security & Consultancy
+
+> Security, Microsoft, AI & Networks. Fixed scope. Clear outcomes.
+
+Centrix helps Irish businesses (and UK/EU clients remotely) secure their
+technology with productised services. Every engagement is fixed scope, with
+clear deliverables and predictable pricing — no hourly billing, no scope creep.
+
+## Pillars
+
+- **Security** — `/security` — penetration testing, vulnerability management,
+  incident response.
+- **Microsoft** — `/microsoft` — M365 security, Intune, Defender, Conditional
+  Access, Purview, Copilot readiness.
+- **AI** — `/ai` — Copilot readiness, AI governance, safe enablement.
+- **Networks** — `/networks` — UniFi deployments with security-first design.
+
+## Hero offers
+
+- **Penetration Testing** (1–2 weeks) — external, web app, and M365 identity
+  testing. Executive report, technical findings, remediation roadmap.
+- **M365 Security Assessment** (5–10 days) — risk score, top 20 fixes,
+  30/60/90 roadmap.
+- **Conditional Access Hardening** (1–2 weeks) — CA policy set, emergency
+  access, testing docs.
+- **Intune Baseline Setup** (2–4 weeks) — security baselines, compliance
+  policies, app deployment.
+- **Copilot Readiness** (2–3 weeks) — permissions review, data hygiene,
+  pilot plan.
+- **UniFi Network Deploy** (1–2 weeks) — network design, VLAN setup,
+  documentation.
+
+## Recurring plans
+
+- **Security Core** — essential protection: vulnerability management, dark web
+  monitoring, M365 Secure Score, monthly summary.
+- **Security Plus** *(most popular)* — Core + attack surface management, BEC
+  protection, SOC-lite, tenant management, 4-hour SLA.
+- **Security Complete** — Plus + IR retainer, backup assurance, managed Intune,
+  vCISO hours, annual pentest, 2-hour SLA.
+
+Pricing: fixed scope per engagement, monthly plans by quote. See `/#pricing`
+or `/contact` for a scoping call.
+
+## Process
+
+1. **Scope** — fixed requirements, deliverables, and price up front.
+2. **Deliver** — execution with regular updates.
+3. **Handover** — documentation and knowledge transfer.
+4. **Support** — optional ongoing management or on-demand help.
+
+## Contact
+
+- Book a 15-minute fit check: `/contact`
+- Full catalogue: `/services`
+- API catalog: `/.well-known/api-catalog`
+- Agent skills: `/.well-known/agent-skills/index.json`
+- RSS: `/rss.xml`
+- Sitemap: `/sitemap-index.xml`
+
+## For agents
+
+This site publishes an [RFC 9727](https://www.rfc-editor.org/rfc/rfc9727)
+API catalog and an [Agent Skills Discovery](https://agentskills.io/) index.
+Use the Link headers on any page, or fetch `/.well-known/api-catalog` directly.

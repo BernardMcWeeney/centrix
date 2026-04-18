@@ -1,0 +1,87 @@
+---
+// WebMCP — exposes Centrix site actions to AI agents running in the browser.
+// Spec: https://webmachinelearning.github.io/webmcp/
+---
+
+<script is:inline>
+  (function () {
+    if (!('modelContext' in navigator)) return;
+
+    const go = (path) => {
+      window.location.href = path;
+      return { ok: true, navigated_to: path };
+    };
+
+    try {
+      navigator.modelContext.provideContext({
+        tools: [
+          {
+            name: 'book_consultation',
+            description:
+              'Open the Centrix contact page to book a free 15-minute fit-check call or request a quote.',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                topic: {
+                  type: 'string',
+                  description:
+                    'Optional topic for the call (e.g. "M365 assessment", "UniFi deployment", "Copilot readiness").',
+                },
+              },
+              additionalProperties: false,
+            },
+            async execute() {
+              return go('/contact');
+            },
+          },
+          {
+            name: 'view_services',
+            description:
+              'Open the Centrix service catalogue or a specific pillar (security, microsoft, ai, networks).',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                pillar: {
+                  type: 'string',
+                  enum: ['security', 'microsoft', 'ai', 'networks', 'all'],
+                  description: 'Which pillar to show. "all" opens the full catalogue.',
+                },
+              },
+              required: ['pillar'],
+              additionalProperties: false,
+            },
+            async execute(input) {
+              const map = {
+                security: '/security',
+                microsoft: '/microsoft',
+                ai: '/ai',
+                networks: '/networks',
+                all: '/services',
+              };
+              return go(map[input?.pillar] || '/services');
+            },
+          },
+          {
+            name: 'view_pricing',
+            description:
+              'Jump to the recurring security plans (Core / Plus / Complete) pricing section on the Centrix homepage.',
+            inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+            async execute() {
+              return go('/#pricing');
+            },
+          },
+          {
+            name: 'read_blog',
+            description: 'Open the Centrix blog index.',
+            inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+            async execute() {
+              return go('/blog');
+            },
+          },
+        ],
+      });
+    } catch (e) {
+      /* WebMCP unsupported or provideContext rejected — fail silently. */
+    }
+  })();
+</script>
