@@ -18,18 +18,20 @@ News items live in `src/content/news`.
 
 ## Contact Form Setup
 
-Contact form submissions post to `/api/contact`. The page needs the public Turnstile site key so the widget can render, and the Worker endpoint needs the secret keys so it can verify the token and send email through AWS SES.
+Contact form submissions post to `/api/contact`. The public Turnstile site key is rendered directly in `src/pages/contact.astro` because it is not a secret. The Worker endpoint verifies the Turnstile token and sends contact email through the `CONTACT_EMAIL` Cloudflare Email binding.
 
 Set these Cloudflare Worker environment variables:
 
-- `PUBLIC_TURNSTILE_SITE_KEY`
 - `TURNSTILE_SECRET_KEY`
+
+Optional AWS SES fallback variables:
+
 - `AWS_REGION`
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
 - `FROM_EMAIL_ADDRESS`
 - `TO_EMAIL_ADDRESS`
 
-`PUBLIC_TURNSTILE_SITE_KEY` is the browser widget site key. It can be a normal variable or secret, but it is not the same value as `TURNSTILE_SECRET_KEY`. The code also accepts `TURNSTILE_SITE_KEY`, `CF_TURNSTILE_SITE_KEY`, `CLOUDFLARE_TURNSTILE_SITE_KEY`, or `TURNSTILE_PUBLIC_KEY` for the site key.
+Treat `TURNSTILE_SECRET_KEY`, `AWS_ACCESS_KEY_ID`, and `AWS_SECRET_ACCESS_KEY` as secrets. The code also accepts `CF_TURNSTILE_SECRET_KEY`, `CLOUDFLARE_TURNSTILE_SECRET_KEY`, or `TURNSTILE_SECRET` for the Turnstile secret. In Cloudflare Turnstile, make sure the widget allows `centrix.ie`, `www.centrix.ie`, and any preview domain you use for testing.
 
-Treat `TURNSTILE_SECRET_KEY`, `AWS_ACCESS_KEY_ID`, and `AWS_SECRET_ACCESS_KEY` as secrets. The code also accepts `CF_TURNSTILE_SECRET_KEY`, `CLOUDFLARE_TURNSTILE_SECRET_KEY`, or `TURNSTILE_SECRET` for the Turnstile secret. In Cloudflare Turnstile, make sure the widget allows `centrix.ie` and any preview domain you use for testing. In AWS SES, the `FROM_EMAIL_ADDRESS` must be verified in the same `AWS_REGION`.
+The `CONTACT_EMAIL` binding is configured in `wrangler.json` with `destination_address: "hello@centrix.ie"`. Cloudflare Email Routing/Email Service must be enabled for `centrix.ie`, and `hello@centrix.ie` must be a verified destination. If the binding is unavailable, the form falls back to AWS SES.

@@ -10,8 +10,11 @@
 	"observability": {
 		"enabled": true
 	},
-	"vars": {
-		"PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAAAWsI1fJREzBYF91"
-	},
+	"send_email": [
+		{
+			"name": "CONTACT_EMAIL",
+			"destination_address": "hello@centrix.ie"
+		}
+	],
 	"upload_source_maps": true
 }

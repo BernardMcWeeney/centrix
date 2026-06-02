@@ -1,4 +1,11 @@
-import { checkedTurnstileSecretKeyNames, getTurnstileSecretKey } from './server/contact-env.js';
+import { EmailMessage } from 'cloudflare:email';
+import {
+  checkedAwsSesConfigNames,
+  checkedTurnstileSecretKeyNames,
+  getAwsSesConfig,
+  getEmailAddresses,
+  getTurnstileSecretKey,
+} from './server/contact-env.js';
 
 export async function onRequestPost(context) {
   try {
@@ -17,6 +24,10 @@ export async function onRequestPost(context) {
 
     if (!name || !email || !message) {
       return jsonResponse({ success: false, message: 'Missing required fields.' }, 400);
+    }
+
+    if (!isEmailAddress(email)) {
+      return jsonResponse({ success: false, message: 'Please enter a valid email address.' }, 400);
     }
 
     const turnstileSecretKey = getTurnstileSecretKey(env);
@@ -45,22 +56,7 @@ export async function onRequestPost(context) {
       return jsonResponse({ success: false, message: 'Security check failed. Please refresh the page and try again.' }, 400);
     }
 
-    const region = env.AWS_REGION;
-    const accessKeyId = env.AWS_ACCESS_KEY_ID;
-    const secretAccessKey = env.AWS_SECRET_ACCESS_KEY;
-    const fromAddress = env.FROM_EMAIL_ADDRESS;
-    const toAddress = env.TO_EMAIL_ADDRESS;
-
-    if (!region || !accessKeyId || !secretAccessKey || !fromAddress || !toAddress) {
-      console.error('Missing contact form env vars:', {
-        AWS_REGION: Boolean(region),
-        AWS_ACCESS_KEY_ID: Boolean(accessKeyId),
-        AWS_SECRET_ACCESS_KEY: Boolean(secretAccessKey),
-        FROM_EMAIL_ADDRESS: Boolean(fromAddress),
-        TO_EMAIL_ADDRESS: Boolean(toAddress),
-      });
-      return jsonResponse({ success: false, message: 'Contact form email is not configured. Please email hello@centrix.ie.' }, 500);
-    }
+    const { fromAddress, toAddress } = getEmailAddresses(env);
 
     const textBody = [
       `Name: ${name}`,
@@ -79,11 +75,42 @@ export async function onRequestPost(context) {
 <p><strong>Message:</strong></p>
 <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>`;
 
+    const subject = `Centrix Contact: ${service} - ${name}`;
+
+    if (env.CONTACT_EMAIL?.send || env.EMAIL?.send) {
+      const emailBinding = env.CONTACT_EMAIL?.send ? env.CONTACT_EMAIL : env.EMAIL;
+      await sendWithCloudflareEmail(emailBinding, {
+        fromAddress,
+        toAddress,
+        replyToAddress: email,
+        replyToName: name,
+        subject,
+        textBody,
+        htmlBody,
+      });
+
+      return jsonResponse({ success: true, message: 'Thanks. Your message has been sent.' });
+    }
+
+    const sesConfig = getAwsSesConfig(env);
+
+    if (sesConfig.missing.length > 0) {
+      console.error('Contact form email is not configured:', {
+        missing: sesConfig.missing,
+        checked: checkedAwsSesConfigNames(),
+        cloudflareEmailBinding: false,
+      });
+      return jsonResponse({
+        success: false,
+        message: `Contact form email is not configured. Missing ${sesConfig.missing.join(', ')}.`,
+      }, 500);
+    }
+
     const params = new URLSearchParams();
     params.append('Action', 'SendEmail');
     params.append('Source', fromAddress);
     params.append('Destination.ToAddresses.member.1', toAddress);
-    params.append('Message.Subject.Data', `Centrix Contact: ${service} - ${name}`);
+    params.append('Message.Subject.Data', subject);
     params.append('Message.Subject.Charset', 'UTF-8');
     params.append('Message.Body.Text.Data', textBody);
     params.append('Message.Body.Text.Charset', 'UTF-8');
@@ -92,7 +119,7 @@ export async function onRequestPost(context) {
     params.append('ReplyToAddresses.member.1', email);
     params.append('Version', '2010-12-01');
 
-    const endpoint = `https://email.${region}.amazonaws.com/`;
+    const endpoint = `https://email.${sesConfig.region}.amazonaws.com/`;
     const now = new Date();
     const amzDate = now.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
     const dateStamp = amzDate.slice(0, 8);
@@ -100,17 +127,17 @@ export async function onRequestPost(context) {
     const body = params.toString();
     const bodyHash = await sha256Hex(body);
 
-    const canonicalHeaders = `content-type:application/x-www-form-urlencoded\nhost:email.${region}.amazonaws.com\nx-amz-date:${amzDate}\n`;
+    const canonicalHeaders = `content-type:application/x-www-form-urlencoded\nhost:email.${sesConfig.region}.amazonaws.com\nx-amz-date:${amzDate}\n`;
     const signedHeaders = 'content-type;host;x-amz-date';
     const canonicalRequest = `POST\n/\n\n${canonicalHeaders}\n${signedHeaders}\n${bodyHash}`;
 
-    const credentialScope = `${dateStamp}/${region}/ses/aws4_request`;
+    const credentialScope = `${dateStamp}/${sesConfig.region}/ses/aws4_request`;
     const stringToSign = `AWS4-HMAC-SHA256\n${amzDate}\n${credentialScope}\n${await sha256Hex(canonicalRequest)}`;
 
-    const signingKey = await getSignatureKey(secretAccessKey, dateStamp, region, 'ses');
+    const signingKey = await getSignatureKey(sesConfig.secretAccessKey, dateStamp, sesConfig.region, 'ses');
     const signature = await hmacHex(signingKey, stringToSign);
 
-    const authHeader = `AWS4-HMAC-SHA256 Credential=${accessKeyId}/${credentialScope}, SignedHeaders=${signedHeaders}, Signature=${signature}`;
+    const authHeader = `AWS4-HMAC-SHA256 Credential=${sesConfig.accessKeyId}/${credentialScope}, SignedHeaders=${signedHeaders}, Signature=${signature}`;
 
     const sesResponse = await fetch(endpoint, {
       method: 'POST',
@@ -124,14 +151,31 @@ export async function onRequestPost(context) {
 
     if (!sesResponse.ok) {
       const errorText = await sesResponse.text();
-      console.error('SES error:', sesResponse.status, errorText);
-      return jsonResponse({ success: false, message: 'Something went wrong. Please try again or email hello@centrix.ie.' }, 500);
+      const sesError = parseSesError(errorText);
+      console.error('SES error:', {
+        status: sesResponse.status,
+        code: sesError.code,
+        message: sesError.message,
+      });
+      return jsonResponse({ success: false, message: sesError.userMessage }, 500);
     }
 
     return jsonResponse({ success: true, message: 'Thanks. Your message has been sent.' });
   } catch (error) {
     console.error('Contact form error:', error?.name, error?.message, error?.stack);
     return jsonResponse({ success: false, message: 'Something went wrong. Please try again or email hello@centrix.ie.' }, 500);
+  }
+}
+
+async function sendWithCloudflareEmail(emailBinding, options) {
+  const rawMessage = buildRawEmail(options);
+  const emailMessage = new EmailMessage(options.fromAddress, options.toAddress, rawMessage);
+
+  try {
+    await emailBinding.send(emailMessage);
+  } catch (error) {
+    console.error('Cloudflare email send error:', error?.message || error);
+    throw new Error('Email delivery failed.');
   }
 }
 
@@ -144,6 +188,10 @@ function jsonResponse(body, status = 200) {
     status,
     headers: { 'Content-Type': 'application/json' },
   });
+}
+
+function isEmailAddress(value) {
+  return /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(value);
 }
 
 async function verifyTurnstileToken(token, ip, secret) {
@@ -174,6 +222,102 @@ function escapeHtml(value) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
+}
+
+function buildRawEmail({ fromAddress, toAddress, replyToAddress, replyToName, subject, textBody, htmlBody }) {
+  const boundary = `centrix-contact-${crypto.randomUUID()}`;
+  const headers = [
+    `From: ${formatMailbox('Centrix Contact', fromAddress)}`,
+    `To: ${formatMailbox('Centrix', toAddress)}`,
+    `Reply-To: ${formatMailbox(replyToName, replyToAddress)}`,
+    `Subject: ${encodeMimeHeader(subject)}`,
+    'MIME-Version: 1.0',
+    `Content-Type: multipart/alternative; boundary="${boundary}"`,
+  ];
+
+  return [
+    ...headers,
+    '',
+    `--${boundary}`,
+    'Content-Type: text/plain; charset=UTF-8',
+    'Content-Transfer-Encoding: 8bit',
+    '',
+    textBody,
+    `--${boundary}`,
+    'Content-Type: text/html; charset=UTF-8',
+    'Content-Transfer-Encoding: 8bit',
+    '',
+    htmlBody,
+    `--${boundary}--`,
+    '',
+  ].join('\r\n');
+}
+
+function formatMailbox(name, address) {
+  const cleanAddress = sanitizeHeader(address);
+  const cleanName = sanitizeHeader(name)
+    .replace(/\\/g, '\\\\')
+    .replace(/"/g, '\\"');
+
+  return cleanName ? `"${cleanName}" <${cleanAddress}>` : cleanAddress;
+}
+
+function sanitizeHeader(value) {
+  return stringValue(value).replace(/[\r\n]+/g, ' ').trim();
+}
+
+function encodeMimeHeader(value) {
+  const clean = sanitizeHeader(value);
+
+  if (/^[\x20-\x7E]*$/.test(clean)) {
+    return clean;
+  }
+
+  return `=?UTF-8?B?${base64EncodeUtf8(clean)}?=`;
+}
+
+function base64EncodeUtf8(value) {
+  const bytes = new TextEncoder().encode(value);
+  let binary = '';
+
+  for (const byte of bytes) {
+    binary += String.fromCharCode(byte);
+  }
+
+  return btoa(binary);
+}
+
+function parseSesError(errorText) {
+  const code = matchXmlTag(errorText, 'Code');
+  const message = matchXmlTag(errorText, 'Message');
+  const combined = `${code} ${message}`.toLowerCase();
+
+  if (combined.includes('messagerejected') || combined.includes('not verified')) {
+    return {
+      code,
+      message,
+      userMessage: 'Email delivery is not fully verified yet. Please email hello@centrix.ie directly.',
+    };
+  }
+
+  if (combined.includes('signature') || combined.includes('accessdenied') || combined.includes('invalidclienttokenid')) {
+    return {
+      code,
+      message,
+      userMessage: 'Email delivery credentials are not configured correctly. Please email hello@centrix.ie directly.',
+    };
+  }
+
+  return {
+    code,
+    message,
+    userMessage: 'Email delivery failed. Please email hello@centrix.ie directly.',
+  };
+}
+
+function matchXmlTag(xml, tag) {
+  const match = String(xml).match(new RegExp(`<${tag}>([^<]*)</${tag}>`, 'i'));
+  return match ? match[1] : '';
 }
 
 async function sha256Hex(message) {
