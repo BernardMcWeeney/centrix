@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { COMPANY_INFO } from '../consts';
+import { env } from 'cloudflare:workers';
+
+export const prerender = false;
 
 const title = "Contact Centrix";
 const description = "Message Centrix about Irish business IT consultancy, Microsoft cloud, business networking, VPNs, VoIP, security, compliance readiness, and AI services.";
-const runtimeEnv = Astro.locals.runtime?.env;
-const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || runtimeEnv?.PUBLIC_TURNSTILE_SITE_KEY;
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || env.PUBLIC_TURNSTILE_SITE_KEY;
 const canonicalUrl = new URL('/contact/', Astro.site || Astro.url.origin).toString();
 
 const contactMethods = [
