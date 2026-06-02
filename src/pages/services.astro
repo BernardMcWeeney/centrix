@@ -1,644 +1,142 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { RECURRING_PLANS } from '../consts';
+import SiteIcon from '../components/SiteIcon.astro';
 
-const title = "Security Services | Centrix";
-const description = "Transform your security posture with productized services. From assessments to managed security - clear outcomes, fixed pricing.";
+const title = 'IT, Technology, And Consultancy Services';
+const description = 'Centrix services across Microsoft cloud, business networking, Wi-Fi, CCTV, VPNs, VoIP, security, compliance readiness, and AI automation for Irish businesses.';
 
 const categories = [
   {
-    id: "microsoft-365",
-    title: "Microsoft 365",
-    description: "Comprehensive M365 security assessments and implementation",
-    href: "/services/microsoft-365",
-    icon: "microsoft",
-    stats: "500+ tenants secured"
+    title: 'Microsoft cloud',
+    description: 'Microsoft 365, Azure, Intune, Defender, identity, migration, and tenant hardening.',
+    href: '/microsoft',
+    icon: 'microsoft',
   },
   {
-    id: "networking",
-    title: "Network Infrastructure",
-    description: "Enterprise-grade networking with UniFi deployment",
-    href: "/services/networking",
-    icon: "network",
-    stats: "200+ sites deployed"
+    title: 'Business networking',
+    description: 'Wi-Fi, switching, routing, VPNs, backup links, VoIP, CCTV networks, segmentation, and support.',
+    href: '/networks',
+    icon: 'network',
   },
   {
-    id: "ai-services",
-    title: "AI Services",
-    description: "Strategic AI adoption with security-first implementation",
-    href: "/services/ai-services",
-    icon: "ai",
-    stats: "50+ AI pilots delivered"
+    title: 'CCTV and IP cameras',
+    description: 'Camera systems with simple app and web viewing, local recording, access roles, and support.',
+    href: '/services/networking/cctv-ip-cameras',
+    icon: 'camera',
   },
   {
-    id: "managed-security",
-    title: "Managed Security",
-    description: "24/7 monitoring, vulnerability management, incident response",
-    href: "/services/managed-security",
-    icon: "shield",
-    stats: "10K+ alerts triaged monthly"
+    title: 'Security and compliance',
+    description: 'Security reviews, managed security, incident readiness, NIS2 readiness, and GDPR support.',
+    href: '/security',
+    icon: 'shield',
   },
   {
-    id: "intune",
-    title: "Endpoint Management",
-    description: "Modern device management with Intune and zero-trust",
-    href: "/services/intune",
-    icon: "device",
-    stats: "50K+ devices managed"
+    title: 'Cloud migration',
+    description: 'Move email, files, identity, and devices to Microsoft cloud in a controlled way.',
+    href: '/services/microsoft-365/cloud-migration',
+    icon: 'cloud',
   },
   {
-    id: "identity",
-    title: "Identity & Access",
-    description: "Entra ID hardening and identity governance",
-    href: "/services/identity",
-    icon: "user",
-    stats: "Zero breaches"
+    title: 'AI and automation',
+    description: 'ChatGPT, Claude, Copilot, Cloudflare AI, usage policy, workflow automation, and practical AI pilots.',
+    href: '/ai',
+    icon: 'ai',
   },
 ];
 
-const stats = [
-  { value: "500+", label: "Clients Protected" },
-  { value: "99.9%", label: "Client Retention" },
-  { value: "<4hr", label: "Avg Response Time" },
-  { value: "Zero", label: "Major Breaches" },
+const process = [
+  { title: 'Scope', description: 'Clarify the business outcome, premises, users, systems, risks, budget, and delivery constraints.' },
+  { title: 'Plan', description: 'Produce a clear approach with priorities, dependencies, assumptions, and practical sequencing.' },
+  { title: 'Deliver', description: 'Configure, migrate, install, secure, test, and document the agreed solution.' },
+  { title: 'Support', description: 'Keep improving through monitoring, reviews, issue response, and ongoing advisory support.' },
 ];
 ---
 
 <BaseLayout title={title} description={description}>
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container-wide">
-      <div class="hero-content">
-        <div class="hero-eyebrow">Services</div>
-        <h1 class="hero-title">Security services.<br/>Fixed pricing.</h1>
-        <p class="hero-description">
-          Stop worrying about security. Start focusing on growth. Our productized services deliver measurable outcomes with predictable pricing.
-        </p>
-        <div class="hero-actions">
-          <a href="#categories" class="btn btn-primary btn-lg">
-            Explore Services
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
-          </a>
-          <a href="/contact" class="btn btn-secondary btn-lg">Book a Consultation</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stats Bar -->
-  <section class="stats-section">
-    <div class="container-wide">
-      <div class="stats-grid">
-        {stats.map((stat) => (
-          <div class="stat-item">
-            <div class="stat-value">{stat.value}</div>
-            <div class="stat-label">{stat.label}</div>
+  <main class="consult-page">
+    <section class="consult-subhero">
+      <div class="container-wide">
+        <div class="consult-subhero-grid">
+          <div>
+            <div class="consult-eyebrow">Services</div>
+            <h1 class="consult-subhero-title">IT and technology services for Irish businesses.</h1>
+            <p class="consult-lead">
+              Centrix works across cloud, premises networking, security, compliance readiness, and AI so your technology is easier to manage and safer to rely on.
+            </p>
+            <div class="consult-actions">
+              <a href="/contact" class="consult-btn consult-btn-primary">
+                Book a consultation
+                <SiteIcon name="arrow-right" size={18} />
+              </a>
+              <a href="/about" class="consult-btn consult-btn-secondary">About Centrix</a>
+            </div>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Categories Section -->
-  <section id="categories" class="categories-section">
-    <div class="container-wide">
-      <div class="section-header">
-        <div class="section-eyebrow">Service Categories</div>
-        <h2 class="section-title">Choose your path to security</h2>
-        <p class="section-desc">Expert services across every aspect of your IT security landscape.</p>
-      </div>
-
-      <div class="categories-grid">
-        {categories.map((category) => (
-          <a href={category.href} class="category-card">
-            <div class="category-icon">
-              {category.icon === 'microsoft' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg>}
-              {category.icon === 'network' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z"/></svg>}
-              {category.icon === 'ai' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>}
-              {category.icon === 'shield' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>}
-              {category.icon === 'device' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.5 19.5h3m-6.75 2.25h10.5a2.25 2.25 0 002.25-2.25v-15a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 4.5v15a2.25 2.25 0 002.25 2.25z"/></svg>}
-              {category.icon === 'user' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>}
-            </div>
-            <h3 class="category-title">{category.title}</h3>
-            <p class="category-description">{category.description}</p>
-            <div class="category-footer">
-              <span class="category-stat">{category.stats}</span>
-              <span class="category-arrow">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </span>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Process Section -->
-  <section class="process-section">
-    <div class="container-wide">
-      <div class="section-header">
-        <div class="section-eyebrow">How It Works</div>
-        <h2 class="section-title">Your journey to security</h2>
-        <p class="section-desc">Every engagement follows our proven methodology for consistent, measurable results.</p>
-      </div>
-
-      <div class="process-grid">
-        <div class="process-step">
-          <div class="step-number">1</div>
-          <h3 class="step-title">Discover</h3>
-          <p class="step-description">We assess your current state, identify gaps, and understand your goals.</p>
-        </div>
-        <div class="process-step">
-          <div class="step-number">2</div>
-          <h3 class="step-title">Design</h3>
-          <p class="step-description">We create a roadmap with clear milestones and fixed-scope deliverables.</p>
-        </div>
-        <div class="process-step">
-          <div class="step-number">3</div>
-          <h3 class="step-title">Deliver</h3>
-          <p class="step-description">We execute the plan with minimal disruption and maximum transparency.</p>
-        </div>
-        <div class="process-step">
-          <div class="step-number">4</div>
-          <h3 class="step-title">Sustain</h3>
-          <p class="step-description">We provide ongoing support, monitoring, and continuous improvement.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Plans Section -->
-  <section id="plans" class="plans-section">
-    <div class="container-wide">
-      <div class="section-header">
-        <div class="section-eyebrow">Managed Security Plans</div>
-        <h2 class="section-title">Continuous protection, predictable pricing</h2>
-        <p class="section-desc">Choose the level of protection that fits your organization's needs.</p>
-      </div>
-
-      <div class="plans-grid">
-        {RECURRING_PLANS.map((plan) => (
-          <div class={`plan-card ${plan.featured ? 'featured' : ''}`}>
-            {plan.featured && <div class="plan-badge">Most Popular</div>}
-            <div class="plan-header">
-              <h3 class="plan-name">{plan.name}</h3>
-              <p class="plan-tagline">{plan.tagline}</p>
-            </div>
-            <div class="plan-price">
-              <span class="price-text">{plan.monthlyPrice}</span>
-              <span class="price-period">/month</span>
-            </div>
-            <ul class="plan-features">
-              {plan.includes.map((item) => (
-                <li>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                  {item}
-                </li>
-              ))}
+          <aside class="consult-proof-panel">
+            <h2>Start with</h2>
+            <ul>
+              <li><SiteIcon name="check" size={18} /><span>A cloud move or Microsoft review</span></li>
+              <li><SiteIcon name="check" size={18} /><span>A networking, VPN, VoIP, Wi-Fi, or CCTV site project</span></li>
+              <li><SiteIcon name="check" size={18} /><span>A security and compliance readiness review</span></li>
+              <li><SiteIcon name="check" size={18} /><span>A ChatGPT, Claude, Copilot, or AI automation workshop</span></li>
             </ul>
-            <a href={`/contact?plan=${plan.id}`} class={`plan-btn ${plan.featured ? 'plan-btn-primary' : 'plan-btn-secondary'}`}>
-              Get Started
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="cta-section">
-    <div class="container-wide">
-      <div class="cta-card">
-        <h2 class="cta-title">Ready to transform your security?</h2>
-        <p class="cta-description">Let's start with a conversation. No pressure, no commitment.</p>
-        <div class="cta-actions">
-          <a href="/contact" class="btn btn-primary btn-lg">
-            Schedule Free Consultation
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="/about" class="btn btn-secondary btn-lg">Learn About Us</a>
+          </aside>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="consult-section">
+      <div class="container-wide">
+        <div class="consult-section-heading">
+          <span class="consult-kicker">Catalogue</span>
+          <h2>Choose the service area that matches the business problem.</h2>
+        </div>
+        <div class="consult-card-grid three">
+          {categories.map((category) => (
+            <a href={category.href} class="consult-card">
+              <div class="consult-card-icon"><SiteIcon name={category.icon} size={24} /></div>
+              <h3>{category.title}</h3>
+              <p>{category.description}</p>
+              <span class="consult-card-link">
+                View service
+                <SiteIcon name="arrow-right" size={16} />
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-section consult-section-muted">
+      <div class="container-wide">
+        <div class="consult-section-heading centered">
+          <span class="consult-kicker">Delivery</span>
+          <h2>Clear projects, useful documentation, and support after handover.</h2>
+        </div>
+        <div class="consult-steps">
+          {process.map((step, index) => (
+            <div class="consult-step">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-cta">
+      <div class="container-wide">
+        <div class="consult-cta-inner">
+          <div>
+            <span class="consult-kicker">Next Step</span>
+            <h2>Tell us what needs to change and we will shape the right service around it.</h2>
+          </div>
+          <a href="/contact" class="consult-btn consult-btn-primary">
+            Contact Centrix
+            <SiteIcon name="arrow-right" size={18} />
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 </BaseLayout>
-
-<style>
-  /* Hero */
-  .hero {
-    padding: 8rem 0 4rem;
-    background-color: var(--bg-secondary);
-    border-bottom: 1px solid var(--border-primary);
-  }
-
-  @media (min-width: 768px) {
-    .hero { padding: 10rem 0 5rem; }
-  }
-
-  .hero-content {
-    max-width: 40rem;
-  }
-
-  .hero-eyebrow {
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--brand-primary);
-    margin-bottom: 1rem;
-  }
-
-  .hero-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: var(--text-primary);
-    margin-bottom: 1.25rem;
-  }
-
-  @media (min-width: 768px) {
-    .hero-title { font-size: 3.5rem; }
-  }
-
-  .hero-description {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-
-  /* Stats */
-  .stats-section {
-    padding: 2.5rem 0;
-    background-color: var(--bg-primary);
-    border-bottom: 1px solid var(--border-primary);
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-
-  @media (min-width: 768px) {
-    .stats-grid { grid-template-columns: repeat(4, 1fr); }
-  }
-
-  .stat-item { text-align: center; }
-
-  .stat-value {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    letter-spacing: -0.02em;
-  }
-
-  .stat-label {
-    font-size: 0.8125rem;
-    color: var(--text-tertiary);
-    margin-top: 0.25rem;
-  }
-
-  /* Categories */
-  .categories-section {
-    padding: 5rem 0;
-  }
-
-  @media (min-width: 768px) {
-    .categories-section { padding: 6rem 0; }
-  }
-
-  .categories-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  @media (min-width: 768px) {
-    .categories-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (min-width: 1024px) {
-    .categories-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-
-  .category-card {
-    display: flex;
-    flex-direction: column;
-    padding: 1.5rem;
-    background-color: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: all 0.15s ease;
-  }
-
-  .category-card:hover {
-    border-color: var(--brand-primary);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .category-icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--brand-light);
-    color: var(--brand-primary);
-    border-radius: 0.375rem;
-    margin-bottom: 1rem;
-  }
-
-  .category-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .category-description {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    flex: 1;
-    margin-bottom: 1rem;
-  }
-
-  .category-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-primary);
-  }
-
-  .category-stat {
-    font-size: 0.75rem;
-    color: var(--text-tertiary);
-  }
-
-  .category-arrow {
-    color: var(--brand-primary);
-    transition: transform 0.15s ease;
-  }
-
-  .category-card:hover .category-arrow {
-    transform: translateX(4px);
-  }
-
-  /* Process */
-  .process-section {
-    padding: 5rem 0;
-    background-color: var(--bg-secondary);
-  }
-
-  @media (min-width: 768px) {
-    .process-section { padding: 6rem 0; }
-  }
-
-  .process-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  @media (min-width: 768px) {
-    .process-grid { grid-template-columns: repeat(4, 1fr); }
-  }
-
-  .process-step {
-    text-align: center;
-  }
-
-  .step-number {
-    width: 2.5rem;
-    height: 2.5rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--brand-primary);
-    color: white;
-    font-size: 0.875rem;
-    font-weight: 600;
-    border-radius: 0.375rem;
-    margin-bottom: 1rem;
-  }
-
-  .step-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .step-description {
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  /* Plans */
-  .plans-section {
-    padding: 5rem 0;
-  }
-
-  @media (min-width: 768px) {
-    .plans-section { padding: 6rem 0; }
-  }
-
-  .plans-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    max-width: 56rem;
-    margin: 0 auto;
-  }
-
-  @media (min-width: 768px) {
-    .plans-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-
-  .plan-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: 1.5rem;
-    background-color: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 0.5rem;
-    transition: all 0.15s ease;
-  }
-
-  .plan-card:hover {
-    border-color: var(--border-secondary);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .plan-card.featured {
-    border-color: var(--brand-primary);
-  }
-
-  .plan-badge {
-    position: absolute;
-    top: -0.625rem;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 0.25rem 0.75rem;
-    background-color: var(--brand-primary);
-    color: white;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-radius: 9999px;
-    white-space: nowrap;
-  }
-
-  .plan-header {
-    text-align: center;
-    margin-bottom: 1rem;
-    padding-top: 0.5rem;
-  }
-
-  .plan-name {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.25rem;
-  }
-
-  .plan-tagline {
-    font-size: 0.75rem;
-    color: var(--brand-primary);
-    font-weight: 500;
-  }
-
-  .plan-price {
-    text-align: center;
-    padding: 1rem 0;
-    border-top: 1px solid var(--border-primary);
-    border-bottom: 1px solid var(--border-primary);
-    margin-bottom: 1rem;
-  }
-
-  .price-text {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--text-primary);
-  }
-
-  .price-period {
-    font-size: 0.8125rem;
-    color: var(--text-tertiary);
-  }
-
-  .plan-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1.5rem 0;
-    flex: 1;
-  }
-
-  .plan-features li {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    padding: 0.375rem 0;
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
-  }
-
-  .plan-features li svg {
-    color: var(--success);
-    flex-shrink: 0;
-    margin-top: 0.125rem;
-  }
-
-  .plan-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.375rem;
-    padding: 0.625rem 1rem;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    border-radius: 0.375rem;
-    text-decoration: none;
-    transition: all 0.15s ease;
-  }
-
-  .plan-btn-primary {
-    background-color: var(--brand-primary);
-    color: white;
-  }
-
-  .plan-btn-primary:hover {
-    background-color: var(--brand-hover);
-    color: white;
-  }
-
-  .plan-btn-secondary {
-    background-color: var(--bg-secondary);
-    color: var(--text-primary);
-    border: 1px solid var(--border-primary);
-  }
-
-  .plan-btn-secondary:hover {
-    border-color: var(--brand-primary);
-    color: var(--brand-primary);
-  }
-
-  /* CTA */
-  .cta-section {
-    padding: 5rem 0;
-    background-color: var(--bg-secondary);
-  }
-
-  @media (min-width: 768px) {
-    .cta-section { padding: 6rem 0; }
-  }
-
-  .cta-card {
-    text-align: center;
-    padding: 3rem 1.5rem;
-    background-color: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 0.5rem;
-  }
-
-  @media (min-width: 768px) {
-    .cta-card { padding: 4rem 2rem; }
-  }
-
-  .cta-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.025em;
-  }
-
-  @media (min-width: 768px) {
-    .cta-title { font-size: 1.875rem; }
-  }
-
-  .cta-description {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-  }
-
-  .cta-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.75rem;
-  }
-</style>

@@ -3,57 +3,63 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { COMPANY_INFO } from '../consts';
 
 const title = "Contact Us";
-const description = "Get in touch with Centrix for IT security consulting, Microsoft 365 solutions, and network infrastructure services.";
+const description = "Get in touch with Centrix for Irish business IT consultancy, Microsoft cloud, business networking, VPNs, VoIP, security, compliance readiness, and AI services.";
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 
 const contactMethods = [
   {
     title: "Email Us",
-    description: "Send us a message and we'll respond within 24 hours.",
+    description: "Send a project or support enquiry.",
     value: COMPANY_INFO.email,
     href: `mailto:${COMPANY_INFO.email}`,
     icon: "email",
   },
   {
     title: "Call Us",
-    description: "Speak directly with our security experts.",
+    description: "Speak with Centrix about your IT plans.",
     value: COMPANY_INFO.phone,
     href: `tel:${COMPANY_INFO.phone.replace(/\D/g, '')}`,
     icon: "phone",
   },
   {
-    title: "Visit Us",
-    description: "Come to our office for an in-person consultation.",
+    title: "Based In",
+    description: "Irish business technology consultancy.",
     value: COMPANY_INFO.address,
     icon: "location",
   },
 ];
 
 const services = [
-  "Security Assessment",
+  "Microsoft Cloud Migration",
   "Microsoft 365 Security",
-  "Network Infrastructure",
-  "24/7 Monitoring",
-  "Security Consulting",
-  "Compliance Services",
+  "Business Networking",
+  "VPN & Remote Access",
+  "Backup, DR & Resilience",
+  "VoIP & Business Phones",
+  "Business Wi-Fi",
+  "CCTV & IP Cameras",
+  "NIS2 & GDPR Readiness",
+  "AI Introduction & Automation",
+  "Managed IT Support",
   "Other",
 ];
 
 const faqs = [
   {
-    q: "What's included in a free security assessment?",
-    a: "Our free assessment includes a review of your current security posture, identification of critical vulnerabilities, and a prioritized roadmap of recommendations.",
+    q: "What should I include in my message?",
+    a: "Tell us the business issue, location, number of users or sites, current platforms, and any deadline. A short summary is enough to start.",
   },
   {
-    q: "Do you offer emergency support?",
-    a: "Yes, we provide 24/7 emergency support for security incidents. Clients with monitoring contracts have priority response.",
+    q: "Do you work on site?",
+    a: "Yes, especially for networking, VPN, VoIP, Wi-Fi, CCTV, and premises technology projects. Microsoft, security, and AI work can often be delivered remotely.",
   },
   {
     q: "What size businesses do you work with?",
-    a: "We work with businesses of all sizes, from startups to enterprises. Our solutions scale to meet your needs.",
+    a: "Centrix works with Irish businesses that need practical technology guidance, secure Microsoft cloud, reliable site networks, or ongoing IT support.",
   },
   {
     q: "How long does implementation typically take?",
-    a: "Implementation timelines vary based on scope. Basic M365 security deploys in 1-2 weeks, while network projects may take 4-8 weeks.",
+    a: "Timelines depend on scope. Small Microsoft reviews can be short, while migrations, networking, VPN, VoIP, Wi-Fi, or CCTV projects need proper survey, planning, and rollout.",
   },
 ];
 ---
@@ -66,7 +72,7 @@ const faqs = [
         <div class="hero-eyebrow">Contact</div>
         <h1 class="hero-title">Get in touch</h1>
         <p class="hero-description">
-          Ready to strengthen your security? Contact us for a free consultation with our experts.
+          Talk to Centrix about Microsoft cloud, business networking, VPNs, VoIP, Wi-Fi, CCTV, security, compliance readiness, AI, or general business IT consultancy.
         </p>
       </div>
     </div>
@@ -79,7 +85,7 @@ const faqs = [
         <!-- Contact Form -->
         <div class="form-section">
           <h2 class="form-title">Send us a message</h2>
-          <form class="contact-form" action="#" method="POST">
+          <form class="contact-form" action="/api/contact" method="POST" data-contact-form>
             <div class="form-row">
               <div class="form-group">
                 <label for="firstName" class="form-label">First Name</label>
@@ -98,7 +104,7 @@ const faqs = [
 
             <div class="form-group">
               <label for="company" class="form-label">Company</label>
-              <input type="text" id="company" name="company" class="form-input" placeholder="Acme Inc." />
+              <input type="text" id="company" name="company" class="form-input" placeholder="Company Ltd" />
             </div>
 
             <div class="form-group">
@@ -113,8 +119,16 @@ const faqs = [
 
             <div class="form-group">
               <label for="message" class="form-label">Message</label>
-              <textarea id="message" name="message" rows="4" required class="form-textarea" placeholder="Tell us about your security needs..."></textarea>
+              <textarea id="message" name="message" rows="4" required class="form-textarea" placeholder="Tell us about the technology issue, project, site, or deadline..."></textarea>
             </div>
+
+            {turnstileSiteKey && (
+              <div class="turnstile-wrap">
+                <div class="cf-turnstile" data-sitekey={turnstileSiteKey}></div>
+              </div>
+            )}
+
+            <p class="form-status" data-form-status aria-live="polite"></p>
 
             <button type="submit" class="btn btn-primary btn-lg submit-btn">
               Send Message
@@ -170,7 +184,7 @@ const faqs = [
             </svg>
             <div>
               <h3 class="response-title">Fast Response Time</h3>
-              <p class="response-description">We typically respond within 4 business hours</p>
+              <p class="response-description">We aim to respond within one business day</p>
             </div>
           </div>
         </div>
@@ -197,6 +211,73 @@ const faqs = [
     </div>
   </section>
 </BaseLayout>
+
+{turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+
+<script>
+  function initContactForm() {
+    const form = document.querySelector('[data-contact-form]') as HTMLFormElement | null;
+
+    if (!form || form.dataset.bound === 'true') {
+      return;
+    }
+
+    form.dataset.bound = 'true';
+
+    const status = form.querySelector('[data-form-status]') as HTMLElement | null;
+    const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+    const defaultButtonHtml = submitButton?.innerHTML || '';
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      if (status) {
+        status.textContent = '';
+        status.className = 'form-status';
+      }
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+      }
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || 'Something went wrong. Please try again.');
+        }
+
+        if (status) {
+          status.textContent = result.message || 'Thanks. Your message has been sent.';
+          status.classList.add('success');
+        }
+
+        form.reset();
+        (window as any).turnstile?.reset();
+      } catch (error) {
+        if (status) {
+          status.textContent = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
+          status.classList.add('error');
+        }
+        (window as any).turnstile?.reset();
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.innerHTML = defaultButtonHtml;
+        }
+      }
+    });
+  }
+
+  initContactForm();
+  document.addEventListener('astro:after-swap', initContactForm);
+</script>
 
 <style>
   /* Hero */
@@ -225,7 +306,7 @@ const faqs = [
     font-size: 2.5rem;
     font-weight: 700;
     line-height: 1.1;
-    letter-spacing: -0.03em;
+    letter-spacing: 0;
     color: var(--text-primary);
     margin-bottom: 1rem;
   }
@@ -323,6 +404,31 @@ const faqs = [
   .submit-btn {
     width: 100%;
     margin-top: 0.5rem;
+  }
+
+  .submit-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.72;
+  }
+
+  .turnstile-wrap {
+    min-height: 4.25rem;
+  }
+
+  .form-status {
+    min-height: 1.25rem;
+    margin: 0;
+    color: var(--text-tertiary);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+
+  .form-status.success {
+    color: var(--success);
+  }
+
+  .form-status.error {
+    color: var(--error);
   }
 
   /* Info */

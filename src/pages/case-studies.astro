@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteIcon from '../components/SiteIcon.astro';
+import PlatformLogo from '../components/PlatformLogo.astro';
+import { getCollection } from 'astro:content';
+
+const title = 'Case Studies';
+const description = 'Selected Centrix work patterns across Microsoft cloud, business networking, premises technology, security readiness, and AI introduction for Irish businesses.';
+
+const studies = (await getCollection('caseStudies')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="consult-page">
+    <section class="consult-subhero">
+      <div class="container-wide">
+        <div class="consult-subhero-grid">
+          <div>
+            <div class="consult-eyebrow">Case Studies</div>
+            <h1 class="consult-subhero-title">Selected work across cloud, premises technology, security, and AI.</h1>
+            <p class="consult-lead">
+              Each case study has its own project identity, context, work delivered, and outcome. They are anonymised until client-approved details are ready to publish.
+            </p>
+            <div class="consult-actions">
+              <a href="/contact" class="consult-btn consult-btn-primary">
+                Discuss similar work
+                <SiteIcon name="arrow-right" size={18} />
+              </a>
+              <a href="/services" class="consult-btn consult-btn-secondary">View services</a>
+            </div>
+          </div>
+          <aside class="consult-proof-panel">
+            <h2>Work areas</h2>
+            <ul>
+              <li><SiteIcon name="check" size={18} /><span>Microsoft cloud and security</span></li>
+              <li><SiteIcon name="check" size={18} /><span>Business networking, VPNs, VoIP, Wi-Fi, and CCTV</span></li>
+              <li><SiteIcon name="check" size={18} /><span>NIS2, GDPR, supplier, and insurance readiness</span></li>
+              <li><SiteIcon name="check" size={18} /><span>ChatGPT, Claude, Copilot, and AI introduction</span></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-section">
+      <div class="container-wide">
+        <div class="consult-section-heading">
+          <span class="consult-kicker">Selected Work</span>
+          <h2>Case studies with their own project pages.</h2>
+        </div>
+        <div class="consult-card-grid two">
+          {studies.map((study) => (
+            <a href={`/case-studies/${study.id}/`} class="consult-card case-study-card">
+              {study.data.heroImage && (
+                <img src={study.data.heroImage} alt={study.data.title} loading="lazy" />
+              )}
+              <div class="case-study-card-body">
+                <div class="consult-card-icon"><SiteIcon name={study.data.icon} size={24} /></div>
+                <span class="consult-kicker">{study.data.eyebrow}</span>
+                <h3>{study.data.title}</h3>
+                <p>{study.data.description}</p>
+                <div class="case-study-card-meta">
+                  <span>{study.data.clientType}</span>
+                  <span>{study.data.sector}</span>
+                  {study.data.timeframe && <span>{study.data.timeframe}</span>}
+                </div>
+                <div class="case-study-platforms">
+                  {study.data.platforms.map((platform) => (
+                    <PlatformLogo name={platform} />
+                  ))}
+                </div>
+                <span class="consult-card-link">
+                  Read case study
+                  <SiteIcon name="arrow-right" size={16} />
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-cta">
+      <div class="container-wide">
+        <div class="consult-cta-inner">
+          <div>
+            <span class="consult-kicker">Your Project</span>
+            <h2>Turn one of these patterns into a scoped Centrix project.</h2>
+          </div>
+          <a href="/contact" class="consult-btn consult-btn-primary">
+            Contact Centrix
+            <SiteIcon name="arrow-right" size={18} />
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .case-study-card {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .case-study-card > img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .case-study-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 1.35rem;
+  }
+
+  .case-study-card h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: clamp(1.35rem, 2vw, 1.8rem);
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .case-study-card p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  .case-study-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .case-study-card-meta span {
+    padding: 0.4rem 0.55rem;
+    border: 1px solid var(--border-primary);
+    border-radius: 999px;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  .case-study-platforms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem 1rem;
+  }
+
+  .case-study-card .consult-card-link {
+    margin-top: 0.15rem;
+  }
+</style>

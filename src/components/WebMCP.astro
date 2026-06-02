@@ -25,7 +25,7 @@
                 topic: {
                   type: 'string',
                   description:
-                    'Optional topic for the call (e.g. "M365 assessment", "UniFi deployment", "Copilot readiness").',
+                    'Optional topic for the call (e.g. "M365 assessment", "network deployment", "VPN access", "Copilot readiness").',
                 },
               },
               additionalProperties: false,
@@ -71,11 +71,11 @@
             },
           },
           {
-            name: 'read_blog',
-            description: 'Open the Centrix blog index.',
+            name: 'read_news',
+            description: 'Open the Centrix news index.',
             inputSchema: { type: 'object', properties: {}, additionalProperties: false },
             async execute() {
-              return go('/blog');
+              return go('/news');
             },
           },
         ],

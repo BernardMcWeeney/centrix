@@ -1,0 +1,220 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../components/FormattedDate.astro';
+import SiteIcon from '../../components/SiteIcon.astro';
+
+const posts = (await getCollection('news')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const title = 'News';
+const description = 'Centrix news and practical updates on Microsoft cloud, business networking, security readiness, compliance, Cloudflare, Anthropic, and business AI.';
+
+const featuredPost = posts[0];
+const recentPosts = posts.slice(1);
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="consult-page">
+    <section class="consult-subhero">
+      <div class="container-wide">
+        <div class="consult-subhero-grid">
+          <div>
+            <div class="consult-eyebrow">News</div>
+            <h1 class="consult-subhero-title">Technology news for Irish businesses.</h1>
+            <p class="consult-lead">
+              Short, practical updates on Microsoft cloud, business networking, Wi-Fi, CCTV, VPNs, VoIP, security readiness, Cloudflare, Anthropic, compliance support, and AI adoption.
+            </p>
+          </div>
+          <aside class="consult-proof-panel">
+            <h2>Topics</h2>
+            <ul>
+              <li><SiteIcon name="check" size={18} /><span>Microsoft 365 and cloud migration</span></li>
+              <li><SiteIcon name="check" size={18} /><span>Business networking, VPNs, VoIP, Wi-Fi, and CCTV</span></li>
+              <li><SiteIcon name="check" size={18} /><span>NIS2, GDPR, and security readiness</span></li>
+              <li><SiteIcon name="check" size={18} /><span>ChatGPT, Claude, Copilot, and AI workflows</span></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    {featuredPost && (
+      <section class="consult-section">
+        <div class="container-wide">
+          <a href={`/news/${featuredPost.id}/`} class="news-featured">
+            <div class="news-featured-image">
+              {featuredPost.data.heroImage && <img src={featuredPost.data.heroImage} alt={featuredPost.data.title} loading="eager" />}
+            </div>
+            <div class="news-featured-content">
+              <span class="consult-kicker">Featured</span>
+              <h2>{featuredPost.data.title}</h2>
+              <p>{featuredPost.data.description}</p>
+              <span class="news-meta">
+                {featuredPost.data.sourceLogo && <img src={featuredPost.data.sourceLogo} alt="" loading="lazy" />}
+                {featuredPost.data.sourceName && <span>{featuredPost.data.sourceName}</span>}
+                <FormattedDate date={featuredPost.data.pubDate} />
+              </span>
+              <span class="consult-card-link">
+                Read article
+                <SiteIcon name="arrow-right" size={16} />
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+    )}
+
+    <section class={`consult-section ${featuredPost ? 'consult-section-muted' : ''}`}>
+      <div class="container-wide">
+        <div class="consult-section-heading">
+          <span class="consult-kicker">Latest</span>
+          <h2>Recent news</h2>
+        </div>
+        <div class="consult-card-grid three">
+          {recentPosts.map((post) => (
+            <a href={`/news/${post.id}/`} class="consult-card news-card">
+              {post.data.heroImage && (
+                <img src={post.data.heroImage} alt={post.data.title} loading="lazy" />
+              )}
+              <span class="news-meta">
+                {post.data.sourceLogo && <img src={post.data.sourceLogo} alt="" loading="lazy" />}
+                {post.data.sourceName && <span>{post.data.sourceName}</span>}
+                <FormattedDate date={post.data.pubDate} />
+              </span>
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+              <span class="consult-card-link">
+                Read more
+                <SiteIcon name="arrow-right" size={16} />
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-cta">
+      <div class="container-wide">
+        <div class="consult-cta-inner">
+          <div>
+            <span class="consult-kicker">Need Advice?</span>
+            <h2>Turn a news item into a practical Centrix project.</h2>
+          </div>
+          <a href="/contact" class="consult-btn consult-btn-primary">
+            Contact Centrix
+            <SiteIcon name="arrow-right" size={18} />
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .news-featured {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    overflow: hidden;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    text-decoration: none;
+    box-shadow: var(--shadow-xs);
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+  }
+
+  .news-featured:hover {
+    border-color: var(--brand-primary);
+    color: var(--text-secondary);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .news-featured-image {
+    min-height: 22rem;
+    background: var(--bg-secondary);
+  }
+
+  .news-featured-image img,
+  .news-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .news-featured-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .news-featured-content h2 {
+    margin: 0.65rem 0 0.8rem;
+    color: var(--text-primary);
+    font-size: clamp(1.65rem, 3vw, 2.5rem);
+    line-height: 1.16;
+    letter-spacing: 0;
+  }
+
+  .news-featured-content p {
+    margin: 0;
+    color: var(--text-secondary);
+  }
+
+  .news-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 1rem;
+    color: var(--text-tertiary);
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  .news-meta img {
+    width: 1.15rem;
+    height: 1.15rem;
+    object-fit: contain;
+  }
+
+  .news-card {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .news-card img {
+    aspect-ratio: 16 / 10;
+    height: auto;
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .news-card .news-meta,
+  .news-card h3,
+  .news-card p,
+  .news-card .consult-card-link {
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+  }
+
+  .news-card .consult-card-link {
+    margin-bottom: 1.25rem;
+  }
+
+  @media (max-width: 820px) {
+    .news-featured {
+      grid-template-columns: 1fr;
+    }
+
+    .news-featured-image {
+      min-height: 14rem;
+    }
+
+    .news-featured-content {
+      padding: 1.35rem;
+    }
+  }
+</style>

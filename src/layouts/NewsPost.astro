@@ -1,0 +1,231 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import SiteIcon from '../components/SiteIcon.astro';
+
+type Props = CollectionEntry<'news'>['data'];
+
+const { title, description, pubDate, updatedDate, heroImage, sourceName, sourceUrl, sourceLogo } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} image={heroImage}>
+  <article class="consult-page">
+    <header class="consult-subhero">
+      <div class="container-wide article-header-content">
+        <a href="/news" class="article-back">
+          <SiteIcon name="arrow-right" size={16} />
+          Back to news
+        </a>
+        <div class="article-meta">
+          <FormattedDate date={pubDate} />
+          {updatedDate && <span>Updated <FormattedDate date={updatedDate} /></span>}
+          {sourceName && (
+            sourceUrl ? (
+              <a href={sourceUrl} class="article-source" target="_blank" rel="noreferrer">
+                {sourceLogo && <img src={sourceLogo} alt="" loading="lazy" />}
+                <span>{sourceName}</span>
+              </a>
+            ) : (
+              <span class="article-source">
+                {sourceLogo && <img src={sourceLogo} alt="" loading="lazy" />}
+                <span>{sourceName}</span>
+              </span>
+            )
+          )}
+        </div>
+        <h1 class="article-title">{title}</h1>
+        {description && <p class="consult-lead">{description}</p>}
+      </div>
+    </header>
+
+    {heroImage && (
+      <div class="article-image container-wide">
+        <img src={heroImage} alt={title} />
+      </div>
+    )}
+
+    <div class="article-content container-wide">
+      <div class="prose article-prose">
+        <slot />
+      </div>
+    </div>
+
+    <footer class="consult-cta">
+      <div class="container-wide">
+        <div class="consult-cta-inner">
+          <div>
+            <span class="consult-kicker">Need Help?</span>
+            <h2>Talk to Centrix about applying this in your business.</h2>
+          </div>
+          <a href="/contact" class="consult-btn consult-btn-primary">
+            Contact Centrix
+            <SiteIcon name="arrow-right" size={18} />
+          </a>
+        </div>
+      </div>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .article-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 1.25rem;
+    color: var(--text-tertiary);
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .article-back svg {
+    transform: rotate(180deg);
+  }
+
+  .article-back:hover {
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .article-header-content {
+    max-width: 64rem;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+    color: var(--brand-primary);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .article-source {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--brand-primary);
+    text-decoration: none;
+  }
+
+  .article-source:hover {
+    text-decoration: underline;
+  }
+
+  .article-source img {
+    width: 1.15rem;
+    height: 1.15rem;
+    object-fit: contain;
+  }
+
+  .article-title {
+    margin: 0 0 1rem;
+    color: var(--text-primary);
+    font-size: clamp(2.1rem, 5vw, 3.65rem);
+    line-height: 1.08;
+    letter-spacing: 0;
+  }
+
+  .article-image {
+    margin-top: -2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .article-image img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-md);
+  }
+
+  .article-content {
+    padding: 3.5rem 0 4.5rem;
+  }
+
+  .article-prose {
+    max-width: 52rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
+<style is:global>
+  .prose {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    color: var(--text-primary);
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  .prose h2 { font-size: 1.55rem; }
+  .prose h3 { font-size: 1.25rem; }
+  .prose h4 { font-size: 1.1rem; }
+
+  .prose p {
+    margin-bottom: 1.35em;
+  }
+
+  .prose a {
+    color: var(--brand-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .prose strong {
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  .prose ul,
+  .prose ol {
+    margin-bottom: 1.5em;
+    padding-left: 1.35em;
+  }
+
+  .prose li {
+    margin-bottom: 0.45em;
+  }
+
+  .prose blockquote {
+    margin: 1.5em 0;
+    padding-left: 1.2em;
+    border-left: 3px solid var(--brand-primary);
+    color: var(--text-tertiary);
+  }
+
+  .prose code {
+    background-color: var(--bg-tertiary);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    font-family: var(--font-mono);
+    border: 1px solid var(--border-primary);
+  }
+
+  .prose pre {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1.5em 0;
+  }
+</style>

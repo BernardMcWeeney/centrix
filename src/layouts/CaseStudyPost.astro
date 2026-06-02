@@ -1,0 +1,276 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import SiteIcon from '../components/SiteIcon.astro';
+import PlatformLogo from '../components/PlatformLogo.astro';
+
+type Props = CollectionEntry<'caseStudies'>['data'];
+
+const {
+  title,
+  description,
+  eyebrow,
+  heroImage,
+  clientType,
+  sector,
+  location,
+  timeframe,
+  services,
+  work,
+  results,
+  outcome,
+  platforms,
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description} image={heroImage}>
+  <article class="consult-page">
+    <header class="consult-subhero">
+      <div class="container-wide">
+        <div class="consult-subhero-grid">
+          <div>
+            <a href="/case-studies" class="case-study-back">
+              <SiteIcon name="arrow-right" size={16} />
+              Back to case studies
+            </a>
+            <div class="consult-eyebrow">{eyebrow}</div>
+            <h1 class="consult-subhero-title">{title}</h1>
+            <p class="consult-lead">{description}</p>
+            <div class="case-study-platforms">
+              {platforms.map((platform) => (
+                <PlatformLogo name={platform} />
+              ))}
+            </div>
+          </div>
+          <aside class="consult-proof-panel">
+            <h2>Project Snapshot</h2>
+            <ul>
+              <li><SiteIcon name="check" size={18} /><span>{clientType}</span></li>
+              <li><SiteIcon name="check" size={18} /><span>{sector}</span></li>
+              {location && <li><SiteIcon name="check" size={18} /><span>{location}</span></li>}
+              {timeframe && <li><SiteIcon name="check" size={18} /><span>{timeframe}</span></li>}
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </header>
+
+    {heroImage && (
+      <div class="case-study-image container-wide">
+        <img src={heroImage} alt={title} />
+      </div>
+    )}
+
+    <section class="consult-section">
+      <div class="container-wide">
+        <div class="case-study-body-grid">
+          <aside class="case-study-sidebar">
+            <div class="case-study-detail-block">
+              <h2>Services</h2>
+              <div class="case-study-pill-list">
+                {services.map((service) => (
+                  <span>{service}</span>
+                ))}
+              </div>
+            </div>
+
+            <div class="case-study-detail-block">
+              <h2>Work Delivered</h2>
+              <div class="consult-check-list">
+                {work.map((item) => (
+                  <div class="consult-check-item">
+                    <SiteIcon name="check" size={18} />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </aside>
+
+          <div>
+            <div class="prose case-study-prose">
+              <slot />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-section consult-section-muted">
+      <div class="container-wide">
+        <div class="consult-section-heading">
+          <span class="consult-kicker">Outcome</span>
+          <h2>{outcome}</h2>
+        </div>
+        <div class="consult-card-grid four">
+          {results.map((result) => (
+            <div class="consult-card">
+              <div class="consult-card-icon"><SiteIcon name="check" size={24} /></div>
+              <h3>{result}</h3>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <footer class="consult-cta">
+      <div class="container-wide">
+        <div class="consult-cta-inner">
+          <div>
+            <span class="consult-kicker">Your Project</span>
+            <h2>Talk to Centrix about a similar project for your business.</h2>
+          </div>
+          <a href="/contact" class="consult-btn consult-btn-primary">
+            Contact Centrix
+            <SiteIcon name="arrow-right" size={18} />
+          </a>
+        </div>
+      </div>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .case-study-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 1.25rem;
+    color: var(--text-tertiary);
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .case-study-back svg {
+    transform: rotate(180deg);
+  }
+
+  .case-study-back:hover {
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .case-study-platforms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem 1rem;
+    margin-top: 1.35rem;
+  }
+
+  .case-study-image {
+    margin-top: -2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .case-study-image img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-md);
+  }
+
+  .case-study-body-grid {
+    display: grid;
+    grid-template-columns: minmax(16rem, 0.36fr) minmax(0, 0.64fr);
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .case-study-sidebar {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .case-study-detail-block {
+    padding: 1.25rem;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    background: var(--bg-primary);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .case-study-detail-block h2 {
+    margin: 0 0 1rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+    letter-spacing: 0;
+  }
+
+  .case-study-pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .case-study-pill-list span {
+    padding: 0.45rem 0.65rem;
+    border: 1px solid var(--border-primary);
+    border-radius: 999px;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  .case-study-prose {
+    max-width: 52rem;
+  }
+
+  @media (max-width: 900px) {
+    .case-study-body-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<style is:global>
+  .prose {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    color: var(--text-primary);
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  .prose h2 { font-size: 1.55rem; }
+  .prose h3 { font-size: 1.25rem; }
+  .prose h4 { font-size: 1.1rem; }
+
+  .prose p {
+    margin-bottom: 1.35em;
+  }
+
+  .prose a {
+    color: var(--brand-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .prose strong {
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  .prose ul,
+  .prose ol {
+    margin-bottom: 1.5em;
+    padding-left: 1.35em;
+  }
+
+  .prose li {
+    margin-bottom: 0.45em;
+  }
+</style>

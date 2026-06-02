@@ -1,811 +1,462 @@
 ---
-// Service categories for mega menu
+import SiteIcon from './SiteIcon.astro';
 
-// Group categories for mega menu layout
 const serviceGroups = [
   {
-    title: "Security Services",
-    categories: [
-      { id: "managed-security", title: "Managed Security", icon: "shield", description: "Continuous protection", href: "/services/managed-security" },
-      { id: "incident-response", title: "Incident Response", icon: "alert", description: "Rapid response", href: "/services/incident-response" },
-      { id: "configuration-reviews", title: "Security Reviews", icon: "check", description: "Configuration audits", href: "/services/configuration-reviews" },
-    ]
+    title: 'Microsoft & Cloud',
+    links: [
+      { label: 'Microsoft Services', description: 'M365, Azure, Intune, Defender', href: '/microsoft', icon: 'microsoft' },
+      { label: 'Cloud Migration', description: 'Email, files, identity, devices', href: '/services/microsoft-365/cloud-migration', icon: 'cloud' },
+      { label: 'Microsoft 365 Security', description: 'MFA, Conditional Access, Defender', href: '/services/microsoft-365', icon: 'lock' },
+    ],
   },
   {
-    title: "Microsoft & Cloud",
-    categories: [
-      { id: "microsoft-365", title: "Microsoft 365", icon: "microsoft", description: "M365 platform services", href: "/services/microsoft-365" },
-      { id: "intune", title: "Intune & Endpoint", icon: "device", description: "Device management", href: "/services/intune" },
-      { id: "identity", title: "Identity & Access", icon: "user", description: "Entra ID security", href: "/services/identity" },
-      { id: "google-workspace", title: "Google Workspace", icon: "google", description: "Google admin & security", href: "/services/google-workspace" },
-    ]
+    title: 'Networking & Premises',
+    links: [
+      { label: 'Business Networking', description: 'Wi-Fi, VPNs, voice, CCTV', href: '/networks', icon: 'network' },
+      { label: 'VPN & Remote Access', description: 'Point-to-point and remote users', href: '/services/networking/vpn-remote-access', icon: 'lock' },
+      { label: 'Backup & Resilience', description: 'Failover, backups, and DR', href: '/services/networking/backup-resilience', icon: 'cloud' },
+      { label: 'VoIP & Phones', description: 'Business telephone setup', href: '/services/networking/voip-business-phones', icon: 'phone' },
+    ],
   },
   {
-    title: "Infrastructure & AI",
-    categories: [
-      { id: "networking", title: "Networking", icon: "network", description: "UniFi & site tech", href: "/services/networking" },
-      { id: "ai-services", title: "AI Services", icon: "ai", description: "AI strategy & implementation", href: "/services/ai-services" },
-      { id: "migration", title: "Migration", icon: "migration", description: "Platform migrations", href: "/services/migration" },
-      { id: "web-security", title: "Web Security", icon: "globe", description: "Application security", href: "/services/web-security" },
-    ]
-  }
+    title: 'Security & AI',
+    links: [
+      { label: 'Security', description: 'Controls, reviews, incident readiness', href: '/security', icon: 'shield' },
+      { label: 'NIS2 & GDPR Readiness', description: 'Technical controls and evidence', href: '/services/security/nis2-gdpr-readiness', icon: 'compliance' },
+      { label: 'AI Introduction', description: 'Claude, ChatGPT, Copilot, Cloudflare', href: '/ai', icon: 'ai' },
+    ],
+  },
 ];
 
-const quickLinks = [
-  { title: "View All Services", href: "/services", description: "Browse our complete catalogue" },
-  { title: "Get a Quote", href: "/contact", description: "Request pricing for your project" },
+const primaryLinks = [
+  { label: 'Microsoft', href: '/microsoft' },
+  { label: 'Networking', href: '/networks' },
+  { label: 'Security', href: '/security' },
+  { label: 'AI', href: '/ai' },
+  { label: 'Case Studies', href: '/case-studies' },
+  { label: 'News', href: '/news' },
 ];
 ---
 
-<nav class="mega-menu" aria-label="Main navigation">
-  <ul class="nav-list">
-    <li class="nav-item">
-      <a href="/" class="nav-link">Home</a>
-    </li>
-
-    <li class="nav-item has-dropdown">
-      <button class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+<div class="mega-menu">
+  <nav class="desktop-nav" aria-label="Primary navigation">
+    <div class="nav-group">
+      <button class="nav-link nav-trigger" type="button" aria-haspopup="true" aria-expanded="false">
         Services
-        <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
-          <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
       </button>
 
-      <div class="dropdown-panel mega-panel">
-        <div class="mega-content">
+      <div class="mega-panel" role="region" aria-label="Services menu">
+        <div class="mega-shell">
           <div class="mega-grid">
             {serviceGroups.map((group) => (
               <div class="mega-column">
-                <h3 class="mega-heading">{group.title}</h3>
-                <ul class="mega-list">
-                  {group.categories.map((cat) => (
-                    <li>
-                      <a href={cat.href} class="mega-link">
-                        <div class="mega-link-icon">
-                          {cat.icon === "shield" && (
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                            </svg>
-                          )}
-                          {cat.icon === "alert" && (
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-                            </svg>
-                          )}
-                          {cat.icon === "check" && (
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                          )}
-                          {cat.icon === "microsoft" && (
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
-                            </svg>
-                          )}
-                          {cat.icon === "device" && (
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
-                            </svg>
-                          )}
-                          {cat.icon === "user" && (
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                            </svg>
-                          )}
-                          {cat.icon === "google" && (
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                            </svg>
-                          )}
-                          {cat.icon === "network" && (
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
-                            </svg>
-                          )}
-                          {cat.icon === "ai" && (
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                            </svg>
-                          )}
-                          {cat.icon === "migration" && (
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
-                            </svg>
-                          )}
-                          {cat.icon === "globe" && (
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
-                            </svg>
-                          )}
-                        </div>
-                        <div class="mega-link-content">
-                          <span class="mega-link-title">{cat.title}</span>
-                          <span class="mega-link-desc">{cat.description}</span>
-                        </div>
-                      </a>
-                    </li>
+                <h3>{group.title}</h3>
+                <div class="mega-list">
+                  {group.links.map((link) => (
+                    <a href={link.href} class="mega-card">
+                      <span class="mega-icon"><SiteIcon name={link.icon} size={20} /></span>
+                      <span class="mega-text">
+                        <strong>{link.label}</strong>
+                        <small>{link.description}</small>
+                      </span>
+                    </a>
                   ))}
-                </ul>
+                </div>
               </div>
             ))}
           </div>
-
           <div class="mega-footer">
-            <div class="mega-footer-content">
-              <span class="mega-footer-label">Quick Actions</span>
-              <div class="mega-footer-links">
-                {quickLinks.map((link) => (
-                  <a href={link.href} class="mega-footer-link">
-                    <span>{link.title}</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                    </svg>
-                  </a>
-                ))}
-              </div>
-            </div>
+            <a href="/services">
+              View all services
+              <SiteIcon name="arrow-right" size={16} />
+            </a>
+            <a href="/contact">
+              Book a consultation
+              <SiteIcon name="arrow-right" size={16} />
+            </a>
           </div>
         </div>
       </div>
-    </li>
-
-    <li class="nav-item has-dropdown">
-      <button class="nav-link dropdown-trigger" aria-expanded="false" aria-haspopup="true">
-        Solutions
-        <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
-          <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-
-      <div class="dropdown-panel">
-        <ul class="dropdown-list">
-          <li>
-            <a href="/solutions/microsoft-365" class="dropdown-link">
-              <div class="dropdown-link-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
-                </svg>
-              </div>
-              <div class="dropdown-link-content">
-                <span class="dropdown-link-title">Microsoft 365</span>
-                <span class="dropdown-link-desc">Security & management</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/solutions/networking" class="dropdown-link">
-              <div class="dropdown-link-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
-                </svg>
-              </div>
-              <div class="dropdown-link-content">
-                <span class="dropdown-link-title">Networking</span>
-                <span class="dropdown-link-desc">UniFi & infrastructure</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="/services/ai-services" class="dropdown-link">
-              <div class="dropdown-link-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
-                </svg>
-              </div>
-              <div class="dropdown-link-content">
-                <span class="dropdown-link-title">AI & Automation</span>
-                <span class="dropdown-link-desc">Copilot & workflow AI</span>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </li>
-
-    <li class="nav-item">
-      <a href="/about" class="nav-link">About</a>
-    </li>
-
-    <li class="nav-item">
-      <a href="/blog" class="nav-link">Blog</a>
-    </li>
-  </ul>
-</nav>
-
-<!-- Mobile Menu Button -->
-<button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
-  <span class="hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
-  </span>
-</button>
-
-<!-- Mobile Menu -->
-<div class="mobile-menu" aria-hidden="true">
-  <div class="mobile-menu-content">
-    <ul class="mobile-nav-list">
-      <li><a href="/" class="mobile-nav-link">Home</a></li>
-
-      <li class="mobile-nav-group">
-        <button class="mobile-nav-accordion" aria-expanded="false">
-          Services
-          <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-          </svg>
-        </button>
-        <ul class="mobile-nav-submenu">
-          {serviceGroups.map((group) => (
-            <li class="mobile-nav-subgroup">
-              <span class="mobile-nav-subheading">{group.title}</span>
-              <ul>
-                {group.categories.map((cat) => (
-                  <li>
-                    <a href={cat.href} class="mobile-nav-sublink">{cat.title}</a>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-          <li class="mobile-nav-cta">
-            <a href="/services" class="btn btn-primary btn-sm">View All Services</a>
-          </li>
-        </ul>
-      </li>
-
-      <li class="mobile-nav-group">
-        <button class="mobile-nav-accordion" aria-expanded="false">
-          Solutions
-          <svg class="accordion-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-          </svg>
-        </button>
-        <ul class="mobile-nav-submenu">
-          <li><a href="/solutions/microsoft-365" class="mobile-nav-sublink">Microsoft 365</a></li>
-          <li><a href="/solutions/networking" class="mobile-nav-sublink">Networking</a></li>
-          <li><a href="/services/ai-services" class="mobile-nav-sublink">AI & Automation</a></li>
-        </ul>
-      </li>
-
-      <li><a href="/about" class="mobile-nav-link">About</a></li>
-      <li><a href="/blog" class="mobile-nav-link">Blog</a></li>
-    </ul>
-
-    <div class="mobile-menu-footer">
-      <a href="/contact" class="btn btn-primary btn-lg">Get in Touch</a>
     </div>
-  </div>
+
+    {primaryLinks.map((link) => (
+      <a href={link.href} class="nav-link">{link.label}</a>
+    ))}
+  </nav>
+
+  <details class="mobile-nav">
+    <summary aria-label="Open navigation menu">
+      <svg class="icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"></path>
+      </svg>
+      <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M18 6 6 18M6 6l12 12" stroke-linecap="round"></path>
+      </svg>
+    </summary>
+
+    <div class="mobile-panel">
+      <a href="/services" class="mobile-section-link">Services</a>
+      {serviceGroups.map((group) => (
+        <div class="mobile-group">
+          <span>{group.title}</span>
+          {group.links.map((link) => (
+            <a href={link.href}>
+              <SiteIcon name={link.icon} size={18} />
+              <span>
+                <strong>{link.label}</strong>
+                <small>{link.description}</small>
+              </span>
+            </a>
+          ))}
+        </div>
+      ))}
+      <div class="mobile-primary-list">
+        {primaryLinks.map((link) => (
+          <a href={link.href}>{link.label}</a>
+        ))}
+      </div>
+      <a href="/contact" class="mobile-contact">Book a consultation</a>
+    </div>
+  </details>
 </div>
 
 <style>
-  /* Desktop Navigation */
   .mega-menu {
-    display: none;
-  }
-
-  @media (min-width: 1024px) {
-    .mega-menu {
-      display: block;
-    }
-  }
-
-  .nav-list {
+    flex: 1 1 auto;
+    min-width: 0;
     display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    justify-content: center;
   }
 
-  .nav-item {
+  .desktop-nav {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+  }
+
+  .nav-group {
     position: relative;
   }
 
   .nav-link {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.375rem;
-    padding: 0.625rem 1rem;
-    font-size: 0.9375rem;
-    font-weight: 500;
+    gap: 0.25rem;
+    min-height: 2.25rem;
+    padding: 0.45rem 0.62rem;
+    border: 0;
+    border-radius: 0.375rem;
+    background: transparent;
     color: var(--text-secondary);
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1;
     text-decoration: none;
-    border-radius: 0.5rem;
-    transition: color 0.15s, background-color 0.15s;
-    background: none;
-    border: none;
     cursor: pointer;
-    font-family: inherit;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
   }
 
-  .nav-link:hover {
+  .nav-link:hover,
+  .nav-link:focus-visible {
+    background: var(--bg-secondary);
     color: var(--text-primary);
-    background-color: var(--bg-secondary);
+    text-decoration: none;
+    outline: none;
   }
 
-  .dropdown-trigger {
-    display: flex;
-    align-items: center;
+  .nav-group:hover .nav-trigger,
+  .nav-group:focus-within .nav-trigger {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
   }
 
-  .dropdown-icon {
-    transition: transform 0.2s;
-  }
-
-  .has-dropdown:hover .dropdown-icon {
-    transform: rotate(180deg);
-  }
-
-  /* Dropdown Panels */
-  .dropdown-panel {
+  .mega-panel {
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%) translateY(8px);
+    z-index: 150;
+    width: min(58rem, calc(100vw - 2rem));
+    padding-top: 0.65rem;
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
-    z-index: 100;
-    padding-top: 0.5rem;
+    pointer-events: none;
+    transform: translate(-50%, 0.25rem);
+    transition: opacity 0.15s ease, transform 0.15s ease;
   }
 
-  .has-dropdown:hover .dropdown-panel {
+  .nav-group:hover .mega-panel,
+  .nav-group:focus-within .mega-panel {
     opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+    transform: translate(-50%, 0);
   }
 
-  /* Standard Dropdown */
-  .dropdown-list {
-    background: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 0.75rem;
-    padding: 0.5rem;
-    min-width: 280px;
-    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    list-style: none;
-    margin: 0;
-  }
-
-  .dropdown-link {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: background-color 0.15s;
-  }
-
-  .dropdown-link:hover {
-    background-color: var(--bg-secondary);
-  }
-
-  .dropdown-link-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    background: var(--bg-tertiary);
-    border-radius: 0.5rem;
-    color: var(--brand-primary);
-    flex-shrink: 0;
-  }
-
-  .dropdown-link-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.125rem;
-  }
-
-  .dropdown-link-title {
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: var(--text-primary);
-  }
-
-  .dropdown-link-desc {
-    font-size: 0.8125rem;
-    color: var(--text-tertiary);
-  }
-
-  /* Mega Menu Panel */
-  .mega-panel {
-    left: 50%;
-    transform: translateX(-50%) translateY(8px);
-    width: 100vw;
-    max-width: 72rem;
-  }
-
-  .has-dropdown:hover .mega-panel {
-    transform: translateX(-50%) translateY(0);
-  }
-
-  .mega-content {
-    background: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 1rem;
-    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+  .mega-shell {
     overflow: hidden;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    background: var(--bg-elevated);
+    box-shadow: var(--shadow-xl);
   }
 
   .mega-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0;
-    padding: 1.5rem;
+    padding: 1rem;
   }
 
   .mega-column {
-    padding: 0 1.5rem;
+    min-width: 0;
+    padding: 0 0.75rem;
     border-right: 1px solid var(--border-primary);
   }
 
   .mega-column:last-child {
-    border-right: none;
+    border-right: 0;
   }
 
-  .mega-column:first-child {
-    padding-left: 0;
-  }
-
-  .mega-column:last-child {
-    padding-right: 0;
-  }
-
-  .mega-heading {
-    font-size: 0.6875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+  .mega-column h3 {
+    margin: 0 0 0.65rem;
     color: var(--text-tertiary);
-    margin: 0 0 0.75rem 0;
-    padding: 0 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   .mega-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    display: grid;
+    gap: 0.25rem;
   }
 
-  .mega-link {
+  .mega-card {
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.625rem 0.75rem;
-    border-radius: 0.5rem;
+    align-items: flex-start;
+    gap: 0.65rem;
+    min-width: 0;
+    padding: 0.68rem;
+    border-radius: 0.45rem;
+    color: var(--text-secondary);
     text-decoration: none;
-    transition: background-color 0.15s;
+    transition: background-color 0.15s ease;
   }
 
-  .mega-link:hover {
-    background-color: var(--bg-secondary);
+  .mega-card:hover,
+  .mega-card:focus-visible {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    text-decoration: none;
+    outline: none;
   }
 
-  .mega-link-icon {
-    display: flex;
+  .mega-icon {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.25rem;
-    height: 2.25rem;
-    background: var(--bg-tertiary);
-    border-radius: 0.5rem;
+    width: 2.1rem;
+    height: 2.1rem;
+    flex: 0 0 auto;
+    border-radius: 0.45rem;
+    background: var(--brand-light);
     color: var(--brand-primary);
-    flex-shrink: 0;
-    transition: background-color 0.15s, color 0.15s;
   }
 
-  .mega-link:hover .mega-link-icon {
-    background: var(--brand-primary);
-    color: white;
+  .mega-text {
+    min-width: 0;
   }
 
-  .mega-link-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.0625rem;
-  }
-
-  .mega-link-title {
-    font-size: 0.875rem;
-    font-weight: 500;
+  .mega-card strong {
+    display: block;
     color: var(--text-primary);
+    font-size: 0.88rem;
+    line-height: 1.25;
   }
 
-  .mega-link-desc {
-    font-size: 0.75rem;
+  .mega-card small {
+    display: block;
+    margin-top: 0.22rem;
     color: var(--text-tertiary);
+    font-size: 0.75rem;
+    line-height: 1.35;
   }
 
   .mega-footer {
-    background: var(--bg-secondary);
-    border-top: 1px solid var(--border-primary);
-    padding: 1rem 1.5rem;
-  }
-
-  .mega-footer-content {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 1rem;
+    border-top: 1px solid var(--border-primary);
+    background: var(--bg-secondary);
   }
 
-  .mega-footer-label {
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--text-tertiary);
-  }
-
-  .mega-footer-links {
-    display: flex;
-    gap: 1.5rem;
-  }
-
-  .mega-footer-link {
-    display: flex;
+  .mega-footer a {
+    display: inline-flex;
     align-items: center;
-    gap: 0.375rem;
-    font-size: 0.875rem;
-    font-weight: 500;
+    gap: 0.4rem;
     color: var(--brand-primary);
+    font-size: 0.85rem;
+    font-weight: 800;
     text-decoration: none;
-    transition: color 0.15s;
   }
 
-  .mega-footer-link:hover {
-    color: var(--brand-hover);
+  .mobile-nav {
+    display: block;
   }
 
-  .mega-footer-link svg {
-    transition: transform 0.15s;
-  }
-
-  .mega-footer-link:hover svg {
-    transform: translateX(2px);
-  }
-
-  /* Mobile Menu Button */
-  .mobile-menu-btn {
-    display: flex;
+  .mobile-nav summary {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    background: none;
-    border: none;
+    width: 2.35rem;
+    height: 2.35rem;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.4rem;
+    color: var(--text-primary);
+    background: var(--bg-primary);
     cursor: pointer;
+    list-style: none;
+  }
+
+  .mobile-nav summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-nav summary:hover,
+  .mobile-nav summary:focus-visible {
+    border-color: var(--border-secondary);
+    background: var(--bg-secondary);
+    outline: none;
+  }
+
+  .icon-close,
+  .mobile-nav[open] .icon-open {
+    display: none;
+  }
+
+  .mobile-nav[open] .icon-close {
+    display: block;
+  }
+
+  .mobile-panel {
+    position: fixed;
+    top: 4rem;
+    left: 1rem;
+    right: 1rem;
+    z-index: 160;
+    max-height: calc(100svh - 5rem);
+    overflow-y: auto;
+    padding: 0.85rem;
+    border: 1px solid var(--border-primary);
     border-radius: 0.5rem;
-    transition: background-color 0.15s;
+    background: var(--bg-elevated);
+    box-shadow: var(--shadow-xl);
   }
 
-  .mobile-menu-btn:hover {
-    background-color: var(--bg-secondary);
+  .mobile-section-link,
+  .mobile-primary-list a,
+  .mobile-contact {
+    display: flex;
+    align-items: center;
+    min-height: 2.55rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: 0.4rem;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-decoration: none;
   }
 
-  @media (min-width: 1024px) {
-    .mobile-menu-btn {
+  .mobile-section-link:hover,
+  .mobile-primary-list a:hover {
+    background: var(--bg-secondary);
+    text-decoration: none;
+  }
+
+  .mobile-group {
+    display: grid;
+    gap: 0.2rem;
+    margin-top: 0.55rem;
+  }
+
+  .mobile-group > span {
+    padding: 0.5rem 0.75rem 0.25rem;
+    color: var(--text-tertiary);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .mobile-group a {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: 0.4rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+
+  .mobile-group a:hover {
+    background: var(--bg-secondary);
+    text-decoration: none;
+  }
+
+  .mobile-group svg {
+    flex: 0 0 auto;
+    margin-top: 0.1rem;
+    color: var(--brand-primary);
+  }
+
+  .mobile-group strong {
+    display: block;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    line-height: 1.25;
+  }
+
+  .mobile-group small {
+    display: block;
+    margin-top: 0.18rem;
+    color: var(--text-tertiary);
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+
+  .mobile-primary-list {
+    display: grid;
+    gap: 0.1rem;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-primary);
+  }
+
+  .mobile-contact {
+    justify-content: center;
+    margin-top: 0.75rem;
+    background: var(--brand-primary);
+    color: #ffffff;
+  }
+
+  .mobile-contact:hover {
+    background: var(--brand-hover);
+    color: #ffffff;
+  }
+
+  @media (min-width: 1040px) {
+    .desktop-nav {
+      display: flex;
+    }
+
+    .mobile-nav {
       display: none;
     }
   }
-
-  .hamburger {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    width: 20px;
-  }
-
-  .hamburger span {
-    display: block;
-    height: 2px;
-    background: var(--text-primary);
-    border-radius: 1px;
-    transition: transform 0.2s, opacity 0.2s;
-  }
-
-  .mobile-menu-btn[aria-expanded="true"] .hamburger span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-
-  .mobile-menu-btn[aria-expanded="true"] .hamburger span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .mobile-menu-btn[aria-expanded="true"] .hamburger span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
-
-  /* Mobile Menu */
-  .mobile-menu {
-    display: none;
-    position: fixed;
-    inset: 0;
-    top: 4rem;
-    background: var(--bg-primary);
-    z-index: 90;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .mobile-menu[aria-hidden="false"] {
-    display: block;
-    animation: fade-in 0.2s ease;
-  }
-
-  @media (min-width: 1024px) {
-    .mobile-menu {
-      display: none !important;
-    }
-  }
-
-  .mobile-menu-content {
-    display: flex;
-    flex-direction: column;
-    min-height: calc(100vh - 4rem);
-    padding: 1rem;
-  }
-
-  .mobile-nav-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    flex: 1;
-  }
-
-  .mobile-nav-link {
-    display: block;
-    padding: 1rem;
-    font-size: 1.0625rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    text-decoration: none;
-    border-radius: 0.5rem;
-    transition: background-color 0.15s;
-  }
-
-  .mobile-nav-link:hover {
-    background-color: var(--bg-secondary);
-  }
-
-  .mobile-nav-accordion {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 1rem;
-    font-size: 1.0625rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    background: none;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    font-family: inherit;
-    transition: background-color 0.15s;
-  }
-
-  .mobile-nav-accordion:hover {
-    background-color: var(--bg-secondary);
-  }
-
-  .accordion-icon {
-    transition: transform 0.2s;
-  }
-
-  .mobile-nav-accordion[aria-expanded="true"] .accordion-icon {
-    transform: rotate(180deg);
-  }
-
-  .mobile-nav-submenu {
-    display: none;
-    list-style: none;
-    margin: 0;
-    padding: 0 0 0.5rem 0;
-  }
-
-  .mobile-nav-accordion[aria-expanded="true"] + .mobile-nav-submenu {
-    display: block;
-  }
-
-  .mobile-nav-subgroup {
-    padding: 0.5rem 1rem;
-  }
-
-  .mobile-nav-subheading {
-    display: block;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-tertiary);
-    margin-bottom: 0.5rem;
-    padding-left: 1rem;
-  }
-
-  .mobile-nav-subgroup ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .mobile-nav-sublink {
-    display: block;
-    padding: 0.625rem 1rem;
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    text-decoration: none;
-    border-radius: 0.375rem;
-    transition: background-color 0.15s, color 0.15s;
-  }
-
-  .mobile-nav-sublink:hover {
-    background-color: var(--bg-secondary);
-    color: var(--text-primary);
-  }
-
-  .mobile-nav-cta {
-    padding: 1rem;
-  }
-
-  .mobile-menu-footer {
-    padding: 1rem;
-    border-top: 1px solid var(--border-primary);
-    margin-top: auto;
-  }
-
-  .mobile-menu-footer .btn {
-    width: 100%;
-  }
 </style>
-
-<script>
-  // Mobile menu toggle
-  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-  const mobileMenu = document.querySelector('.mobile-menu');
-
-  if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', () => {
-      const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-      mobileMenuBtn.setAttribute('aria-expanded', (!isExpanded).toString());
-      mobileMenu.setAttribute('aria-hidden', isExpanded.toString());
-
-      // Prevent body scroll when menu is open
-      document.body.style.overflow = isExpanded ? '' : 'hidden';
-    });
-  }
-
-  // Mobile accordion
-  const accordionButtons = document.querySelectorAll('.mobile-nav-accordion');
-  accordionButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', (!isExpanded).toString());
-    });
-  });
-
-  // Close mobile menu when clicking a link
-  const mobileLinks = document.querySelectorAll('.mobile-menu a');
-  mobileLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-      if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-        mobileMenu.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-      }
-    });
-  });
-
-  // Close mobile menu on escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.setAttribute('aria-expanded', 'false');
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-  });
-</script>

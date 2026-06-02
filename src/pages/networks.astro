@@ -1,658 +1,155 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteIcon from '../components/SiteIcon.astro';
 
-const title = "UniFi Network Services | Centrix";
-const description = "Enterprise-grade UniFi network deployments with VLAN segmentation, security hardening, and ongoing support.";
+const title = 'Business Networking, Wi-Fi, CCTV, VPN And VoIP Services';
+const description = 'Business networking, Wi-Fi, CCTV, IP cameras, switching, routing, VPNs, VoIP, backup connectivity, and managed network support for Irish businesses.';
 
 const services = [
   {
-    id: "unifi-design",
-    title: "UniFi Full Stack Design",
-    description: "Complete network design for Wi-Fi, switching, routing, and segmentation.",
-    href: "/services/networking",
-    icon: "blueprint",
-    color: "orange",
-    stats: "1 week",
-    deliverables: ["Network design", "Bill of materials", "Segmentation strategy"],
+    title: 'Business network design',
+    description: 'Routing, switching, PoE, Wi-Fi, VLANs, firewalls, cabinets, and documentation for reliable business premises.',
+    href: '/services/networking/business-networking',
+    icon: 'network',
   },
   {
-    id: "unifi-deploy",
-    title: "UniFi Implementation",
-    description: "Professional UniFi deployment with security hardening and documentation.",
-    href: "/services/networking",
-    icon: "network",
-    color: "orange",
-    featured: true,
-    stats: "1-2 weeks",
-    deliverables: ["Installation", "VLAN setup", "Documentation", "Handover"],
+    title: 'VPN and remote access',
+    description: 'Point-to-point, site-to-site, and remote-user VPNs with routing, firewall rules, testing, and handover.',
+    href: '/services/networking/vpn-remote-access',
+    icon: 'lock',
   },
   {
-    id: "unifi-site-tech",
-    title: "Site Technology",
-    description: "End-to-end site technology including cameras, access control, and phones.",
-    href: "/services/networking",
-    icon: "building",
-    color: "blue",
-    stats: "2-4 weeks",
-    deliverables: ["Cameras", "Access control", "VoIP", "Integration"],
+    title: 'Backup and resilience',
+    description: 'Backup internet, failover planning, configuration backups, recovery runbooks, and DR readiness checks.',
+    href: '/services/networking/backup-resilience',
+    icon: 'cloud',
   },
   {
-    id: "managed-network",
-    title: "Managed Network Operations",
-    description: "Ongoing network management, monitoring, and optimization.",
-    href: "/contact?service=network-management",
-    icon: "settings",
-    color: "green",
-    stats: "Monthly",
-    deliverables: ["Monitoring", "Firmware updates", "Config backup", "Support"],
+    title: 'VoIP and business phones',
+    description: 'Business telephone setup with handsets, users, call flows, voice VLANs, PoE, and support.',
+    href: '/services/networking/voip-business-phones',
+    icon: 'phone',
+  },
+  {
+    title: 'Business Wi-Fi',
+    description: 'Wireless survey, access point placement, guest Wi-Fi, roaming, VLANs, and performance tuning.',
+    href: '/services/networking/business-wifi',
+    icon: 'wifi',
+  },
+  {
+    title: 'CCTV and IP cameras',
+    description: 'Camera coverage planning, local recording, mobile and web viewing, access roles, and support.',
+    href: '/services/networking/cctv-ip-cameras',
+    icon: 'camera',
   },
 ];
 
-const standardBuild = [
-  { item: "VLAN Segmentation", description: "Separate corporate, guest, IoT, and management networks" },
-  { item: "Guest Isolation", description: "Captive portal with bandwidth limits and network isolation" },
-  { item: "Firmware Policy", description: "Documented update schedule with staged rollout" },
-  { item: "Config Backup", description: "Automated backups with offsite storage" },
-  { item: "Monitoring & Alerting", description: "Proactive monitoring with issue notification" },
-  { item: "Documentation", description: "Network diagrams, credentials, and runbooks" },
-];
-
-const benefits = [
-  { title: "UniFi Certified", description: "Certified UniFi installer with enterprise deployment experience", icon: "badge" },
-  { title: "Security First", description: "Every deployment includes proper segmentation and hardening", icon: "shield" },
-  { title: "Multi-Site Ready", description: "Standardized builds that scale across locations", icon: "building" },
-  { title: "Ongoing Support", description: "Optional managed services for hands-off operations", icon: "support" },
+const environments = [
+  'Offices and professional services',
+  'Retail and hospitality',
+  'Schools and community facilities',
+  'Warehouses and industrial units',
+  'Multi-site businesses',
+  'Guest Wi-Fi and visitor access',
+  'CCTV coverage for yards and entrances',
+  'Point-to-point VPNs between locations',
+  'Remote staff and supplier access',
+  'VoIP and business telephone networks',
+  'Backup internet and failover planning',
+  'Secure staff, guest, voice, camera, and IoT separation',
 ];
 ---
 
 <BaseLayout title={title} description={description}>
-  <section class="hero">
-    <div class="hero-bg">
-      <div class="hero-gradient"></div>
-      <div class="hero-grid"></div>
-    </div>
-    <div class="container-wide">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0"/>
-          </svg>
-          UniFi Partner
-        </div>
-        <h1 class="hero-title">Network infrastructure<br /><span class="hero-title-accent">done right</span></h1>
-        <p class="hero-description">Enterprise-grade UniFi deployments with proper segmentation, security, and documentation. Not just installed - properly architected.</p>
-        <div class="hero-actions">
-          <a href="/services/networking" class="btn-hero-primary">
-            Get a Network Quote
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="#services" class="btn-hero-secondary">View Services</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="services" class="services-section">
-    <div class="container-wide">
-      <div class="section-header">
-        <span class="section-tag">Services</span>
-        <h2 class="section-title">UniFi network services</h2>
-        <p class="section-description">From design to deployment to ongoing management. Full-stack UniFi expertise.</p>
-      </div>
-      <div class="services-grid">
-        {services.map((service) => (
-          <a href={service.href} class={`service-card service-card-${service.color} ${service.featured ? 'featured' : ''}`}>
-            {service.featured && <div class="featured-badge">Most Popular</div>}
-            <div class="service-icon">
-              {service.icon === 'blueprint' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>}
-              {service.icon === 'network' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z"/></svg>}
-              {service.icon === 'building' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>}
-              {service.icon === 'settings' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>}
+  <main class="consult-page">
+    <section class="consult-subhero">
+      <div class="container-wide">
+        <div class="consult-subhero-grid">
+          <div>
+            <div class="consult-eyebrow">Business Networking</div>
+            <h1 class="consult-subhero-title">Does your business need more than Wi-Fi from its network?</h1>
+            <p class="consult-lead">
+              Centrix designs, installs, secures, and supports business networks for Irish premises, covering Wi-Fi, routing, switching, VPNs, CCTV, VoIP, backup connectivity, and ongoing support.
+            </p>
+            <div class="consult-actions">
+              <a href="/services/networking/business-networking" class="consult-btn consult-btn-primary">
+                View networking services
+                <SiteIcon name="arrow-right" size={18} />
+              </a>
+              <a href="/services/networking/vpn-remote-access" class="consult-btn consult-btn-secondary">View VPN options</a>
             </div>
-            <h3 class="service-title">{service.title}</h3>
-            <p class="service-description">{service.description}</p>
-            <ul class="service-deliverables">
-              {service.deliverables.map((d) => (
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
-                  {d}
-                </li>
-              ))}
+          </div>
+          <aside class="consult-proof-panel">
+            <h2>Centrix can cover</h2>
+            <ul>
+              <li><SiteIcon name="check" size={18} /><span>Wi-Fi, switching, routing, and firewall rules</span></li>
+              <li><SiteIcon name="check" size={18} /><span>Point-to-point, site-to-site, and remote-user VPNs</span></li>
+              <li><SiteIcon name="check" size={18} /><span>CCTV, IP cameras, and simple remote viewing</span></li>
+              <li><SiteIcon name="check" size={18} /><span>VoIP, phone networks, backup links, and DR planning</span></li>
+              <li><SiteIcon name="check" size={18} /><span>Monitoring, configuration backups, updates, and support</span></li>
             </ul>
-            <div class="service-footer">
-              <span class="service-stat">{service.stats}</span>
-              <span class="service-arrow">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </span>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="standard-section">
-    <div class="container-wide">
-      <div class="standard-grid">
-        <div class="standard-content">
-          <span class="section-tag">Our Standard Build</span>
-          <h2 class="section-title">Security is built in, not bolted on</h2>
-          <p class="section-description">Every UniFi deployment follows our security-first standard build. This is what separates a proper network from just "plugging things in."</p>
+          </aside>
         </div>
-        <div class="standard-items">
-          {standardBuild.map((item) => (
-            <div class="standard-item">
-              <div class="item-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
-              </div>
-              <div class="item-content">
-                <h4 class="item-title">{item.item}</h4>
-                <p class="item-description">{item.description}</p>
-              </div>
-            </div>
+      </div>
+    </section>
+
+    <section class="consult-section">
+      <div class="container-wide">
+        <div class="consult-section-heading">
+          <span class="consult-kicker">Networking Services</span>
+          <h2>Business premises technology from survey to support.</h2>
+        </div>
+        <div class="consult-card-grid four">
+          {services.map((service) => (
+            <a href={service.href} class="consult-card">
+              <div class="consult-card-icon"><SiteIcon name={service.icon} size={24} /></div>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+              <span class="consult-card-link">
+                View service
+                <SiteIcon name="arrow-right" size={16} />
+              </span>
+            </a>
           ))}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="benefits-section">
-    <div class="container-wide">
-      <div class="section-header">
-        <span class="section-tag">Why Centrix</span>
-        <h2 class="section-title">Network experts you can trust</h2>
-      </div>
-      <div class="benefits-grid">
-        {benefits.map((benefit) => (
-          <div class="benefit-card">
-            <div class="benefit-icon">
-              {benefit.icon === 'badge' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15l-2 5 2-1 2 1-2-5z"/><circle cx="12" cy="8" r="6"/></svg>}
-              {benefit.icon === 'shield' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
-              {benefit.icon === 'building' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5"/></svg>}
-              {benefit.icon === 'support' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>}
-            </div>
-            <h3 class="benefit-title">{benefit.title}</h3>
-            <p class="benefit-description">{benefit.description}</p>
+    <section class="consult-section consult-section-muted">
+      <div class="container-wide">
+        <div class="consult-split">
+          <div>
+            <span class="consult-kicker">Where It Fits</span>
+            <h2>Built for busy premises, not just tidy network diagrams.</h2>
+            <p>
+              We design around the building, the users, the equipment, and the business risk. Coverage, reliability, security, and usability all matter.
+            </p>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-section">
-    <div class="container-wide">
-      <div class="cta-card">
-        <div class="cta-content">
-          <h2 class="cta-title">Ready to upgrade your network?</h2>
-          <p class="cta-description">Book a call to discuss your network needs. We'll recommend the right approach for your environment and budget.</p>
-          <div class="cta-actions">
-            <a href="/contact" class="btn-cta-primary">
-              Book Consultation
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="/services/networking" class="btn-cta-secondary">View Network Services</a>
+          <div class="consult-check-list">
+            {environments.map((item) => (
+              <div class="consult-check-item">
+                <SiteIcon name="check" size={18} />
+                <span>{item}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="consult-cta">
+      <div class="container-wide">
+        <div class="consult-cta-inner">
+          <div>
+            <span class="consult-kicker">Next Step</span>
+            <h2>Book a networking, VPN, VoIP, CCTV, or resilience consultation for your premises.</h2>
+          </div>
+          <a href="/contact" class="consult-btn consult-btn-primary">
+            Talk about networking
+            <SiteIcon name="arrow-right" size={18} />
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 </BaseLayout>
-
-<style>
-  :root {
-    --accent: #f97316;
-    --accent-light: rgba(249, 115, 22, 0.1);
-    --accent-glow: rgba(249, 115, 22, 0.3);
-  }
-
-  .hero {
-    position: relative;
-    padding: 8rem 0 5rem;
-    overflow: hidden;
-  }
-  @media (min-width: 1024px) {
-    .hero { padding: 10rem 0 6rem; }
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-
-  .hero-gradient {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-glow), transparent),
-      linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-  }
-
-  .hero-grid {
-    position: absolute;
-    inset: 0;
-    background-image: linear-gradient(var(--border-primary) 1px, transparent 1px),
-                      linear-gradient(90deg, var(--border-primary) 1px, transparent 1px);
-    background-size: 60px 60px;
-    opacity: 0.3;
-    mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
-  }
-
-  .hero .container-wide {
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-content {
-    max-width: 42rem;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: var(--accent-light);
-    border: 1px solid var(--accent);
-    border-radius: 9999px;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: var(--text-primary);
-    margin-bottom: 1.5rem;
-  }
-  @media (min-width: 768px) {
-    .hero-title { font-size: 3.5rem; }
-  }
-
-  .hero-title-accent {
-    background: linear-gradient(135deg, var(--accent), #fb923c);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-description {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .btn-hero-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.875rem 1.5rem;
-    background: var(--accent);
-    color: white;
-    font-weight: 500;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-hero-primary:hover {
-    background: #ea580c;
-    transform: translateY(-1px);
-    box-shadow: 0 10px 30px -10px var(--accent-glow);
-  }
-
-  .btn-hero-secondary {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.875rem 1.5rem;
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    font-weight: 500;
-    border: 1px solid var(--border-primary);
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-hero-secondary:hover {
-    border-color: var(--border-hover);
-    background: var(--bg-secondary);
-  }
-
-  .services-section {
-    padding: 5rem 0;
-  }
-
-  .section-header {
-    max-width: 42rem;
-    margin-bottom: 3rem;
-  }
-
-  .section-tag {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    background: var(--accent-light);
-    color: var(--accent);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-radius: 9999px;
-    margin-bottom: 1rem;
-  }
-
-  .section-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
-  @media (min-width: 768px) {
-    .section-title { font-size: 2.5rem; }
-  }
-
-  .section-description {
-    font-size: 1.125rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  @media (min-width: 768px) {
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  .service-card {
-    position: relative;
-    background: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 1rem;
-    padding: 1.5rem;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    transition: all 0.3s;
-  }
-
-  .service-card:hover {
-    border-color: var(--card-accent);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
-  }
-
-  .service-card.featured {
-    border-color: var(--accent);
-  }
-
-  .service-card-orange { --card-accent: #f97316; }
-  .service-card-blue { --card-accent: #3b82f6; }
-  .service-card-green { --card-accent: #22c55e; }
-
-  .featured-badge {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.25rem 0.75rem;
-    background: var(--accent);
-    color: white;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    border-radius: 9999px;
-  }
-
-  .service-icon {
-    width: 56px;
-    height: 56px;
-    background: var(--bg-secondary);
-    border-radius: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--card-accent);
-    margin-bottom: 1rem;
-  }
-
-  .service-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .service-description {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 1rem;
-  }
-
-  .service-deliverables {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1rem;
-    flex: 1;
-  }
-
-  .service-deliverables li {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
-    padding: 0.25rem 0;
-  }
-
-  .service-deliverables svg {
-    color: var(--success);
-    flex-shrink: 0;
-  }
-
-  .service-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-primary);
-  }
-
-  .service-stat {
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--text-tertiary);
-  }
-
-  .service-arrow {
-    color: var(--card-accent);
-    transition: transform 0.2s;
-  }
-  .service-card:hover .service-arrow {
-    transform: translateX(4px);
-  }
-
-  .standard-section {
-    padding: 5rem 0;
-    background: var(--bg-secondary);
-  }
-
-  .standard-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  @media (min-width: 1024px) {
-    .standard-grid { grid-template-columns: 1fr 1.5fr; gap: 4rem; }
-  }
-
-  .standard-items {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .standard-item {
-    display: flex;
-    gap: 1rem;
-    padding: 1rem;
-    background: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 0.75rem;
-  }
-
-  .item-icon {
-    flex-shrink: 0;
-    width: 36px;
-    height: 36px;
-    background: var(--accent-light);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent);
-  }
-
-  .item-title {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.25rem;
-  }
-
-  .item-description {
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-  }
-
-  .benefits-section {
-    padding: 5rem 0;
-  }
-
-  .benefits-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  @media (min-width: 768px) {
-    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (min-width: 1024px) {
-    .benefits-grid { grid-template-columns: repeat(4, 1fr); }
-  }
-
-  .benefit-card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
-    border-radius: 1rem;
-    padding: 1.5rem;
-  }
-
-  .benefit-icon {
-    width: 48px;
-    height: 48px;
-    background: var(--accent-light);
-    border-radius: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-
-  .benefit-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .benefit-description {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  .cta-section {
-    padding: 5rem 0 6rem;
-  }
-
-  .cta-card {
-    background: linear-gradient(135deg, var(--accent) 0%, #fb923c 100%);
-    border-radius: 1.5rem;
-    padding: 3rem 2rem;
-    text-align: center;
-  }
-  @media (min-width: 768px) {
-    .cta-card { padding: 4rem; }
-  }
-
-  .cta-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 1rem;
-  }
-
-  .cta-description {
-    font-size: 1.125rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 2rem;
-    max-width: 32rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .cta-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  .btn-cta-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 2rem;
-    background: white;
-    color: var(--accent);
-    font-weight: 600;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-cta-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
-  }
-
-  .btn-cta-secondary {
-    display: inline-flex;
-    align-items: center;
-    padding: 1rem 2rem;
-    background: transparent;
-    color: white;
-    font-weight: 500;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-cta-secondary:hover {
-    border-color: white;
-    background: rgba(255, 255, 255, 0.1);
-  }
-</style>

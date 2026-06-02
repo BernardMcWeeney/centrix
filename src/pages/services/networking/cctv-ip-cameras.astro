@@ -1,0 +1,75 @@
+---
+import BuyerServicePage from '../../../components/BuyerServicePage.astro';
+
+const outcomes = [
+  {
+    title: 'Clear camera coverage',
+    description: 'Camera locations are planned around entrances, yards, stock areas, public spaces, blind spots, and privacy considerations.',
+    icon: 'camera',
+  },
+  {
+    title: 'Simple viewing',
+    description: 'Phone, tablet, and web access can be configured for approved users without a complicated CCTV interface.',
+    icon: 'monitor',
+  },
+  {
+    title: 'Local recording',
+    description: 'Footage can be stored locally, with retention and access designed around your business needs.',
+    icon: 'lock',
+  },
+];
+
+const includes = [
+  'Camera coverage planning for the premises',
+  'Recorder, storage, and camera specification',
+  'IP camera installation and network configuration',
+  'Mobile app and web viewer setup for approved users',
+  'User roles, access permissions, and basic operating guidance',
+  'Recording retention and storage planning',
+  'Network separation for camera traffic',
+  'Documentation and optional ongoing support',
+];
+
+const process = [
+  { title: 'Assess', description: 'We review the site, business risks, areas to cover, existing cabling, lighting, and who needs access to footage.' },
+  { title: 'Design', description: 'You get a practical camera plan, hardware recommendation, storage approach, and implementation scope.' },
+  { title: 'Deploy', description: 'Centrix configures the camera system, network access, users, alerts, and viewing permissions.' },
+  { title: 'Handover', description: 'Your team gets clear guidance for the app, web viewer, playback, access, and support process.' },
+];
+
+const faqs = [
+  {
+    question: 'Can staff view cameras from a phone?',
+    answer: 'Yes. App and web viewing can be configured for approved users so they only get what the business allows.',
+  },
+  {
+    question: 'Can cameras be added to an existing business network?',
+    answer: 'Usually yes, but we check PoE capacity, switching, storage, cabling, and network separation before recommending an approach.',
+  },
+  {
+    question: 'Can this replace an older CCTV system?',
+    answer: 'Often yes. We can review the existing cameras, recorder, cabling, and coverage, then plan a phased or full replacement.',
+  },
+];
+---
+
+<BuyerServicePage
+  metaTitle="CCTV And IP Camera Systems"
+  metaDescription="CCTV and IP camera planning, installation, mobile app and web viewer setup, local recording, access roles, and support for Irish businesses."
+  eyebrow="CCTV & IP Cameras"
+  heading="Does your business need CCTV and IP cameras with a simple app and web viewer?"
+  lead="Centrix plans and installs camera systems for Irish businesses that need clearer coverage, easier playback, and practical remote viewing without CCTV complexity."
+  primaryCta={{ label: 'Book a CCTV consultation', href: '/contact?service=cctv-ip-cameras' }}
+  secondaryCta={{ label: 'View Wi-Fi services', href: '/services/networking/business-wifi' }}
+  proof={['Camera coverage plan', 'Recorder and camera setup', 'Mobile app and web viewer access', 'Recording and access documentation']}
+  outcomes={outcomes}
+  includes={includes}
+  process={process}
+  faqs={faqs}
+  related={[
+    { label: 'Business networking', href: '/services/networking/business-networking' },
+    { label: 'Business Wi-Fi', href: '/services/networking/business-wifi' },
+    { label: 'Backup and resilience', href: '/services/networking/backup-resilience' },
+    { label: 'All networking services', href: '/networks' },
+  ]}
+/>

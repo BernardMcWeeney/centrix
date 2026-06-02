@@ -1,0 +1,73 @@
+---
+import BuyerServicePage from '../../../components/BuyerServicePage.astro';
+
+const outcomes = [
+  {
+    title: 'Understand control gaps',
+    description: 'Map current technical controls against practical security and governance expectations, then prioritise what matters.',
+    icon: 'compliance',
+  },
+  {
+    title: 'Improve evidence',
+    description: 'Create useful documentation around access, backups, incident response, patching, suppliers, and security review cadence.',
+    icon: 'monitor',
+  },
+  {
+    title: 'Reduce operational risk',
+    description: 'Strengthen identity, devices, email, cloud, network, logging, and recovery controls in a realistic sequence.',
+    icon: 'shield',
+  },
+];
+
+const includes = [
+  'Security and compliance readiness workshop',
+  'Microsoft 365 and identity control review',
+  'Endpoint, patching, and device management review',
+  'Backup, recovery, and incident response review',
+  'Network and remote access control review',
+  'Evidence checklist and remediation roadmap',
+  'Management summary for decision making',
+  'Coordination with legal, DPO, or compliance advisors where needed',
+];
+
+const process = [
+  { title: 'Review', description: 'We examine current systems, responsibilities, suppliers, Microsoft configuration, devices, network access, and existing documentation.' },
+  { title: 'Map', description: 'Centrix identifies control gaps and evidence gaps, then groups them into practical priorities.' },
+  { title: 'Improve', description: 'We help implement technical safeguards and create documentation that supports governance and audit conversations.' },
+  { title: 'Maintain', description: 'Ongoing reviews can keep evidence, controls, and management reporting current as systems change.' },
+];
+
+const faqs = [
+  {
+    question: 'Is this legal advice?',
+    answer: 'No. Centrix supports the technical and operational readiness work. Legal interpretation should sit with your legal, compliance, or data protection advisors.',
+  },
+  {
+    question: 'Can this help with cyber insurance questionnaires?',
+    answer: 'Yes. The same evidence around MFA, backups, patching, endpoint protection, incident response, and access controls is often useful for insurer and supplier questionnaires.',
+  },
+  {
+    question: 'Do we need everything fixed at once?',
+    answer: 'Usually no. We prioritise high-risk gaps first and build a staged roadmap your business can realistically deliver.',
+  },
+];
+---
+
+<BuyerServicePage
+  metaTitle="NIS2 And GDPR Technical Readiness"
+  metaDescription="NIS2 and GDPR technical readiness support for Irish businesses, covering controls, evidence, Microsoft 365, identity, backups, incident response, and documentation."
+  eyebrow="NIS2 & GDPR Readiness"
+  heading="Does your business need practical help with NIS2 and GDPR readiness?"
+  lead="Centrix helps Irish businesses review technical controls, strengthen security foundations, and build useful evidence for compliance, supplier, insurance, and management conversations."
+  primaryCta={{ label: 'Book a readiness review', href: '/contact?service=nis2-gdpr-readiness' }}
+  secondaryCta={{ label: 'View security services', href: '/security' }}
+  proof={['Technical control review', 'Evidence checklist', 'Prioritised remediation roadmap', 'Support for ongoing review cadence']}
+  outcomes={outcomes}
+  includes={includes}
+  process={process}
+  faqs={faqs}
+  related={[
+    { label: 'Microsoft security review', href: '/services/microsoft-365/security-assessment' },
+    { label: 'Managed security', href: '/services/managed-security' },
+  ]}
+/>

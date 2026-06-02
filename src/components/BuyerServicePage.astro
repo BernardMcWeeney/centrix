@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteIcon from './SiteIcon.astro';
+
+interface Link {
+  label: string;
+  href: string;
+}
+
+interface Card {
+  title: string;
+  description: string;
+  icon?: string;
+}
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  metaTitle: string;
+  metaDescription: string;
+  eyebrow: string;
+  heading: string;
+  lead: string;
+  primaryCta?: Link;
+  secondaryCta?: Link;
+  proof?: string[];
+  outcomes: Card[];
+  includes: string[];
+  process: Card[];
+  faqs?: FAQ[];
+  related?: Link[];
+}
+
+const {
+  metaTitle,
+  metaDescription,
+  eyebrow,
+  heading,
+  lead,
+  primaryCta = { label: 'Book a consultation', href: '/contact' },
+  secondaryCta = { label: 'View all services', href: '/services' },
+  proof = [],
+  outcomes,
+  includes,
+  process,
+  faqs = [],
+  related = [],
+} = Astro.props;
+---
+
+<BaseLayout title={metaTitle} description={metaDescription}>
+  <article class="consult-page">
+    <section class="consult-subhero">
+      <div class="container-wide">
+        <div class="consult-subhero-grid">
+          <div>
+            <div class="consult-eyebrow">{eyebrow}</div>
+            <h1 class="consult-subhero-title">{heading}</h1>
+            <p class="consult-lead">{lead}</p>
+            <div class="consult-actions">
+              <a href={primaryCta.href} class="consult-btn consult-btn-primary">
+                {primaryCta.label}
+                <SiteIcon name="arrow-right" size={18} />
+              </a>
+              <a href={secondaryCta.href} class="consult-btn consult-btn-secondary">{secondaryCta.label}</a>
+            </div>
+          </div>
+
+          <aside class="consult-proof-panel" aria-label="Service highlights">
+            <h2>What you get</h2>
+            <ul>
+              {proof.map((item) => (
+                <li>
+                  <SiteIcon name="check" size={18} />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-section">
+      <div class="container-wide">
+        <div class="consult-section-heading">
+          <span class="consult-kicker">Outcomes</span>
+          <h2>Designed around the result your business needs</h2>
+        </div>
+        <div class="consult-card-grid three">
+          {outcomes.map((outcome) => (
+            <div class="consult-card">
+              <div class="consult-card-icon"><SiteIcon name={outcome.icon || 'check'} size={24} /></div>
+              <h3>{outcome.title}</h3>
+              <p>{outcome.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-section consult-section-muted">
+      <div class="container-wide">
+        <div class="consult-split">
+          <div>
+            <span class="consult-kicker">Included</span>
+            <h2>Practical delivery, documented properly</h2>
+            <p>
+              Centrix scopes the work clearly, implements the agreed controls, and hands over documentation your team can actually use.
+            </p>
+          </div>
+          <div class="consult-check-list">
+            {includes.map((item) => (
+              <div class="consult-check-item">
+                <SiteIcon name="check" size={18} />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-section">
+      <div class="container-wide">
+        <div class="consult-section-heading">
+          <span class="consult-kicker">Process</span>
+          <h2>How the project runs</h2>
+        </div>
+        <div class="consult-steps">
+          {process.map((step, index) => (
+            <div class="consult-step">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {faqs.length > 0 && (
+      <section class="consult-section consult-section-muted">
+        <div class="container-wide">
+          <div class="consult-section-heading">
+            <span class="consult-kicker">Questions</span>
+            <h2>Common questions</h2>
+          </div>
+          <div class="consult-faq-grid">
+            {faqs.map((faq) => (
+              <div class="consult-faq">
+                <h3>{faq.question}</h3>
+                <p>{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="consult-cta">
+      <div class="container-wide">
+        <div class="consult-cta-inner">
+          <div>
+            <span class="consult-kicker">Next step</span>
+            <h2>Talk to Centrix about your site, cloud, security, or AI plans.</h2>
+          </div>
+          <a href="/contact" class="consult-btn consult-btn-primary">
+            Book a consultation
+            <SiteIcon name="arrow-right" size={18} />
+          </a>
+        </div>
+        {related.length > 0 && (
+          <div class="consult-related">
+            {related.map((item) => (
+              <a href={item.href}>{item.label}</a>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  </article>
+</BaseLayout>

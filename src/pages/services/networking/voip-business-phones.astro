@@ -1,0 +1,74 @@
+---
+import BuyerServicePage from '../../../components/BuyerServicePage.astro';
+
+const outcomes = [
+  {
+    title: 'Clear phone setup',
+    description: 'Users, numbers, call flows, voicemail, opening hours, and handsets are planned before the change goes live.',
+    icon: 'phone',
+  },
+  {
+    title: 'Voice-ready network',
+    description: 'PoE switching, voice VLANs, firewall rules, QoS considerations, and cabling are checked so calls have a stable path.',
+    icon: 'network',
+  },
+  {
+    title: 'Simple support',
+    description: 'Admin access, call routing, device notes, and handover documentation make adds, moves, and changes easier.',
+    icon: 'settings',
+  },
+];
+
+const includes = [
+  'Current telephone system and call flow review',
+  'User, handset, softphone, voicemail, and opening-hours planning',
+  'Desk phone, reception phone, meeting room, and shared area requirements',
+  'Voice VLAN, PoE switching, firewall, NAT, and QoS readiness checks',
+  'Number porting and provider coordination guidance where required',
+  'Hunt groups, call routing, voicemail, caller ID, and access role setup',
+  'Basic call testing, user handover, and admin documentation',
+  'Optional ongoing support for changes and troubleshooting',
+];
+
+const process = [
+  { title: 'Scope', description: 'We document the current phone setup, numbers, users, call flows, devices, and pain points.' },
+  { title: 'Prepare', description: 'Centrix checks the network, switching, PoE, internet, firewall, and voice configuration required for a stable deployment.' },
+  { title: 'Deploy', description: 'We configure phones, users, call routing, voicemail, permissions, and test common call scenarios.' },
+  { title: 'Support', description: 'After handover, Centrix can help with user changes, device changes, call flow updates, and troubleshooting.' },
+];
+
+const faqs = [
+  {
+    question: 'Can you replace an old phone system?',
+    answer: 'Yes. We can review the old setup, map users and call flows, check network readiness, and plan a staged move to modern business phones.',
+  },
+  {
+    question: 'Can desk phones and computers share cabling?',
+    answer: 'Often yes, but it depends on the cabling, switches, PoE capacity, and phone model. We check the site before recommending the design.',
+  },
+  {
+    question: 'Can you help with phone numbers and call flows?',
+    answer: 'Yes. Centrix can help plan number usage, reception routing, hunt groups, voicemail, opening hours, and handover documentation.',
+  },
+];
+---
+
+<BuyerServicePage
+  metaTitle="VoIP And Business Telephone Services"
+  metaDescription="VoIP, business phones, telephone system setup, call flows, handsets, voice VLANs, PoE switching, firewall checks, and support for Irish businesses."
+  eyebrow="VoIP & Business Phones"
+  heading="Does your business need modern phones that fit the network properly?"
+  lead="Centrix plans, configures, documents, and supports business phone and VoIP setups, including handsets, users, call flows, voice-ready networking, and ongoing changes."
+  primaryCta={{ label: 'Discuss business phones', href: '/contact?service=voip-business-phones' }}
+  secondaryCta={{ label: 'View business networking', href: '/services/networking/business-networking' }}
+  proof={['Desk phones, softphones, users, and call flows', 'Voice VLAN, PoE, firewall, and QoS readiness', 'Voicemail, routing, opening hours, and roles', 'Testing, handover, and support']}
+  outcomes={outcomes}
+  includes={includes}
+  process={process}
+  faqs={faqs}
+  related={[
+    { label: 'Business networking', href: '/services/networking/business-networking' },
+    { label: 'VPN and remote access', href: '/services/networking/vpn-remote-access' },
+    { label: 'Backup and resilience', href: '/services/networking/backup-resilience' },
+  ]}
+/>

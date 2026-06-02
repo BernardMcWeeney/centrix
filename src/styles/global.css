@@ -191,10 +191,10 @@
     color: var(--text-primary);
     font-weight: 600;
     line-height: 1.25;
-    letter-spacing: -0.025em;
+    letter-spacing: 0;
   }
 
-  h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.03em; }
+  h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: 0; }
   h2 { font-size: 1.875rem; font-weight: 600; }
   h3 { font-size: 1.25rem; }
   h4 { font-size: 1.125rem; }
@@ -491,7 +491,7 @@
     font-weight: 700;
     color: var(--text-primary);
     line-height: 1.2;
-    letter-spacing: -0.025em;
+    letter-spacing: 0;
     margin-bottom: 1rem;
   }
 
@@ -518,7 +518,7 @@
     font-weight: 700;
     color: var(--text-primary);
     line-height: 1;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
   }
 
   .stat-label {
@@ -739,3 +739,559 @@
 .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
 .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
 .stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* Centrix Irish business redesign */
+.consult-page {
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+}
+
+.consult-home-hero {
+  position: relative;
+  display: flex;
+  align-items: end;
+  min-height: calc(100svh - 7rem);
+  padding: 5rem 0 4rem;
+  overflow: hidden;
+  background-image:
+    linear-gradient(90deg, rgba(8, 29, 68, 0.88), rgba(8, 29, 68, 0.64) 48%, rgba(8, 29, 68, 0.2)),
+    linear-gradient(0deg, rgba(6, 16, 36, 0.74), rgba(6, 16, 36, 0.06) 44%),
+    var(--hero-image);
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+}
+
+.consult-home-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.consult-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 50rem;
+}
+
+.consult-hero-title {
+  max-width: 48rem;
+  margin: 0 0 1rem;
+  color: #ffffff;
+  font-size: clamp(2.35rem, 5vw, 4.75rem);
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.consult-hero-lead {
+  max-width: 42rem;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.consult-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.consult-hero-meta span,
+.consult-eyebrow,
+.consult-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.consult-hero-meta span {
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.consult-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.consult-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.consult-btn:hover {
+  transform: translateY(-1px);
+}
+
+.consult-btn-primary {
+  border: 1px solid #1d4ed8;
+  background: #1d4ed8;
+  color: #ffffff;
+}
+
+.consult-btn-primary:hover {
+  background: #1e40af;
+  color: #ffffff;
+}
+
+.consult-btn-secondary {
+  border: 1px solid var(--border-primary);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.consult-home-hero .consult-btn-secondary {
+  border-color: rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.consult-btn-secondary:hover {
+  border-color: var(--border-secondary);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.consult-home-hero .consult-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.consult-section,
+.consult-cta {
+  padding: 4.5rem 0;
+}
+
+.consult-section.compact {
+  padding: 3rem 0;
+}
+
+.consult-section-muted {
+  background: var(--bg-secondary);
+  border-block: 1px solid var(--border-primary);
+}
+
+.consult-section-heading {
+  max-width: 44rem;
+  margin-bottom: 2rem;
+}
+
+.consult-section-heading.centered {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.consult-section-heading h2,
+.consult-split h2,
+.consult-cta h2 {
+  margin: 0.45rem 0 0;
+  color: var(--text-primary);
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  line-height: 1.16;
+  letter-spacing: 0;
+}
+
+.consult-section-heading p,
+.consult-split p {
+  margin: 0.85rem 0 0;
+  color: var(--text-secondary);
+  font-size: 1.03rem;
+}
+
+.consult-eyebrow,
+.consult-kicker {
+  color: var(--brand-primary);
+}
+
+.consult-card-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.consult-card-grid.two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.consult-card-grid.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.consult-card-grid.four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.consult-card {
+  min-width: 0;
+  padding: 1.35rem;
+  border: 1px solid var(--border-primary);
+  border-radius: 0.5rem;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-xs);
+}
+
+a.consult-card {
+  display: block;
+  text-decoration: none;
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+a.consult-card:hover {
+  border-color: var(--brand-primary);
+  color: var(--text-secondary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.consult-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  background: var(--brand-light);
+  color: var(--brand-primary);
+}
+
+.consult-card h3 {
+  margin: 0 0 0.55rem;
+  color: var(--text-primary);
+  font-size: 1.15rem;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.consult-card p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+.consult-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  color: var(--brand-primary);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.consult-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.consult-check-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.consult-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border-primary);
+  border-radius: 0.5rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.consult-check-item svg {
+  flex: 0 0 auto;
+  margin-top: 0.15rem;
+  color: var(--brand-primary);
+}
+
+.consult-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.consult-step {
+  min-width: 0;
+  padding: 1.2rem;
+  border-top: 3px solid var(--brand-primary);
+  background: var(--bg-secondary);
+}
+
+.consult-step span {
+  display: block;
+  margin-bottom: 1.25rem;
+  color: var(--brand-primary);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.consult-step h3 {
+  margin: 0 0 0.5rem;
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  letter-spacing: 0;
+}
+
+.consult-step p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.consult-subhero {
+  padding: 6rem 0 4.5rem;
+  background:
+    linear-gradient(120deg, rgba(37, 99, 235, 0.12), transparent 42%),
+    var(--bg-secondary);
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.consult-subhero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(19rem, 0.8fr);
+  gap: 2rem;
+  align-items: center;
+}
+
+.consult-subhero-title {
+  max-width: 46rem;
+  margin: 0.65rem 0 1rem;
+  color: var(--text-primary);
+  font-size: clamp(2.25rem, 5vw, 4.25rem);
+  line-height: 1.06;
+  letter-spacing: 0;
+}
+
+.consult-lead {
+  max-width: 42rem;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+.consult-proof-panel {
+  padding: 1.25rem;
+  border: 1px solid var(--border-primary);
+  border-radius: 0.5rem;
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.consult-proof-panel h2 {
+  margin: 0 0 1rem;
+  color: var(--text-primary);
+  font-size: 1rem;
+  letter-spacing: 0;
+}
+
+.consult-proof-panel ul {
+  display: grid;
+  gap: 0.8rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.consult-proof-panel li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  color: var(--text-secondary);
+  font-size: 0.96rem;
+  line-height: 1.45;
+}
+
+.consult-proof-panel svg {
+  flex: 0 0 auto;
+  margin-top: 0.08rem;
+  color: var(--brand-primary);
+}
+
+.consult-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.consult-faq {
+  padding: 1.25rem;
+  border: 1px solid var(--border-primary);
+  border-radius: 0.5rem;
+  background: var(--bg-primary);
+}
+
+.consult-faq h3 {
+  margin: 0 0 0.5rem;
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  letter-spacing: 0;
+}
+
+.consult-faq p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.96rem;
+}
+
+.consult-cta {
+  background: #0f2f68;
+  color: #ffffff;
+}
+
+.consult-cta-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.consult-cta .consult-kicker,
+.consult-cta h2 {
+  color: #ffffff;
+}
+
+.consult-cta h2 {
+  max-width: 44rem;
+  font-size: clamp(1.65rem, 3vw, 2.5rem);
+}
+
+.consult-related {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.consult-related a {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.consult-band {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border-primary);
+  background: var(--bg-secondary);
+}
+
+.consult-band-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.consult-band-item {
+  padding: 1rem 0;
+}
+
+.consult-band-item strong {
+  display: block;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.consult-band-item span {
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+}
+
+.platform-strip {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.platform-strip > * {
+  min-width: 0;
+  justify-content: center;
+  min-height: 4.25rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border-primary);
+  border-radius: 0.5rem;
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-xs);
+}
+
+@media (max-width: 1024px) {
+  .consult-card-grid.four,
+  .consult-card-grid.three,
+  .consult-steps,
+  .consult-band-grid,
+  .platform-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .consult-subhero-grid,
+  .consult-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .consult-home-hero {
+    min-height: auto;
+    padding: 4rem 0 3rem;
+    background-position: center top;
+  }
+
+  .consult-hero-title,
+  .consult-subhero-title {
+    font-size: 2.2rem;
+  }
+
+  .consult-section,
+  .consult-cta {
+    padding: 3.25rem 0;
+  }
+
+  .consult-card-grid.two,
+  .consult-card-grid.three,
+  .consult-card-grid.four,
+  .consult-steps,
+  .consult-faq-grid,
+  .consult-band-grid,
+  .platform-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .consult-actions,
+  .consult-cta-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .consult-btn {
+    width: 100%;
+  }
+}

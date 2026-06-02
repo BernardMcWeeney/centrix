@@ -1,0 +1,74 @@
+---
+import BuyerServicePage from '../../../components/BuyerServicePage.astro';
+
+const outcomes = [
+  {
+    title: 'Secure access paths',
+    description: 'Remote users, branch sites, and trusted systems get access to the services they need without exposing the whole network.',
+    icon: 'lock',
+  },
+  {
+    title: 'Connected locations',
+    description: 'Point-to-point and site-to-site VPNs can link offices, warehouses, cloud services, and partner locations.',
+    icon: 'network',
+  },
+  {
+    title: 'Clear controls',
+    description: 'Firewall rules, routing, named access groups, logging, and documentation make the setup easier to support.',
+    icon: 'compliance',
+  },
+];
+
+const includes = [
+  'Current remote access and firewall configuration review',
+  'Point-to-point, site-to-site, and remote-user VPN design',
+  'Access rules for staff, suppliers, cloud services, and trusted partner systems',
+  'Split-tunnel or full-tunnel approach based on security and performance needs',
+  'Routing, DNS, firewall, and network segmentation planning',
+  'MFA and identity integration guidance where supported',
+  'Failover and backup link considerations for important VPN paths',
+  'Testing, access documentation, and support handover',
+];
+
+const process = [
+  { title: 'Map', description: 'We identify who needs access, from where, to which systems, and what should remain blocked.' },
+  { title: 'Design', description: 'Centrix defines the VPN approach, routing, firewall rules, user access, resilience, and monitoring requirements.' },
+  { title: 'Configure', description: 'We configure and test the VPNs, validate access rules, and document support steps.' },
+  { title: 'Review', description: 'Access can be reviewed periodically so old routes, users, and partner access do not drift.' },
+];
+
+const faqs = [
+  {
+    question: 'Can you create a VPN between two sites?',
+    answer: 'Yes. Centrix can design and configure point-to-point or site-to-site VPNs between business locations, with routing and firewall rules scoped to the systems that need to communicate.',
+  },
+  {
+    question: 'Can staff work remotely through VPN?',
+    answer: 'Yes. We can plan remote-user VPN access, including user groups, device expectations, MFA guidance, and clear access boundaries.',
+  },
+  {
+    question: 'Can VPN access be locked down by role?',
+    answer: 'Yes. The design can separate access by user group, site, device type, supplier, or system, depending on the platform and business requirement.',
+  },
+];
+---
+
+<BuyerServicePage
+  metaTitle="VPN And Remote Access Services"
+  metaDescription="Point-to-point VPN, site-to-site VPN, remote-user VPN, firewall rules, routing, access control, backup link planning, and documentation for Irish businesses."
+  eyebrow="VPN & Remote Access"
+  heading="Do you need secure VPN access between sites, staff, suppliers, or cloud systems?"
+  lead="Centrix designs, configures, documents, and supports VPN and remote-access setups for businesses that need controlled access without opening up the whole network."
+  primaryCta={{ label: 'Discuss VPN access', href: '/contact?service=vpn-remote-access' }}
+  secondaryCta={{ label: 'View business networking', href: '/services/networking/business-networking' }}
+  proof={['Point-to-point and site-to-site VPNs', 'Remote-user access planning', 'Firewall, routing, and DNS rules', 'Access testing and documentation']}
+  outcomes={outcomes}
+  includes={includes}
+  process={process}
+  faqs={faqs}
+  related={[
+    { label: 'Business networking', href: '/services/networking/business-networking' },
+    { label: 'Backup and resilience', href: '/services/networking/backup-resilience' },
+    { label: 'Configuration reviews', href: '/services/configuration-reviews' },
+  ]}
+/>

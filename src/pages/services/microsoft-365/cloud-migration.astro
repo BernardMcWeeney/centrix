@@ -1,0 +1,73 @@
+---
+import BuyerServicePage from '../../../components/BuyerServicePage.astro';
+
+const outcomes = [
+  {
+    title: 'Controlled migration',
+    description: 'Email, files, identity, and devices move in a planned sequence with rollback thinking and clear communication.',
+    icon: 'cloud',
+  },
+  {
+    title: 'Secure foundations',
+    description: 'MFA, Conditional Access, admin roles, Defender, sharing, and retention are considered during the move, not months later.',
+    icon: 'shield',
+  },
+  {
+    title: 'Better day-to-day work',
+    description: 'Teams, SharePoint, OneDrive, Outlook, and devices are structured so staff can find, share, and protect information.',
+    icon: 'microsoft',
+  },
+];
+
+const includes = [
+  'Current system discovery and migration readiness review',
+  'Microsoft 365 tenant setup or clean-up',
+  'Email and domain migration planning',
+  'SharePoint, Teams, and OneDrive structure',
+  'Identity, MFA, and Conditional Access baseline',
+  'Device and Intune readiness review',
+  'Cutover planning and user communication guidance',
+  'Post-migration support and documentation',
+];
+
+const process = [
+  { title: 'Discover', description: 'We review current email, file storage, users, domains, devices, security settings, and business deadlines.' },
+  { title: 'Plan', description: 'Centrix builds a migration plan covering scope, timing, risks, user communications, and Microsoft configuration.' },
+  { title: 'Migrate', description: 'We execute the move, validate access, support users, and keep the changeover controlled.' },
+  { title: 'Optimise', description: 'After migration, we improve security, sharing, retention, device management, and operational documentation.' },
+];
+
+const faqs = [
+  {
+    question: 'Can you migrate from Google Workspace?',
+    answer: 'Yes. We can plan and deliver migration from Google Workspace or older email platforms into Microsoft 365.',
+  },
+  {
+    question: 'Will users lose access during migration?',
+    answer: 'The goal is minimal disruption. We plan cutover windows, communication, testing, and support around how your business operates.',
+  },
+  {
+    question: 'Can you tidy an existing Microsoft 365 setup?',
+    answer: 'Yes. Many projects are not brand-new migrations. We can review and improve an existing tenant, file structure, security baseline, or device setup.',
+  },
+];
+---
+
+<BuyerServicePage
+  metaTitle="Microsoft Cloud Migration Services"
+  metaDescription="Move email, files, identity, and devices to Microsoft 365 and Azure with a controlled migration plan for Irish businesses."
+  eyebrow="Microsoft Cloud Migration"
+  heading="Is your business moving to the cloud?"
+  lead="Centrix helps Irish businesses move to Microsoft 365 and Azure with a controlled migration plan covering users, email, files, identity, devices, security, and handover."
+  primaryCta={{ label: 'Plan a cloud migration', href: '/contact?service=cloud-migration' }}
+  secondaryCta={{ label: 'View Microsoft services', href: '/microsoft' }}
+  proof={['Migration readiness review', 'Microsoft 365 setup and security baseline', 'Email, files, identity, and device planning', 'Post-migration support']}
+  outcomes={outcomes}
+  includes={includes}
+  process={process}
+  faqs={faqs}
+  related={[
+    { label: 'Microsoft 365 security', href: '/services/microsoft-365' },
+    { label: 'Intune services', href: '/services/intune' },
+  ]}
+/>

@@ -1,525 +1,141 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteIcon from '../components/SiteIcon.astro';
 
-const title = "About Centrix";
-const description = "Learn about Centrix's mission to protect businesses with enterprise IT security and networking solutions.";
-
-const stats = [
-  { value: "500+", label: "Clients Protected" },
-  { value: "15+", label: "Years Experience" },
-  { value: "50+", label: "Security Experts" },
-  { value: "24/7", label: "SOC Coverage" },
-];
+const title = 'About Centrix';
+const description = 'Centrix is an Irish business IT, technology, and consultancy company based in Duleek, County Meath.';
 
 const values = [
   {
-    title: "Security First",
-    description: "Every solution we implement prioritizes protection. Security isn't an afterthought—it's the foundation.",
+    title: 'Practical advice',
+    description: 'Recommendations are tied to business impact, budget, risk, and what your team can operate.',
+    icon: 'check',
   },
   {
-    title: "Client Partnership",
-    description: "We're partners invested in your long-term success. Your challenges are our challenges.",
+    title: 'Trusted platforms',
+    description: 'Centrix focuses on proven technology including Microsoft cloud, Google, secure network platforms, Cloudflare, ChatGPT, Claude, Defender, Intune, and Copilot.',
+    icon: 'microsoft',
   },
   {
-    title: "Continuous Innovation",
-    description: "We stay ahead with cutting-edge solutions. The threat landscape evolves, and so do we.",
+    title: 'Security by default',
+    description: 'Identity, devices, data, networks, backups, and incident response are considered in every project.',
+    icon: 'shield',
   },
   {
-    title: "Transparent Communication",
-    description: "No jargon, no hidden costs. Clear, honest communication that empowers informed decisions.",
+    title: 'Clear handover',
+    description: 'Work is documented so your business understands what changed, why it changed, and how to support it.',
+    icon: 'compliance',
   },
 ];
 
-const timeline = [
-  { year: "2010", event: "Founded with a focus on SMB security", description: "Started with a mission to make enterprise security accessible." },
-  { year: "2014", event: "Expanded to enterprise clients", description: "Grew capabilities to serve larger organizations." },
-  { year: "2017", event: "Launched 24/7 Security Operations Center", description: "Round-the-clock monitoring and incident response." },
-  { year: "2020", event: "Became Ubiquiti certified partner", description: "Strategic partnership for enterprise networking." },
-  { year: "2024", event: "Reached 500+ active clients", description: "Milestone achievement in our growth journey." },
-];
-
-const partnerships = [
-  { name: "Microsoft", type: "Gold Partner" },
-  { name: "Ubiquiti", type: "Certified Partner" },
-  { name: "Google", type: "Cloud Partner" },
-  { name: "Cloudflare", type: "Partner" },
+const facts = [
+  { label: 'Established', value: '2018' },
+  { label: 'Base', value: 'Duleek, Co. Meath' },
+  { label: 'Focus', value: 'Microsoft, Networking, Security, AI' },
+  { label: 'Approach', value: 'Practical consultancy' },
 ];
 ---
 
 <BaseLayout title={title} description={description}>
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container-wide">
-      <div class="hero-content">
-        <div class="hero-eyebrow">About</div>
-        <h1 class="hero-title">Securing businesses<br/>since 2010</h1>
-        <p class="hero-description">
-          Centrix was founded with a simple mission: make enterprise-grade security accessible to businesses of all sizes. Today, we protect over 500 organizations worldwide.
-        </p>
-        <div class="hero-actions">
-          <a href="/contact" class="btn btn-primary btn-lg">
-            Work With Us
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="/services" class="btn btn-secondary btn-lg">Our Services</a>
+  <main class="consult-page">
+    <section class="consult-subhero">
+      <div class="container-wide">
+        <div class="consult-subhero-grid">
+          <div>
+            <div class="consult-eyebrow">About Centrix</div>
+            <h1 class="consult-subhero-title">Irish business IT, technology, and consultancy since 2018.</h1>
+            <p class="consult-lead">
+              Based in Duleek, County Meath, Centrix helps businesses make better technology decisions, modernise Microsoft environments, improve premises networks, strengthen security, and adopt AI in a controlled way.
+            </p>
+            <div class="consult-actions">
+              <a href="/contact" class="consult-btn consult-btn-primary">
+                Work with Centrix
+                <SiteIcon name="arrow-right" size={18} />
+              </a>
+              <a href="/services" class="consult-btn consult-btn-secondary">View services</a>
+            </div>
+          </div>
+          <aside class="consult-proof-panel">
+            <h2>Focus areas</h2>
+            <ul>
+              <li><SiteIcon name="check" size={18} /><span>Microsoft cloud and modern work</span></li>
+              <li><SiteIcon name="check" size={18} /><span>Business networking, VPNs, VoIP, Wi-Fi, and CCTV</span></li>
+              <li><SiteIcon name="check" size={18} /><span>Security and compliance readiness</span></li>
+              <li><SiteIcon name="check" size={18} /><span>Practical AI and automation</span></li>
+            </ul>
+          </aside>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Stats Bar -->
-  <section class="stats-section">
-    <div class="container-wide">
-      <div class="stats-grid">
-        {stats.map((stat) => (
-          <div class="stat-item">
-            <div class="stat-value">{stat.value}</div>
-            <div class="stat-label">{stat.label}</div>
-          </div>
-        ))}
+    <section class="consult-band" aria-label="Centrix facts">
+      <div class="container-wide">
+        <div class="consult-band-grid">
+          {facts.map((fact) => (
+            <div class="consult-band-item">
+              <strong>{fact.value}</strong>
+              <span>{fact.label}</span>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Mission Section -->
-  <section class="mission-section">
-    <div class="container-wide">
-      <div class="mission-grid">
-        <div class="mission-content">
-          <div class="section-eyebrow">Our Mission</div>
-          <h2 class="mission-title">Democratizing enterprise security for all</h2>
-          <p class="mission-description">
-            We believe every business deserves the same level of security protection that Fortune 500 companies enjoy. Through strategic partnerships with Microsoft, Ubiquiti, and Google, combined with our team's deep expertise, we deliver enterprise solutions at accessible price points.
+    <section class="consult-section">
+      <div class="container-wide">
+        <div class="consult-section-heading">
+          <span class="consult-kicker">How We Think</span>
+          <h2>Good technology should be reliable, secure, understandable, and useful.</h2>
+          <p>
+            The goal is not to add more tools. The goal is to make the right tools work properly for the business.
           </p>
-          <ul class="mission-features">
-            <li>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-              Enterprise-grade protection at SMB pricing
-            </li>
-            <li>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-              Proactive threat detection and response
-            </li>
-            <li>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-              Strategic partnerships with industry leaders
-            </li>
-          </ul>
+        </div>
+        <div class="consult-card-grid four">
+          {values.map((value) => (
+            <div class="consult-card">
+              <div class="consult-card-icon"><SiteIcon name={value.icon} size={24} /></div>
+              <h3>{value.title}</h3>
+              <p>{value.description}</p>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Values Section -->
-  <section class="values-section">
-    <div class="container-wide">
-      <div class="section-header">
-        <div class="section-eyebrow">Our Values</div>
-        <h2 class="section-title">Principles that guide everything we do</h2>
-      </div>
-      <div class="values-grid">
-        {values.map((value) => (
-          <div class="value-card">
-            <h3 class="value-title">{value.title}</h3>
-            <p class="value-description">{value.description}</p>
+    <section class="consult-section consult-section-muted">
+      <div class="container-wide">
+        <div class="consult-split">
+          <div>
+            <span class="consult-kicker">Local And Capable</span>
+            <h2>Support for the full technology picture.</h2>
+            <p>
+              Centrix can help when a business is moving to Microsoft cloud, opening or upgrading a premises, improving security controls, responding to supplier requirements, or exploring AI.
+            </p>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Timeline Section -->
-  <section class="timeline-section">
-    <div class="container-wide">
-      <div class="section-header">
-        <div class="section-eyebrow">Our Journey</div>
-        <h2 class="section-title">From startup to industry leader</h2>
-      </div>
-      <div class="timeline">
-        {timeline.map((item, index) => (
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <div class="timeline-dot"></div>
-              {index < timeline.length - 1 && <div class="timeline-line"></div>}
-            </div>
-            <div class="timeline-content">
-              <div class="timeline-year">{item.year}</div>
-              <h3 class="timeline-title">{item.event}</h3>
-              <p class="timeline-description">{item.description}</p>
-            </div>
+          <div class="consult-check-list">
+            <div class="consult-check-item"><SiteIcon name="check" size={18} /><span>Cloud consultancy and migration planning</span></div>
+            <div class="consult-check-item"><SiteIcon name="check" size={18} /><span>Network, VPN, VoIP, resilience, and CCTV design for business premises</span></div>
+            <div class="consult-check-item"><SiteIcon name="check" size={18} /><span>Microsoft 365 security and device management</span></div>
+            <div class="consult-check-item"><SiteIcon name="check" size={18} /><span>Security improvement roadmaps and readiness evidence</span></div>
+            <div class="consult-check-item"><SiteIcon name="check" size={18} /><span>ChatGPT, Claude, Copilot, AI policy, and automation pilots</span></div>
           </div>
-        ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Partners Section -->
-  <section class="partners-section">
-    <div class="container-wide">
-      <div class="section-header">
-        <div class="section-eyebrow">Strategic Partners</div>
-        <h2 class="section-title">Powered by industry leaders</h2>
-      </div>
-      <div class="partners-grid">
-        {partnerships.map((partner) => (
-          <div class="partner-card">
-            <div class="partner-name">{partner.name}</div>
-            <div class="partner-type">{partner.type}</div>
+    <section class="consult-cta">
+      <div class="container-wide">
+        <div class="consult-cta-inner">
+          <div>
+            <span class="consult-kicker">Talk To Us</span>
+            <h2>Bring Centrix into the conversation before the next technology decision becomes urgent.</h2>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="cta-section">
-    <div class="container-wide">
-      <div class="cta-card">
-        <h2 class="cta-title">Ready to work with us?</h2>
-        <p class="cta-description">Let's discuss how Centrix can protect your organization with enterprise-grade security solutions.</p>
-        <div class="cta-actions">
-          <a href="/contact" class="btn btn-primary btn-lg">
-            Get Started
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <a href="/contact" class="consult-btn consult-btn-primary">
+            Contact Centrix
+            <SiteIcon name="arrow-right" size={18} />
           </a>
-          <a href="/services" class="btn btn-secondary btn-lg">View Services</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 </BaseLayout>
-
-<style>
-  /* Hero */
-  .hero {
-    padding: 8rem 0 4rem;
-    background-color: var(--bg-secondary);
-    border-bottom: 1px solid var(--border-primary);
-  }
-
-  @media (min-width: 768px) {
-    .hero { padding: 10rem 0 5rem; }
-  }
-
-  .hero-content {
-    max-width: 40rem;
-  }
-
-  .hero-eyebrow {
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--brand-primary);
-    margin-bottom: 1rem;
-  }
-
-  .hero-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: var(--text-primary);
-    margin-bottom: 1.25rem;
-  }
-
-  @media (min-width: 768px) {
-    .hero-title { font-size: 3.5rem; }
-  }
-
-  .hero-description {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-
-  /* Stats */
-  .stats-section {
-    padding: 2.5rem 0;
-    background-color: var(--bg-primary);
-    border-bottom: 1px solid var(--border-primary);
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-
-  @media (min-width: 768px) {
-    .stats-grid { grid-template-columns: repeat(4, 1fr); }
-  }
-
-  .stat-item { text-align: center; }
-
-  .stat-value {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    letter-spacing: -0.02em;
-  }
-
-  .stat-label {
-    font-size: 0.8125rem;
-    color: var(--text-tertiary);
-    margin-top: 0.25rem;
-  }
-
-  /* Mission */
-  .mission-section {
-    padding: 5rem 0;
-  }
-
-  @media (min-width: 768px) {
-    .mission-section { padding: 6rem 0; }
-  }
-
-  .mission-content {
-    max-width: 40rem;
-  }
-
-  .mission-title {
-    font-size: 1.875rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1.2;
-    margin-bottom: 1rem;
-    letter-spacing: -0.025em;
-  }
-
-  @media (min-width: 768px) {
-    .mission-title { font-size: 2.25rem; }
-  }
-
-  .mission-description {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-  }
-
-  .mission-features {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .mission-features li {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-  }
-
-  .mission-features li svg {
-    color: var(--brand-primary);
-    flex-shrink: 0;
-  }
-
-  /* Values */
-  .values-section {
-    padding: 5rem 0;
-    background-color: var(--bg-secondary);
-  }
-
-  @media (min-width: 768px) {
-    .values-section { padding: 6rem 0; }
-  }
-
-  .values-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  @media (min-width: 640px) {
-    .values-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (min-width: 1024px) {
-    .values-grid { grid-template-columns: repeat(4, 1fr); }
-  }
-
-  .value-card {
-    padding: 1.5rem;
-    background-color: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 0.5rem;
-  }
-
-  .value-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .value-description {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  /* Timeline */
-  .timeline-section {
-    padding: 5rem 0;
-  }
-
-  @media (min-width: 768px) {
-    .timeline-section { padding: 6rem 0; }
-  }
-
-  .timeline {
-    max-width: 32rem;
-    margin: 0 auto;
-  }
-
-  .timeline-item {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .timeline-marker {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .timeline-dot {
-    width: 10px;
-    height: 10px;
-    background-color: var(--brand-primary);
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .timeline-line {
-    width: 1px;
-    flex: 1;
-    background-color: var(--border-primary);
-    margin-top: 0.5rem;
-  }
-
-  .timeline-content {
-    padding-bottom: 2rem;
-  }
-
-  .timeline-year {
-    display: inline-block;
-    padding: 0.125rem 0.5rem;
-    background-color: var(--brand-light);
-    color: var(--brand-primary);
-    font-size: 0.6875rem;
-    font-weight: 600;
-    border-radius: 9999px;
-    margin-bottom: 0.5rem;
-  }
-
-  .timeline-title {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.25rem;
-  }
-
-  .timeline-description {
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  /* Partners */
-  .partners-section {
-    padding: 5rem 0;
-    background-color: var(--bg-secondary);
-  }
-
-  @media (min-width: 768px) {
-    .partners-section { padding: 6rem 0; }
-  }
-
-  .partners-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  @media (min-width: 768px) {
-    .partners-grid { grid-template-columns: repeat(4, 1fr); }
-  }
-
-  .partner-card {
-    padding: 1.5rem;
-    background-color: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 0.5rem;
-    text-align: center;
-  }
-
-  .partner-name {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.25rem;
-  }
-
-  .partner-type {
-    font-size: 0.75rem;
-    color: var(--text-tertiary);
-  }
-
-  /* CTA */
-  .cta-section {
-    padding: 5rem 0;
-  }
-
-  @media (min-width: 768px) {
-    .cta-section { padding: 6rem 0; }
-  }
-
-  .cta-card {
-    text-align: center;
-    padding: 3rem 1.5rem;
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
-    border-radius: 0.5rem;
-  }
-
-  @media (min-width: 768px) {
-    .cta-card { padding: 4rem 2rem; }
-  }
-
-  .cta-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.025em;
-  }
-
-  @media (min-width: 768px) {
-    .cta-title { font-size: 1.875rem; }
-  }
-
-  .cta-description {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-  }
-
-  .cta-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.75rem;
-  }
-</style>

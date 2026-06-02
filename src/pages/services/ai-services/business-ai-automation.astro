@@ -1,0 +1,75 @@
+---
+import BuyerServicePage from '../../../components/BuyerServicePage.astro';
+
+const outcomes = [
+  {
+    title: 'Less repetitive admin',
+    description: 'Identify manual steps in everyday workflows and replace them with reliable automation where it makes business sense.',
+    icon: 'settings',
+  },
+  {
+    title: 'Safer AI use',
+    description: 'Keep approved tools, data handling, user permissions, and review steps clear before AI is rolled into workflows.',
+    icon: 'shield',
+  },
+  {
+    title: 'Measurable pilots',
+    description: 'Start with a small number of use cases, measure the impact, and expand only when the process is working.',
+    icon: 'ai',
+  },
+];
+
+const includes = [
+  'Workflow discovery session with business users',
+  'Simple introduction to ChatGPT, Claude, Copilot, and safe prompt use',
+  'Use case scoring by effort, value, and risk',
+  'Microsoft 365 and Power Platform fit review',
+  'Cloudflare AI and web/security fit review where relevant',
+  'AI data protection and permissions check',
+  'Prototype or pilot workflow design',
+  'Staff guidance for safe AI-assisted work',
+  'Success measures and rollout plan',
+  'Documentation and handover',
+];
+
+const process = [
+  { title: 'Find', description: 'We identify repetitive processes, handoffs, reporting tasks, document workflows, and support bottlenecks.' },
+  { title: 'Prioritise', description: 'Use cases are scored by value, complexity, risk, and suitability for Microsoft 365, Power Platform, or AI assistance.' },
+  { title: 'Pilot', description: 'Centrix builds or guides a controlled pilot with defined users, data, permissions, and review steps.' },
+  { title: 'Scale', description: 'Successful pilots become documented processes with ownership, support, training, and improvement cadence.' },
+];
+
+const faqs = [
+  {
+    question: 'Do we need Microsoft Copilot for this?',
+    answer: 'Not always. Some automations use Microsoft 365, Power Automate, forms, approvals, or reporting tools without requiring Copilot licences.',
+  },
+  {
+    question: 'What kinds of work can be automated?',
+    answer: 'Common examples include approvals, recurring reports, onboarding, ticket routing, document intake, customer follow-up, and internal knowledge workflows.',
+  },
+  {
+    question: 'How do you avoid risky AI use?',
+    answer: 'We start with permissions, data sensitivity, approved tools, human review, logging, and plain-English rules for staff.',
+  },
+];
+---
+
+<BuyerServicePage
+  metaTitle="Business AI Introduction And Automation Consultancy"
+  metaDescription="Simple business introduction to ChatGPT, Claude, Copilot, Cloudflare AI, and practical workflow automation for Irish businesses."
+  eyebrow="AI Introduction & Automation"
+  heading="Could AI simplify everyday work in your business?"
+  lead="Centrix gives Irish businesses a clear introduction to ChatGPT, Claude, Microsoft Copilot, Cloudflare AI, prompts, safe use, and practical automation opportunities."
+  primaryCta={{ label: 'Book an AI introduction workshop', href: '/contact?service=ai-automation' }}
+  secondaryCta={{ label: 'View AI services', href: '/ai' }}
+  proof={['Workflow discovery', 'Use case prioritisation', 'Controlled pilot plan', 'Safe rollout guidance']}
+  outcomes={outcomes}
+  includes={includes}
+  process={process}
+  faqs={faqs}
+  related={[
+    { label: 'Copilot readiness', href: '/services/ai-services/copilot-readiness' },
+    { label: 'AI strategy', href: '/services/ai-services/ai-strategy' },
+  ]}
+/>

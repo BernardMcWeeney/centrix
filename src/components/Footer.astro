@@ -5,20 +5,23 @@ const currentYear = new Date().getFullYear();
 
 const footerLinks = {
   services: [
-    { label: 'Microsoft 365 Security', href: '/services/microsoft-365' },
-    { label: 'Network Infrastructure', href: '/services/networking' },
-    { label: 'AI Services', href: '/services/ai-services' },
-    { label: 'Managed Security', href: '/services/managed-security' },
+    { label: 'Microsoft Cloud', href: '/microsoft' },
+    { label: 'Business Networking', href: '/networks' },
+    { label: 'VPN & Remote Access', href: '/services/networking/vpn-remote-access' },
+    { label: 'VoIP & Phones', href: '/services/networking/voip-business-phones' },
+    { label: 'AI Introduction', href: '/ai' },
   ],
   company: [
     { label: 'About Us', href: '/about' },
-    { label: 'Blog', href: '/blog' },
+    { label: 'Case Studies', href: '/case-studies' },
+    { label: 'News', href: '/news' },
+    { label: 'Security', href: '/security' },
     { label: 'Contact', href: '/contact' },
   ],
   resources: [
+    { label: 'Cloud Migration', href: '/services/microsoft-365/cloud-migration' },
+    { label: 'NIS2 & GDPR Readiness', href: '/services/security/nis2-gdpr-readiness' },
     { label: 'Service Catalogue', href: '/services' },
-    { label: 'Documentation', href: '/docs' },
-    { label: 'Support', href: '/contact' },
   ],
 };
 ---
@@ -38,7 +41,7 @@ const footerLinks = {
             <span class="footer-logo-text">{SITE_TITLE}</span>
           </a>
           <p class="footer-description">
-            Productized security services for modern businesses. Fixed pricing, clear outcomes.
+            Irish business IT, technology, and consultancy for Microsoft cloud, business networking, security, compliance readiness, and practical AI.
           </p>
         </div>
 
@@ -142,7 +145,7 @@ const footerLinks = {
     font-size: 0.9375rem;
     font-weight: 600;
     color: var(--text-primary);
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
   }
 
   .footer-description {

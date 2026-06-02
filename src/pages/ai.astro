@@ -1,715 +1,158 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteIcon from '../components/SiteIcon.astro';
+import PlatformLogo from '../components/PlatformLogo.astro';
 
-const title = "AI & Copilot Services | Centrix";
-const description = "Microsoft Copilot readiness, AI governance, and safe enablement. Prepare your organization for AI without the risk.";
+const title = 'AI Introduction And Automation Consultancy';
+const description = 'Simple business introduction to AI using ChatGPT, Claude, Microsoft Copilot, Cloudflare AI, governance, workflow automation, and safe adoption support.';
 
 const services = [
   {
-    id: "copilot-readiness",
-    title: "Copilot Readiness",
-    description: "Prepare your Microsoft 365 environment for safe and effective Copilot deployment.",
-    href: "/services/ai-services",
-    icon: "ai",
-    color: "purple",
-    featured: true,
-    stats: "2-3 weeks",
-    deliverables: ["Readiness report", "Permissions review", "Data hygiene", "Pilot plan"],
+    title: 'AI introduction workshop',
+    description: 'Plain-English introduction to ChatGPT, Claude, Copilot, Cloudflare AI, prompts, risks, and useful business workflows.',
+    href: '/services/ai-services/business-ai-automation',
+    icon: 'ai',
   },
   {
-    id: "ai-governance",
-    title: "AI Governance Baseline",
-    description: "Adopt AI without data leakage and shadow AI chaos. Policies, controls, and guardrails.",
-    href: "/services/ai-services",
-    icon: "shield",
-    color: "blue",
-    stats: "1-2 weeks",
-    deliverables: ["Governance framework", "Acceptable use policy", "Controls backlog"],
+    title: 'Microsoft Copilot readiness',
+    description: 'Check SharePoint permissions, sensitivity labels, guest access, data hygiene, and rollout readiness before Copilot goes live.',
+    href: '/services/ai-services/copilot-readiness',
+    icon: 'microsoft',
   },
   {
-    id: "ai-strategy",
-    title: "AI Readiness & Strategy",
-    description: "A practical AI roadmap tied to your business workflows, not hype.",
-    href: "/services/ai-services",
-    icon: "map",
-    color: "green",
-    stats: "2-4 weeks",
-    deliverables: ["AI roadmap", "Use case priorities", "Pilot plan", "Success metrics"],
+    title: 'AI governance and policy',
+    description: 'Create simple rules for staff, data, approved tools, review, and management oversight.',
+    href: '/services/ai-services',
+    icon: 'compliance',
   },
   {
-    id: "ai-pilot",
-    title: "AI Pilot Program",
-    description: "Controlled pilot with measured outcomes before organization-wide rollout.",
-    href: "/services/ai-services",
-    icon: "beaker",
-    color: "orange",
-    stats: "30-60 days",
-    deliverables: ["Pilot setup", "Success metrics", "Results analysis", "Scale plan"],
+    title: 'Workflow automation',
+    description: 'Use Microsoft 365, Power Platform, and AI-assisted workflows to reduce repetitive admin work.',
+    href: '/services/ai-services/business-ai-automation',
+    icon: 'settings',
+  },
+  {
+    title: 'AI strategy',
+    description: 'Identify realistic use cases, expected value, risks, controls, and a phased implementation roadmap.',
+    href: '/services/ai-services/ai-strategy',
+    icon: 'ai',
   },
 ];
 
-const copilotChecklist = [
-  { item: "SharePoint permissions review", description: "Ensure Copilot only sees what users should see" },
-  { item: "Sensitivity labels deployed", description: "Protect sensitive content from AI summarization" },
-  { item: "Guest access audit", description: "Review external sharing before AI has access" },
-  { item: "Oversharing cleanup", description: "Remove 'Everyone' permissions on sensitive sites" },
-  { item: "DLP policies configured", description: "Prevent sensitive data exposure through AI" },
-  { item: "Pilot group defined", description: "Start with a controlled group before org-wide rollout" },
-];
-
-const benefits = [
-  { title: "Security First", description: "We ensure AI adoption doesn't compromise your data security", icon: "shield" },
-  { title: "Microsoft Expertise", description: "Deep experience with Microsoft 365 Copilot and governance", icon: "badge" },
-  { title: "Practical Approach", description: "Real outcomes, not AI hype - tied to your workflows", icon: "target" },
-  { title: "Measured Results", description: "Clear success metrics and pilot validation before scale", icon: "chart" },
+const readiness = [
+  'Simple introduction to ChatGPT, Claude, and Copilot',
+  'Approved AI tools and use cases agreed',
+  'SharePoint and Teams permissions reviewed',
+  'Sensitive data locations understood',
+  'Security and data protection controls included',
+  'Prompt guidance for common staff workflows',
+  'Cloudflare AI and web security options considered',
+  'Management has clear success measures',
 ];
 ---
 
 <BaseLayout title={title} description={description}>
-  <section class="hero">
-    <div class="hero-bg">
-      <div class="hero-gradient"></div>
-      <div class="hero-grid"></div>
-    </div>
-    <div class="container-wide">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
-          </svg>
-          AI Services
-        </div>
-        <h1 class="hero-title">AI done<br /><span class="hero-title-accent">safely</span></h1>
-        <p class="hero-description">Copilot readiness, AI governance, and safe enablement. We help you adopt AI without compromising security or creating chaos.</p>
-        <div class="hero-actions">
-          <a href="/services/ai-services" class="btn-hero-primary">
-            Get Copilot Ready
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="#services" class="btn-hero-secondary">View All Services</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="warning-section">
-    <div class="container-wide">
-      <div class="warning-card">
-        <div class="warning-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-            <line x1="12" y1="9" x2="12" y2="13"/>
-            <line x1="12" y1="17" x2="12.01" y2="17"/>
-          </svg>
-        </div>
-        <div class="warning-content">
-          <h3 class="warning-title">Copilot sees what your users can see</h3>
-          <p class="warning-text">If your SharePoint permissions are messy, Copilot will surface content users shouldn't see. Most organizations have oversharing problems they don't know about - until AI exposes them.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="services" class="services-section">
-    <div class="container-wide">
-      <div class="section-header">
-        <span class="section-tag">Services</span>
-        <h2 class="section-title">AI services for safe enablement</h2>
-        <p class="section-description">From Copilot readiness to organization-wide AI strategy - with security built in.</p>
-      </div>
-      <div class="services-grid">
-        {services.map((service) => (
-          <a href={service.href} class={`service-card service-card-${service.color} ${service.featured ? 'featured' : ''}`}>
-            {service.featured && <div class="featured-badge">Start Here</div>}
-            <div class="service-icon">
-              {service.icon === 'ai' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>}
-              {service.icon === 'shield' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
-              {service.icon === 'map' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>}
-              {service.icon === 'beaker' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6v6l3 9a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2l3-9V3z"/><line x1="9" y1="3" x2="15" y2="3"/></svg>}
+  <main class="consult-page">
+    <section class="consult-subhero">
+      <div class="container-wide">
+        <div class="consult-subhero-grid">
+          <div>
+            <div class="consult-eyebrow">AI & Automation</div>
+            <h1 class="consult-subhero-title">A simple, safe introduction to AI for your business.</h1>
+            <p class="consult-lead">
+              Centrix helps Irish businesses understand ChatGPT, Claude, Microsoft Copilot, Cloudflare AI, and automation tools, then apply them to real work without exposing sensitive data.
+            </p>
+            <div class="consult-actions">
+              <a href="/services/ai-services/business-ai-automation" class="consult-btn consult-btn-primary">
+                Book an AI introduction
+                <SiteIcon name="arrow-right" size={18} />
+              </a>
+              <a href="/services/ai-services/copilot-readiness" class="consult-btn consult-btn-secondary">Prepare for Copilot</a>
             </div>
-            <h3 class="service-title">{service.title}</h3>
-            <p class="service-description">{service.description}</p>
-            <ul class="service-deliverables">
-              {service.deliverables.map((d) => (
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
-                  {d}
-                </li>
-              ))}
+          </div>
+          <aside class="consult-proof-panel">
+            <h2>AI should be</h2>
+            <ul>
+              <li><SiteIcon name="check" size={18} /><span>Tied to a clear business workflow</span></li>
+              <li><SiteIcon name="check" size={18} /><span>Controlled so sensitive data stays protected</span></li>
+              <li><SiteIcon name="check" size={18} /><span>Introduced with staff guidance and ownership</span></li>
+              <li><SiteIcon name="check" size={18} /><span>Measured before it is scaled wider</span></li>
             </ul>
-            <div class="service-footer">
-              <span class="service-stat">{service.stats}</span>
-              <span class="service-arrow">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </span>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="checklist-section">
-    <div class="container-wide">
-      <div class="checklist-grid">
-        <div class="checklist-content">
-          <span class="section-tag">Copilot Readiness</span>
-          <h2 class="section-title">Before you enable Copilot</h2>
-          <p class="section-description">These are the critical items we check before any Copilot deployment. Skipping them leads to data exposure and user frustration.</p>
+          </aside>
         </div>
-        <div class="checklist-items">
-          {copilotChecklist.map((check) => (
-            <div class="checklist-item">
-              <div class="check-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
-              </div>
-              <div class="check-content">
-                <h4 class="check-title">{check.item}</h4>
-                <p class="check-description">{check.description}</p>
-              </div>
-            </div>
+      </div>
+    </section>
+
+    <section class="consult-section compact">
+      <div class="container-wide">
+        <div class="platform-strip">
+          <PlatformLogo name="chatgpt" />
+          <PlatformLogo name="claude" />
+          <PlatformLogo name="microsoft" label="Copilot" />
+          <PlatformLogo name="cloudflare" />
+          <PlatformLogo name="google" />
+          <PlatformLogo name="microsoft" label="Power Platform" />
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-section">
+      <div class="container-wide">
+        <div class="consult-section-heading">
+          <span class="consult-kicker">AI Services</span>
+          <h2>Practical AI support without the hype.</h2>
+        </div>
+        <div class="consult-card-grid four">
+          {services.map((service) => (
+            <a href={service.href} class="consult-card">
+              <div class="consult-card-icon"><SiteIcon name={service.icon} size={24} /></div>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+              <span class="consult-card-link">
+                View service
+                <SiteIcon name="arrow-right" size={16} />
+              </span>
+            </a>
           ))}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="benefits-section">
-    <div class="container-wide">
-      <div class="section-header">
-        <span class="section-tag">Why Centrix</span>
-        <h2 class="section-title">AI enablement you can trust</h2>
-      </div>
-      <div class="benefits-grid">
-        {benefits.map((benefit) => (
-          <div class="benefit-card">
-            <div class="benefit-icon">
-              {benefit.icon === 'shield' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
-              {benefit.icon === 'badge' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15l-2 5 2-1 2 1-2-5z"/><circle cx="12" cy="8" r="6"/></svg>}
-              {benefit.icon === 'target' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>}
-              {benefit.icon === 'chart' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>}
-            </div>
-            <h3 class="benefit-title">{benefit.title}</h3>
-            <p class="benefit-description">{benefit.description}</p>
+    <section class="consult-section consult-section-muted">
+      <div class="container-wide">
+        <div class="consult-split">
+          <div>
+            <span class="consult-kicker">Copilot Readiness</span>
+            <h2>Before AI sees your data, check what your users and tools can already see.</h2>
+            <p>
+              AI tools can make existing data, permission, and process problems more visible. We help set sensible rules before staff rely on them.
+            </p>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-section">
-    <div class="container-wide">
-      <div class="cta-card">
-        <div class="cta-content">
-          <h2 class="cta-title">Ready to enable AI safely?</h2>
-          <p class="cta-description">Book a call to discuss your Copilot readiness or AI strategy needs. We'll help you adopt AI without the risk.</p>
-          <div class="cta-actions">
-            <a href="/contact" class="btn-cta-primary">
-              Book Consultation
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="/services/ai-services" class="btn-cta-secondary">View Services</a>
+          <div class="consult-check-list">
+            {readiness.map((item) => (
+              <div class="consult-check-item">
+                <SiteIcon name="check" size={18} />
+                <span>{item}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="consult-cta">
+      <div class="container-wide">
+        <div class="consult-cta-inner">
+          <div>
+            <span class="consult-kicker">Next Step</span>
+            <h2>Start with a short AI introduction workshop or Copilot readiness review.</h2>
+          </div>
+          <a href="/contact" class="consult-btn consult-btn-primary">
+            Book an AI consultation
+            <SiteIcon name="arrow-right" size={18} />
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 </BaseLayout>
-
-<style>
-  :root {
-    --accent: #8b5cf6;
-    --accent-light: rgba(139, 92, 246, 0.1);
-    --accent-glow: rgba(139, 92, 246, 0.3);
-  }
-
-  .hero {
-    position: relative;
-    padding: 8rem 0 5rem;
-    overflow: hidden;
-  }
-  @media (min-width: 1024px) {
-    .hero { padding: 10rem 0 6rem; }
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-
-  .hero-gradient {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-glow), transparent),
-      linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-  }
-
-  .hero-grid {
-    position: absolute;
-    inset: 0;
-    background-image: linear-gradient(var(--border-primary) 1px, transparent 1px),
-                      linear-gradient(90deg, var(--border-primary) 1px, transparent 1px);
-    background-size: 60px 60px;
-    opacity: 0.3;
-    mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
-  }
-
-  .hero .container-wide {
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-content {
-    max-width: 42rem;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: var(--accent-light);
-    border: 1px solid var(--accent);
-    border-radius: 9999px;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: var(--text-primary);
-    margin-bottom: 1.5rem;
-  }
-  @media (min-width: 768px) {
-    .hero-title { font-size: 3.5rem; }
-  }
-
-  .hero-title-accent {
-    background: linear-gradient(135deg, var(--accent), #c084fc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-description {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .btn-hero-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.875rem 1.5rem;
-    background: var(--accent);
-    color: white;
-    font-weight: 500;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-hero-primary:hover {
-    background: #7c3aed;
-    transform: translateY(-1px);
-    box-shadow: 0 10px 30px -10px var(--accent-glow);
-  }
-
-  .btn-hero-secondary {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.875rem 1.5rem;
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    font-weight: 500;
-    border: 1px solid var(--border-primary);
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-hero-secondary:hover {
-    border-color: var(--border-hover);
-    background: var(--bg-secondary);
-  }
-
-  .warning-section {
-    padding: 0 0 3rem;
-  }
-
-  .warning-card {
-    display: flex;
-    gap: 1rem;
-    padding: 1.5rem;
-    background: rgba(239, 68, 68, 0.1);
-    border: 1px solid rgba(239, 68, 68, 0.3);
-    border-radius: 1rem;
-  }
-
-  .warning-icon {
-    flex-shrink: 0;
-    width: 48px;
-    height: 48px;
-    background: rgba(239, 68, 68, 0.2);
-    border-radius: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ef4444;
-  }
-
-  .warning-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .warning-text {
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  .services-section {
-    padding: 5rem 0;
-  }
-
-  .section-header {
-    max-width: 42rem;
-    margin-bottom: 3rem;
-  }
-
-  .section-tag {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    background: var(--accent-light);
-    color: var(--accent);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-radius: 9999px;
-    margin-bottom: 1rem;
-  }
-
-  .section-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
-  @media (min-width: 768px) {
-    .section-title { font-size: 2.5rem; }
-  }
-
-  .section-description {
-    font-size: 1.125rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  @media (min-width: 768px) {
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  .service-card {
-    position: relative;
-    background: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 1rem;
-    padding: 1.5rem;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    transition: all 0.3s;
-  }
-
-  .service-card:hover {
-    border-color: var(--card-accent);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
-  }
-
-  .service-card.featured {
-    border-color: var(--accent);
-  }
-
-  .service-card-purple { --card-accent: #8b5cf6; }
-  .service-card-blue { --card-accent: #3b82f6; }
-  .service-card-green { --card-accent: #22c55e; }
-  .service-card-orange { --card-accent: #f97316; }
-
-  .featured-badge {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.25rem 0.75rem;
-    background: var(--accent);
-    color: white;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    border-radius: 9999px;
-  }
-
-  .service-icon {
-    width: 56px;
-    height: 56px;
-    background: var(--bg-secondary);
-    border-radius: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--card-accent);
-    margin-bottom: 1rem;
-  }
-
-  .service-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .service-description {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 1rem;
-  }
-
-  .service-deliverables {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1rem;
-    flex: 1;
-  }
-
-  .service-deliverables li {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
-    padding: 0.25rem 0;
-  }
-
-  .service-deliverables svg {
-    color: var(--success);
-    flex-shrink: 0;
-  }
-
-  .service-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-primary);
-  }
-
-  .service-stat {
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--text-tertiary);
-  }
-
-  .service-arrow {
-    color: var(--card-accent);
-    transition: transform 0.2s;
-  }
-  .service-card:hover .service-arrow {
-    transform: translateX(4px);
-  }
-
-  .checklist-section {
-    padding: 5rem 0;
-    background: var(--bg-secondary);
-  }
-
-  .checklist-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  @media (min-width: 1024px) {
-    .checklist-grid { grid-template-columns: 1fr 1.5fr; gap: 4rem; }
-  }
-
-  .checklist-items {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .checklist-item {
-    display: flex;
-    gap: 1rem;
-    padding: 1rem;
-    background: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 0.75rem;
-  }
-
-  .check-icon {
-    flex-shrink: 0;
-    width: 36px;
-    height: 36px;
-    background: var(--accent-light);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent);
-  }
-
-  .check-title {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.25rem;
-  }
-
-  .check-description {
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-  }
-
-  .benefits-section {
-    padding: 5rem 0;
-  }
-
-  .benefits-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  @media (min-width: 768px) {
-    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (min-width: 1024px) {
-    .benefits-grid { grid-template-columns: repeat(4, 1fr); }
-  }
-
-  .benefit-card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
-    border-radius: 1rem;
-    padding: 1.5rem;
-  }
-
-  .benefit-icon {
-    width: 48px;
-    height: 48px;
-    background: var(--accent-light);
-    border-radius: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-
-  .benefit-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .benefit-description {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  .cta-section {
-    padding: 5rem 0 6rem;
-  }
-
-  .cta-card {
-    background: linear-gradient(135deg, var(--accent) 0%, #c084fc 100%);
-    border-radius: 1.5rem;
-    padding: 3rem 2rem;
-    text-align: center;
-  }
-  @media (min-width: 768px) {
-    .cta-card { padding: 4rem; }
-  }
-
-  .cta-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 1rem;
-  }
-
-  .cta-description {
-    font-size: 1.125rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 2rem;
-    max-width: 32rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .cta-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  .btn-cta-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 2rem;
-    background: white;
-    color: var(--accent);
-    font-weight: 600;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-cta-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
-  }
-
-  .btn-cta-secondary {
-    display: inline-flex;
-    align-items: center;
-    padding: 1rem 2rem;
-    background: transparent;
-    color: white;
-    font-weight: 500;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-cta-secondary:hover {
-    border-color: white;
-    background: rgba(255, 255, 255, 0.1);
-  }
-</style>

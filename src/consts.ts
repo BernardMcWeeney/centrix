@@ -1,26 +1,28 @@
-// Centrix - IT Security & Consultancy
+// Centrix - Irish business IT, technology & consultancy
 // Global site configuration
 
 export const SITE_TITLE = "Centrix";
-export const SITE_DESCRIPTION = "Enterprise IT Security, Cloud, & Network Solutions. Productized security services with fixed scope, clear outcomes, and measurable results.";
+export const SITE_DESCRIPTION = "Irish business IT, technology, and consultancy services for Microsoft cloud, business networking, security, compliance readiness, and practical AI.";
 
-export const SITE_TAGLINE = "Security. Simplified.";
+export const SITE_TAGLINE = "Trusted IT for Irish business.";
 
 export const COMPANY_INFO = {
   name: "Centrix",
-  tagline: "IT Security & Consultancy",
-  email: "hello@centrix.io",
-  phone: "+1 (555) 123-4567",
-  address: "123 Security Lane, Tech District",
+  tagline: "Irish Business IT & Technology Consultancy",
+  email: "hello@centrix.ie",
+  phone: "+353 1 000 0000",
+  address: "Duleek, County Meath, Ireland",
 };
 
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/solutions/microsoft-365", label: "Microsoft 365" },
-  { href: "/solutions/networking", label: "Networking" },
-  { href: "/services", label: "Services" },
+  { href: "/microsoft", label: "Microsoft" },
+  { href: "/networks", label: "Networking" },
+  { href: "/security", label: "Security" },
+  { href: "/ai", label: "AI" },
+  { href: "/case-studies", label: "Case Studies" },
   { href: "/about", label: "About" },
-  { href: "/blog", label: "Blog" },
+  { href: "/news", label: "News" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -115,10 +117,10 @@ export const FLAGSHIP_SERVICES: Service[] = [
   },
   {
     id: "unifi-network-deployment",
-    title: "UniFi Network Deployment",
-    shortTitle: "UniFi Deploy",
-    description: "Enterprise-grade UniFi network infrastructure with proper segmentation and security.",
-    outcome: "Installed, secured, and documented network infrastructure.",
+    title: "Business Network Deployment",
+    shortTitle: "Network Deploy",
+    description: "Business network infrastructure with Wi-Fi, switching, routing, VPN, voice readiness, and proper segmentation.",
+    outcome: "Installed, secured, and documented network infrastructure for the premises.",
     icon: "network",
     category: "networking",
     types: ["implementation"],
@@ -126,6 +128,7 @@ export const FLAGSHIP_SERVICES: Service[] = [
     deliverables: [
       "Network configuration",
       "VLAN segmentation",
+      "VPN and voice readiness",
       "Network diagrams",
       "Handover documentation",
       "Support plan option",
@@ -677,37 +680,70 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   },
   {
     id: "networking",
-    title: "Network Infrastructure",
-    description: "Enterprise-grade networking with UniFi and site technology.",
+    title: "Business Networking",
+    description: "Business networking, VPNs, VoIP, Wi-Fi, CCTV networks, backup connectivity, and site technology.",
     icon: "network",
     services: [
       {
         id: "unifi-design",
-        title: "UniFi Full Stack Design",
-        description: "Complete design for Wi-Fi, switching, routing, and segmentation.",
-        outcome: "Enterprise-ready network architecture.",
+        title: "Business Network Architecture",
+        description: "Complete design for Wi-Fi, switching, routing, VLANs, VPNs, voice, cameras, and segmentation.",
+        outcome: "Business-ready network architecture.",
         icon: "blueprint",
         category: "networking",
         types: ["assessment"],
         timeframe: "1 week",
-        deliverables: ["Design document", "Bill of materials", "Deployment plan", "Segmentation strategy"],
+        deliverables: ["Design document", "Bill of materials", "Deployment plan", "Segmentation strategy", "VPN and voice readiness"],
       },
       {
         id: "unifi-implementation",
-        title: "UniFi Implementation & Configuration",
-        description: "Professional UniFi deployment with security hardening.",
+        title: "Network Implementation & Configuration",
+        description: "Professional network deployment with routing, switching, Wi-Fi, segmentation, and security hardening.",
         outcome: "Installed, secured, documented network.",
         icon: "network",
         category: "networking",
         types: ["implementation"],
         timeframe: "1-2 weeks",
-        deliverables: ["Configuration", "VLAN setup", "Diagrams", "Handover documentation"],
+        deliverables: ["Configuration", "VLAN setup", "Firewall rules", "Diagrams", "Handover documentation"],
+      },
+      {
+        id: "vpn-remote-access",
+        title: "VPN & Remote Access",
+        description: "Point-to-point, site-to-site, and remote-user VPNs with scoped access and documentation.",
+        outcome: "Secure access between sites, users, suppliers, and trusted systems.",
+        icon: "lock",
+        category: "networking",
+        types: ["assessment", "implementation"],
+        timeframe: "2-5 days",
+        deliverables: ["VPN design", "Firewall and routing rules", "Access testing", "Support runbook"],
+      },
+      {
+        id: "backup-network-resilience",
+        title: "Backup & Network Resilience",
+        description: "Backup internet, failover planning, configuration backups, and DR readiness checks.",
+        outcome: "Reduced outage risk with documented recovery steps.",
+        icon: "cloud",
+        category: "networking",
+        types: ["assessment", "implementation", "managed"],
+        timeframe: "1-2 weeks",
+        deliverables: ["Resilience review", "Backup link plan", "Configuration backup approach", "DR runbook"],
+      },
+      {
+        id: "voip-business-phones",
+        title: "VoIP & Business Phones",
+        description: "Business telephone setup covering handsets, users, call flows, voice VLANs, PoE, and support.",
+        outcome: "Modern phone service with a voice-ready network.",
+        icon: "phone",
+        category: "networking",
+        types: ["implementation", "managed"],
+        timeframe: "1-2 weeks",
+        deliverables: ["Call flow plan", "Phone configuration", "Voice network checks", "User handover"],
       },
       {
         id: "unifi-site-tech",
-        title: "UniFi Site Technology Deployment",
-        description: "End-to-end site technology including cameras, access control, and phones.",
-        outcome: "Unified site technology infrastructure.",
+        title: "Site Technology Deployment",
+        description: "End-to-end site technology including cameras, access control, phones, backup links, and networked devices.",
+        outcome: "Coherent site technology infrastructure.",
         icon: "building",
         category: "networking",
         types: ["implementation"],
@@ -717,13 +753,13 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       {
         id: "managed-network",
         title: "Managed Network Operations",
-        description: "Ongoing network management and optimization.",
+        description: "Ongoing network management, monitoring, configuration backups, updates, and optimization.",
         outcome: "Stable network with proactive maintenance.",
         icon: "settings",
         category: "networking",
         types: ["managed"],
         timeframe: "Monthly",
-        deliverables: ["Monthly health report", "Config backup", "Change log", "Firmware management"],
+        deliverables: ["Monthly health report", "Config backup", "Change log", "Firmware management", "Improvement backlog"],
       },
     ],
   },

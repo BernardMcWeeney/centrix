@@ -1,0 +1,75 @@
+---
+import BuyerServicePage from '../../../components/BuyerServicePage.astro';
+
+const outcomes = [
+  {
+    title: 'Reliable coverage',
+    description: 'Access points placed and configured around the building, user density, walls, roaming, and business-critical areas.',
+    icon: 'wifi',
+  },
+  {
+    title: 'Secure separation',
+    description: 'Staff, guest, tills, cameras, VoIP, and IoT devices can be separated with VLANs and sensible firewall rules.',
+    icon: 'shield',
+  },
+  {
+    title: 'Simple management',
+    description: 'Your network can be documented and supported across Wi-Fi, switching, routing, alerts, and future changes.',
+    icon: 'settings',
+  },
+];
+
+const includes = [
+  'Requirements call and site walkthrough',
+  'Wireless coverage plan and access point placement',
+  'Gateway, switching, and access point configuration',
+  'Guest Wi-Fi with isolation and optional voucher or captive portal',
+  'Staff, guest, voice, camera, IoT, and management network separation',
+  'Performance testing and roaming checks',
+  'Network diagrams and handover documentation',
+  'Optional ongoing monitoring and support',
+];
+
+const process = [
+  { title: 'Survey', description: 'We review the premises, construction, current pain points, user numbers, and devices that need reliable service.' },
+  { title: 'Design', description: 'You get a practical design covering access points, switching, VLANs, guest Wi-Fi, and management.' },
+  { title: 'Install', description: 'Centrix configures and deploys the equipment, tests coverage, tunes settings, and documents the build.' },
+  { title: 'Support', description: 'We can monitor the network, apply updates, keep backups, and help when users or premises change.' },
+];
+
+const faqs = [
+  {
+    question: 'Can this handle busy business Wi-Fi?',
+    answer: 'Yes, when it is designed properly. Access point placement, channel planning, switching, cabling, and network separation matter more than just buying more hardware.',
+  },
+  {
+    question: 'Can guests get Wi-Fi without accessing our business systems?',
+    answer: 'Yes. We can isolate guest Wi-Fi from staff devices and internal systems, with optional captive portal, vouchers, and bandwidth controls.',
+  },
+  {
+    question: 'Can Wi-Fi be part of a wider network upgrade?',
+    answer: 'Yes. Wi-Fi projects often include switching, VLANs, guest access, CCTV separation, VoIP readiness, VPNs, backup links, and support planning.',
+  },
+];
+---
+
+<BuyerServicePage
+  metaTitle="Business Wi-Fi And Wireless Network Services"
+  metaDescription="Super fast, reliable business Wi-Fi design, installation, guest access, VLANs, segmentation, documentation, and managed support for Irish businesses."
+  eyebrow="Business Wi-Fi"
+  heading="Does your business need super fast, reliable Wi-Fi?"
+  lead="Centrix designs, installs, and supports business Wi-Fi for Irish premises where poor coverage, dropouts, guest access, or unmanaged networks are getting in the way."
+  primaryCta={{ label: 'Book a Wi-Fi consultation', href: '/contact?service=business-wifi' }}
+  secondaryCta={{ label: 'View business networking', href: '/services/networking/business-networking' }}
+  proof={['Wi-Fi survey and access point plan', 'Guest and staff network separation', 'Configuration and documentation', 'Optional managed network support']}
+  outcomes={outcomes}
+  includes={includes}
+  process={process}
+  faqs={faqs}
+  related={[
+    { label: 'Business networking', href: '/services/networking/business-networking' },
+    { label: 'CCTV and IP cameras', href: '/services/networking/cctv-ip-cameras' },
+    { label: 'VPN and remote access', href: '/services/networking/vpn-remote-access' },
+    { label: 'All networking services', href: '/networks' },
+  ]}
+/>

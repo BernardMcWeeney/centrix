@@ -1,731 +1,164 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteIcon from '../components/SiteIcon.astro';
+import PlatformLogo from '../components/PlatformLogo.astro';
 
-const title = "Microsoft Cloud Services | Centrix";
-const description = "Microsoft 365 security, Intune, Defender, and Conditional Access. Expert Microsoft cloud services with fixed-scope delivery.";
+const title = 'Microsoft Cloud Services For Irish Businesses';
+const description = 'Microsoft 365, Azure, Intune, Defender, identity, migration, and Copilot readiness services for Irish businesses.';
 
 const services = [
   {
-    id: "m365-assessment",
-    title: "M365 Security Assessment",
-    description: "Comprehensive evaluation of your Microsoft 365 security posture with actionable recommendations.",
-    href: "/services/microsoft-365",
-    icon: "search",
-    color: "blue",
-    featured: true,
-    stats: "5-10 days",
-    deliverables: ["Risk score", "Top 20 fixes", "30/60/90 roadmap"],
+    title: 'Move to Microsoft cloud',
+    description: 'Plan and deliver email, file, identity, and device migration to Microsoft 365 and Azure with controlled changeover.',
+    href: '/services/microsoft-365/cloud-migration',
+    icon: 'cloud',
   },
   {
-    id: "conditional-access",
-    title: "Conditional Access Hardening",
-    description: "Zero-trust access controls with properly configured Conditional Access policies.",
-    href: "/services/microsoft-365",
-    icon: "lock",
-    color: "purple",
-    stats: "1-2 weeks",
-    deliverables: ["CA policy set", "Named locations", "Emergency access"],
+    title: 'Microsoft 365 security',
+    description: 'MFA, Conditional Access, Secure Score improvement, Defender, anti-phishing, audit logging, and tenant hardening.',
+    href: '/services/microsoft-365',
+    icon: 'lock',
   },
   {
-    id: "intune",
-    title: "Intune Baseline Setup",
-    description: "Modern endpoint management with security baselines, compliance policies, and app deployment.",
-    href: "/services/intune",
-    icon: "device",
-    color: "blue",
-    stats: "2-4 weeks",
-    deliverables: ["Security baselines", "Compliance policies", "App deployment"],
+    title: 'Intune device management',
+    description: 'Modern endpoint management for Windows, macOS, iOS, and Android with compliance policies and app deployment.',
+    href: '/services/intune',
+    icon: 'device',
   },
   {
-    id: "defender",
-    title: "Defender for Endpoint",
-    description: "Full endpoint protection with Microsoft Defender, properly tuned and operational.",
-    href: "/services/microsoft-365",
-    icon: "shield",
-    color: "green",
-    stats: "1-2 weeks",
-    deliverables: ["Onboarding", "Policy baseline", "Alert tuning"],
+    title: 'Identity and access',
+    description: 'Entra ID, MFA rollout, privileged access, break-glass accounts, guest access, and secure sign-in policies.',
+    href: '/services/identity',
+    icon: 'users',
   },
   {
-    id: "identity",
-    title: "Entra ID Security",
-    description: "Identity security hardening with MFA modernization and privileged access management.",
-    href: "/services/identity",
-    icon: "user",
-    color: "orange",
-    stats: "1-2 weeks",
-    deliverables: ["MFA rollout", "PIM setup", "Break-glass accounts"],
+    title: 'Defender protection',
+    description: 'Microsoft Defender for endpoint, email, identity, and cloud apps configured for usable alerts and response.',
+    href: '/services/microsoft-365',
+    icon: 'shield',
   },
   {
-    id: "tenant-management",
-    title: "Managed Tenant Operations",
-    description: "Ongoing Microsoft 365 management with security monitoring and optimization.",
-    href: "/contact?service=m365-management",
-    icon: "settings",
-    color: "gray",
-    stats: "Monthly",
-    deliverables: ["Monthly reports", "Change management", "Quarterly reviews"],
+    title: 'Copilot readiness',
+    description: 'Prepare SharePoint, permissions, sensitivity labels, and governance before enabling Microsoft 365 Copilot.',
+    href: '/services/ai-services/copilot-readiness',
+    icon: 'ai',
   },
 ];
 
-const bundles = [
-  {
-    name: "Secure Foundations",
-    tagline: "Get your basics right",
-    description: "Security assessment + Conditional Access + MFA modernization + logging baseline.",
-    ideal: "Organizations starting their Microsoft security journey",
-  },
-  {
-    name: "Intune + Compliance",
-    tagline: "Modern endpoint management",
-    description: "Intune baseline + security policies + device compliance + app protection.",
-    ideal: "Organizations moving to modern device management",
-  },
-  {
-    name: "Defender Rollout",
-    tagline: "Full endpoint protection",
-    description: "Defender onboarding + policy tuning + alert setup + handover runbook.",
-    ideal: "Organizations upgrading their endpoint security",
-  },
-];
-
-const benefits = [
-  { title: "Microsoft Partner", description: "Certified Microsoft security partner with deep platform expertise", icon: "badge" },
-  { title: "500+ Tenants", description: "Proven methodology refined across hundreds of Microsoft 365 environments", icon: "check" },
-  { title: "Fixed Scope", description: "Clear deliverables and predictable pricing on every engagement", icon: "document" },
-  { title: "Ongoing Support", description: "We don't disappear after handover - ongoing management available", icon: "support" },
+const checklist = [
+  'Email and domain migration planning',
+  'SharePoint and OneDrive structure',
+  'MFA and Conditional Access baseline',
+  'Intune enrolment and device compliance',
+  'Defender policies and alert tuning',
+  'Backup, retention, and recovery review',
+  'Admin role and privileged access review',
+  'User handover and plain-English documentation',
 ];
 ---
 
 <BaseLayout title={title} description={description}>
-  <section class="hero">
-    <div class="hero-bg">
-      <div class="hero-gradient"></div>
-      <div class="hero-grid"></div>
-    </div>
-    <div class="container-wide">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="3" width="8" height="8" rx="1"/>
-            <rect x="13" y="3" width="8" height="8" rx="1"/>
-            <rect x="3" y="13" width="8" height="8" rx="1"/>
-            <rect x="13" y="13" width="8" height="8" rx="1"/>
-          </svg>
-          Microsoft Partner
-        </div>
-        <h1 class="hero-title">Microsoft 365<br /><span class="hero-title-accent">Security & Management</span></h1>
-        <p class="hero-description">Unlock the full security potential of your Microsoft investment. Assessments, hardening, Intune, Defender - all with fixed-scope delivery.</p>
-        <div class="hero-actions">
-          <a href="/services/microsoft-365" class="btn-hero-primary">
-            Start with Assessment
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="#services" class="btn-hero-secondary">View All Services</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="services" class="services-section">
-    <div class="container-wide">
-      <div class="section-header">
-        <span class="section-tag">Services</span>
-        <h2 class="section-title">Microsoft cloud services</h2>
-        <p class="section-description">From security assessments to fully managed operations. Fixed scope, clear deliverables.</p>
-      </div>
-      <div class="services-grid">
-        {services.map((service) => (
-          <a href={service.href} class={`service-card service-card-${service.color} ${service.featured ? 'featured' : ''}`}>
-            {service.featured && <div class="featured-badge">Start Here</div>}
-            <div class="service-icon">
-              {service.icon === 'search' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>}
-              {service.icon === 'lock' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>}
-              {service.icon === 'device' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>}
-              {service.icon === 'shield' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>}
-              {service.icon === 'user' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>}
-              {service.icon === 'settings' && <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>}
+  <main class="consult-page">
+    <section class="consult-subhero">
+      <div class="container-wide">
+        <div class="consult-subhero-grid">
+          <div>
+            <div class="consult-eyebrow">Microsoft Cloud</div>
+            <h1 class="consult-subhero-title">Move to Microsoft, secure it properly, and manage it with confidence.</h1>
+            <p class="consult-lead">
+              Centrix helps Irish businesses get practical value from Microsoft 365, Azure, Intune, Defender, Entra ID, and Copilot without leaving security and governance behind.
+            </p>
+            <div class="consult-actions">
+              <a href="/services/microsoft-365/cloud-migration" class="consult-btn consult-btn-primary">
+                Plan a cloud move
+                <SiteIcon name="arrow-right" size={18} />
+              </a>
+              <a href="/contact" class="consult-btn consult-btn-secondary">Talk to Centrix</a>
             </div>
-            <h3 class="service-title">{service.title}</h3>
-            <p class="service-description">{service.description}</p>
-            <ul class="service-deliverables">
-              {service.deliverables.map((d) => (
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
-                  {d}
-                </li>
-              ))}
+          </div>
+          <aside class="consult-proof-panel">
+            <h2>Common Microsoft needs</h2>
+            <ul>
+              <li><SiteIcon name="check" size={18} /><span>Move email and files to the cloud</span></li>
+              <li><SiteIcon name="check" size={18} /><span>Secure Microsoft 365 after growth or change</span></li>
+              <li><SiteIcon name="check" size={18} /><span>Manage laptops and phones with Intune</span></li>
+              <li><SiteIcon name="check" size={18} /><span>Prepare safely for Copilot and AI</span></li>
             </ul>
-            <div class="service-footer">
-              <span class="service-stat">{service.stats}</span>
-              <span class="service-arrow">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-section compact">
+      <div class="container-wide">
+        <div class="platform-strip">
+          <PlatformLogo name="microsoft" />
+          <PlatformLogo name="google" />
+          <PlatformLogo name="cloudflare" />
+          <PlatformLogo name="microsoft" label="Defender" />
+          <PlatformLogo name="microsoft" label="Intune" />
+          <PlatformLogo name="microsoft" label="Copilot" />
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-section">
+      <div class="container-wide">
+        <div class="consult-section-heading">
+          <span class="consult-kicker">Microsoft Services</span>
+          <h2>Everything your business needs around the Microsoft platform.</h2>
+        </div>
+        <div class="consult-card-grid three">
+          {services.map((service) => (
+            <a href={service.href} class="consult-card">
+              <div class="consult-card-icon"><SiteIcon name={service.icon} size={24} /></div>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+              <span class="consult-card-link">
+                View details
+                <SiteIcon name="arrow-right" size={16} />
               </span>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="bundles-section">
-    <div class="container-wide">
-      <div class="section-header">
-        <span class="section-tag">Outcome Bundles</span>
-        <h2 class="section-title">Common starting points</h2>
-        <p class="section-description">Not sure where to start? These bundles combine services for common outcomes.</p>
-      </div>
-      <div class="bundles-grid">
-        {bundles.map((bundle) => (
-          <div class="bundle-card">
-            <h3 class="bundle-name">{bundle.name}</h3>
-            <p class="bundle-tagline">{bundle.tagline}</p>
-            <p class="bundle-description">{bundle.description}</p>
-            <div class="bundle-ideal">
-              <span class="ideal-label">Ideal for:</span>
-              <span class="ideal-text">{bundle.ideal}</span>
-            </div>
-            <a href="/contact" class="btn-bundle">Discuss This Bundle</a>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="benefits-section">
-    <div class="container-wide">
-      <div class="section-header">
-        <span class="section-tag">Why Centrix</span>
-        <h2 class="section-title">Microsoft experts you can trust</h2>
-      </div>
-      <div class="benefits-grid">
-        {benefits.map((benefit) => (
-          <div class="benefit-card">
-            <div class="benefit-icon">
-              {benefit.icon === 'badge' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15l-2 5 2-1 2 1-2-5z"/><circle cx="12" cy="8" r="6"/></svg>}
-              {benefit.icon === 'check' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>}
-              {benefit.icon === 'document' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>}
-              {benefit.icon === 'support' && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>}
-            </div>
-            <h3 class="benefit-title">{benefit.title}</h3>
-            <p class="benefit-description">{benefit.description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-section">
-    <div class="container-wide">
-      <div class="cta-card">
-        <div class="cta-content">
-          <h2 class="cta-title">Ready to secure your Microsoft 365?</h2>
-          <p class="cta-description">Start with a security assessment to understand your current posture and get a clear roadmap.</p>
-          <div class="cta-actions">
-            <a href="/contact" class="btn-cta-primary">
-              Book Consultation
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="/services/microsoft-365" class="btn-cta-secondary">View Assessment Details</a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-section consult-section-muted">
+      <div class="container-wide">
+        <div class="consult-split">
+          <div>
+            <span class="consult-kicker">Good Cloud Foundations</span>
+            <h2>A Microsoft tenant should be useful, secure, and easy to operate.</h2>
+            <p>
+              We focus on the controls that reduce day-to-day risk: identity, devices, email protection, data structure, backup thinking, and clear admin practices.
+            </p>
+          </div>
+          <div class="consult-check-list">
+            {checklist.map((item) => (
+              <div class="consult-check-item">
+                <SiteIcon name="check" size={18} />
+                <span>{item}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="consult-cta">
+      <div class="container-wide">
+        <div class="consult-cta-inner">
+          <div>
+            <span class="consult-kicker">Next Step</span>
+            <h2>Start with a cloud migration plan, Microsoft 365 review, or Intune rollout.</h2>
+          </div>
+          <a href="/contact" class="consult-btn consult-btn-primary">
+            Book a Microsoft consultation
+            <SiteIcon name="arrow-right" size={18} />
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 </BaseLayout>
-
-<style>
-  :root {
-    --accent: #0078d4;
-    --accent-light: rgba(0, 120, 212, 0.1);
-    --accent-glow: rgba(0, 120, 212, 0.3);
-  }
-
-  .hero {
-    position: relative;
-    padding: 8rem 0 5rem;
-    overflow: hidden;
-  }
-  @media (min-width: 1024px) {
-    .hero { padding: 10rem 0 6rem; }
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-
-  .hero-gradient {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-glow), transparent),
-      linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-  }
-
-  .hero-grid {
-    position: absolute;
-    inset: 0;
-    background-image: linear-gradient(var(--border-primary) 1px, transparent 1px),
-                      linear-gradient(90deg, var(--border-primary) 1px, transparent 1px);
-    background-size: 60px 60px;
-    opacity: 0.3;
-    mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
-  }
-
-  .hero .container-wide {
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-content {
-    max-width: 42rem;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: var(--accent-light);
-    border: 1px solid var(--accent);
-    border-radius: 9999px;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: var(--text-primary);
-    margin-bottom: 1.5rem;
-  }
-  @media (min-width: 768px) {
-    .hero-title { font-size: 3.5rem; }
-  }
-
-  .hero-title-accent {
-    background: linear-gradient(135deg, var(--accent), #8b5cf6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-description {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .btn-hero-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.875rem 1.5rem;
-    background: var(--accent);
-    color: white;
-    font-weight: 500;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-hero-primary:hover {
-    background: #106ebe;
-    transform: translateY(-1px);
-    box-shadow: 0 10px 30px -10px var(--accent-glow);
-  }
-
-  .btn-hero-secondary {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.875rem 1.5rem;
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    font-weight: 500;
-    border: 1px solid var(--border-primary);
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-hero-secondary:hover {
-    border-color: var(--border-hover);
-    background: var(--bg-secondary);
-  }
-
-  .services-section {
-    padding: 5rem 0;
-  }
-
-  .section-header {
-    max-width: 42rem;
-    margin-bottom: 3rem;
-  }
-
-  .section-tag {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    background: var(--accent-light);
-    color: var(--accent);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-radius: 9999px;
-    margin-bottom: 1rem;
-  }
-
-  .section-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
-  @media (min-width: 768px) {
-    .section-title { font-size: 2.5rem; }
-  }
-
-  .section-description {
-    font-size: 1.125rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  @media (min-width: 768px) {
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (min-width: 1024px) {
-    .services-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-
-  .service-card {
-    position: relative;
-    background: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 1rem;
-    padding: 1.5rem;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    transition: all 0.3s;
-  }
-
-  .service-card:hover {
-    border-color: var(--card-accent);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
-  }
-
-  .service-card.featured {
-    border-color: var(--accent);
-  }
-
-  .service-card-blue { --card-accent: #0078d4; }
-  .service-card-purple { --card-accent: #8b5cf6; }
-  .service-card-green { --card-accent: #22c55e; }
-  .service-card-orange { --card-accent: #f97316; }
-  .service-card-gray { --card-accent: #71717a; }
-
-  .featured-badge {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.25rem 0.75rem;
-    background: var(--accent);
-    color: white;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    border-radius: 9999px;
-  }
-
-  .service-icon {
-    width: 56px;
-    height: 56px;
-    background: var(--bg-secondary);
-    border-radius: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--card-accent);
-    margin-bottom: 1rem;
-  }
-
-  .service-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .service-description {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 1rem;
-  }
-
-  .service-deliverables {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1rem;
-    flex: 1;
-  }
-
-  .service-deliverables li {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
-    padding: 0.25rem 0;
-  }
-
-  .service-deliverables svg {
-    color: var(--success);
-    flex-shrink: 0;
-  }
-
-  .service-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-primary);
-  }
-
-  .service-stat {
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--text-tertiary);
-  }
-
-  .service-arrow {
-    color: var(--card-accent);
-    transition: transform 0.2s;
-  }
-  .service-card:hover .service-arrow {
-    transform: translateX(4px);
-  }
-
-  .bundles-section {
-    padding: 5rem 0;
-    background: var(--bg-secondary);
-  }
-
-  .bundles-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  @media (min-width: 768px) {
-    .bundles-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-
-  .bundle-card {
-    background: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    border-radius: 1rem;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .bundle-name {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.25rem;
-  }
-
-  .bundle-tagline {
-    font-size: 0.875rem;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 1rem;
-  }
-
-  .bundle-description {
-    font-size: 0.9375rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    flex: 1;
-  }
-
-  .bundle-ideal {
-    padding: 0.75rem;
-    background: var(--bg-secondary);
-    border-radius: 0.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .ideal-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--text-tertiary);
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 0.25rem;
-  }
-
-  .ideal-text {
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
-  }
-
-  .btn-bundle {
-    display: block;
-    text-align: center;
-    padding: 0.75rem 1rem;
-    background: var(--bg-secondary);
-    color: var(--text-primary);
-    font-weight: 500;
-    border: 1px solid var(--border-primary);
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-
-  .btn-bundle:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: white;
-  }
-
-  .benefits-section {
-    padding: 5rem 0;
-  }
-
-  .benefits-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  @media (min-width: 768px) {
-    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (min-width: 1024px) {
-    .benefits-grid { grid-template-columns: repeat(4, 1fr); }
-  }
-
-  .benefit-card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
-    border-radius: 1rem;
-    padding: 1.5rem;
-  }
-
-  .benefit-icon {
-    width: 48px;
-    height: 48px;
-    background: var(--accent-light);
-    border-radius: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-
-  .benefit-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .benefit-description {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  .cta-section {
-    padding: 5rem 0 6rem;
-  }
-
-  .cta-card {
-    background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
-    border-radius: 1.5rem;
-    padding: 3rem 2rem;
-    text-align: center;
-  }
-  @media (min-width: 768px) {
-    .cta-card { padding: 4rem; }
-  }
-
-  .cta-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 1rem;
-  }
-
-  .cta-description {
-    font-size: 1.125rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 2rem;
-    max-width: 32rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .cta-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  .btn-cta-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 2rem;
-    background: white;
-    color: var(--accent);
-    font-weight: 600;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-cta-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
-  }
-
-  .btn-cta-secondary {
-    display: inline-flex;
-    align-items: center;
-    padding: 1rem 2rem;
-    background: transparent;
-    color: white;
-    font-weight: 500;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-cta-secondary:hover {
-    border-color: white;
-    background: rgba(255, 255, 255, 0.1);
-  }
-</style>

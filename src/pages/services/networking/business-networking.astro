@@ -1,0 +1,75 @@
+---
+import BuyerServicePage from '../../../components/BuyerServicePage.astro';
+
+const outcomes = [
+  {
+    title: 'Reliable site network',
+    description: 'Routing, switching, Wi-Fi, PoE, cabling, and cabinets are planned around how the premises actually works.',
+    icon: 'network',
+  },
+  {
+    title: 'Secure separation',
+    description: 'Staff, guest, tills, cameras, VoIP, IoT, and management traffic can be separated with VLANs and practical firewall rules.',
+    icon: 'shield',
+  },
+  {
+    title: 'Room to grow',
+    description: 'The network can support future phones, cameras, VPNs, backup links, additional users, and new business systems.',
+    icon: 'settings',
+  },
+];
+
+const includes = [
+  'Site requirements and current network review',
+  'Gateway, routing, firewall, switching, PoE, and access point design',
+  'Business Wi-Fi, guest access, VLANs, and firewall rule planning',
+  'Point-to-point, site-to-site, and remote-access VPN planning where required',
+  'VoIP and telephone network readiness, including voice VLAN and QoS considerations',
+  'CCTV, IP camera, till, IoT, and device network separation',
+  'Backup internet, failover, and recovery considerations for important sites',
+  'Network diagrams, configuration backup approach, and admin handover',
+];
+
+const process = [
+  { title: 'Review', description: 'We review the site, internet, cabinets, cabling, users, devices, business systems, and current reliability issues.' },
+  { title: 'Design', description: 'Centrix creates a practical network design covering routing, switching, Wi-Fi, segmentation, VPNs, voice, cameras, and resilience.' },
+  { title: 'Deploy', description: 'We configure, install, test, secure, document, and hand over the agreed network changes.' },
+  { title: 'Support', description: 'Ongoing support can include monitoring, updates, config backups, troubleshooting, health checks, and change planning.' },
+];
+
+const faqs = [
+  {
+    question: 'Is this only Wi-Fi?',
+    answer: 'No. Wi-Fi is one part of the network. Centrix can also design routing, switching, VLANs, VPNs, voice networks, camera networks, backup connectivity, and managed support.',
+  },
+  {
+    question: 'Can you connect multiple business sites?',
+    answer: 'Yes. We can plan point-to-point and site-to-site VPNs between offices, warehouses, cloud resources, or trusted partner locations, with firewall rules matched to the business need.',
+  },
+  {
+    question: 'Can you work with an electrician or cabling contractor?',
+    answer: 'Yes. Centrix can provide the network design, cabinet layout, device placement, cabling requirements, commissioning checks, and documentation.',
+  },
+];
+---
+
+<BuyerServicePage
+  metaTitle="Business Network Design And Deployment"
+  metaDescription="Business network design, deployment, VPNs, Wi-Fi, switching, routing, VoIP readiness, backup connectivity, segmentation, documentation, and support for Irish businesses."
+  eyebrow="Business Networking"
+  heading="Does your business need a complete network that supports more than Wi-Fi?"
+  lead="Centrix designs, installs, secures, and supports business networks for Irish premises that need reliable Wi-Fi, routing, switching, VPNs, voice, CCTV, backup connectivity, and clear documentation."
+  primaryCta={{ label: 'Discuss a network project', href: '/contact?service=business-networking' }}
+  secondaryCta={{ label: 'View VPN services', href: '/services/networking/vpn-remote-access' }}
+  proof={['Routing, switching, Wi-Fi, and PoE', 'Point-to-point and remote-access VPNs', 'Voice, CCTV, tills, IoT, and guest separation', 'Backup connectivity and managed support']}
+  outcomes={outcomes}
+  includes={includes}
+  process={process}
+  faqs={faqs}
+  related={[
+    { label: 'Business Wi-Fi', href: '/services/networking/business-wifi' },
+    { label: 'VPN and remote access', href: '/services/networking/vpn-remote-access' },
+    { label: 'Backup and resilience', href: '/services/networking/backup-resilience' },
+    { label: 'VoIP and business phones', href: '/services/networking/voip-business-phones' },
+  ]}
+/>

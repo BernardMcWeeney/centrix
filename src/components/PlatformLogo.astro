@@ -1,0 +1,68 @@
+---
+interface Props {
+  name: 'microsoft' | 'google' | 'cloudflare' | 'chatgpt' | 'claude' | 'unifi';
+  label?: string;
+}
+
+const { name, label } = Astro.props;
+
+const labels = {
+  microsoft: 'Microsoft',
+  google: 'Google',
+  cloudflare: 'Cloudflare',
+  chatgpt: 'ChatGPT',
+  claude: 'Claude',
+  unifi: 'UniFi',
+};
+
+const logos = {
+  microsoft: '/logos/microsoft.svg',
+  google: '/logos/google.png',
+  cloudflare: '/logos/cloudflare.svg',
+  chatgpt: '/logos/chatgpt.svg',
+  claude: '/logos/claude.svg',
+  unifi: '/logos/ubiquiti.svg',
+};
+---
+
+<span class={`platform-logo platform-logo-${name}`} aria-label={label || labels[name]}>
+  <span class="platform-mark" aria-hidden="true">
+    <img src={logos[name]} alt="" loading="lazy" decoding="async" />
+  </span>
+  <span class="platform-label">{label || labels[name]}</span>
+</span>
+
+<style>
+  .platform-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-width: 0;
+    color: var(--text-primary);
+    font-size: 0.92rem;
+    font-weight: 800;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .platform-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    padding: 0.25rem;
+    flex: 0 0 auto;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.4rem;
+    background: #ffffff;
+    box-shadow: var(--shadow-xs);
+  }
+
+  .platform-mark img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+</style>

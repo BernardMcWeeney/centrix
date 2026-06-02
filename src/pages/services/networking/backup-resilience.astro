@@ -1,0 +1,74 @@
+---
+import BuyerServicePage from '../../../components/BuyerServicePage.astro';
+
+const outcomes = [
+  {
+    title: 'Less downtime risk',
+    description: 'Important sites can have backup connectivity, failover thinking, and recovery paths for critical services.',
+    icon: 'cloud',
+  },
+  {
+    title: 'Recoverable configuration',
+    description: 'Network configuration backups, device records, diagrams, and access notes reduce confusion during an outage.',
+    icon: 'compliance',
+  },
+  {
+    title: 'Practical DR readiness',
+    description: 'Recovery steps, dependencies, owners, and test checks are documented so the plan is not theoretical.',
+    icon: 'shield',
+  },
+];
+
+const includes = [
+  'Critical services, network dependencies, and outage risk review',
+  'Backup internet and failover options for important sites',
+  'Network configuration backup approach and device inventory',
+  'Microsoft cloud, file, and system backup review where relevant',
+  'RTO and RPO discussion in plain business terms',
+  'VPN, voice, CCTV, and payment system resilience considerations',
+  'Failover, restore, or recovery test checklist',
+  'DR runbook, owner list, and improvement backlog',
+];
+
+const process = [
+  { title: 'Identify', description: 'We map the systems, connections, users, and suppliers that matter most when the business is under pressure.' },
+  { title: 'Prioritise', description: 'Centrix separates must-have resilience from nice-to-have upgrades so spend follows business risk.' },
+  { title: 'Implement', description: 'We configure agreed backup links, config backup practices, monitoring, access notes, and recovery documentation.' },
+  { title: 'Test', description: 'Failover and recovery checks can be scheduled so the business knows what actually works before an incident.' },
+];
+
+const faqs = [
+  {
+    question: 'Is this data backup or network backup?',
+    answer: 'It can include both. Centrix can review backup internet, network config backups, VPN resilience, and Microsoft or business system backup arrangements where they affect recovery.',
+  },
+  {
+    question: 'Can you add backup internet for a business site?',
+    answer: 'Yes. We can assess the site, primary connection, failover options, routing behaviour, and what should keep working during an outage.',
+  },
+  {
+    question: 'Can you help with disaster recovery planning?',
+    answer: 'Yes. We can produce practical DR runbooks, dependency maps, test checklists, and improvement backlogs for the systems Centrix supports.',
+  },
+];
+---
+
+<BuyerServicePage
+  metaTitle="Backup, DR And Network Resilience"
+  metaDescription="Backup internet, failover planning, network configuration backups, recovery runbooks, disaster recovery readiness, and resilience support for Irish businesses."
+  eyebrow="Backup & Resilience"
+  heading="Would your business keep working if the network, internet, or key systems failed?"
+  lead="Centrix helps businesses reduce outage risk with backup connectivity, configuration backups, recovery planning, failover checks, and practical DR documentation."
+  primaryCta={{ label: 'Discuss resilience', href: '/contact?service=backup-resilience' }}
+  secondaryCta={{ label: 'View VPN services', href: '/services/networking/vpn-remote-access' }}
+  proof={['Backup internet and failover planning', 'Network configuration backup approach', 'DR runbooks and dependency mapping', 'Recovery and failover test checks']}
+  outcomes={outcomes}
+  includes={includes}
+  process={process}
+  faqs={faqs}
+  related={[
+    { label: 'Business networking', href: '/services/networking/business-networking' },
+    { label: 'VPN and remote access', href: '/services/networking/vpn-remote-access' },
+    { label: 'Managed security', href: '/services/managed-security' },
+  ]}
+/>
