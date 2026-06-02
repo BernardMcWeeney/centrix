@@ -2,24 +2,19 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { COMPANY_INFO } from '../consts';
 
-const title = "Contact Us";
-const description = "Get in touch with Centrix for Irish business IT consultancy, Microsoft cloud, business networking, VPNs, VoIP, security, compliance readiness, and AI services.";
-const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const title = "Contact Centrix";
+const description = "Message Centrix about Irish business IT consultancy, Microsoft cloud, business networking, VPNs, VoIP, security, compliance readiness, and AI services.";
+const runtimeEnv = Astro.locals.runtime?.env;
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || runtimeEnv?.PUBLIC_TURNSTILE_SITE_KEY;
+const canonicalUrl = new URL('/contact/', Astro.site || Astro.url.origin).toString();
 
 const contactMethods = [
   {
-    title: "Email Us",
-    description: "Send a project or support enquiry.",
+    title: "Email Centrix",
+    description: "Send a project, support, or consultancy enquiry.",
     value: COMPANY_INFO.email,
     href: `mailto:${COMPANY_INFO.email}`,
     icon: "email",
-  },
-  {
-    title: "Call Us",
-    description: "Speak with Centrix about your IT plans.",
-    value: COMPANY_INFO.phone,
-    href: `tel:${COMPANY_INFO.phone.replace(/\D/g, '')}`,
-    icon: "phone",
   },
   {
     title: "Based In",
@@ -62,6 +57,51 @@ const faqs = [
     a: "Timelines depend on scope. Small Microsoft reviews can be short, while migrations, networking, VPN, VoIP, Wi-Fi, or CCTV projects need proper survey, planning, and rollout.",
   },
 ];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://centrix.ie/#organization",
+      "name": COMPANY_INFO.name,
+      "url": "https://centrix.ie/",
+      "email": COMPANY_INFO.email,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Duleek",
+        "addressRegion": "County Meath",
+        "addressCountry": "IE"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Ireland"
+      }
+    },
+    {
+      "@type": "ContactPage",
+      "@id": `${canonicalUrl}#contact-page`,
+      "url": canonicalUrl,
+      "name": "Contact Centrix",
+      "description": description,
+      "mainEntity": {
+        "@id": "https://centrix.ie/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${canonicalUrl}#faq`,
+      "mainEntity": faqs.map((faq) => ({
+        "@type": "Question",
+        "name": faq.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.a
+        }
+      }))
+    }
+  ]
+};
 ---
 
 <BaseLayout title={title} description={description}>
@@ -70,9 +110,9 @@ const faqs = [
     <div class="container-wide">
       <div class="hero-content">
         <div class="hero-eyebrow">Contact</div>
-        <h1 class="hero-title">Get in touch</h1>
+        <h1 class="hero-title">Message Centrix</h1>
         <p class="hero-description">
-          Talk to Centrix about Microsoft cloud, business networking, VPNs, VoIP, Wi-Fi, CCTV, security, compliance readiness, AI, or general business IT consultancy.
+          Send a message about Microsoft cloud, business networking, VPNs, VoIP, Wi-Fi, CCTV, security, compliance readiness, AI, or general business IT consultancy.
         </p>
       </div>
     </div>
@@ -84,8 +124,8 @@ const faqs = [
       <div class="contact-grid">
         <!-- Contact Form -->
         <div class="form-section">
-          <h2 class="form-title">Send us a message</h2>
-          <form class="contact-form" action="/api/contact" method="POST" data-contact-form>
+          <h2 class="form-title">Send a message</h2>
+          <form class="contact-form" action="/api/contact" method="POST" data-contact-form data-turnstile-configured={turnstileSiteKey ? 'true' : 'false'}>
             <div class="form-row">
               <div class="form-group">
                 <label for="firstName" class="form-label">First Name</label>
@@ -127,6 +167,11 @@ const faqs = [
                 <div class="cf-turnstile" data-sitekey={turnstileSiteKey}></div>
               </div>
             )}
+            {!turnstileSiteKey && (
+              <p class="turnstile-config-warning">
+                Contact form security is not configured yet. Please email <a href={`mailto:${COMPANY_INFO.email}`}>{COMPANY_INFO.email}</a>.
+              </p>
+            )}
 
             <p class="form-status" data-form-status aria-live="polite"></p>
 
@@ -141,8 +186,8 @@ const faqs = [
 
         <!-- Contact Info -->
         <div class="info-section">
-          <h2 class="info-title">Contact Information</h2>
-          <p class="info-description">Prefer to reach out directly? Contact us using any of the methods below.</p>
+          <h2 class="info-title">Message details</h2>
+          <p class="info-description">Use the form or email Centrix directly with a short summary of the project, issue, location, and deadline.</p>
 
           <div class="contact-methods">
             {contactMethods.map((method) => (
@@ -151,11 +196,6 @@ const faqs = [
                   {method.icon === "email" && (
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                       <path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                    </svg>
-                  )}
-                  {method.icon === "phone" && (
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                      <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
                     </svg>
                   )}
                   {method.icon === "location" && (
@@ -210,9 +250,10 @@ const faqs = [
       </div>
     </div>
   </section>
-</BaseLayout>
 
-{turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+  {turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
 
 <script>
   function initContactForm() {
@@ -227,6 +268,7 @@ const faqs = [
     const status = form.querySelector('[data-form-status]') as HTMLElement | null;
     const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
     const defaultButtonHtml = submitButton?.innerHTML || '';
+    const turnstileConfigured = form.dataset.turnstileConfigured === 'true';
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -242,6 +284,15 @@ const faqs = [
       }
 
       try {
+        if (!turnstileConfigured) {
+          throw new Error('Contact form security is not configured yet. Please email hello@centrix.ie.');
+        }
+
+        const turnstileResponse = form.querySelector('[name="cf-turnstile-response"]') as HTMLInputElement | null;
+        if (!turnstileResponse?.value) {
+          throw new Error('Please complete the security check before sending.');
+        }
+
         const response = await fetch(form.action, {
           method: 'POST',
           body: new FormData(form),
@@ -415,6 +466,27 @@ const faqs = [
     min-height: 4.25rem;
   }
 
+  .turnstile-config-warning {
+    margin: 0;
+    padding: 0.75rem;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.375rem;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+
+  .turnstile-config-warning a {
+    color: var(--brand-primary);
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .turnstile-config-warning a:hover {
+    text-decoration: underline;
+  }
+
   .form-status {
     min-height: 1.25rem;
     margin: 0;
@@ -565,3 +637,4 @@ const faqs = [
     line-height: 1.6;
   }
 </style>
+</BaseLayout>

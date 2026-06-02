@@ -22,7 +22,7 @@ export async function onRequestPost(context) {
     }
 
     if (!turnstileToken) {
-      return jsonResponse({ success: false, message: 'CAPTCHA verification failed.' }, 400);
+      return jsonResponse({ success: false, message: 'Please complete the security check before sending.' }, 400);
     }
 
     const turnstileVerification = await verifyTurnstileToken(
@@ -32,7 +32,12 @@ export async function onRequestPost(context) {
     );
 
     if (!turnstileVerification.success) {
-      return jsonResponse({ success: false, message: 'CAPTCHA verification failed.' }, 400);
+      console.error('Turnstile verification failed:', {
+        errorCodes: turnstileVerification['error-codes'] || [],
+        hostname: turnstileVerification.hostname,
+        action: turnstileVerification.action,
+      });
+      return jsonResponse({ success: false, message: 'Security check failed. Please refresh the page and try again.' }, 400);
     }
 
     const region = env.AWS_REGION;

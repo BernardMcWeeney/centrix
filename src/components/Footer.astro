@@ -33,11 +33,7 @@ const footerLinks = {
         <!-- Brand Column -->
         <div class="footer-brand">
           <a href="/" class="footer-logo">
-            <svg class="footer-logo-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <rect width="24" height="24" rx="4" fill="currentColor"/>
-              <path d="M6 9l6-3 6 3v6l-6 3-6-3V9z" stroke="white" stroke-width="1.5" fill="none"/>
-              <path d="M12 6v12M6 9l12 6M18 9l-12 6" stroke="white" stroke-width="1.5" stroke-opacity="0.5"/>
-            </svg>
+            <img class="footer-logo-icon" src="/logos/centrix.svg" alt="" width="24" height="24" decoding="async" loading="lazy" />
             <span class="footer-logo-text">{SITE_TITLE}</span>
           </a>
           <p class="footer-description">
@@ -146,6 +142,12 @@ const footerLinks = {
     font-weight: 600;
     color: var(--text-primary);
     letter-spacing: 0;
+  }
+
+  .footer-logo-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0.45rem;
   }
 
   .footer-description {

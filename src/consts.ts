@@ -10,7 +10,6 @@ export const COMPANY_INFO = {
   name: "Centrix",
   tagline: "Irish Business IT & Technology Consultancy",
   email: "hello@centrix.ie",
-  phone: "+353 1 000 0000",
   address: "Duleek, County Meath, Ireland",
 };
 

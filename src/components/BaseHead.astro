@@ -2,6 +2,7 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
+import { SITE_TITLE } from '../consts';
 
 interface Props {
 	title: string;
@@ -9,10 +10,12 @@ interface Props {
 	image?: string;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
 const { title, description, image = '/og-image.jpg' } = Astro.props;
 const fullTitle = title === 'Centrix' ? title : `${title} | Centrix`;
+const siteOrigin = Astro.site ?? new URL(Astro.url.origin);
+const canonicalURL = new URL(Astro.url.pathname, siteOrigin);
+const imageURL = new URL(image, siteOrigin);
+const rssURL = new URL('/rss.xml', siteOrigin);
 ---
 
 <!-- Global Metadata -->
@@ -20,6 +23,8 @@ const fullTitle = title === 'Centrix' ? title : `${title} | Centrix`;
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+<meta name="format-detection" content="telephone=no" />
 
 <!-- Theme Color - dynamically updated by ThemeToggle -->
 <meta name="theme-color" content="#ffffff" />
@@ -27,6 +32,7 @@ const fullTitle = title === 'Centrix' ? title : `${title} | Centrix`;
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
+<link rel="alternate" type="application/rss+xml" title={`${SITE_TITLE} News`} href={rssURL} />
 
 <!-- Primary Meta Tags -->
 <title>{fullTitle}</title>
@@ -35,17 +41,19 @@ const fullTitle = title === 'Centrix' ? title : `${title} | Centrix`;
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
+<meta property="og:site_name" content={SITE_TITLE} />
+<meta property="og:locale" content="en_IE" />
+<meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:image" content={imageURL} />
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={fullTitle} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageURL} />
 
 <!-- Preconnect to Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />

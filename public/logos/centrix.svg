@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="centrix-logo-title">
+  <title id="centrix-logo-title">Centrix</title>
   <defs>
     <linearGradient id="centrix-bg" x1="18" y1="14" x2="108" y2="114" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#3b82f6"/>
