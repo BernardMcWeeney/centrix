@@ -30,4 +30,6 @@ Set these Cloudflare Worker environment variables:
 - `FROM_EMAIL_ADDRESS`
 - `TO_EMAIL_ADDRESS`
 
-`PUBLIC_TURNSTILE_SITE_KEY` can be a normal variable. Treat `TURNSTILE_SECRET_KEY`, `AWS_ACCESS_KEY_ID`, and `AWS_SECRET_ACCESS_KEY` as secrets. In Cloudflare Turnstile, make sure the widget allows `centrix.ie` and any preview domain you use for testing. In AWS SES, the `FROM_EMAIL_ADDRESS` must be verified in the same `AWS_REGION`.
+`PUBLIC_TURNSTILE_SITE_KEY` is the browser widget site key. It can be a normal variable or secret, but it is not the same value as `TURNSTILE_SECRET_KEY`. The code also accepts `TURNSTILE_SITE_KEY`, `CF_TURNSTILE_SITE_KEY`, `CLOUDFLARE_TURNSTILE_SITE_KEY`, or `TURNSTILE_PUBLIC_KEY` for the site key.
+
+Treat `TURNSTILE_SECRET_KEY`, `AWS_ACCESS_KEY_ID`, and `AWS_SECRET_ACCESS_KEY` as secrets. The code also accepts `CF_TURNSTILE_SECRET_KEY`, `CLOUDFLARE_TURNSTILE_SECRET_KEY`, or `TURNSTILE_SECRET` for the Turnstile secret. In Cloudflare Turnstile, make sure the widget allows `centrix.ie` and any preview domain you use for testing. In AWS SES, the `FROM_EMAIL_ADDRESS` must be verified in the same `AWS_REGION`.

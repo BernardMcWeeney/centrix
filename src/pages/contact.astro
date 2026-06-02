@@ -1,14 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { COMPANY_INFO } from '../consts';
+import { checkedTurnstileSiteKeyNames, getTurnstileSiteKey } from '../server/contact-env.js';
 import { env } from 'cloudflare:workers';
 
 export const prerender = false;
 
 const title = "Contact Centrix";
 const description = "Message Centrix about Irish business IT consultancy, Microsoft cloud, business networking, VPNs, VoIP, security, compliance readiness, and AI services.";
-const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || env.PUBLIC_TURNSTILE_SITE_KEY;
+const turnstileSiteKey = getTurnstileSiteKey(env);
 const canonicalUrl = new URL('/contact/', Astro.site || Astro.url.origin).toString();
+
+if (!turnstileSiteKey) {
+  console.error('Turnstile site key is not configured. Checked env vars:', checkedTurnstileSiteKeyNames().join(', '));
+}
 
 const contactMethods = [
   {
@@ -164,16 +169,12 @@ const structuredData = {
               <textarea id="message" name="message" rows="4" required class="form-textarea" placeholder="Tell us about the technology issue, project, site, or deadline..."></textarea>
             </div>
 
-            {turnstileSiteKey && (
-              <div class="turnstile-wrap">
-                <div class="cf-turnstile" data-sitekey={turnstileSiteKey}></div>
-              </div>
-            )}
-            {!turnstileSiteKey && (
-              <p class="turnstile-config-warning">
+            <div class="turnstile-wrap" data-turnstile-wrap>
+              <div class="cf-turnstile" data-turnstile-widget data-sitekey={turnstileSiteKey}></div>
+              <p class="turnstile-config-warning" data-turnstile-warning hidden>
                 Contact form security is not configured yet. Please email <a href={`mailto:${COMPANY_INFO.email}`}>{COMPANY_INFO.email}</a>.
               </p>
-            )}
+            </div>
 
             <p class="form-status" data-form-status aria-live="polite"></p>
 
@@ -255,7 +256,7 @@ const structuredData = {
 
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
-  {turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 
 <script>
   function initContactForm() {
@@ -270,7 +271,10 @@ const structuredData = {
     const status = form.querySelector('[data-form-status]') as HTMLElement | null;
     const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
     const defaultButtonHtml = submitButton?.innerHTML || '';
-    const turnstileConfigured = form.dataset.turnstileConfigured === 'true';
+    const turnstileWidget = form.querySelector('[data-turnstile-widget]') as HTMLElement | null;
+    const turnstileWarning = form.querySelector('[data-turnstile-warning]') as HTMLElement | null;
+
+    renderTurnstile(form, turnstileWidget, turnstileWarning);
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -286,8 +290,8 @@ const structuredData = {
       }
 
       try {
-        if (!turnstileConfigured) {
-          throw new Error('Contact form security is not configured yet. Please email hello@centrix.ie.');
+        if (form.dataset.turnstileConfigured !== 'true') {
+          throw new Error('Contact form security is still loading. Please try again in a moment.');
         }
 
         const turnstileResponse = form.querySelector('[name="cf-turnstile-response"]') as HTMLInputElement | null;
@@ -312,13 +316,13 @@ const structuredData = {
         }
 
         form.reset();
-        (window as any).turnstile?.reset();
+        resetTurnstile(turnstileWidget);
       } catch (error) {
         if (status) {
           status.textContent = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
           status.classList.add('error');
         }
-        (window as any).turnstile?.reset();
+        resetTurnstile(turnstileWidget);
       } finally {
         if (submitButton) {
           submitButton.disabled = false;
@@ -330,6 +334,89 @@ const structuredData = {
 
   initContactForm();
   document.addEventListener('astro:after-swap', initContactForm);
+
+  async function renderTurnstile(
+    form: HTMLFormElement,
+    widget: HTMLElement | null,
+    warning: HTMLElement | null
+  ) {
+    if (!widget || widget.dataset.rendering === 'true' || widget.dataset.widgetId) {
+      return;
+    }
+
+    widget.dataset.rendering = 'true';
+
+    try {
+      const siteKey = widget.dataset.sitekey || await fetchTurnstileSiteKey();
+
+      if (!siteKey) {
+        throw new Error('Turnstile site key is not configured.');
+      }
+
+      widget.dataset.sitekey = siteKey;
+      await waitForTurnstile();
+
+      const widgetId = (window as any).turnstile.render(widget, { sitekey: siteKey });
+      widget.dataset.widgetId = String(widgetId);
+      form.dataset.turnstileConfigured = 'true';
+
+      if (warning) {
+        warning.hidden = true;
+      }
+    } catch (error) {
+      console.error('Turnstile render failed:', error);
+      form.dataset.turnstileConfigured = 'false';
+
+      if (warning) {
+        warning.hidden = false;
+      }
+    } finally {
+      widget.dataset.rendering = 'false';
+    }
+  }
+
+  async function fetchTurnstileSiteKey() {
+    const response = await fetch('/api/contact/config', {
+      headers: { Accept: 'application/json' },
+    });
+    const result = await response.json().catch(() => ({}));
+
+    return response.ok && typeof result.siteKey === 'string' ? result.siteKey.trim() : '';
+  }
+
+  function waitForTurnstile() {
+    return new Promise<void>((resolve, reject) => {
+      const startedAt = Date.now();
+      const timer = window.setInterval(() => {
+        if ((window as any).turnstile?.render) {
+          window.clearInterval(timer);
+          resolve();
+          return;
+        }
+
+        if (Date.now() - startedAt > 8000) {
+          window.clearInterval(timer);
+          reject(new Error('Turnstile script did not load.'));
+        }
+      }, 100);
+    });
+  }
+
+  function resetTurnstile(widget: HTMLElement | null) {
+    const widgetId = widget?.dataset.widgetId;
+    const turnstile = (window as any).turnstile;
+
+    if (!turnstile?.reset) {
+      return;
+    }
+
+    if (widgetId) {
+      turnstile.reset(widgetId);
+      return;
+    }
+
+    turnstile.reset();
+  }
 </script>
 
 <style>

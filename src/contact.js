@@ -1,3 +1,5 @@
+import { checkedTurnstileSecretKeyNames, getTurnstileSecretKey } from './server/contact-env.js';
+
 export async function onRequestPost(context) {
   try {
     const env = context.env || {};
@@ -17,7 +19,10 @@ export async function onRequestPost(context) {
       return jsonResponse({ success: false, message: 'Missing required fields.' }, 400);
     }
 
-    if (!env.TURNSTILE_SECRET_KEY) {
+    const turnstileSecretKey = getTurnstileSecretKey(env);
+
+    if (!turnstileSecretKey) {
+      console.error('Turnstile secret key is not configured. Checked env vars:', checkedTurnstileSecretKeyNames().join(', '));
       return jsonResponse({ success: false, message: 'Contact form security is not configured. Please email hello@centrix.ie.' }, 500);
     }
 
@@ -28,7 +33,7 @@ export async function onRequestPost(context) {
     const turnstileVerification = await verifyTurnstileToken(
       turnstileToken,
       context.request.headers.get('CF-Connecting-IP'),
-      env.TURNSTILE_SECRET_KEY
+      turnstileSecretKey
     );
 
     if (!turnstileVerification.success) {
