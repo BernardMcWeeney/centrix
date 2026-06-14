@@ -26,18 +26,20 @@ export async function POST({ request }) {
     const turnstileVerification = await verifyTurnstileToken(
       turnstileToken,
       request.headers.get('CF-Connecting-IP'),
-      env.TURNSTILE_SECRET_KEY
+      cleanSecret(env.TURNSTILE_SECRET_KEY)
     );
 
     if (!turnstileVerification.success) {
       return jsonResponse({ success: false, message: 'Security check failed. Please refresh and try again.' }, 400);
     }
 
-    const region = env.AWS_REGION;
-    const accessKeyId = env.AWS_ACCESS_KEY_ID;
-    const secretAccessKey = env.AWS_SECRET_ACCESS_KEY;
-    const fromAddress = env.FROM_EMAIL_ADDRESS;
-    const toAddress = env.TO_EMAIL_ADDRESS;
+    // Trim secrets defensively — a stray newline/space (common when setting
+    // Cloudflare secrets) otherwise breaks the AWS SigV4 signature.
+    const region = cleanSecret(env.AWS_REGION);
+    const accessKeyId = cleanSecret(env.AWS_ACCESS_KEY_ID);
+    const secretAccessKey = cleanSecret(env.AWS_SECRET_ACCESS_KEY);
+    const fromAddress = cleanSecret(env.FROM_EMAIL_ADDRESS);
+    const toAddress = cleanSecret(env.TO_EMAIL_ADDRESS);
 
     if (!region || !accessKeyId || !secretAccessKey || !fromAddress || !toAddress) {
       console.error('Missing env vars:', {
@@ -112,6 +114,10 @@ export async function POST({ request }) {
     console.error('Contact form error:', error?.name, error?.message, error?.stack);
     return jsonResponse({ success: false, message: 'Something went wrong. Please try again or email hello@centrix.ie.' }, 500);
   }
+}
+
+function cleanSecret(value) {
+  return typeof value === 'string' ? value.trim() : '';
 }
 
 function jsonResponse(body, status = 200) {

@@ -37,6 +37,7 @@ interface Props {
   mediaHint?: string;
   mediaIcon?: string;
   mediaSrc?: string;
+  hideMedia?: boolean;
 }
 
 const {
@@ -57,7 +58,10 @@ const {
   mediaHint,
   mediaIcon = 'camera',
   mediaSrc,
+  hideMedia = false,
 } = Astro.props;
+
+const showMedia = Boolean(mediaSrc) || !hideMedia;
 
 const heroImageLabel = mediaLabel ?? `${eyebrow} imagery`;
 ---
@@ -95,11 +99,13 @@ const heroImageLabel = mediaLabel ?? `${eyebrow} imagery`;
       </div>
     </section>
 
-    <section class="consult-section compact">
-      <div class="container-wide">
-        <ImagePlaceholder label={heroImageLabel} hint={mediaHint} icon={mediaIcon} ratio="16 / 6" src={mediaSrc} />
-      </div>
-    </section>
+    {showMedia && (
+      <section class="consult-section compact">
+        <div class="container-wide">
+          <ImagePlaceholder label={heroImageLabel} hint={mediaHint} icon={mediaIcon} ratio="16 / 6" src={mediaSrc} />
+        </div>
+      </section>
+    )}
 
     <section class="consult-section">
       <div class="container-wide">
