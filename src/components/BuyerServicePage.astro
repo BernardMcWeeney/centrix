@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteIcon from './SiteIcon.astro';
+import ImagePlaceholder from './ImagePlaceholder.astro';
 
 interface Link {
   label: string;
@@ -32,6 +33,9 @@ interface Props {
   process: Card[];
   faqs?: FAQ[];
   related?: Link[];
+  mediaLabel?: string;
+  mediaHint?: string;
+  mediaIcon?: string;
 }
 
 const {
@@ -48,7 +52,12 @@ const {
   process,
   faqs = [],
   related = [],
+  mediaLabel,
+  mediaHint,
+  mediaIcon = 'camera',
 } = Astro.props;
+
+const heroImageLabel = mediaLabel ?? `${eyebrow} imagery`;
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription}>
@@ -81,6 +90,12 @@ const {
             </ul>
           </aside>
         </div>
+      </div>
+    </section>
+
+    <section class="consult-section compact">
+      <div class="container-wide">
+        <ImagePlaceholder label={heroImageLabel} hint={mediaHint} icon={mediaIcon} ratio="16 / 6" />
       </div>
     </section>
 

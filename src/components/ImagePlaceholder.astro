@@ -1,0 +1,95 @@
+---
+import SiteIcon from './SiteIcon.astro';
+
+interface Props {
+  /** What image should go here, e.g. "Cloud migration photo" */
+  label: string;
+  /** SiteIcon name shown in the placeholder */
+  icon?: string;
+  /** CSS aspect-ratio, e.g. "16 / 9", "16 / 6", "4 / 3" */
+  ratio?: string;
+  /** Optional extra guidance, e.g. recommended size or subject */
+  hint?: string;
+}
+
+const { label, icon = 'camera', ratio = '16 / 9', hint } = Astro.props;
+---
+
+<div
+  class="img-placeholder"
+  style={`--ph-ratio: ${ratio};`}
+  role="img"
+  aria-label={`Image placeholder: ${label}`}
+  data-image-placeholder
+>
+  <div class="img-placeholder-inner">
+    <span class="img-placeholder-icon"><SiteIcon name={icon} size={26} /></span>
+    <strong class="img-placeholder-title">Add image</strong>
+    <span class="img-placeholder-label">{label}</span>
+    {hint && <span class="img-placeholder-hint">{hint}</span>}
+  </div>
+</div>
+
+<style>
+  .img-placeholder {
+    aspect-ratio: var(--ph-ratio, 16 / 9);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    border: 2px dashed var(--border-secondary);
+    border-radius: 0.6rem;
+    background:
+      repeating-linear-gradient(
+        135deg,
+        var(--bg-secondary),
+        var(--bg-secondary) 12px,
+        var(--bg-tertiary) 12px,
+        var(--bg-tertiary) 24px
+      );
+    color: var(--text-tertiary);
+    text-align: center;
+  }
+
+  .img-placeholder-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    max-width: 22rem;
+  }
+
+  .img-placeholder-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 0.25rem;
+    border-radius: 0.6rem;
+    background: var(--brand-light);
+    color: var(--brand-primary);
+  }
+
+  .img-placeholder-title {
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .img-placeholder-label {
+    color: var(--text-primary);
+    font-size: 0.98rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .img-placeholder-hint {
+    color: var(--text-tertiary);
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+</style>

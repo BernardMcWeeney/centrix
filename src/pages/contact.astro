@@ -124,7 +124,7 @@ const structuredData = {
         <!-- Contact Form -->
         <div class="form-section">
           <h2 class="form-title">Send a message</h2>
-          <form class="contact-form" action="/api/contact" method="POST" data-contact-form data-turnstile-configured="false">
+          <form id="contactForm" class="contact-form" action="/api/contact" method="POST">
             <div class="form-row">
               <div class="form-group">
                 <label for="firstName" class="form-label">First Name</label>
@@ -161,11 +161,8 @@ const structuredData = {
               <textarea id="message" name="message" rows="4" required class="form-textarea" placeholder="Tell us about the technology issue, project, site, or deadline..."></textarea>
             </div>
 
-            <div class="turnstile-wrap" data-turnstile-wrap>
-              <div class="cf-turnstile" data-turnstile-widget data-sitekey={turnstileSiteKey}></div>
-              <p class="turnstile-config-warning" data-turnstile-warning hidden>
-                Contact form security is not configured yet. Please email <a href={`mailto:${COMPANY_INFO.email}`}>{COMPANY_INFO.email}</a>.
-              </p>
+            <div class="turnstile-wrap">
+              <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired"></div>
             </div>
 
             <p class="form-status" data-form-status aria-live="polite"></p>
@@ -248,187 +245,76 @@ const structuredData = {
 
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
-  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+  <script is:inline>
+    // Turnstile uses implicit rendering via the data-sitekey attribute.
+    // These globals are the widget callbacks referenced in the markup.
+    window.turnstileReady = false;
+    window.onTurnstileSuccess = function () { window.turnstileReady = true; };
+    window.onTurnstileExpired = function () { window.turnstileReady = false; };
+  </script>
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <script>
-  function initContactForm() {
-    const form = document.querySelector('[data-contact-form]') as HTMLFormElement | null;
+  const form = document.getElementById('contactForm') as HTMLFormElement | null;
+  const status = form?.querySelector('[data-form-status]') as HTMLElement | null;
+  const submitButton = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+  const defaultButtonHtml = submitButton?.innerHTML || '';
 
-    if (!form || form.dataset.bound === 'true') {
-      return;
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (status) {
+      status.textContent = '';
+      status.className = 'form-status';
     }
 
-    form.dataset.bound = 'true';
-
-    const status = form.querySelector('[data-form-status]') as HTMLElement | null;
-    const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
-    const defaultButtonHtml = submitButton?.innerHTML || '';
-    const turnstileWidget = form.querySelector('[data-turnstile-widget]') as HTMLElement | null;
-    const turnstileWarning = form.querySelector('[data-turnstile-warning]') as HTMLElement | null;
-
-    renderTurnstile(form, turnstileWidget, turnstileWarning, status);
-
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-
+    if (!(window as any).turnstileReady) {
       if (status) {
-        status.textContent = '';
-        status.className = 'form-status';
+        status.textContent = 'Please complete the security check before sending.';
+        status.className = 'form-status error';
       }
-
-      if (submitButton) {
-        submitButton.disabled = true;
-        submitButton.textContent = 'Sending...';
-      }
-
-      try {
-        if (form.dataset.turnstileConfigured !== 'true') {
-          throw new Error('Contact form security is still loading. Please try again in a moment.');
-        }
-
-        const turnstileResponse = form.querySelector('[name="cf-turnstile-response"]') as HTMLInputElement | null;
-        if (!turnstileResponse?.value) {
-          throw new Error('Please complete the security check before sending.');
-        }
-
-        const response = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { Accept: 'application/json' },
-        });
-        const result = await response.json().catch(() => ({}));
-
-        if (!response.ok || !result.success) {
-          throw new Error(result.message || 'Something went wrong. Please try again.');
-        }
-
-        if (status) {
-          status.textContent = result.message || 'Thanks. Your message has been sent.';
-          status.classList.add('success');
-        }
-
-        form.reset();
-        resetTurnstile(turnstileWidget);
-      } catch (error) {
-        if (status) {
-          status.textContent = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
-          status.classList.add('error');
-        }
-        resetTurnstile(turnstileWidget);
-      } finally {
-        if (submitButton) {
-          submitButton.disabled = false;
-          submitButton.innerHTML = defaultButtonHtml;
-        }
-      }
-    });
-  }
-
-  initContactForm();
-  document.addEventListener('astro:after-swap', initContactForm);
-
-  async function renderTurnstile(
-    form: HTMLFormElement,
-    widget: HTMLElement | null,
-    warning: HTMLElement | null,
-    status: HTMLElement | null
-  ) {
-    if (!widget || widget.dataset.rendering === 'true' || widget.dataset.widgetId) {
       return;
     }
 
-    widget.dataset.rendering = 'true';
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+    }
 
     try {
-      const siteKey = widget.dataset.sitekey;
-
-      if (!siteKey) {
-        throw new Error('Turnstile site key is not configured.');
-      }
-
-      await waitForTurnstile();
-
-      const widgetId = (window as any).turnstile.render(widget, {
-        sitekey: siteKey,
-        callback: () => {
-          form.dataset.turnstileConfigured = 'true';
-        },
-        'error-callback': (errorCode: string) => {
-          console.error('Turnstile client error:', errorCode);
-          form.dataset.turnstileConfigured = 'false';
-
-          if (warning) {
-            warning.hidden = false;
-          }
-
-          if (status) {
-            status.textContent = turnstileErrorMessage(errorCode);
-            status.className = 'form-status error';
-          }
-        },
-        'expired-callback': () => {
-          form.dataset.turnstileConfigured = 'true';
-        },
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
       });
-      widget.dataset.widgetId = String(widgetId);
-      form.dataset.turnstileConfigured = 'true';
+      const result = await response.json().catch(() => ({}));
 
-      if (warning) {
-        warning.hidden = true;
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Something went wrong. Please try again.');
       }
-    } catch (error) {
-      console.error('Turnstile render failed:', error);
-      form.dataset.turnstileConfigured = 'false';
 
-      if (warning) {
-        warning.hidden = false;
+      if (status) {
+        status.textContent = result.message || 'Thanks. Your message has been sent.';
+        status.classList.add('success');
+      }
+
+      form.reset();
+    } catch (error) {
+      if (status) {
+        status.textContent = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
+        status.classList.add('error');
       }
     } finally {
-      widget.dataset.rendering = 'false';
+      (window as any).turnstileReady = false;
+      if ((window as any).turnstile) {
+        (window as any).turnstile.reset();
+      }
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.innerHTML = defaultButtonHtml;
+      }
     }
-  }
-
-  function waitForTurnstile() {
-    return new Promise<void>((resolve, reject) => {
-      const startedAt = Date.now();
-      const timer = window.setInterval(() => {
-        if ((window as any).turnstile?.render) {
-          window.clearInterval(timer);
-          resolve();
-          return;
-        }
-
-        if (Date.now() - startedAt > 8000) {
-          window.clearInterval(timer);
-          reject(new Error('Turnstile script did not load.'));
-        }
-      }, 100);
-    });
-  }
-
-  function resetTurnstile(widget: HTMLElement | null) {
-    const widgetId = widget?.dataset.widgetId;
-    const turnstile = (window as any).turnstile;
-
-    if (!turnstile?.reset) {
-      return;
-    }
-
-    if (widgetId) {
-      turnstile.reset(widgetId);
-      return;
-    }
-
-    turnstile.reset();
-  }
-
-  function turnstileErrorMessage(errorCode: string) {
-    if (String(errorCode).startsWith('110200')) {
-      return 'Contact form security cannot run on this domain. Please open the live site or email hello@centrix.ie.';
-    }
-
-    return 'Contact form security could not load. Please refresh the page or email hello@centrix.ie.';
-  }
+  });
 </script>
 
 <style>
@@ -565,27 +451,6 @@ const structuredData = {
 
   .turnstile-wrap {
     min-height: 4.25rem;
-  }
-
-  .turnstile-config-warning {
-    margin: 0;
-    padding: 0.75rem;
-    border: 1px solid var(--border-primary);
-    border-radius: 0.375rem;
-    background: var(--bg-secondary);
-    color: var(--text-secondary);
-    font-size: 0.8125rem;
-    line-height: 1.5;
-  }
-
-  .turnstile-config-warning a {
-    color: var(--brand-primary);
-    font-weight: 800;
-    text-decoration: none;
-  }
-
-  .turnstile-config-warning a:hover {
-    text-decoration: underline;
   }
 
   .form-status {

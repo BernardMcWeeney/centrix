@@ -10,11 +10,5 @@
 	"observability": {
 		"enabled": true
 	},
-	"send_email": [
-		{
-			"name": "CONTACT_EMAIL",
-			"destination_address": "hello@centrix.ie"
-		}
-	],
 	"upload_source_maps": true
 }

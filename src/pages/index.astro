@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteIcon from '../components/SiteIcon.astro';
 import PlatformLogo from '../components/PlatformLogo.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 
 const title = 'Irish Business IT & Technology Consultancy';
 const description = 'Centrix helps Irish businesses with Microsoft cloud, business networking, Wi-Fi, CCTV, VPNs, VoIP, security, compliance readiness, and practical AI consultancy.';
@@ -215,6 +216,14 @@ const caseStudies = [
           <span class="consult-kicker">Networking For Your Premises</span>
           <h2>Reliable networks, VPNs, phones, cameras, and resilience without complexity.</h2>
         </div>
+        <div class="consult-section-media">
+          <ImagePlaceholder
+            label="Business networking imagery"
+            hint="e.g. UniFi rack/switches, business Wi-Fi, VoIP handsets, or CCTV on a real premises"
+            icon="network"
+            ratio="16 / 6"
+          />
+        </div>
         <div class="consult-card-grid four">
           {networkingQuestions.map((question) => (
             <a href={question.href} class="consult-card">
@@ -236,6 +245,14 @@ const caseStudies = [
         <div class="consult-section-heading">
           <span class="consult-kicker">Microsoft, Cloud, And Compliance</span>
           <h2>Move, secure, and manage your Microsoft environment properly.</h2>
+        </div>
+        <div class="consult-section-media">
+          <ImagePlaceholder
+            label="Microsoft 365 & cloud migration imagery"
+            hint="e.g. a cloud/datacentre visual, Microsoft 365 dashboard, or migration diagram"
+            icon="cloud"
+            ratio="16 / 6"
+          />
         </div>
         <div class="consult-card-grid four">
           {microsoftServices.map((service) => (
@@ -262,6 +279,12 @@ const caseStudies = [
             <p>
               Centrix helps teams understand Claude, ChatGPT, Microsoft Copilot, Cloudflare AI, and practical automation without hype. We focus on safe use, approved tools, useful prompts, and workflows that save time.
             </p>
+            <div class="consult-check-list">
+              <div class="consult-check-item"><SiteIcon name="check" size={18} /><span>Copilot readiness and SharePoint permissions review</span></div>
+              <div class="consult-check-item"><SiteIcon name="check" size={18} /><span>Claude, ChatGPT, and Copilot introduction for staff</span></div>
+              <div class="consult-check-item"><SiteIcon name="check" size={18} /><span>AI usage policy, prompt guidance, and approved tool list</span></div>
+              <div class="consult-check-item"><SiteIcon name="check" size={18} /><span>Data protection and governance controls</span></div>
+            </div>
             <div class="consult-actions">
               <a href="/ai" class="consult-btn consult-btn-primary">
                 Explore AI services
@@ -269,12 +292,12 @@ const caseStudies = [
               </a>
             </div>
           </div>
-          <div class="consult-check-list">
-            <div class="consult-check-item"><SiteIcon name="check" size={18} /><span>Copilot readiness and SharePoint permissions review</span></div>
-            <div class="consult-check-item"><SiteIcon name="check" size={18} /><span>Claude, ChatGPT, and Copilot introduction for staff</span></div>
-            <div class="consult-check-item"><SiteIcon name="check" size={18} /><span>AI usage policy, prompt guidance, and approved tool list</span></div>
-            <div class="consult-check-item"><SiteIcon name="check" size={18} /><span>Data protection and governance controls</span></div>
-          </div>
+          <ImagePlaceholder
+            label="AI for business imagery"
+            hint="e.g. staff using Copilot/Claude/ChatGPT, or a clean automation/workflow visual"
+            icon="ai"
+            ratio="4 / 5"
+          />
         </div>
       </div>
     </section>
