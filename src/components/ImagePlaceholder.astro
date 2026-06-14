@@ -10,27 +10,54 @@ interface Props {
   ratio?: string;
   /** Optional extra guidance, e.g. recommended size or subject */
   hint?: string;
+  /** When set, renders the real image instead of the placeholder */
+  src?: string;
+  /** Alt text for the real image (falls back to label) */
+  alt?: string;
 }
 
-const { label, icon = 'camera', ratio = '16 / 9', hint } = Astro.props;
+const { label, icon = 'camera', ratio = '16 / 9', hint, src, alt } = Astro.props;
 ---
 
-<div
-  class="img-placeholder"
-  style={`--ph-ratio: ${ratio};`}
-  role="img"
-  aria-label={`Image placeholder: ${label}`}
-  data-image-placeholder
->
-  <div class="img-placeholder-inner">
-    <span class="img-placeholder-icon"><SiteIcon name={icon} size={26} /></span>
-    <strong class="img-placeholder-title">Add image</strong>
-    <span class="img-placeholder-label">{label}</span>
-    {hint && <span class="img-placeholder-hint">{hint}</span>}
+{src ? (
+  <figure class="img-media" style={`--ph-ratio: ${ratio};`}>
+    <img src={src} alt={alt ?? label} loading="lazy" decoding="async" />
+  </figure>
+) : (
+  <div
+    class="img-placeholder"
+    style={`--ph-ratio: ${ratio};`}
+    role="img"
+    aria-label={`Image placeholder: ${label}`}
+    data-image-placeholder
+  >
+    <div class="img-placeholder-inner">
+      <span class="img-placeholder-icon"><SiteIcon name={icon} size={26} /></span>
+      <strong class="img-placeholder-title">Add image</strong>
+      <span class="img-placeholder-label">{label}</span>
+      {hint && <span class="img-placeholder-hint">{hint}</span>}
+    </div>
   </div>
-</div>
+)}
 
 <style>
+  .img-media {
+    margin: 0;
+    width: 100%;
+    aspect-ratio: var(--ph-ratio, 16 / 9);
+    border-radius: 0.6rem;
+    overflow: hidden;
+    border: 1px solid var(--border-primary);
+    background: var(--bg-secondary);
+  }
+
+  .img-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   .img-placeholder {
     aspect-ratio: var(--ph-ratio, 16 / 9);
     width: 100%;

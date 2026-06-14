@@ -4,27 +4,35 @@ import SiteIcon from './SiteIcon.astro';
 const serviceGroups = [
   {
     title: 'Microsoft & Cloud',
+    href: '/microsoft',
     links: [
-      { label: 'Microsoft Services', description: 'M365, Azure, Intune, Defender', href: '/microsoft', icon: 'microsoft' },
-      { label: 'Cloud Migration', description: 'Email, files, identity, devices', href: '/services/microsoft-365/cloud-migration', icon: 'cloud' },
       { label: 'Microsoft 365 Security', description: 'MFA, Conditional Access, Defender', href: '/services/microsoft-365', icon: 'lock' },
+      { label: 'Cloud Migration', description: 'Email, files, identity, devices', href: '/services/microsoft-365/cloud-migration', icon: 'cloud' },
+      { label: 'Identity & Access', description: 'Entra ID, SSO, governance', href: '/services/identity', icon: 'lock' },
+      { label: 'Intune & Endpoint', description: 'Device compliance, zero trust', href: '/services/intune', icon: 'device' },
+      { label: 'Google Workspace', description: 'Security and managed admin', href: '/services/google-workspace', icon: 'cloud' },
     ],
   },
   {
     title: 'Networking & Premises',
+    href: '/networks',
     links: [
-      { label: 'Business Networking', description: 'Wi-Fi, VPNs, voice, CCTV', href: '/networks', icon: 'network' },
+      { label: 'Business Networking', description: 'Routing, switching, VLANs', href: '/services/networking/business-networking', icon: 'network' },
+      { label: 'Business Wi-Fi', description: 'Reliable, secure coverage', href: '/services/networking/business-wifi', icon: 'wifi' },
       { label: 'VPN & Remote Access', description: 'Point-to-point and remote users', href: '/services/networking/vpn-remote-access', icon: 'lock' },
-      { label: 'Backup & Resilience', description: 'Failover, backups, and DR', href: '/services/networking/backup-resilience', icon: 'cloud' },
       { label: 'VoIP & Phones', description: 'Business telephone setup', href: '/services/networking/voip-business-phones', icon: 'phone' },
+      { label: 'CCTV & IP Cameras', description: 'Cameras, recording, access', href: '/services/networking/cctv-ip-cameras', icon: 'camera' },
     ],
   },
   {
     title: 'Security & AI',
+    href: '/security',
     links: [
-      { label: 'Security', description: 'Controls, reviews, incident readiness', href: '/security', icon: 'shield' },
+      { label: 'Managed Security', description: 'Monitoring and hardening', href: '/services/managed-security', icon: 'shield' },
       { label: 'NIS2 & GDPR Readiness', description: 'Technical controls and evidence', href: '/services/security/nis2-gdpr-readiness', icon: 'compliance' },
-      { label: 'AI Introduction', description: 'Claude, ChatGPT, Copilot, Cloudflare', href: '/ai', icon: 'ai' },
+      { label: 'Incident Response', description: 'Containment and recovery', href: '/services/incident-response', icon: 'shield' },
+      { label: 'AI Services', description: 'Claude, ChatGPT, Copilot', href: '/ai', icon: 'ai' },
+      { label: 'Copilot Readiness', description: 'Permissions and tenant prep', href: '/services/ai-services/copilot-readiness', icon: 'ai' },
     ],
   },
 ];
@@ -54,7 +62,7 @@ const primaryLinks = [
           <div class="mega-grid">
             {serviceGroups.map((group) => (
               <div class="mega-column">
-                <h3>{group.title}</h3>
+                <a class="mega-column-title" href={group.href}>{group.title}</a>
                 <div class="mega-list">
                   {group.links.map((link) => (
                     <a href={link.href} class="mega-card">
@@ -222,13 +230,20 @@ const primaryLinks = [
     border-right: 0;
   }
 
-  .mega-column h3 {
+  .mega-column-title {
+    display: block;
     margin: 0 0 0.65rem;
     color: var(--text-tertiary);
     font-size: 0.7rem;
     font-weight: 800;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .mega-column-title:hover {
+    color: var(--brand-primary);
   }
 
   .mega-list {

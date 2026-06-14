@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { COMPANY_INFO } from '../consts';
+
+const title = 'Privacy Policy';
+const description = 'How Centrix collects, uses, and protects your personal data.';
+const lastUpdated = '14 June 2026';
+
+const sections = [
+  {
+    heading: 'Who we are',
+    body: [
+      `${COMPANY_INFO.name} is an Irish business IT and technology consultancy based in ${COMPANY_INFO.address}. This policy explains how we handle personal data collected through this website and our services.`,
+    ],
+  },
+  {
+    heading: 'What we collect',
+    body: [
+      'Contact details you provide via our contact form (such as your name, email address, company, and message).',
+      'Basic technical data your browser sends (such as IP address and user agent), used for security and to operate the site.',
+    ],
+  },
+  {
+    heading: 'How we use it',
+    body: [
+      'To respond to your enquiry and provide the services you ask about.',
+      'To protect the website from spam and abuse (for example, via Cloudflare Turnstile).',
+      'We do not sell your personal data, and we only share it with processors needed to deliver our services (such as email and hosting providers).',
+    ],
+  },
+  {
+    heading: 'Legal basis & retention',
+    body: [
+      'We process contact enquiries on the basis of legitimate interest and, where relevant, to take steps before entering a contract. We keep enquiry data only as long as needed to deal with your request and our legitimate business records.',
+    ],
+  },
+  {
+    heading: 'Your rights',
+    body: [
+      'Under GDPR you have the right to access, correct, or erase your personal data, and to object to or restrict its processing. To exercise any of these rights, contact us at ' + COMPANY_INFO.email + '.',
+    ],
+  },
+  {
+    heading: 'Contact',
+    body: [
+      `For any privacy questions, email ${COMPANY_INFO.email}.`,
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="consult-page">
+    <section class="consult-subhero">
+      <div class="container-wide">
+        <div class="legal-head">
+          <div class="consult-eyebrow">Legal</div>
+          <h1 class="consult-subhero-title">{title}</h1>
+          <p class="consult-lead">{description}</p>
+          <p class="legal-updated">Last updated: {lastUpdated}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-section">
+      <div class="container-wide">
+        <div class="legal-body">
+          <p class="legal-note">This is a starter privacy policy and should be reviewed by your legal adviser before relying on it.</p>
+          {sections.map((section) => (
+            <div class="legal-section">
+              <h2>{section.heading}</h2>
+              {section.body.map((p) => <p>{p}</p>)}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .legal-head { max-width: 44rem; }
+  .legal-updated {
+    margin-top: 1rem;
+    color: var(--text-tertiary);
+    font-size: 0.875rem;
+  }
+  .legal-body { max-width: 44rem; }
+  .legal-note {
+    margin: 0 0 2rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+  }
+  .legal-section { margin-bottom: 2rem; }
+  .legal-section h2 {
+    margin: 0 0 0.6rem;
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .legal-section p {
+    margin: 0 0 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+</style>

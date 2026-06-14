@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { COMPANY_INFO } from '../consts';
+
+const title = 'Terms of Service';
+const description = 'The terms under which Centrix provides this website and its services.';
+const lastUpdated = '14 June 2026';
+
+const sections = [
+  {
+    heading: 'Overview',
+    body: [
+      `These terms govern your use of the ${COMPANY_INFO.name} website and any services provided unless a separate signed agreement applies. By using this site you accept these terms.`,
+    ],
+  },
+  {
+    heading: 'Services',
+    body: [
+      'Information on this website describes our services in general terms and is not a binding offer. Specific work is scoped, quoted, and agreed in writing before it begins.',
+    ],
+  },
+  {
+    heading: 'Use of this website',
+    body: [
+      'You agree not to misuse the site, attempt to disrupt it, or use it for unlawful purposes. Content on this site is provided for general information and may change without notice.',
+    ],
+  },
+  {
+    heading: 'Intellectual property',
+    body: [
+      `The content, branding, and design of this website are owned by ${COMPANY_INFO.name} or its licensors and may not be reproduced without permission. Third-party product names and logos are the property of their respective owners.`,
+    ],
+  },
+  {
+    heading: 'Liability',
+    body: [
+      'The website is provided on an "as is" basis. To the extent permitted by law, we are not liable for any loss arising from use of the site. Nothing in these terms limits liability that cannot be excluded under law.',
+    ],
+  },
+  {
+    heading: 'Governing law',
+    body: [
+      'These terms are governed by the laws of Ireland and subject to the jurisdiction of the Irish courts.',
+    ],
+  },
+  {
+    heading: 'Contact',
+    body: [
+      `Questions about these terms can be sent to ${COMPANY_INFO.email}.`,
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="consult-page">
+    <section class="consult-subhero">
+      <div class="container-wide">
+        <div class="legal-head">
+          <div class="consult-eyebrow">Legal</div>
+          <h1 class="consult-subhero-title">{title}</h1>
+          <p class="consult-lead">{description}</p>
+          <p class="legal-updated">Last updated: {lastUpdated}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-section">
+      <div class="container-wide">
+        <div class="legal-body">
+          <p class="legal-note">These are starter terms of service and should be reviewed by your legal adviser before relying on them.</p>
+          {sections.map((section) => (
+            <div class="legal-section">
+              <h2>{section.heading}</h2>
+              {section.body.map((p) => <p>{p}</p>)}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .legal-head { max-width: 44rem; }
+  .legal-updated {
+    margin-top: 1rem;
+    color: var(--text-tertiary);
+    font-size: 0.875rem;
+  }
+  .legal-body { max-width: 44rem; }
+  .legal-note {
+    margin: 0 0 2rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--border-primary);
+    border-radius: 0.5rem;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+  }
+  .legal-section { margin-bottom: 2rem; }
+  .legal-section h2 {
+    margin: 0 0 0.6rem;
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .legal-section p {
+    margin: 0 0 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+</style>

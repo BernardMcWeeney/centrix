@@ -5,42 +5,52 @@ import SiteIcon from '../components/SiteIcon.astro';
 const title = 'IT, Technology, And Consultancy Services';
 const description = 'Centrix services across Microsoft cloud, business networking, Wi-Fi, CCTV, VPNs, VoIP, security, compliance readiness, and AI automation for Irish businesses.';
 
-const categories = [
+const groups = [
   {
-    title: 'Microsoft cloud',
-    description: 'Microsoft 365, Azure, Intune, Defender, identity, migration, and tenant hardening.',
-    href: '/microsoft',
-    icon: 'microsoft',
+    name: 'Microsoft & Cloud',
+    overview: { label: 'Microsoft overview', href: '/microsoft' },
+    services: [
+      { title: 'Microsoft 365 Security', description: 'MFA, Conditional Access, Defender, and tenant hardening.', href: '/services/microsoft-365', icon: 'lock' },
+      { title: 'Microsoft 365 Security Assessment', description: 'Read-only review with a prioritised remediation roadmap.', href: '/services/microsoft-365/security-assessment', icon: 'shield' },
+      { title: 'Cloud Migration', description: 'Move email, files, identity, and devices to Microsoft cloud.', href: '/services/microsoft-365/cloud-migration', icon: 'cloud' },
+      { title: 'Identity & Access', description: 'Entra ID security, OAuth cleanup, SSO, and governance.', href: '/services/identity', icon: 'lock' },
+      { title: 'Intune & Endpoint Management', description: 'Device compliance, baselines, and zero-trust access.', href: '/services/intune', icon: 'device' },
+      { title: 'Google Workspace', description: 'Workspace security assessments and managed administration.', href: '/services/google-workspace', icon: 'cloud' },
+    ],
   },
   {
-    title: 'Business networking',
-    description: 'Wi-Fi, switching, routing, VPNs, backup links, VoIP, CCTV networks, segmentation, and support.',
-    href: '/networks',
-    icon: 'network',
+    name: 'Networking & Premises',
+    overview: { label: 'Networking overview', href: '/networks' },
+    services: [
+      { title: 'Business Networking', description: 'Routing, switching, VLANs, guest access, and support.', href: '/services/networking/business-networking', icon: 'network' },
+      { title: 'Business Wi-Fi', description: 'Reliable, secure wireless coverage across your premises.', href: '/services/networking/business-wifi', icon: 'wifi' },
+      { title: 'VPN & Remote Access', description: 'Site-to-site and remote user access, scoped and secure.', href: '/services/networking/vpn-remote-access', icon: 'lock' },
+      { title: 'VoIP & Business Phones', description: 'Handsets, call flows, voice VLANs, and support.', href: '/services/networking/voip-business-phones', icon: 'phone' },
+      { title: 'CCTV & IP Cameras', description: 'Camera systems with app viewing, recording, and roles.', href: '/services/networking/cctv-ip-cameras', icon: 'camera' },
+      { title: 'Backup & Resilience', description: 'Backup connectivity, failover, and recovery readiness.', href: '/services/networking/backup-resilience', icon: 'cloud' },
+      { title: 'UniFi', description: 'UniFi network, Wi-Fi, camera, and door access design.', href: '/services/networking/unifi', icon: 'network' },
+    ],
   },
   {
-    title: 'CCTV and IP cameras',
-    description: 'Camera systems with simple app and web viewing, local recording, access roles, and support.',
-    href: '/services/networking/cctv-ip-cameras',
-    icon: 'camera',
+    name: 'Security & Compliance',
+    overview: { label: 'Security overview', href: '/security' },
+    services: [
+      { title: 'Managed Security', description: 'Ongoing monitoring, hardening, and security management.', href: '/services/managed-security', icon: 'shield' },
+      { title: 'Web Security', description: 'OWASP application testing and vulnerability monitoring.', href: '/services/web-security', icon: 'shield' },
+      { title: 'Incident Response', description: 'Breach assessment, IR retainers, and tabletop exercises.', href: '/services/incident-response', icon: 'shield' },
+      { title: 'Configuration Reviews', description: 'Fast, focused security configuration assessments.', href: '/services/configuration-reviews', icon: 'compliance' },
+      { title: 'NIS2 & GDPR Readiness', description: 'Control mapping, evidence, and compliance readiness.', href: '/services/security/nis2-gdpr-readiness', icon: 'compliance' },
+    ],
   },
   {
-    title: 'Security and compliance',
-    description: 'Security reviews, managed security, incident readiness, NIS2 readiness, and GDPR support.',
-    href: '/security',
-    icon: 'shield',
-  },
-  {
-    title: 'Cloud migration',
-    description: 'Move email, files, identity, and devices to Microsoft cloud in a controlled way.',
-    href: '/services/microsoft-365/cloud-migration',
-    icon: 'cloud',
-  },
-  {
-    title: 'AI and automation',
-    description: 'ChatGPT, Claude, Copilot, Cloudflare AI, usage policy, workflow automation, and practical AI pilots.',
-    href: '/ai',
-    icon: 'ai',
+    name: 'AI & Automation',
+    overview: { label: 'AI overview', href: '/ai' },
+    services: [
+      { title: 'AI Services', description: 'Practical, safe AI adoption for business teams.', href: '/services/ai-services', icon: 'ai' },
+      { title: 'AI Strategy', description: 'Where AI fits, what to adopt, and how to govern it.', href: '/services/ai-services/ai-strategy', icon: 'ai' },
+      { title: 'Business AI Automation', description: 'Automate real workflows that save your team time.', href: '/services/ai-services/business-ai-automation', icon: 'settings' },
+      { title: 'Copilot Readiness', description: 'SharePoint permissions and tenant prep for Copilot.', href: '/services/ai-services/copilot-readiness', icon: 'ai' },
+    ],
   },
 ];
 
@@ -84,27 +94,32 @@ const process = [
       </div>
     </section>
 
-    <section class="consult-section">
-      <div class="container-wide">
-        <div class="consult-section-heading">
-          <span class="consult-kicker">Catalogue</span>
-          <h2>Choose the service area that matches the business problem.</h2>
-        </div>
-        <div class="consult-card-grid three">
-          {categories.map((category) => (
-            <a href={category.href} class="consult-card">
-              <div class="consult-card-icon"><SiteIcon name={category.icon} size={24} /></div>
-              <h3>{category.title}</h3>
-              <p>{category.description}</p>
-              <span class="consult-card-link">
-                View service
-                <SiteIcon name="arrow-right" size={16} />
-              </span>
+    {groups.map((group, i) => (
+      <section class={`consult-section${i % 2 === 1 ? ' consult-section-muted' : ''}`}>
+        <div class="container-wide">
+          <div class="consult-section-heading services-group-heading">
+            <span class="consult-kicker">{group.name}</span>
+            <a class="consult-card-link" href={group.overview.href}>
+              {group.overview.label}
+              <SiteIcon name="arrow-right" size={16} />
             </a>
-          ))}
+          </div>
+          <div class="consult-card-grid three">
+            {group.services.map((service) => (
+              <a href={service.href} class="consult-card">
+                <div class="consult-card-icon"><SiteIcon name={service.icon} size={24} /></div>
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+                <span class="consult-card-link">
+                  View service
+                  <SiteIcon name="arrow-right" size={16} />
+                </span>
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    ))}
 
     <section class="consult-section consult-section-muted">
       <div class="container-wide">
@@ -140,3 +155,14 @@ const process = [
     </section>
   </main>
 </BaseLayout>
+
+<style>
+  .services-group-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    max-width: none;
+  }
+</style>

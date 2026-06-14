@@ -36,6 +36,7 @@ interface Props {
   mediaLabel?: string;
   mediaHint?: string;
   mediaIcon?: string;
+  mediaSrc?: string;
 }
 
 const {
@@ -55,6 +56,7 @@ const {
   mediaLabel,
   mediaHint,
   mediaIcon = 'camera',
+  mediaSrc,
 } = Astro.props;
 
 const heroImageLabel = mediaLabel ?? `${eyebrow} imagery`;
@@ -95,7 +97,7 @@ const heroImageLabel = mediaLabel ?? `${eyebrow} imagery`;
 
     <section class="consult-section compact">
       <div class="container-wide">
-        <ImagePlaceholder label={heroImageLabel} hint={mediaHint} icon={mediaIcon} ratio="16 / 6" />
+        <ImagePlaceholder label={heroImageLabel} hint={mediaHint} icon={mediaIcon} ratio="16 / 6" src={mediaSrc} />
       </div>
     </section>
 

@@ -1,91 +1,77 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { SERVICE_CATEGORIES, getServicesByCategory } from '../../consts';
+import BuyerServicePage from '../../components/BuyerServicePage.astro';
 
-const services = getServicesByCategory('configuration-reviews');
+const outcomes = [
+  {
+    title: 'Know your real exposure',
+    description: 'A focused review of how Microsoft 365, SharePoint, Teams, VPN, and network settings are actually configured.',
+    icon: 'shield',
+  },
+  {
+    title: 'Clear remediation steps',
+    description: 'Findings ranked by risk with plain, practical fixes your team (or ours) can action straight away.',
+    icon: 'check',
+  },
+  {
+    title: 'Fast turnaround',
+    description: 'A short, fixed-scope engagement that gives you answers in days, not weeks.',
+    icon: 'compliance',
+  },
+];
 
-const title = "Security Configuration Reviews | Centrix";
-const description = "Quick, focused security configuration assessments for M365, SharePoint, Teams, VPN, and network infrastructure.";
+const includes = [
+  'Microsoft 365 configuration and security review',
+  'SharePoint and Teams external sharing review',
+  'Identity, MFA, and Conditional Access check',
+  'VPN and firewall rule review',
+  'Network segmentation and access review',
+  '20+ point configuration checklist',
+  'Prioritised remediation steps',
+  'Findings report and handover',
+];
 
-const stats = [
-  { value: "2-3", label: "Day Turnaround" },
-  { value: "100%", label: "Coverage" },
-  { value: "20+", label: "Checks Per Review" },
-  { value: "Clear", label: "Remediation Steps" },
+const process = [
+  { title: 'Scope', description: 'We agree which platforms and systems are in scope and gather read-only access.' },
+  { title: 'Review', description: 'We assess configuration against security best practice across the agreed systems.' },
+  { title: 'Report', description: 'You get a clear, prioritised findings report with practical remediation steps.' },
+  { title: 'Remediate', description: 'We can implement the fixes for you, or support your team to action them.' },
+];
+
+const faqs = [
+  {
+    question: 'How long does a configuration review take?',
+    answer: 'Most reviews are a fixed 2–3 day engagement depending on the number of systems in scope, with the report delivered shortly after.',
+  },
+  {
+    question: 'Is the review safe to run on live systems?',
+    answer: 'Yes. Reviews are read-only — we assess configuration and access without changing your environment.',
+  },
+  {
+    question: 'Can you fix the issues you find?',
+    answer: 'Yes. You can take the report and act on it yourself, or we can implement the agreed remediation and re-check.',
+  },
 ];
 ---
 
-<BaseLayout title={title} description={description}>
-  <section class="hero">
-    <div class="hero-bg"><div class="hero-gradient"></div><div class="hero-grid"></div></div>
-    <div class="container-wide">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          Configuration Reviews
-        </div>
-        <h1 class="hero-title">Security<br /><span class="hero-title-accent">Configuration Reviews</span></h1>
-        <p class="hero-description">Quick, focused assessments that identify security misconfigurations before they become vulnerabilities. Get clear findings and actionable remediation steps.</p>
-        <div class="hero-actions">
-          <a href="/contact" class="btn-hero-primary">Get Started <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></a>
-          <a href="#services" class="btn-hero-secondary">View Reviews</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="stats-section">
-    <div class="container-wide">
-      <div class="stats-grid">
-        {stats.map((stat) => (<div class="stat-item"><div class="stat-value">{stat.value}</div><div class="stat-label">{stat.label}</div></div>))}
-      </div>
-    </div>
-  </section>
-
-  <section id="services" class="services-section">
-    <div class="container-wide">
-      <div class="section-header">
-        <span class="section-tag">Reviews</span>
-        <h2 class="section-title">Configuration review services</h2>
-        <p class="section-description">Targeted assessments for specific systems and configurations.</p>
-      </div>
-      <div class="services-grid">
-        {services.map((service, index) => (
-          <div class="service-card" style={`animation-delay: ${index * 0.05}s`}>
-            <div class="service-header">
-              <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
-              <div class="service-type">{service.types.map((type) => (<span class={`type-badge type-${type}`}>{type}</span>))}</div>
-            </div>
-            <h3 class="service-title">{service.title}</h3>
-            <p class="service-description">{service.description}</p>
-            {service.timeframe && (<div class="service-meta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>{service.timeframe}</div>)}
-            <div class="service-deliverables"><span class="deliverables-label">Deliverables</span><ul>{service.deliverables.map((item) => (<li>{item}</li>))}</ul></div>
-            <a href="/contact" class="service-link">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></a>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-section">
-    <div class="container-wide">
-      <div class="cta-card">
-        <div class="cta-content">
-          <h2 class="cta-title">Ready to validate your configuration?</h2>
-          <p class="cta-description">Get a focused security review and clear remediation guidance.</p>
-          <div class="cta-actions">
-            <a href="/contact" class="btn-cta-primary">Request Review <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></a>
-            <a href="/services" class="btn-cta-secondary">View All Services</a>
-          </div>
-        </div>
-        <div class="cta-pattern"></div>
-      </div>
-    </div>
-  </section>
-</BaseLayout>
-
-<style>
-  .hero{position:relative;padding:8rem 0 6rem;overflow:hidden}@media(min-width:1024px){.hero{padding:10rem 0 8rem}}.hero-bg{position:absolute;inset:0;z-index:0}.hero-gradient{position:absolute;inset:0;background:linear-gradient(135deg,var(--bg-secondary) 0%,var(--bg-primary) 50%,var(--bg-secondary) 100%)}.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border-primary) 1px,transparent 1px),linear-gradient(90deg,var(--border-primary) 1px,transparent 1px);background-size:60px 60px;opacity:.4;mask-image:radial-gradient(ellipse at center,black 0%,transparent 70%)}.hero .container-wide{position:relative;z-index:1;max-width:42rem}.hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--bg-tertiary);border:1px solid var(--border-primary);border-radius:9999px;font-size:.8125rem;font-weight:500;color:var(--brand-primary);margin-bottom:1.5rem}.hero-title{font-size:3rem;font-weight:700;line-height:1.1;letter-spacing: 0;color:var(--text-primary);margin-bottom:1.5rem}@media(min-width:768px){.hero-title{font-size:4rem}}.hero-title-accent{background:linear-gradient(135deg,var(--brand-primary),var(--success));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero-description{font-size:1.125rem;line-height:1.7;color:var(--text-secondary);margin-bottom:2rem;max-width:540px}.hero-actions{display:flex;flex-wrap:wrap;gap:1rem}.btn-hero-primary{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 1.5rem;background:var(--brand-primary);color:white;font-weight:500;border-radius:.5rem;text-decoration:none;transition:all .2s}.btn-hero-primary:hover{background:var(--brand-hover);transform:translateY(-1px)}.btn-hero-secondary{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 1.5rem;background:var(--bg-primary);color:var(--text-primary);font-weight:500;border:1px solid var(--border-primary);border-radius:.5rem;text-decoration:none;transition:all .2s}.btn-hero-secondary:hover{border-color:var(--border-hover);background:var(--bg-secondary)}.stats-section{padding:3rem 0;background:var(--bg-secondary);border-top:1px solid var(--border-primary);border-bottom:1px solid var(--border-primary)}.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}@media(min-width:768px){.stats-grid{grid-template-columns:repeat(4,1fr)}}.stat-item{text-align:center}.stat-value{font-size:2.5rem;font-weight:700;color:var(--text-primary);line-height:1;letter-spacing:-.02em}.stat-label{font-size:.875rem;color:var(--text-tertiary);margin-top:.5rem}.services-section{padding:6rem 0}@media(min-width:1024px){.services-section{padding:8rem 0}}.section-header{max-width:42rem;margin-bottom:4rem}.section-tag{display:inline-block;padding:.25rem .75rem;background:var(--brand-light);color:var(--brand-primary);font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;border-radius:9999px;margin-bottom:1rem}.section-title{font-size:2.25rem;font-weight:700;color:var(--text-primary);line-height:1.2;letter-spacing: 0;margin-bottom:1rem}@media(min-width:768px){.section-title{font-size:2.75rem}}.section-description{font-size:1.125rem;color:var(--text-secondary);line-height:1.7}.services-grid{display:grid;grid-template-columns:1fr;gap:1.5rem}@media(min-width:640px){.services-grid{grid-template-columns:repeat(2,1fr)}}@media(min-width:1024px){.services-grid{grid-template-columns:repeat(3,1fr)}}.service-card{background:var(--bg-primary);border:1px solid var(--border-primary);border-radius:1rem;padding:2rem;display:flex;flex-direction:column;transition:all .2s;animation:fadeInUp .5s ease-out both}@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.service-card:hover{border-color:var(--border-secondary);box-shadow:0 20px 40px -15px rgba(0,0,0,.1);transform:translateY(-4px)}.service-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem}.service-icon{display:flex;align-items:center;justify-content:center;width:3rem;height:3rem;background:var(--brand-light);color:var(--brand-primary);border-radius:.75rem}.service-type{display:flex;gap:.375rem}.type-badge{padding:.25rem .5rem;font-size:.6875rem;font-weight:500;text-transform:uppercase;letter-spacing:.05em;border-radius:.25rem}.type-assessment{background:rgba(59,130,246,.1);color:#3b82f6}.type-implementation{background:rgba(34,197,94,.1);color:#22c55e}.type-managed{background:rgba(168,85,247,.1);color:#a855f7}.service-title{font-size:1.125rem;font-weight:600;color:var(--text-primary);margin-bottom:.75rem;line-height:1.3}.service-description{font-size:.9375rem;color:var(--text-secondary);line-height:1.6;margin-bottom:1rem;flex:1}.service-meta{display:flex;align-items:center;gap:.375rem;font-size:.8125rem;color:var(--text-tertiary);margin-bottom:1.5rem}.service-deliverables{padding-top:1.5rem;border-top:1px solid var(--border-primary);margin-bottom:1.5rem}.deliverables-label{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text-tertiary);margin-bottom:.75rem;display:block}.service-deliverables ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.5rem}.service-deliverables li{font-size:.875rem;color:var(--text-secondary);padding-left:1.25rem;position:relative}.service-deliverables li::before{content:"";position:absolute;left:0;top:.5rem;width:6px;height:6px;background:var(--brand-primary);border-radius:50%}.service-link{display:inline-flex;align-items:center;gap:.375rem;font-size:.875rem;font-weight:500;color:var(--brand-primary);text-decoration:none;transition:gap .2s}.service-link:hover{gap:.625rem}.cta-section{padding:6rem 0;background:var(--bg-secondary)}@media(min-width:1024px){.cta-section{padding:8rem 0}}.cta-card{position:relative;background:var(--bg-primary);border:1px solid var(--border-primary);border-radius:1.5rem;padding:4rem 2rem;text-align:center;overflow:hidden}@media(min-width:768px){.cta-card{padding:5rem 3rem}}.cta-content{position:relative;z-index:1;max-width:32rem;margin:0 auto}.cta-title{font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:1rem;letter-spacing:-.02em}@media(min-width:768px){.cta-title{font-size:2.5rem}}.cta-description{font-size:1.125rem;color:var(--text-secondary);margin-bottom:2rem;line-height:1.6}.cta-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem}.btn-cta-primary{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2rem;background:var(--brand-primary);color:white;font-weight:500;border-radius:.5rem;text-decoration:none;transition:all .2s}.btn-cta-primary:hover{background:var(--brand-hover);transform:translateY(-1px)}.btn-cta-secondary{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2rem;background:transparent;color:var(--text-primary);font-weight:500;border:1px solid var(--border-primary);border-radius:.5rem;text-decoration:none;transition:all .2s}.btn-cta-secondary:hover{border-color:var(--border-hover);background:var(--bg-secondary)}.cta-pattern{position:absolute;inset:0;background-image:radial-gradient(var(--border-primary) 1px,transparent 1px);background-size:24px 24px;opacity:.5}
-</style>
+<BuyerServicePage
+  metaTitle="Security Configuration Reviews | Centrix"
+  metaDescription="Quick, focused security configuration assessments for Microsoft 365, SharePoint, Teams, VPN, and network infrastructure, with clear remediation steps."
+  eyebrow="Security Configuration Reviews"
+  heading="Fast, focused security configuration reviews"
+  lead="Quick, focused security configuration assessments for Microsoft 365, SharePoint, Teams, VPN, and network infrastructure — with clear, prioritised remediation steps."
+  primaryCta={{ label: 'Book a configuration review', href: '/contact?service=configuration-review' }}
+  secondaryCta={{ label: 'Managed security', href: '/services/managed-security' }}
+  proof={['2–3 day turnaround', '20+ point checklist', 'Prioritised remediation', 'Read-only and non-disruptive']}
+  outcomes={outcomes}
+  includes={includes}
+  process={process}
+  faqs={faqs}
+  mediaLabel="Security configuration review imagery"
+  mediaHint="e.g. a security settings/audit dashboard or a reviewer working through a configuration checklist"
+  mediaIcon="shield"
+  related={[
+    { label: 'Managed security', href: '/services/managed-security' },
+    { label: 'Microsoft 365 security', href: '/services/microsoft-365' },
+    { label: 'Web security', href: '/services/web-security' },
+  ]}
+/>

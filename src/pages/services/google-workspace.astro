@@ -1,94 +1,77 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { SERVICE_CATEGORIES, getServicesByCategory } from '../../consts';
+import BuyerServicePage from '../../components/BuyerServicePage.astro';
 
-const services = getServicesByCategory('google-workspace');
+const outcomes = [
+  {
+    title: 'A hardened admin console',
+    description: 'Google Workspace admin settings reviewed and secured — 2-step verification, admin roles, and access controls.',
+    icon: 'lock',
+  },
+  {
+    title: 'Controlled sharing',
+    description: 'Drive and external sharing locked down so company data is not over-exposed to outside accounts.',
+    icon: 'shield',
+  },
+  {
+    title: 'Trusted email',
+    description: 'SPF, DKIM, and DMARC configured so your domain authenticates properly and is harder to spoof.',
+    icon: 'check',
+  },
+];
 
-const title = "Google Workspace Security | Centrix";
-const description = "Google Workspace security assessments and managed administration services.";
+const includes = [
+  'Google Workspace admin and security review',
+  '2-step verification (2SV) enforcement',
+  'Admin role and privileged access review',
+  'Drive and external sharing controls',
+  'SPF, DKIM, and DMARC email authentication',
+  'Mobile device management policies',
+  'Data retention and Vault review',
+  'Ongoing managed administration (optional)',
+];
 
-const stats = [
-  { value: "100+", label: "Tenants Managed" },
-  { value: "99%", label: "Security Score" },
-  { value: "24/7", label: "Monitoring" },
-  { value: "DMARC", label: "Compliant" },
+const process = [
+  { title: 'Assess', description: 'We review your Workspace configuration, users, sharing, email authentication, and admin access.' },
+  { title: 'Harden', description: 'We apply 2SV, sharing controls, DMARC, and admin hardening with minimal disruption.' },
+  { title: 'Document', description: 'You get a clear record of changes, policies, and recommendations.' },
+  { title: 'Manage', description: 'We can provide ongoing managed administration, monitoring, and support.' },
+];
+
+const faqs = [
+  {
+    question: 'Do you offer a one-off review or ongoing management?',
+    answer: 'Both. We can deliver a one-off security assessment and hardening, or provide ongoing managed Google Workspace administration.',
+  },
+  {
+    question: 'Can you help us move between Google Workspace and Microsoft 365?',
+    answer: 'Yes. We handle migrations in both directions, including email, files, and identity, as part of our cloud migration service.',
+  },
+  {
+    question: 'Will changes disrupt staff?',
+    answer: 'We stage and communicate changes like 2SV enforcement so users have time to enrol, avoiding lockouts.',
+  },
 ];
 ---
 
-<BaseLayout title={title} description={description}>
-  <section class="hero">
-    <div class="hero-bg"><div class="hero-gradient"></div><div class="hero-grid"></div></div>
-    <div class="container-wide">
-      <div class="hero-content">
-        <div class="hero-badge google">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-          </svg>
-          Google Workspace
-        </div>
-        <h1 class="hero-title">Google Workspace<br /><span class="hero-title-accent">Security</span></h1>
-        <p class="hero-description">Comprehensive security and management for Google Workspace environments. Protect your organization with proper configuration, monitoring, and ongoing administration.</p>
-        <div class="hero-actions">
-          <a href="/contact" class="btn-hero-primary">Get Assessment <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></a>
-          <a href="#services" class="btn-hero-secondary">View Services</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="stats-section">
-    <div class="container-wide">
-      <div class="stats-grid">
-        {stats.map((stat) => (<div class="stat-item"><div class="stat-value">{stat.value}</div><div class="stat-label">{stat.label}</div></div>))}
-      </div>
-    </div>
-  </section>
-
-  <section id="services" class="services-section">
-    <div class="container-wide">
-      <div class="section-header">
-        <span class="section-tag">Services</span>
-        <h2 class="section-title">Google Workspace services</h2>
-        <p class="section-description">Security and management services for Google Workspace environments.</p>
-      </div>
-      <div class="services-grid">
-        {services.map((service, index) => (
-          <div class="service-card" style={`animation-delay: ${index * 0.05}s`}>
-            <div class="service-header">
-              <div class="service-icon google"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg></div>
-              <div class="service-type">{service.types.map((type) => (<span class={`type-badge type-${type}`}>{type}</span>))}</div>
-            </div>
-            <h3 class="service-title">{service.title}</h3>
-            <p class="service-description">{service.description}</p>
-            {service.timeframe && (<div class="service-meta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>{service.timeframe}</div>)}
-            <div class="service-deliverables"><span class="deliverables-label">Deliverables</span><ul>{service.deliverables.map((item) => (<li>{item}</li>))}</ul></div>
-            <a href="/contact" class="service-link">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></a>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-section">
-    <div class="container-wide">
-      <div class="cta-card">
-        <div class="cta-content">
-          <h2 class="cta-title">Ready to secure your Google Workspace?</h2>
-          <p class="cta-description">Get a comprehensive security assessment and expert management.</p>
-          <div class="cta-actions">
-            <a href="/contact" class="btn-cta-primary">Schedule Assessment <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></a>
-            <a href="/services" class="btn-cta-secondary">View All Services</a>
-          </div>
-        </div>
-        <div class="cta-pattern"></div>
-      </div>
-    </div>
-  </section>
-</BaseLayout>
-
-<style>
-  .hero{position:relative;padding:8rem 0 6rem;overflow:hidden}@media(min-width:1024px){.hero{padding:10rem 0 8rem}}.hero-bg{position:absolute;inset:0;z-index:0}.hero-gradient{position:absolute;inset:0;background:linear-gradient(135deg,var(--bg-secondary) 0%,var(--bg-primary) 50%,var(--bg-secondary) 100%)}.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border-primary) 1px,transparent 1px),linear-gradient(90deg,var(--border-primary) 1px,transparent 1px);background-size:60px 60px;opacity:.4;mask-image:radial-gradient(ellipse at center,black 0%,transparent 70%)}.hero .container-wide{position:relative;z-index:1;max-width:42rem}.hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--bg-tertiary);border:1px solid var(--border-primary);border-radius:9999px;font-size:.8125rem;font-weight:500;color:var(--text-secondary);margin-bottom:1.5rem}.hero-badge.google{color:#4285F4}.hero-title{font-size:3rem;font-weight:700;line-height:1.1;letter-spacing: 0;color:var(--text-primary);margin-bottom:1.5rem}@media(min-width:768px){.hero-title{font-size:4rem}}.hero-title-accent{background:linear-gradient(135deg,#4285F4,#34A853);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero-description{font-size:1.125rem;line-height:1.7;color:var(--text-secondary);margin-bottom:2rem;max-width:540px}.hero-actions{display:flex;flex-wrap:wrap;gap:1rem}.btn-hero-primary{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 1.5rem;background:#4285F4;color:white;font-weight:500;border-radius:.5rem;text-decoration:none;transition:all .2s}.btn-hero-primary:hover{background:#3367d6;transform:translateY(-1px)}.btn-hero-secondary{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 1.5rem;background:var(--bg-primary);color:var(--text-primary);font-weight:500;border:1px solid var(--border-primary);border-radius:.5rem;text-decoration:none;transition:all .2s}.btn-hero-secondary:hover{border-color:var(--border-hover);background:var(--bg-secondary)}.stats-section{padding:3rem 0;background:var(--bg-secondary);border-top:1px solid var(--border-primary);border-bottom:1px solid var(--border-primary)}.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}@media(min-width:768px){.stats-grid{grid-template-columns:repeat(4,1fr)}}.stat-item{text-align:center}.stat-value{font-size:2.5rem;font-weight:700;color:var(--text-primary);line-height:1;letter-spacing:-.02em}.stat-label{font-size:.875rem;color:var(--text-tertiary);margin-top:.5rem}.services-section{padding:6rem 0}@media(min-width:1024px){.services-section{padding:8rem 0}}.section-header{max-width:42rem;margin-bottom:4rem}.section-tag{display:inline-block;padding:.25rem .75rem;background:rgba(66,133,244,.1);color:#4285F4;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;border-radius:9999px;margin-bottom:1rem}.section-title{font-size:2.25rem;font-weight:700;color:var(--text-primary);line-height:1.2;letter-spacing: 0;margin-bottom:1rem}@media(min-width:768px){.section-title{font-size:2.75rem}}.section-description{font-size:1.125rem;color:var(--text-secondary);line-height:1.7}.services-grid{display:grid;grid-template-columns:1fr;gap:1.5rem}@media(min-width:640px){.services-grid{grid-template-columns:repeat(2,1fr)}}.service-card{background:var(--bg-primary);border:1px solid var(--border-primary);border-radius:1rem;padding:2rem;display:flex;flex-direction:column;transition:all .2s;animation:fadeInUp .5s ease-out both}@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.service-card:hover{border-color:var(--border-secondary);box-shadow:0 20px 40px -15px rgba(0,0,0,.1);transform:translateY(-4px)}.service-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem}.service-icon{display:flex;align-items:center;justify-content:center;width:3rem;height:3rem;background:var(--bg-tertiary);border-radius:.75rem}.service-icon.google{background:transparent}.service-type{display:flex;gap:.375rem}.type-badge{padding:.25rem .5rem;font-size:.6875rem;font-weight:500;text-transform:uppercase;letter-spacing:.05em;border-radius:.25rem}.type-assessment{background:rgba(59,130,246,.1);color:#3b82f6}.type-implementation{background:rgba(34,197,94,.1);color:#22c55e}.type-managed{background:rgba(168,85,247,.1);color:#a855f7}.service-title{font-size:1.125rem;font-weight:600;color:var(--text-primary);margin-bottom:.75rem;line-height:1.3}.service-description{font-size:.9375rem;color:var(--text-secondary);line-height:1.6;margin-bottom:1rem;flex:1}.service-meta{display:flex;align-items:center;gap:.375rem;font-size:.8125rem;color:var(--text-tertiary);margin-bottom:1.5rem}.service-deliverables{padding-top:1.5rem;border-top:1px solid var(--border-primary);margin-bottom:1.5rem}.deliverables-label{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text-tertiary);margin-bottom:.75rem;display:block}.service-deliverables ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.5rem}.service-deliverables li{font-size:.875rem;color:var(--text-secondary);padding-left:1.25rem;position:relative}.service-deliverables li::before{content:"";position:absolute;left:0;top:.5rem;width:6px;height:6px;background:#4285F4;border-radius:50%}.service-link{display:inline-flex;align-items:center;gap:.375rem;font-size:.875rem;font-weight:500;color:#4285F4;text-decoration:none;transition:gap .2s}.service-link:hover{gap:.625rem}.cta-section{padding:6rem 0;background:var(--bg-secondary)}@media(min-width:1024px){.cta-section{padding:8rem 0}}.cta-card{position:relative;background:var(--bg-primary);border:1px solid var(--border-primary);border-radius:1.5rem;padding:4rem 2rem;text-align:center;overflow:hidden}@media(min-width:768px){.cta-card{padding:5rem 3rem}}.cta-content{position:relative;z-index:1;max-width:32rem;margin:0 auto}.cta-title{font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:1rem;letter-spacing:-.02em}@media(min-width:768px){.cta-title{font-size:2.5rem}}.cta-description{font-size:1.125rem;color:var(--text-secondary);margin-bottom:2rem;line-height:1.6}.cta-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem}.btn-cta-primary{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2rem;background:#4285F4;color:white;font-weight:500;border-radius:.5rem;text-decoration:none;transition:all .2s}.btn-cta-primary:hover{background:#3367d6;transform:translateY(-1px)}.btn-cta-secondary{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2rem;background:transparent;color:var(--text-primary);font-weight:500;border:1px solid var(--border-primary);border-radius:.5rem;text-decoration:none;transition:all .2s}.btn-cta-secondary:hover{border-color:var(--border-hover);background:var(--bg-secondary)}.cta-pattern{position:absolute;inset:0;background-image:radial-gradient(var(--border-primary) 1px,transparent 1px);background-size:24px 24px;opacity:.5}
-</style>
+<BuyerServicePage
+  metaTitle="Google Workspace Security | Centrix"
+  metaDescription="Google Workspace security assessments and managed administration — 2SV, sharing controls, DMARC, and admin hardening for Irish businesses."
+  eyebrow="Google Workspace"
+  heading="Secure and manage Google Workspace properly"
+  lead="Google Workspace security assessments and managed administration — 2-step verification, sharing controls, DMARC, and admin hardening for Irish businesses."
+  primaryCta={{ label: 'Book a Workspace review', href: '/contact?service=google-workspace' }}
+  secondaryCta={{ label: 'Microsoft 365 security', href: '/services/microsoft-365' }}
+  proof={['Admin and 2SV hardening', 'Drive sharing controls', 'SPF/DKIM/DMARC', 'Optional managed administration']}
+  outcomes={outcomes}
+  includes={includes}
+  process={process}
+  faqs={faqs}
+  mediaLabel="Google Workspace imagery"
+  mediaHint="e.g. the Google Workspace admin console, Gmail security settings, or Drive sharing controls"
+  mediaIcon="cloud"
+  related={[
+    { label: 'Microsoft 365 security', href: '/services/microsoft-365' },
+    { label: 'Identity & access', href: '/services/identity' },
+    { label: 'Managed security', href: '/services/managed-security' },
+  ]}
+/>
