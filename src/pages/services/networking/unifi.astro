@@ -1,85 +1,453 @@
 ---
-import BuyerServicePage from '../../../components/BuyerServicePage.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ImagePlaceholder from '../../../components/ImagePlaceholder.astro';
+import SiteIcon from '../../../components/SiteIcon.astro';
+import { COMPANY_INFO } from '../../../consts';
 
-const outcomes = [
+const title = 'UniFi Network Design, Installation And Managed Support Ireland';
+const description =
+  'Independent UniFi network design, supply, installation, secure Wi-Fi, CCTV, guest networks, VLANs, cloud-managed infrastructure, documentation, and support for Irish organisations.';
+
+const packages = [
   {
-    title: 'One managed network',
-    description: 'Routing, switching, Wi-Fi, cameras, phones, VPNs, and monitoring can be planned as one coherent site network.',
-    icon: 'network',
-  },
-  {
-    title: 'Secure site design',
-    description: 'Separate staff, guest, IoT, camera, voice, and management networks so devices only reach what they should.',
-    icon: 'shield',
-  },
-  {
-    title: 'Documented handover',
-    description: 'Network diagrams, equipment list, VLAN plan, admin access, and support process are documented for future changes.',
+    title: 'UniFi Network Audit',
+    price: 'From EUR 350 ex VAT',
+    description:
+      'Review an existing UniFi or mixed network before spending more on hardware or support.',
     icon: 'compliance',
+    href: '/unifi-network-audit',
+    includes: ['Wi-Fi and topology review', 'VLAN and firewall checks', 'Admin, backup, and firmware review'],
+  },
+  {
+    title: 'UniFi Design And Quote',
+    price: 'From EUR 500 ex VAT',
+    description:
+      'Plan a new UniFi site with AP placement, switching, gateways, cameras, bill of materials, and rollout notes.',
+    icon: 'network',
+    href: '/ubiquiti-unifi-consultant-ireland',
+    includes: ['Floorplan and site review', 'Hardware and PoE sizing', 'Rollout and handover plan'],
+  },
+  {
+    title: 'Small Business UniFi Setup',
+    price: 'From EUR 1,495 ex VAT plus hardware',
+    description:
+      'Gateway, switching, Wi-Fi, guest network, secure admin, VLANs where needed, testing, and documentation.',
+    icon: 'building',
+    href: '/unifi-for-small-business',
+    includes: ['Staff and guest Wi-Fi', 'Switching and gateway setup', 'Documented handover'],
+  },
+  {
+    title: 'UniFi Protect CCTV Setup',
+    price: 'From EUR 1,950 ex VAT plus hardware',
+    description:
+      'Camera coverage, recorder, secure app access, retention planning, camera VLAN, and handover.',
+    icon: 'camera',
+    href: '/unifi-protect-cctv-ireland',
+    includes: ['Camera and recorder planning', 'Mobile and web access', 'Retention checklist prompts'],
+  },
+  {
+    title: 'Managed UniFi Support',
+    price: 'From EUR 99 per month',
+    description:
+      'Monitoring, firmware review, backups, monthly checks, guest Wi-Fi changes, and priority troubleshooting.',
+    icon: 'monitor',
+    href: '/unifi-network-support-ireland',
+    includes: ['Remote monitoring', 'Configuration backup checks', 'Monthly health review'],
+  },
+  {
+    title: 'Emergency Wi-Fi Fix',
+    price: 'From EUR 250 callout',
+    description:
+      'Focused troubleshooting for slow Wi-Fi, roaming, coverage, VLAN, gateway, or firewall issues.',
+    icon: 'wifi',
+    href: '/contact?service=emergency-unifi-wifi-fix',
+    includes: ['Rapid triage', 'Practical fixes', 'Follow-up recommendations'],
   },
 ];
 
-const includes = [
-  'Site requirements and current network review',
-  'Gateway, switch, access point, and camera planning',
-  'VLAN, firewall, guest access, VPN, and management design',
-  'Point-to-point, site-to-site, and remote-access VPN planning where required',
-  'VoIP and business telephone network readiness',
-  'Backup internet, failover, and recovery considerations',
-  'Equipment configuration and deployment support',
-  'Performance testing and basic security checks',
-  'Camera integration where required',
-  'Network documentation and admin handover',
-  'Optional monitoring, updates, backups, and support',
+const carePlans = [
+  {
+    title: 'Essential',
+    price: 'From EUR 99/month',
+    bestFor: 'Small sites with 1 to 5 UniFi devices.',
+    featured: false,
+    includes: ['Remote health checks', 'Firmware review', 'Configuration backup checks', 'Support queue access'],
+  },
+  {
+    title: 'Business',
+    price: 'From EUR 199/month',
+    bestFor: 'SMEs with 5 to 20 UniFi devices.',
+    featured: true,
+    includes: ['Everything in Essential', 'Monthly health summary', 'Guest Wi-Fi and VLAN changes allowance', 'Priority troubleshooting'],
+  },
+  {
+    title: 'Managed',
+    price: 'From EUR 499/month',
+    bestFor: 'Multi-site, CCTV, or high-dependency networks.',
+    featured: false,
+    includes: ['Everything in Business', 'Multi-site review', 'Camera access support', 'Annual network review'],
+  },
 ];
 
-const process = [
-  { title: 'Survey', description: 'We review the site, existing cabling, internet, cabinets, users, business systems, and areas that need coverage.' },
-  { title: 'Design', description: 'Centrix creates a practical network design covering equipment, segmentation, VPNs, voice, cameras, guest access, and support.' },
-  { title: 'Deploy', description: 'We configure, install, test, secure, and document the agreed network platform.' },
-  { title: 'Manage', description: 'Ongoing support can cover monitoring, updates, backup configs, troubleshooting, and regular health checks.' },
+const sectors = [
+  {
+    title: 'Small Business',
+    description: 'Secure Wi-Fi, guest access, cameras, tills, printers, phones, and support for small Irish premises.',
+    href: '/unifi-for-small-business',
+    icon: 'building',
+  },
+  {
+    title: 'Hotels And Hospitality',
+    description: 'Guest Wi-Fi, staff networks, VLANs, CCTV, coverage, and support for hospitality venues.',
+    href: '/unifi-for-hotels',
+    icon: 'wifi',
+  },
+  {
+    title: 'Churches And Community Centres',
+    description: 'Wi-Fi, guest access, CCTV, streaming readiness, and support for mixed-use community spaces.',
+    href: '/unifi-for-churches-and-community-centres',
+    icon: 'users',
+  },
+];
+
+const delivery = [
+  {
+    title: 'Survey',
+    description:
+      'We review the premises, users, existing network, cabling, internet, cabinets, cameras, and support expectations.',
+  },
+  {
+    title: 'Design',
+    description:
+      'Centrix creates a practical UniFi design covering Wi-Fi, switching, gateways, VLANs, guest access, CCTV, and support.',
+  },
+  {
+    title: 'Install',
+    description:
+      'We configure, install, test, secure, and document the agreed UniFi network with clear handover notes.',
+  },
+  {
+    title: 'Manage',
+    description:
+      'Centrix can stay involved through monitoring, updates, backups, changes, troubleshooting, and annual reviews.',
+  },
 ];
 
 const faqs = [
   {
-    question: 'Can this support a full business premises?',
-    answer: 'Yes, when the design is matched to the building and workload. We review switching, PoE, cabling, Wi-Fi density, internet, cameras, and segmentation before specifying hardware.',
+    question: 'Is Centrix an official Ubiquiti distributor?',
+    answer:
+      'Centrix supplies, installs, configures, and supports Ubiquiti UniFi networks. We do not describe Centrix as an official or authorised Ubiquiti distributor unless that status is confirmed in writing.',
   },
   {
-    question: 'Can you add VPNs or phone systems to the network?',
-    answer: 'Yes. Centrix can plan point-to-point VPNs, remote-user access, voice VLANs, PoE switching, call-flow requirements, and the firewall rules needed to support them.',
+    question: 'Can Centrix supply UniFi hardware?',
+    answer:
+      'Yes. Centrix can specify and source suitable UniFi hardware for a project, or work with existing equipment where it is appropriate for the design.',
   },
   {
-    question: 'Can you work with our electrician or cabling contractor?',
-    answer: 'Yes. Centrix can provide the network design and work with existing contractors on cable routes, cabinet layout, device placement, and commissioning.',
+    question: 'Can you take over support for an existing UniFi network?',
+    answer:
+      'Yes. We normally start with a UniFi network audit so access, firmware, backups, VLANs, cameras, firewall rules, and documentation are understood before support begins.',
   },
   {
-    question: 'Can you manage the system after installation?',
-    answer: 'Yes. Managed support can include monitoring, firmware planning, configuration backups, issue response, and periodic reviews.',
+    question: 'Can UniFi include CCTV and guest Wi-Fi?',
+    answer:
+      'Yes. UniFi can cover Wi-Fi, switching, gateways, guest access, VLANs, camera networks, and UniFi Protect CCTV when the design is planned properly.',
   },
 ];
+
+const related = [
+  { label: 'UniFi installer Ireland', href: '/unifi-installer-ireland' },
+  { label: 'UniFi Wi-Fi installation', href: '/unifi-wifi-installation-ireland' },
+  { label: 'UniFi network support', href: '/unifi-network-support-ireland' },
+  { label: 'UniFi Protect CCTV', href: '/unifi-protect-cctv-ireland' },
+  { label: 'UniFi network audit', href: '/unifi-network-audit' },
+  { label: 'Business networking', href: '/services/networking/business-networking' },
+];
+
+const siteOrigin = Astro.site ?? new URL(Astro.url.origin);
+const canonicalUrl = new URL(Astro.url.pathname, siteOrigin).toString();
+const organizationId = new URL('/#organization', siteOrigin).toString();
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': organizationId,
+      name: COMPANY_INFO.name,
+      url: new URL('/', siteOrigin).toString(),
+      email: COMPANY_INFO.email,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Duleek',
+        addressRegion: 'County Meath',
+        addressCountry: 'IE',
+      },
+      areaServed: {
+        '@type': 'Country',
+        name: 'Ireland',
+      },
+    },
+    {
+      '@type': 'Service',
+      '@id': `${canonicalUrl}#service`,
+      name: title,
+      serviceType: 'UniFi network design, installation and managed support',
+      description,
+      provider: {
+        '@id': organizationId,
+      },
+      areaServed: {
+        '@type': 'Country',
+        name: 'Ireland',
+      },
+      brand: {
+        '@type': 'Brand',
+        name: 'Ubiquiti UniFi',
+      },
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Centrix UniFi services',
+        itemListElement: packages.map((item) => ({
+          '@type': 'Offer',
+          name: item.title,
+          description: item.description,
+          url: new URL(item.href, siteOrigin).toString(),
+        })),
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${canonicalUrl}#faq`,
+      mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    },
+  ],
+};
 ---
 
-<BuyerServicePage
-  mediaSrc="/products/unifi.png"
-  metaTitle="Full Business Network Design And Deployment"
-  metaDescription="Full business network design, deployment, Wi-Fi, switching, routing, cameras, VPNs, VoIP readiness, segmentation, documentation, and managed support for Irish businesses."
-  eyebrow="Full Business Network"
-  heading="Do you need a complete network for your business premises?"
-  lead="Centrix designs and deploys full business networks for Irish premises that need reliable Wi-Fi, switching, routing, cameras, VPNs, guest access, voice readiness, network separation, and clear support."
-  primaryCta={{ label: 'Discuss a network project', href: '/contact?service=business-networking' }}
-  secondaryCta={{ label: 'View business Wi-Fi', href: '/services/networking/business-wifi' }}
-  proof={['Wi-Fi, switching, routing, VPNs, and cameras', 'Secure VLAN and guest network design', 'Voice and backup connectivity planning', 'Configuration documentation and optional support']}
-  outcomes={outcomes}
-  includes={includes}
-  process={process}
-  faqs={faqs}
-  related={[
-    { label: 'Business networking', href: '/services/networking/business-networking' },
-    { label: 'VPN and remote access', href: '/services/networking/vpn-remote-access' },
-    { label: 'Backup and resilience', href: '/services/networking/backup-resilience' },
-    { label: 'VoIP and business phones', href: '/services/networking/voip-business-phones' },
-    { label: 'Business Wi-Fi', href: '/services/networking/business-wifi' },
-    { label: 'CCTV and IP cameras', href: '/services/networking/cctv-ip-cameras' },
-  ]}
-/>
+<BaseLayout title={title} description={description} image="/products/unifi.png">
+  <article class="consult-page">
+    <section class="consult-subhero">
+      <div class="container-wide">
+        <div class="consult-subhero-grid">
+          <div>
+            <div class="consult-eyebrow">UniFi Networks Ireland</div>
+            <h1 class="consult-subhero-title">Independent UniFi network design, installation and managed support.</h1>
+            <p class="consult-lead">
+              Centrix is the trusted UniFi network partner for Irish organisations that need secure Wi-Fi, CCTV, guest networks, VLANs, cloud-managed infrastructure, and ongoing support.
+            </p>
+            <div class="consult-actions">
+              <a href="/contact?service=unifi-network-audit" class="consult-btn consult-btn-primary">
+                Book a UniFi Network Audit
+                <SiteIcon name="arrow-right" size={18} />
+              </a>
+              <a href="/unifi-installer-ireland" class="consult-btn consult-btn-secondary">UniFi installer Ireland</a>
+            </div>
+          </div>
+
+          <aside class="consult-proof-panel" aria-label="UniFi service highlights">
+            <h2>What Centrix can cover</h2>
+            <ul>
+              <li><SiteIcon name="check" size={18} /><span>UniFi design, supply, installation, and handover</span></li>
+              <li><SiteIcon name="check" size={18} /><span>Wi-Fi, switching, gateways, guest access, VLANs, and VPNs</span></li>
+              <li><SiteIcon name="check" size={18} /><span>UniFi Protect CCTV, recording, secure access, and support</span></li>
+              <li><SiteIcon name="check" size={18} /><span>Monitoring, firmware review, backups, and managed support</span></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-section compact">
+      <div class="container-wide">
+        <ImagePlaceholder
+          label="UniFi network design and installation imagery"
+          src="/products/unifi.png"
+          icon="network"
+          ratio="16 / 6"
+        />
+      </div>
+    </section>
+
+    <section class="consult-section">
+      <div class="container-wide">
+        <div class="consult-section-heading">
+          <span class="consult-kicker">Productised Offers</span>
+          <h2>Clear UniFi services from audit to managed support.</h2>
+          <p>
+            Centrix does not compete as a cheap box seller. The value is in survey, design, configuration, documentation, secure handover, and ongoing support.
+          </p>
+        </div>
+        <div class="consult-offer-grid">
+          {packages.map((item) => (
+            <a href={item.href} class="consult-offer-card">
+              <div class="consult-card-icon"><SiteIcon name={item.icon} size={24} /></div>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+              <span class="consult-price">{item.price}</span>
+              <ul class="consult-mini-list">
+                {item.includes.map((include) => (
+                  <li>
+                    <SiteIcon name="check" size={16} />
+                    <span>{include}</span>
+                  </li>
+                ))}
+              </ul>
+              <span class="consult-card-link">
+                View details
+                <SiteIcon name="arrow-right" size={16} />
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-section consult-section-muted">
+      <div class="container-wide">
+        <div class="consult-section-heading">
+          <span class="consult-kicker">Centrix UniFi Care</span>
+          <h2>Recurring support for the network after installation.</h2>
+          <p>
+            Managed UniFi support keeps the network visible, documented, updated carefully, and easier to change when the premises grows.
+          </p>
+        </div>
+        <div class="consult-plan-grid">
+          {carePlans.map((plan) => (
+            <div class={`consult-plan-card${plan.featured ? ' featured' : ''}`}>
+              <div class="consult-plan-topline">
+                <div>
+                  <h3>{plan.title}</h3>
+                  <p>{plan.bestFor}</p>
+                </div>
+                {plan.featured && <span class="consult-tag">Popular</span>}
+              </div>
+              <span class="consult-price">{plan.price}</span>
+              <ul class="consult-mini-list">
+                {plan.includes.map((include) => (
+                  <li>
+                    <SiteIcon name="check" size={16} />
+                    <span>{include}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-section">
+      <div class="container-wide">
+        <div class="consult-section-heading">
+          <span class="consult-kicker">Sectors</span>
+          <h2>Focused UniFi pages for the first wedge markets.</h2>
+          <p>
+            Centrix is especially well suited to Irish SMEs, hospitality, churches, clubs, and community organisations where Wi-Fi, CCTV, guest access, and support overlap.
+          </p>
+        </div>
+        <div class="consult-card-grid three">
+          {sectors.map((sector) => (
+            <a href={sector.href} class="consult-card">
+              <div class="consult-card-icon"><SiteIcon name={sector.icon} size={24} /></div>
+              <h3>{sector.title}</h3>
+              <p>{sector.description}</p>
+              <span class="consult-card-link">
+                View sector page
+                <SiteIcon name="arrow-right" size={16} />
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-section consult-section-muted">
+      <div class="container-wide">
+        <div class="consult-split">
+          <div>
+            <span class="consult-kicker">Delivery Standard</span>
+            <h2>Secure, documented, and supportable by design.</h2>
+            <p>
+              Every UniFi project should leave you with more than working Wi-Fi. The network should have a known topology, sensible access, named devices, VLAN intent, backups, and a support path.
+            </p>
+            <p class="consult-note">
+              Centrix is an independent Irish IT consultancy. Ubiquiti and UniFi are third-party product names; this page does not claim official distributor or authorised reseller status.
+            </p>
+          </div>
+          <div class="consult-check-list">
+            <div class="consult-check-item"><SiteIcon name="check" size={18} /><span>Staff, guest, camera, voice, IoT, and management separation where required</span></div>
+            <div class="consult-check-item"><SiteIcon name="check" size={18} /><span>Gateway, switch, AP, camera, and recorder planning around the site</span></div>
+            <div class="consult-check-item"><SiteIcon name="check" size={18} /><span>Secure admin access, firmware approach, backups, and documentation</span></div>
+            <div class="consult-check-item"><SiteIcon name="check" size={18} /><span>CCTV retention, access, signage, and policy checklist prompts where relevant</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-section">
+      <div class="container-wide">
+        <div class="consult-section-heading">
+          <span class="consult-kicker">Process</span>
+          <h2>How a UniFi project runs.</h2>
+        </div>
+        <div class="consult-steps">
+          {delivery.map((step, index) => (
+            <div class="consult-step">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-section consult-section-muted">
+      <div class="container-wide">
+        <div class="consult-section-heading">
+          <span class="consult-kicker">Questions</span>
+          <h2>Common UniFi questions</h2>
+        </div>
+        <div class="consult-faq-grid">
+          {faqs.map((faq) => (
+            <div class="consult-faq">
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="consult-cta">
+      <div class="container-wide">
+        <div class="consult-cta-inner">
+          <div>
+            <span class="consult-kicker">Next Step</span>
+            <h2>Book a UniFi Network Audit before you buy more hardware or accept a messy network.</h2>
+          </div>
+          <a href="/contact?service=unifi-network-audit" class="consult-btn consult-btn-primary">
+            Book a UniFi Network Audit
+            <SiteIcon name="arrow-right" size={18} />
+          </a>
+        </div>
+        <div class="consult-related">
+          {related.map((item) => (
+            <a href={item.href}>{item.label}</a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </article>
+</BaseLayout>

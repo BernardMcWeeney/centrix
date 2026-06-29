@@ -1,10 +1,12 @@
-# Centrix — IT Security & Consultancy
+# Centrix - Irish Business IT, UniFi Networks & Consultancy
 
-> Security, Microsoft, AI & Networks. Fixed scope. Clear outcomes.
+> UniFi networks, Microsoft cloud, security, AI, and business IT consultancy.
 
-Centrix helps Irish businesses (and UK/EU clients remotely) secure their
-technology with productised services. Every engagement is fixed scope, with
-clear deliverables and predictable pricing — no hourly billing, no scope creep.
+Centrix helps Irish businesses secure, modernise, and support their technology.
+The strongest networking niche is independent UniFi network design, supply,
+installation, documentation, and managed support for Irish organisations that
+need secure Wi-Fi, CCTV, guest networks, VLANs, cloud-managed infrastructure,
+and ongoing support.
 
 ## Pillars
 
@@ -13,7 +15,31 @@ clear deliverables and predictable pricing — no hourly billing, no scope creep
 - **Microsoft** — `/microsoft` — M365 security, Intune, Defender, Conditional
   Access, Purview, Copilot readiness.
 - **AI** — `/ai` — Copilot readiness, AI governance, safe enablement.
-- **Networks** — `/networks` — UniFi deployments with security-first design.
+- **Networks** — `/networks` — UniFi installation, business Wi-Fi, CCTV, VLANs,
+  VPNs, VoIP, backup connectivity, and managed network support.
+
+## UniFi pages
+
+- **UniFi Installer Ireland** — `/unifi-installer-ireland` — secure UniFi Wi-Fi,
+  switching, gateways, guest networks, VLANs, CCTV, documentation, and support.
+- **UniFi Wi-Fi Installation Ireland** — `/unifi-wifi-installation-ireland` —
+  business wireless design, access point placement, guest Wi-Fi, roaming, VLANs,
+  and testing.
+- **UniFi Network Support Ireland** — `/unifi-network-support-ireland` —
+  monitoring, firmware review, backups, changes, troubleshooting, and health
+  checks.
+- **Ubiquiti UniFi Consultant Ireland** — `/ubiquiti-unifi-consultant-ireland` —
+  audits, bill of materials, AP placement, switching, gateways, VLANs, CCTV, and
+  rollout planning.
+- **UniFi Protect CCTV Ireland** — `/unifi-protect-cctv-ireland` — cameras,
+  recorder, retention planning, app/web access, camera VLANs, and support.
+- **UniFi Network Audit** — `/unifi-network-audit` — Wi-Fi coverage, topology,
+  VLANs, firewall rules, cameras, admin access, firmware, backups, and
+  documentation review.
+- **UniFi for Small Business** — `/unifi-for-small-business`
+- **UniFi for Hotels** — `/unifi-for-hotels`
+- **UniFi for Churches and Community Centres** —
+  `/unifi-for-churches-and-community-centres`
 
 ## Hero offers
 
@@ -27,8 +53,10 @@ clear deliverables and predictable pricing — no hourly billing, no scope creep
   policies, app deployment.
 - **Copilot Readiness** (2–3 weeks) — permissions review, data hygiene,
   pilot plan.
-- **UniFi Network Deploy** (1–2 weeks) — network design, VLAN setup,
-  documentation.
+- **UniFi Network Deploy** (site project) — UniFi network design, VLAN setup,
+  Wi-Fi, switching, CCTV planning, documentation, and handover.
+- **UniFi Network Audit** (focused review) — controller, gateway, switching,
+  Wi-Fi, VLAN, firewall, camera, backup, firmware, and documentation review.
 
 ## Recurring plans
 
@@ -41,6 +69,10 @@ clear deliverables and predictable pricing — no hourly billing, no scope creep
 
 Pricing: fixed scope per engagement, monthly plans by quote. See `/#pricing`
 or `/contact` for a scoping call.
+
+UniFi note: Centrix supplies, installs, configures, and supports Ubiquiti UniFi
+networks, but does not claim official distributor or authorised reseller status
+unless confirmed in writing.
 
 ## Process
 

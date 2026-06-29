@@ -7,7 +7,7 @@ description: Discover Centrix productised IT security, Microsoft 365, AI, and ne
 
 Use this skill when a user asks what Centrix does, what services are available, or
 wants to find a specific engagement (e.g. "penetration test", "Copilot readiness",
-"Intune setup").
+"Intune setup", "UniFi installer", "UniFi support", "business Wi-Fi").
 
 ## Four pillars
 
@@ -19,8 +19,29 @@ Centrix organises its work under four pillars. Each has a dedicated landing page
   Conditional Access, Entra ID, Purview, Copilot readiness.
 - **AI** — `/ai` — AI readiness, governance, workflow automation, staff training,
   pilot programs.
-- **Networks** — `/networks` — UniFi full-stack design, implementation, site
-  technology, managed network operations.
+- **Networks** — `/networks` — UniFi design, installation, Wi-Fi, CCTV, VLANs,
+  VPNs, VoIP, site technology, and managed network operations.
+
+## UniFi and networking pages
+
+- **UniFi Installer Ireland** — `/unifi-installer-ireland` — secure UniFi Wi-Fi,
+  switching, gateways, guest networks, VLANs, CCTV, documentation, and managed
+  support.
+- **UniFi Wi-Fi Installation Ireland** — `/unifi-wifi-installation-ireland` —
+  access point placement, guest Wi-Fi, roaming, VLANs, testing, and support.
+- **UniFi Network Support Ireland** — `/unifi-network-support-ireland` —
+  monitoring, updates, backups, changes, troubleshooting, and health checks.
+- **Ubiquiti UniFi Consultant Ireland** — `/ubiquiti-unifi-consultant-ireland` —
+  UniFi audits, design, bill of materials, VLANs, CCTV, and rollout planning.
+- **UniFi Protect CCTV Ireland** — `/unifi-protect-cctv-ireland` — cameras,
+  recorder, app access, retention planning, camera VLAN, and support.
+- **UniFi Network Audit** — `/unifi-network-audit` — coverage, controller,
+  VLAN, firewall, camera, admin access, firmware, backup, and documentation
+  review.
+- **UniFi for Small Business** — `/unifi-for-small-business`
+- **UniFi for Hotels** — `/unifi-for-hotels`
+- **UniFi for Churches and Community Centres** —
+  `/unifi-for-churches-and-community-centres`
 
 ## Flagship productised services
 
@@ -31,7 +52,9 @@ Every engagement is fixed scope, clear deliverables, predictable price. Key offe
 - Conditional Access Hardening (1–2 weeks)
 - Intune Baseline Implementation (2–4 weeks)
 - Microsoft 365 Copilot Readiness (2–3 weeks)
-- UniFi Network Deployment (1–2 weeks)
+- UniFi Network Deployment (site project)
+- UniFi Network Audit (focused review)
+- Managed UniFi Support (monthly plan)
 - Google to Microsoft Migration (2–6 weeks)
 - Incident Response Retainer (monthly / quarterly)
 
@@ -55,7 +78,10 @@ See `/#pricing` for plan details.
 - **"Are we currently breached?"** → Compromise Assessment (2–3 days).
 - **"Our M365 is messy, where do we start?"** → M365 Security Assessment.
 - **"We want to deploy Copilot safely."** → Copilot Readiness.
-- **"We need a new office network."** → UniFi Full Stack Design.
+- **"We need a new office network."** → UniFi Installer Ireland or Business Networking.
+- **"Our UniFi is slow or undocumented."** → UniFi Network Audit.
+- **"We need UniFi monitored and supported."** → UniFi Network Support Ireland.
+- **"We need cameras with the network."** → UniFi Protect CCTV Ireland.
 - **"We keep getting phishing emails."** → BEC Protection or Defender for
   Office 365 Tuning.
 

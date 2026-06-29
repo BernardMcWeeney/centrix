@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { COMPANY_INFO } from '../consts';
 
 const title = "Contact Centrix";
-const description = "Message Centrix about Irish business IT consultancy, Microsoft cloud, business networking, VPNs, VoIP, security, compliance readiness, and AI services.";
+const description = "Message Centrix about Irish business IT consultancy, Microsoft cloud, UniFi networks, business networking, VPNs, VoIP, security, compliance readiness, and AI services.";
 const turnstileSiteKey = "0x4AAAAAAAWsI1fJREzBYF91";
 const canonicalUrl = new URL('/contact/', Astro.site || Astro.url.origin).toString();
 
@@ -31,6 +31,10 @@ const services = [
   "Backup, DR & Resilience",
   "VoIP & Business Phones",
   "Business Wi-Fi",
+  "UniFi Network Audit",
+  "UniFi Design & Installation",
+  "Managed UniFi Support",
+  "UniFi Protect CCTV",
   "CCTV & IP Cameras",
   "NIS2 & GDPR Readiness",
   "AI Introduction & Automation",
@@ -111,7 +115,7 @@ const structuredData = {
         <div class="hero-eyebrow">Contact</div>
         <h1 class="hero-title">Message Centrix</h1>
         <p class="hero-description">
-          Send a message about Microsoft cloud, business networking, VPNs, VoIP, Wi-Fi, CCTV, security, compliance readiness, AI, or general business IT consultancy.
+          Send a message about Microsoft cloud, UniFi networks, business networking, VPNs, VoIP, Wi-Fi, CCTV, security, compliance readiness, AI, or general business IT consultancy.
         </p>
       </div>
     </div>
@@ -259,6 +263,32 @@ const structuredData = {
   const status = form?.querySelector('[data-form-status]') as HTMLElement | null;
   const submitButton = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
   const defaultButtonHtml = submitButton?.innerHTML || '';
+  const serviceSelect = document.getElementById('service') as HTMLSelectElement | null;
+  const serviceAliases = new Map([
+    ['unifi-network-audit', 'UniFi Network Audit'],
+    ['unifi-wifi-installation', 'UniFi Design & Installation'],
+    ['unifi-consultant', 'UniFi Design & Installation'],
+    ['unifi-small-business', 'UniFi Design & Installation'],
+    ['unifi-hotels', 'UniFi Design & Installation'],
+    ['unifi-churches-community', 'UniFi Design & Installation'],
+    ['managed-unifi-support', 'Managed UniFi Support'],
+    ['unifi-protect-cctv', 'UniFi Protect CCTV'],
+    ['emergency-unifi-wifi-fix', 'Business Wi-Fi'],
+    ['business-wifi', 'Business Wi-Fi'],
+    ['cctv-ip-cameras', 'CCTV & IP Cameras'],
+    ['business-networking', 'Business Networking'],
+    ['networking', 'Business Networking'],
+  ]);
+  const requestedService = new URLSearchParams(window.location.search).get('service') || '';
+  const selectedService = serviceAliases.get(requestedService) || requestedService;
+
+  if (serviceSelect && selectedService) {
+    const matchingOption = Array.from(serviceSelect.options).find((option) => option.value === selectedService);
+
+    if (matchingOption) {
+      serviceSelect.value = matchingOption.value;
+    }
+  }
 
   form?.addEventListener('submit', async (event) => {
     event.preventDefault();

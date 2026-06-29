@@ -7,6 +7,18 @@ const description = 'Business networking, Wi-Fi, CCTV, IP cameras, switching, ro
 
 const services = [
   {
+    title: 'UniFi networks',
+    description: 'UniFi Wi-Fi, switching, gateways, guest networks, CCTV, VLANs, and managed support.',
+    href: '/unifi-installer-ireland',
+    icon: 'network',
+  },
+  {
+    title: 'UniFi network audit',
+    description: 'Review Wi-Fi, VLANs, firewall rules, cameras, admin access, backups, firmware, and support risk.',
+    href: '/unifi-network-audit',
+    icon: 'compliance',
+  },
+  {
     title: 'Business network design',
     description: 'Routing, switching, PoE, Wi-Fi, VLANs, firewalls, VPN readiness, voice networks, cameras, and documentation.',
     href: '/services/networking/business-networking',
@@ -42,12 +54,6 @@ const services = [
     href: '/services/networking/cctv-ip-cameras',
     icon: 'camera',
   },
-  {
-    title: 'UniFi networks',
-    description: 'UniFi network, Wi-Fi, switching, camera, and door access design, installation, and support.',
-    href: '/services/networking/unifi',
-    icon: 'network',
-  },
 ];
 ---
 
@@ -60,7 +66,7 @@ const services = [
             <div class="consult-eyebrow">Business Networking</div>
             <h1 class="consult-subhero-title">Reliable networks and site technology for Irish business premises.</h1>
             <p class="consult-lead">
-              Centrix designs, installs, secures, documents, and supports business networks covering Wi-Fi, switching, routing, VPNs, CCTV, IP cameras, VoIP, backup links, and guest access.
+              Centrix designs, installs, secures, documents, and supports business networks covering UniFi, Wi-Fi, switching, routing, VPNs, CCTV, IP cameras, VoIP, backup links, VLANs, and guest access.
             </p>
             <div class="consult-actions">
               <a href="/services/networking/business-networking" class="consult-btn consult-btn-primary">
@@ -74,6 +80,7 @@ const services = [
             <h2>Typical projects</h2>
             <ul>
               <li><SiteIcon name="check" size={18} /><span>Poor Wi-Fi coverage or unreliable roaming</span></li>
+              <li><SiteIcon name="check" size={18} /><span>UniFi network audits, installation, and managed support</span></li>
               <li><SiteIcon name="check" size={18} /><span>New office, unit, school, retail, or warehouse fit-out</span></li>
               <li><SiteIcon name="check" size={18} /><span>VPNs between sites, staff, suppliers, or cloud systems</span></li>
               <li><SiteIcon name="check" size={18} /><span>VoIP, CCTV, backup connectivity, and managed support</span></li>

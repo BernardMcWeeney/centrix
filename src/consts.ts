@@ -680,13 +680,13 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   {
     id: "networking",
     title: "Business Networking",
-    description: "Business networking, VPNs, VoIP, Wi-Fi, CCTV networks, backup connectivity, and site technology.",
+    description: "UniFi networks, business networking, VPNs, VoIP, Wi-Fi, CCTV, VLANs, backup connectivity, and site technology.",
     icon: "network",
     services: [
       {
         id: "unifi-design",
-        title: "Business Network Architecture",
-        description: "Complete design for Wi-Fi, switching, routing, VLANs, VPNs, voice, cameras, and segmentation.",
+        title: "UniFi And Business Network Architecture",
+        description: "Complete design for UniFi, Wi-Fi, switching, routing, VLANs, VPNs, voice, cameras, and segmentation.",
         outcome: "Business-ready network architecture.",
         icon: "blueprint",
         category: "networking",
@@ -697,7 +697,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       {
         id: "unifi-implementation",
         title: "Network Implementation & Configuration",
-        description: "Professional network deployment with routing, switching, Wi-Fi, segmentation, and security hardening.",
+        description: "Professional UniFi and business network deployment with routing, switching, Wi-Fi, segmentation, and security hardening.",
         outcome: "Installed, secured, documented network.",
         icon: "network",
         category: "networking",

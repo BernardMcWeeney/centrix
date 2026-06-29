@@ -7,14 +7,14 @@
       "type": "markdown",
       "description": "Book a 15-minute fit check or request a quote from Centrix",
       "url": "/agent-skills/contact/SKILL.md",
-      "sha256": "9d4860658c2128ea3154913225285804d768a4e46799ed12514854340c865a06"
+      "sha256": "bc79c8fa1d63aeeb4f453f1a9a2ab7f875df04b526d5b8a63c92b0ba01befc74"
     },
     {
       "name": "centrix-services",
       "type": "markdown",
       "description": "Discover Centrix productised IT security, Microsoft 365, AI, and networking services",
       "url": "/agent-skills/services/SKILL.md",
-      "sha256": "9b60e3693366bd26df96dbbb2f84959baed4461f3ce38460d95e91e8d522863e"
+      "sha256": "23cffc5f87f530754434c0a174044742baee12bb6ec4c7379ed46c6c66495a96"
     }
   ]
 }

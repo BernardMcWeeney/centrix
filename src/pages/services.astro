@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteIcon from '../components/SiteIcon.astro';
 
 const title = 'IT, Technology, And Consultancy Services';
-const description = 'Centrix services across Microsoft cloud, business networking, Wi-Fi, CCTV, VPNs, VoIP, security, compliance readiness, and AI automation for Irish businesses.';
+const description = 'Centrix services across Microsoft cloud, UniFi networks, business networking, Wi-Fi, CCTV, VLANs, VPNs, VoIP, security, compliance readiness, and AI automation for Irish businesses.';
 
 const groups = [
   {
@@ -23,12 +23,14 @@ const groups = [
     overview: { label: 'Networking overview', href: '/networks' },
     services: [
       { title: 'Business Networking', description: 'Routing, switching, VLANs, guest access, and support.', href: '/services/networking/business-networking', icon: 'network' },
+      { title: 'UniFi Installer Ireland', description: 'UniFi Wi-Fi, switching, CCTV, guest networks, VLANs, and managed support.', href: '/unifi-installer-ireland', icon: 'network' },
+      { title: 'UniFi Network Audit', description: 'Review Wi-Fi, VLANs, cameras, admin access, firmware, backups, and support risk.', href: '/unifi-network-audit', icon: 'compliance' },
       { title: 'Business Wi-Fi', description: 'Reliable, secure wireless coverage across your premises.', href: '/services/networking/business-wifi', icon: 'wifi' },
       { title: 'VPN & Remote Access', description: 'Site-to-site and remote user access, scoped and secure.', href: '/services/networking/vpn-remote-access', icon: 'lock' },
       { title: 'VoIP & Business Phones', description: 'Handsets, call flows, voice VLANs, and support.', href: '/services/networking/voip-business-phones', icon: 'phone' },
       { title: 'CCTV & IP Cameras', description: 'Camera systems with app viewing, recording, and roles.', href: '/services/networking/cctv-ip-cameras', icon: 'camera' },
       { title: 'Backup & Resilience', description: 'Backup connectivity, failover, and recovery readiness.', href: '/services/networking/backup-resilience', icon: 'cloud' },
-      { title: 'UniFi', description: 'UniFi network, Wi-Fi, camera, and door access design.', href: '/services/networking/unifi', icon: 'network' },
+      { title: 'Managed UniFi Support', description: 'Monitoring, updates, backups, guest Wi-Fi changes, and troubleshooting.', href: '/unifi-network-support-ireland', icon: 'monitor' },
     ],
   },
   {
@@ -85,7 +87,7 @@ const process = [
             <h2>Start with</h2>
             <ul>
               <li><SiteIcon name="check" size={18} /><span>A cloud move or Microsoft review</span></li>
-              <li><SiteIcon name="check" size={18} /><span>A networking, VPN, VoIP, Wi-Fi, or CCTV site project</span></li>
+              <li><SiteIcon name="check" size={18} /><span>A UniFi, networking, VPN, VoIP, Wi-Fi, or CCTV site project</span></li>
               <li><SiteIcon name="check" size={18} /><span>A security and compliance readiness review</span></li>
               <li><SiteIcon name="check" size={18} /><span>A ChatGPT, Claude, Copilot, or AI automation workshop</span></li>
             </ul>

@@ -5,7 +5,7 @@ import PlatformLogo from '../components/PlatformLogo.astro';
 import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 
 const title = 'Irish Business IT & Technology Consultancy';
-const description = 'Centrix helps Irish businesses with Microsoft cloud, business networking, Wi-Fi, CCTV, VPNs, VoIP, security, compliance readiness, and practical AI consultancy.';
+const description = 'Centrix helps Irish businesses with Microsoft cloud, UniFi networks, business Wi-Fi, CCTV, VLANs, VPNs, VoIP, security, compliance readiness, and practical AI consultancy.';
 
 const pillars = [
   {
@@ -16,7 +16,7 @@ const pillars = [
   },
   {
     title: 'Business networking',
-    description: 'Wi-Fi, switching, routing, VPNs, CCTV, VoIP, phones, backup connectivity, segmentation, and managed network support.',
+    description: 'UniFi networks, Wi-Fi, switching, routing, VLANs, VPNs, CCTV, VoIP, backup connectivity, and managed network support.',
     href: '/networks',
     icon: 'network',
   },
@@ -36,10 +36,22 @@ const pillars = [
 
 const networkingQuestions = [
   {
-    title: 'Does your business need a complete network?',
-    description: 'Routing, switching, Wi-Fi, VLANs, cameras, voice, guest access, and support planned as one business network.',
-    href: '/services/networking/business-networking',
+    title: 'Do you need a UniFi installer in Ireland?',
+    description: 'UniFi Wi-Fi, switching, gateways, CCTV, guest networks, VLANs, documentation, and managed support.',
+    href: '/unifi-installer-ireland',
     icon: 'network',
+  },
+  {
+    title: 'Is your UniFi network slow or undocumented?',
+    description: 'Audit Wi-Fi coverage, VLANs, firewall rules, cameras, admin access, firmware, backups, and support risk.',
+    href: '/unifi-network-audit',
+    icon: 'compliance',
+  },
+  {
+    title: 'Do you need UniFi Protect CCTV?',
+    description: 'Camera planning, local recording, app access, retention planning, camera VLANs, and support.',
+    href: '/unifi-protect-cctv-ireland',
+    icon: 'camera',
   },
   {
     title: 'Do you need point-to-point or remote access VPNs?',
@@ -125,7 +137,7 @@ const caseStudies = [
           <div class="consult-eyebrow">Duleek, County Meath</div>
           <h1 class="consult-hero-title">Trusted IT, technology, and consultancy for Irish business.</h1>
           <p class="consult-hero-lead">
-            Centrix helps businesses move to Microsoft cloud, build reliable business networks, improve security, prepare for compliance, and adopt AI safely.
+            Centrix helps businesses move to Microsoft cloud, build secure UniFi and business networks, improve security, prepare for compliance, and adopt AI safely.
           </p>
           <div class="consult-actions">
             <a href="/contact" class="consult-btn consult-btn-primary">
@@ -136,7 +148,7 @@ const caseStudies = [
           </div>
           <div class="consult-hero-meta" aria-label="Centrix focus areas">
             <span>Microsoft</span>
-            <span>Google</span>
+            <span>UniFi</span>
             <span>Networking</span>
             <span>Cloudflare</span>
             <span>Security</span>
@@ -214,7 +226,7 @@ const caseStudies = [
       <div class="container-wide">
         <div class="consult-section-heading">
           <span class="consult-kicker">Networking For Your Premises</span>
-          <h2>Reliable networks, VPNs, phones, cameras, and resilience without complexity.</h2>
+          <h2>UniFi networks, VPNs, phones, cameras, and resilience without complexity.</h2>
         </div>
         <div class="consult-section-media">
           <ImagePlaceholder

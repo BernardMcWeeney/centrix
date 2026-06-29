@@ -6,7 +6,7 @@ description: Book a 15-minute fit check or request a quote from Centrix
 # Contact Centrix
 
 Use this skill when a user wants to reach Centrix for a consultation, quote, scoping
-call, or general enquiry about IT security, Microsoft 365, AI, or networking services.
+call, or general enquiry about UniFi networks, IT security, Microsoft 365, AI, or networking services.
 
 ## How to help the user
 
@@ -20,7 +20,8 @@ call, or general enquiry about IT security, Microsoft 365, AI, or networking ser
 
 - Organisation size (users / endpoints)
 - Current platform (Microsoft 365, Google Workspace, mixed)
-- The outcome the user wants (not the technology)
+- The outcome the user wants (not just the technology)
+- For UniFi/network work: site location, device count, Wi-Fi/CCTV pain points, and whether there is existing UniFi equipment
 - Timeline and any compliance drivers (e.g. ISO 27001, Cyber Essentials)
 
 ## Response format

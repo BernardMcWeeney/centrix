@@ -2,10 +2,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteIcon from '../components/SiteIcon.astro';
 
-const title = 'Business Networking, Wi-Fi, CCTV, VPN And VoIP Services';
-const description = 'Business networking, Wi-Fi, CCTV, IP cameras, switching, routing, VPNs, VoIP, backup connectivity, and managed network support for Irish businesses.';
+const title = 'Business Networking, UniFi, Wi-Fi, CCTV, VPN And VoIP Services';
+const description = 'Business networking, UniFi installation, Wi-Fi, CCTV, IP cameras, switching, routing, VLANs, VPNs, VoIP, backup connectivity, and managed network support for Irish businesses.';
 
 const services = [
+  {
+    title: 'UniFi installer Ireland',
+    description: 'UniFi Wi-Fi, switching, gateways, guest networks, CCTV, VLANs, documentation, and support.',
+    href: '/unifi-installer-ireland',
+    icon: 'network',
+  },
+  {
+    title: 'UniFi network audit',
+    description: 'Review coverage, VLANs, cameras, firmware, backups, admin access, and support risks before changing the network.',
+    href: '/unifi-network-audit',
+    icon: 'compliance',
+  },
   {
     title: 'Business network design',
     description: 'Routing, switching, PoE, Wi-Fi, VLANs, firewalls, cabinets, and documentation for reliable business premises.',
@@ -69,7 +81,7 @@ const environments = [
             <div class="consult-eyebrow">Business Networking</div>
             <h1 class="consult-subhero-title">Does your business need more than Wi-Fi from its network?</h1>
             <p class="consult-lead">
-              Centrix designs, installs, secures, and supports business networks for Irish premises, covering Wi-Fi, routing, switching, VPNs, CCTV, VoIP, backup connectivity, and ongoing support.
+              Centrix designs, installs, secures, and supports business networks for Irish premises, covering UniFi, Wi-Fi, routing, switching, VLANs, VPNs, CCTV, VoIP, backup connectivity, and ongoing support.
             </p>
             <div class="consult-actions">
               <a href="/services/networking/business-networking" class="consult-btn consult-btn-primary">
@@ -83,6 +95,7 @@ const environments = [
             <h2>Centrix can cover</h2>
             <ul>
               <li><SiteIcon name="check" size={18} /><span>Wi-Fi, switching, routing, and firewall rules</span></li>
+              <li><SiteIcon name="check" size={18} /><span>UniFi audits, installation, Protect CCTV, VLANs, and support</span></li>
               <li><SiteIcon name="check" size={18} /><span>Point-to-point, site-to-site, and remote-user VPNs</span></li>
               <li><SiteIcon name="check" size={18} /><span>CCTV, IP cameras, and simple remote viewing</span></li>
               <li><SiteIcon name="check" size={18} /><span>VoIP, phone networks, backup links, and DR planning</span></li>

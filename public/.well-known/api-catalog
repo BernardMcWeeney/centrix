@@ -28,6 +28,16 @@
       ],
       "related": [
         {
+          "href": "/unifi-installer-ireland",
+          "type": "text/html",
+          "title": "UniFi installer Ireland"
+        },
+        {
+          "href": "/unifi-network-audit",
+          "type": "text/html",
+          "title": "UniFi network audit"
+        },
+        {
           "href": "/services",
           "type": "text/html",
           "title": "Full service catalogue"
