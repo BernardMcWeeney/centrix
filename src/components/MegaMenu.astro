@@ -138,7 +138,7 @@ const primaryLinks = [
     flex: 1 1 auto;
     min-width: 0;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
   }
 
   .desktop-nav {
@@ -324,6 +324,7 @@ const primaryLinks = [
 
   .mobile-nav {
     display: block;
+    margin-left: auto;
   }
 
   .mobile-nav summary {
@@ -467,6 +468,10 @@ const primaryLinks = [
   }
 
   @media (min-width: 1040px) {
+    .mega-menu {
+      justify-content: center;
+    }
+
     .desktop-nav {
       display: flex;
     }
