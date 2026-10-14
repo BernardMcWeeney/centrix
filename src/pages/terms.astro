@@ -1,113 +1,32 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { COMPANY_INFO } from '../consts';
-
-const title = 'Terms of Service';
-const description = 'The terms under which Centrix provides this website and its services.';
-const lastUpdated = '14 June 2026';
-
-const sections = [
-  {
-    heading: 'Overview',
-    body: [
-      `These terms govern your use of the ${COMPANY_INFO.name} website and any services provided unless a separate signed agreement applies. By using this site you accept these terms.`,
-    ],
-  },
-  {
-    heading: 'Services',
-    body: [
-      'Information on this website describes our services in general terms and is not a binding offer. Specific work is scoped, quoted, and agreed in writing before it begins.',
-    ],
-  },
-  {
-    heading: 'Use of this website',
-    body: [
-      'You agree not to misuse the site, attempt to disrupt it, or use it for unlawful purposes. Content on this site is provided for general information and may change without notice.',
-    ],
-  },
-  {
-    heading: 'Intellectual property',
-    body: [
-      `The content, branding, and design of this website are owned by ${COMPANY_INFO.name} or its licensors and may not be reproduced without permission. Third-party product names and logos are the property of their respective owners.`,
-    ],
-  },
-  {
-    heading: 'Liability',
-    body: [
-      'The website is provided on an "as is" basis. To the extent permitted by law, we are not liable for any loss arising from use of the site. Nothing in these terms limits liability that cannot be excluded under law.',
-    ],
-  },
-  {
-    heading: 'Governing law',
-    body: [
-      'These terms are governed by the laws of Ireland and subject to the jurisdiction of the Irish courts.',
-    ],
-  },
-  {
-    heading: 'Contact',
-    body: [
-      `Questions about these terms can be sent to ${COMPANY_INFO.email}.`,
-    ],
-  },
-];
+import LegalLayout from "../layouts/LegalLayout.astro";
 ---
 
-<BaseLayout title={title} description={description}>
-  <article class="consult-page">
-    <section class="consult-subhero">
-      <div class="container-wide">
-        <div class="legal-head">
-          <div class="consult-eyebrow">Legal</div>
-          <h1 class="consult-subhero-title">{title}</h1>
-          <p class="consult-lead">{description}</p>
-          <p class="legal-updated">Last updated: {lastUpdated}</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="consult-section">
-      <div class="container-wide">
-        <div class="legal-body">
-          <p class="legal-note">These are starter terms of service and should be reviewed by your legal adviser before relying on them.</p>
-          {sections.map((section) => (
-            <div class="legal-section">
-              <h2>{section.heading}</h2>
-              {section.body.map((p) => <p>{p}</p>)}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  </article>
-</BaseLayout>
-
-<style>
-  .legal-head { max-width: 44rem; }
-  .legal-updated {
-    margin-top: 1rem;
-    color: var(--text-tertiary);
-    font-size: 0.875rem;
-  }
-  .legal-body { max-width: 44rem; }
-  .legal-note {
-    margin: 0 0 2rem;
-    padding: 0.85rem 1rem;
-    border: 1px solid var(--border-primary);
-    border-radius: 0.5rem;
-    background: var(--bg-secondary);
-    color: var(--text-secondary);
-    font-size: 0.875rem;
-  }
-  .legal-section { margin-bottom: 2rem; }
-  .legal-section h2 {
-    margin: 0 0 0.6rem;
-    color: var(--text-primary);
-    font-size: 1.25rem;
-    font-weight: 600;
-  }
-  .legal-section p {
-    margin: 0 0 0.75rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
-</style>
+<LegalLayout title="Centrix Website Terms" description="Terms for using centrix.ie and how website information relates to Centrix services.">
+  <p>These terms explain how you may use centrix.ie and how website information relates to Centrix services. Centrix is based at Downestown, Duleek, Co. Meath, Ireland. For questions, contact <a href="mailto:info@centrix.ie">info@centrix.ie</a>.</p>
+  <h2>1 Website use and paid services</h2>
+  <p>These terms apply to this website. Viewing the website, submitting an enquiry or requesting a consultation does not purchase a service or authorise chargeable work.</p>
+  <p>Paid services are agreed separately through an accepted written quotation, scope and applicable service terms. Those documents set the deliverables, fees, payment dates, responsibilities, support and other commercial arrangements. They take precedence over these website terms for the services concerned. A data processing agreement applies where we process client personal data on the client’s behalf.</p>
+  <h2>2 Website information</h2>
+  <p>Website content describes our services and provides general technology information. It is not a binding offer, a service level commitment or advice tailored to your circumstances. Confirm availability, pricing, compatibility and important technical details with us before relying on them for a purchase or implementation.</p>
+  <p>We aim to keep information accurate and current, but services and supplier offerings change. Examples illustrate possible work and do not guarantee a result. Security and compliance readiness services do not constitute legal advice, regulatory approval or a guarantee that systems will remain free from incidents.</p>
+  <h2>3 Acceptable use</h2>
+  <p>Use the website lawfully and do not interfere with other people’s access or information. You must not attempt unauthorised access, introduce malware, disrupt availability, bypass controls, impersonate another person or send fraudulent, abusive or unlawful material.</p>
+  <p>Do not carry out intrusive testing, exploitation, high-volume scanning or social engineering against Centrix, client or supplier systems without appropriate written authorisation. Our <a href="/security-reporting">Security and Vulnerability Reporting Policy</a> explains how to report concerns safely. Reporting a concern does not itself authorise testing.</p>
+  <h2>4 Information you send us</h2>
+  <p>Provide accurate contact information and only material you are entitled to disclose. Avoid passwords, recovery codes and unnecessary confidential or sensitive information. Ask for a secure channel when needed.</p>
+  <p>You retain your rights in submitted material. We may receive, review and use it to handle your enquiry and agreed next steps. An enquiry does not give us permission to publish your material, logo or testimonial. Our <a href="/privacy">Privacy Notice</a> explains our use of personal data.</p>
+  <h2>5 Intellectual property and third parties</h2>
+  <p>Website content and design belong to Centrix or the relevant rights holder, except where stated otherwise. You may view the website and keep reasonable copies for personal reference or internal business evaluation, preserving attribution and rights notices.</p>
+  <p>Permission is required before republishing, selling or adapting protected content, except where the law permits the use. Third-party names and logos belong to their owners; their appearance does not itself establish a partnership, certification or endorsement. Ownership and use of client deliverables are addressed in the relevant service agreement.</p>
+  <p>External websites, products and services have their own terms and privacy arrangements. Centrix does not control external content. Relevant third-party dependencies should be identified in the agreed service scope.</p>
+  <h2>6 Availability and support</h2>
+  <p>We may maintain, update or withdraw website features and restrict access where reasonably necessary to address misuse or protect the service. This public website and its contact form are not emergency support channels. Contracted support arrangements and incident escalation routes are set out in the relevant client agreement.</p>
+  <h2>7 Liability and consumer rights</h2>
+  <p>Nothing in these terms excludes or limits liability for fraud, fraudulent misrepresentation, death or personal injury caused by negligence, or anything else that cannot lawfully be excluded or limited. Mandatory consumer rights and remedies remain unaffected.</p>
+  <p>Subject to those protections, we do not promise uninterrupted website availability or that general content will meet a particular business requirement. For business users, to the extent permitted by law, we exclude indirect or consequential loss arising solely from use of, or inability to use, this website.</p>
+  <p>These website terms do not impose a financial cap on liability for paid services. Service risk, remedies and liability arrangements belong in the service agreement. If you purchase as a consumer, applicable pre-contract information and cancellation rights must be provided; these website terms do not replace them.</p>
+  <h2>8 Changes and disputes</h2>
+  <p>Updates apply to future website use from publication. They do not remove accrued rights or retrospectively change existing service contracts. If a provision is unenforceable, the remaining provisions continue so far as lawful. A delay in exercising a right does not by itself waive it.</p>
+  <p>Irish law governs these terms. The Irish courts have exclusive jurisdiction for disputes with business users. Consumers retain mandatory protections and any right to use another court available under applicable law. Send concerns to <a href="mailto:info@centrix.ie">info@centrix.ie</a> so we can consider an appropriate resolution.</p>
+</LegalLayout>

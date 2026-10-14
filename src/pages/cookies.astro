@@ -1,0 +1,38 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+---
+<LegalLayout title="Centrix Cookie Policy" description="Cookies, Cloudflare Turnstile, security technologies and server-side dashboard analytics on centrix.ie.">
+  <p>This policy explains cookies and related technologies on centrix.ie. It covers our use of Cloudflare for website delivery, default Turnstile protection and server-side dashboard analytics. For wider information about personal data, read our <a href="/privacy">Privacy Notice</a>.</p>
+  <p>Centrix is based at Downestown, Duleek, Co. Meath, Ireland. Contact <a href="mailto:data@centrix.ie">data@centrix.ie</a> with privacy or cookie questions.</p>
+  <h2>1 What these technologies do</h2>
+  <p>A cookie is a small item of data stored by your browser. Similar technologies can use browser storage or read technical information from your device. Server-side request logs are different: they are created when infrastructure receives a request, without needing an analytics cookie.</p>
+  <h2>2 Cloudflare dashboard analytics</h2>
+  <p>We use the analytics available in Cloudflare’s dashboard to understand website traffic, availability and security. This server-side reporting uses requests received by Cloudflare and does not require an analytics cookie on your device. It is separate from the browser-based Cloudflare Web Analytics beacon.</p>
+  <p>Dashboard reports can summarise traffic, requests, response status and security activity. Supporting connection or request data, such as IP addresses, can still be personal data even when no cookie is used. The <a href="/privacy">Privacy Notice</a> explains the purposes, legal bases and retention applicable to that information.</p>
+  <h2>3 Cloudflare Turnstile</h2>
+  <p>Our contact form uses Turnstile to help distinguish genuine enquiries from automated abuse. Technical signals include IP address, browser information, connection characteristics and the site on which the check runs. Cloudflare handles the check and returns a token for verification.</p>
+  <p>We use standard Turnstile without its optional pre-clearance feature. Standard Turnstile validation uses a short-lived token, valid for five minutes and for one validation. The token is not an analytics cookie. Optional pre-clearance would additionally issue a cf_clearance cookie; we do not enable that feature for the form.</p>
+  <p>Cloudflare’s wider challenge platform may use security state or diagnostic cookies when a challenge is served. Those technologies protect the requested service and are not used by Centrix for advertising. A security cookie is not necessarily present on every visit.</p>
+  <p>Cloudflare describes the signals and its processor and independent controller roles in its <a href="https://www.cloudflare.com/turnstile-privacy-policy/">Turnstile Privacy Addendum</a>.</p>
+  <h2>4 Security cookie information</h2>
+  <p>The following identifies Cloudflare challenge technologies that may be encountered when its security protections intervene. Their presence depends on the challenge served; this is not a statement that all are set on every page.</p>
+  <div class="legal-table">
+    <table>
+      <caption>Cloudflare challenge technologies</caption>
+      <thead><tr><th scope="col">Technology</th><th scope="col">Purpose and duration</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Turnstile validation token</th><td>Single-use form verification; expires after five minutes. Not a persistent tracking cookie.</td></tr>
+        <tr><th scope="row">cf_clearance</th><td>Records successful challenge clearance when Cloudflare issues a challenge cookie. Challenge Passage defaults to 30 minutes; the actual expiry is shown in the browser. Turnstile pre-clearance is not enabled for our form.</td></tr>
+        <tr><th scope="row">cf_chl_rc_i, cf_chl_rc_ni and cf_chl_rc_m</th><td>Cloudflare challenge diagnostics. These are conditional platform cookies, not marketing identifiers. Cloudflare controls their lifecycle; the browser shows any expiry, with session cookies removed when the browser ends that session.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Cloudflare publishes its <a href="https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/">current cookie information</a>. If you need information about a cookie you see on centrix.ie, send its name to <a href="mailto:data@centrix.ie">data@centrix.ie</a>; do not send its value or other session secrets.</p>
+  <h2>5 Consent and your controls</h2>
+  <p>Technologies used only for communication transmission, or strictly necessary to provide a service you request, can operate without prior cookie consent under applicable law. Other storage or access requires consent. We do not treat continued browsing as consent.</p>
+  <p>The configuration described here uses server-side analytics and security checks, rather than optional advertising or analytics cookies. If optional technologies are introduced, we will update this policy and provide consent choices before they operate.</p>
+  <p>You can inspect, block or delete cookies in your browser settings. Blocking security technologies may cause repeated challenges or prevent form submission. Server-side logs are not removed by deleting cookies. If the form will not work, email <a href="mailto:info@centrix.ie">info@centrix.ie</a> instead.</p>
+  <h2>6 Processing and changes</h2>
+  <p>Cloudflare operates internationally, including in the United States. Our <a href="/privacy">Privacy Notice</a> explains provider sharing, transfer safeguards and your rights. Routine website and security logs retained by Centrix are kept for up to 90 days; a cookie’s browser expiry is a different measure.</p>
+  <p>We update this policy when the website’s technology changes. Questions can be sent to our Data Protection Officer at <a href="mailto:data@centrix.ie">data@centrix.ie</a>.</p>
+</LegalLayout>

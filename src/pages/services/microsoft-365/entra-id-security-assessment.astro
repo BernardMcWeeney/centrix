@@ -1,0 +1,103 @@
+---
+import BuyerServicePage from "../../../components/BuyerServicePage.astro";
+const service = {
+  "name": "Microsoft Entra ID",
+  "title": "Independent Microsoft Entra ID Security Assessment Ireland",
+  "description": "Review identity security, MFA, Conditional Access, privileged roles and guest access. Centrix provides independent Entra ID assessments for Irish businesses.",
+  "icon": "identity",
+  "includes": [
+    "Authentication methods, MFA registration and gaps in enforcement",
+    "Conditional Access policy coverage, exclusions and report-only policies",
+    "Privileged roles, standing administrator access and emergency access arrangements",
+    "Guest accounts, external collaboration and access lifecycle processes",
+    "Enterprise applications, app registrations, consent and privileged permissions",
+    "Sign-in and audit visibility, identity risk features where licensed, and response ownership",
+    "Risk-ranked identity findings, evidence and a remediation roadmap"
+  ],
+  "process": [
+    {
+      "title": "Agree the scope",
+      "description": "Confirm products, licences, tenant size, business priorities and the evidence required. We agree a written scope and quote before work starts."
+    },
+    {
+      "title": "Review with limited access",
+      "description": "Use agreed read-only permissions or a supervised review. Access is time limited and matched to the products in scope; configuration changes require separate approval."
+    },
+    {
+      "title": "Explain the findings",
+      "description": "Receive an executive summary, technical findings with supporting evidence, limitations and a prioritised remediation backlog."
+    },
+    {
+      "title": "Plan the next steps",
+      "description": "Discuss the findings with your IT team or existing provider. Agree a practical 30/60/90 day roadmap and optional follow-up validation."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Is Entra ID the same service previously called Azure Active Directory?",
+      "answer": "Microsoft Entra ID is the current name for Azure Active Directory (Azure AD). This assessment covers cloud identity configuration. On-premises Active Directory and hybrid identity components need to be explicitly included in the scope."
+    },
+    {
+      "question": "Can you assess Conditional Access without Entra ID P2?",
+      "answer": "We review the controls and licences you have. Conditional Access capabilities and identity risk features have different licensing requirements. The report distinguishes configuration gaps from features that are unavailable under your current subscription."
+    },
+    {
+      "question": "Can you review work carried out by our existing IT provider?",
+      "answer": "Yes. Centrix can provide an independent second opinion on an existing configuration and share the findings with your internal team or current managed service provider. You do not need to move your ongoing support to Centrix."
+    },
+    {
+      "question": "Does an assessment include remediation?",
+      "answer": "The assessment reports on the agreed scope. Implementation and any retest are quoted separately, so you can ask Centrix, your own team or your existing provider to address the findings."
+    },
+    {
+      "question": "How is access to our tenant handled?",
+      "answer": "We agree the minimum product-specific read permissions or a supervised evidence review. You retain control of access and revoke it when the engagement ends. We do not request shared passwords or make production changes during the assessment."
+    },
+    {
+      "question": "Is this penetration testing or a compliance certification?",
+      "answer": "This is a configuration and security posture assessment. Intrusive testing requires a separately authorised scope. The report supports security decisions and evidence gathering; it does not certify compliance or guarantee that incidents cannot occur."
+    },
+    {
+      "question": "Do you work with small businesses across Ireland?",
+      "answer": "Centrix is based in Duleek, County Meath and supports Irish businesses of different sizes. Assessments can be delivered remotely with agreed access. Scope and price depend on the environment, licences and depth of review."
+    }
+  ],
+  "related": [
+    {
+      "label": "Combined Microsoft 365 security assessment",
+      "href": "/services/microsoft-365/security-assessment"
+    },
+    {
+      "label": "Microsoft Defender assessment",
+      "href": "/services/microsoft-365/defender-security-assessment"
+    },
+    {
+      "label": "Microsoft Intune assessment",
+      "href": "/services/microsoft-365/intune-security-assessment"
+    }
+  ]
+};
+---
+<BuyerServicePage
+  metaTitle={service.title}
+  metaDescription={service.description}
+  eyebrow={`Independent ${service.name} assessment`}
+  heading={`Independent ${service.name} security assessment for Irish businesses`}
+  lead={"Centrix provides an independent review of your Microsoft Entra ID configuration, with evidence-backed findings and practical recommendations. Based in Duleek, County Meath, we help businesses across Ireland assess their existing setup, including work delivered by another IT provider."}
+  primaryCta={{ label: 'Request an assessment scope', href: '/contact?service=entra-id-security-assessment' }}
+  secondaryCta={{ label: 'Compare Microsoft security assessments', href: '/services/microsoft-365/security-assessment' }}
+  proof={['Independent second opinion', 'Agreed read-only review', 'Executive and technical reports', 'Prioritised remediation roadmap']}
+  outcomes={[
+    { title: 'Understand your exposure', description: "Identify paths to account compromise and excessive access before a tenant migration, insurance renewal or security improvement project.", icon: service.icon },
+    { title: 'Give your team a clear backlog', description: 'Findings explain the evidence, business impact, priority and recommended action, with dependencies and limitations documented.', icon: 'compliance' },
+    { title: 'Choose who delivers the improvements', description: 'Use the report with your own IT team, current provider or Centrix. Remediation is a separate decision after the assessment.', icon: 'check' },
+  ]}
+  includes={service.includes}
+  includedDescription="Centrix reviews the agreed configuration and evidence, documents gaps and explains what to address first. Product coverage and licences are confirmed before the review."
+  process={service.process}
+  faqs={service.faqs}
+  related={service.related}
+  mediaSrc="/products/microsoft-365-security.png"
+  mediaLabel={`${service.name} security assessment`}
+  serviceSchema
+/>

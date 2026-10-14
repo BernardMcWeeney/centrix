@@ -11,7 +11,7 @@ interface Props {
 }
 
 const { title, description, image = '/og-image.jpg' } = Astro.props;
-const fullTitle = title === 'Centrix' ? title : `${title} | Centrix`;
+const fullTitle = title === 'Centrix' || title.endsWith(' | Centrix') ? title : `${title} | Centrix`;
 const siteOrigin = Astro.site ?? new URL(Astro.url.origin);
 const canonicalURL = new URL(Astro.url.pathname, siteOrigin);
 const imageURL = new URL(image, siteOrigin);

@@ -1,0 +1,35 @@
+---
+import BaseLayout from './BaseLayout.astro';
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+---
+<BaseLayout title={title} description={description}>
+  <article class="consult-page">
+    <header class="consult-subhero">
+      <div class="container-wide">
+        <div class="legal-head">
+          <div class="consult-eyebrow">Legal</div>
+          <h1 class="consult-subhero-title">{title}</h1>
+          <p class="legal-updated">Version 1.0 | Last updated <time datetime="2026-10-13">13 October 2026</time></p>
+        </div>
+      </div>
+    </header>
+    <section class="consult-section">
+      <div class="container-wide"><div class="legal-body"><slot /></div></div>
+    </section>
+  </article>
+</BaseLayout>
+<style>
+  .legal-head, .legal-body { max-width: 48rem; }
+  .legal-updated { margin-top: 1rem; color: var(--text-tertiary); font-size: 0.875rem; }
+  .legal-body :global(h2) { margin: 2rem 0 0.75rem; color: var(--text-primary); font-size: 1.25rem; font-weight: 600; }
+  .legal-body :global(p), .legal-body :global(li) { margin: 0 0 0.85rem; color: var(--text-secondary); line-height: 1.75; overflow-wrap: anywhere; }
+  .legal-body :global(a) { color: var(--brand-primary); text-decoration: underline; text-underline-offset: 0.2em; }
+  .legal-body :global(ul) { padding-left: 1.5rem; }
+  .legal-body :global(.legal-table) { overflow-x: auto; margin: 1.5rem 0; }
+  .legal-body :global(table) { width: 100%; border-collapse: collapse; color: var(--text-secondary); line-height: 1.65; }
+  .legal-body :global(caption) { text-align: left; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary); }
+  .legal-body :global(th), .legal-body :global(td) { padding: 0.8rem; border: 1px solid var(--border-primary); text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+  .legal-body :global(th) { font-weight: 600; color: var(--text-primary); }
+  .legal-body :global(thead) { background: var(--bg-secondary); }
+</style>

@@ -1,0 +1,23 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import NewsListing from '../../../components/NewsListing.astro';
+import { getNewsListing, NEWS_PAGE_SIZE } from '../../../lib/news';
+
+export const getStaticPaths = (async () => {
+  const { posts, totalPages } = await getNewsListing();
+  return Array.from({ length: totalPages - 1 }, (_, index) => {
+    const currentPage = index + 2;
+    return {
+      params: { page: String(currentPage) },
+      props: {
+        recentPosts: posts.slice((currentPage - 1) * NEWS_PAGE_SIZE, currentPage * NEWS_PAGE_SIZE),
+        currentPage,
+        totalPages,
+        totalPosts: posts.length,
+      },
+    };
+  });
+}) satisfies GetStaticPaths;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+---
+<NewsListing {...Astro.props} />

@@ -26,6 +26,10 @@ const contactMethods = [
 const services = [
   "Microsoft Cloud Migration",
   "Microsoft 365 Security",
+  "Microsoft 365 Security Assessment",
+  "Entra ID Security Assessment",
+  "Microsoft Defender Security Assessment",
+  "Intune Security Assessment",
   "Business Networking",
   "VPN & Remote Access",
   "Backup, DR & Resilience",
@@ -265,6 +269,10 @@ const structuredData = {
   const defaultButtonHtml = submitButton?.innerHTML || '';
   const serviceSelect = document.getElementById('service') as HTMLSelectElement | null;
   const serviceAliases = new Map([
+    ['m365-security-assessment', 'Microsoft 365 Security Assessment'],
+    ['entra-id-security-assessment', 'Entra ID Security Assessment'],
+    ['defender-security-assessment', 'Microsoft Defender Security Assessment'],
+    ['intune-security-assessment', 'Intune Security Assessment'],
     ['unifi-network-audit', 'UniFi Network Audit'],
     ['unifi-wifi-installation', 'UniFi Design & Installation'],
     ['unifi-consultant', 'UniFi Design & Installation'],

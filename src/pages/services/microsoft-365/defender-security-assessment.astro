@@ -1,0 +1,103 @@
+---
+import BuyerServicePage from "../../../components/BuyerServicePage.astro";
+const service = {
+  "name": "Microsoft Defender",
+  "title": "Independent Microsoft Defender Security Assessment Ireland",
+  "description": "Independent Microsoft Defender assessment for Irish businesses. Review endpoint coverage, email protection, alerts, exclusions and response readiness.",
+  "icon": "shield",
+  "includes": [
+    "Defender for Endpoint or Defender for Business onboarding and sensor coverage",
+    "Antivirus, endpoint detection and response, tamper protection and policy exclusions",
+    "Attack surface reduction policy coverage and exceptions where supported",
+    "Defender for Office 365 anti-phishing, Safe Links and Safe Attachments where licensed",
+    "Incident queues, alert routing, administrator roles and investigation ownership",
+    "Defender for Identity and Defender for Cloud Apps where deployed and included in scope",
+    "Coverage gaps, prioritised findings and practical detection and response improvements"
+  ],
+  "process": [
+    {
+      "title": "Agree the scope",
+      "description": "Confirm products, licences, tenant size, business priorities and the evidence required. We agree a written scope and quote before work starts."
+    },
+    {
+      "title": "Review with limited access",
+      "description": "Use agreed read-only permissions or a supervised review. Access is time limited and matched to the products in scope; configuration changes require separate approval."
+    },
+    {
+      "title": "Explain the findings",
+      "description": "Receive an executive summary, technical findings with supporting evidence, limitations and a prioritised remediation backlog."
+    },
+    {
+      "title": "Plan the next steps",
+      "description": "Discuss the findings with your IT team or existing provider. Agree a practical 30/60/90 day roadmap and optional follow-up validation."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which Microsoft Defender products are included?",
+      "answer": "The quote names the products being assessed. A review may cover Defender for Business, Defender for Endpoint and Defender for Office 365, with Defender for Identity or Cloud Apps included where deployed and agreed. Defender for Cloud requires its own explicit scope."
+    },
+    {
+      "question": "Do you simulate malware or attacks during the review?",
+      "answer": "The standard assessment reviews configuration, coverage and available evidence. Attack simulation, live response actions and intrusive validation are not included unless separately scoped and authorised."
+    },
+    {
+      "question": "Can you review work carried out by our existing IT provider?",
+      "answer": "Yes. Centrix can provide an independent second opinion on an existing configuration and share the findings with your internal team or current managed service provider. You do not need to move your ongoing support to Centrix."
+    },
+    {
+      "question": "Does an assessment include remediation?",
+      "answer": "The assessment reports on the agreed scope. Implementation and any retest are quoted separately, so you can ask Centrix, your own team or your existing provider to address the findings."
+    },
+    {
+      "question": "How is access to our tenant handled?",
+      "answer": "We agree the minimum product-specific read permissions or a supervised evidence review. You retain control of access and revoke it when the engagement ends. We do not request shared passwords or make production changes during the assessment."
+    },
+    {
+      "question": "Is this penetration testing or a compliance certification?",
+      "answer": "This is a configuration and security posture assessment. Intrusive testing requires a separately authorised scope. The report supports security decisions and evidence gathering; it does not certify compliance or guarantee that incidents cannot occur."
+    },
+    {
+      "question": "Do you work with small businesses across Ireland?",
+      "answer": "Centrix is based in Duleek, County Meath and supports Irish businesses of different sizes. Assessments can be delivered remotely with agreed access. Scope and price depend on the environment, licences and depth of review."
+    }
+  ],
+  "related": [
+    {
+      "label": "Combined Microsoft 365 security assessment",
+      "href": "/services/microsoft-365/security-assessment"
+    },
+    {
+      "label": "Microsoft Entra ID assessment",
+      "href": "/services/microsoft-365/entra-id-security-assessment"
+    },
+    {
+      "label": "Microsoft Intune assessment",
+      "href": "/services/microsoft-365/intune-security-assessment"
+    }
+  ]
+};
+---
+<BuyerServicePage
+  metaTitle={service.title}
+  metaDescription={service.description}
+  eyebrow={`Independent ${service.name} assessment`}
+  heading={`Independent ${service.name} security assessment for Irish businesses`}
+  lead={"Centrix provides an independent review of your Microsoft Defender configuration, with evidence-backed findings and practical recommendations. Based in Duleek, County Meath, we help businesses across Ireland assess their existing setup, including work delivered by another IT provider."}
+  primaryCta={{ label: 'Request an assessment scope', href: '/contact?service=defender-security-assessment' }}
+  secondaryCta={{ label: 'Compare Microsoft security assessments', href: '/services/microsoft-365/security-assessment' }}
+  proof={['Independent second opinion', 'Agreed read-only review', 'Executive and technical reports', 'Prioritised remediation roadmap']}
+  outcomes={[
+    { title: 'Understand your exposure', description: "Understand whether your deployed Defender products cover the devices, email and identities you expect, and whether someone can act on the alerts.", icon: service.icon },
+    { title: 'Give your team a clear backlog', description: 'Findings explain the evidence, business impact, priority and recommended action, with dependencies and limitations documented.', icon: 'compliance' },
+    { title: 'Choose who delivers the improvements', description: 'Use the report with your own IT team, current provider or Centrix. Remediation is a separate decision after the assessment.', icon: 'check' },
+  ]}
+  includes={service.includes}
+  includedDescription="Centrix reviews the agreed configuration and evidence, documents gaps and explains what to address first. Product coverage and licences are confirmed before the review."
+  process={service.process}
+  faqs={service.faqs}
+  related={service.related}
+  mediaSrc="/products/microsoft-365-security.png"
+  mediaLabel={`${service.name} security assessment`}
+  serviceSchema
+/>

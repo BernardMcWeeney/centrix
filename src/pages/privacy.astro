@@ -1,110 +1,65 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { COMPANY_INFO } from '../consts';
-
-const title = 'Privacy Policy';
-const description = 'How Centrix collects, uses, and protects your personal data.';
-const lastUpdated = '14 June 2026';
-
-const sections = [
-  {
-    heading: 'Who we are',
-    body: [
-      `${COMPANY_INFO.name} is an Irish business IT and technology consultancy based in ${COMPANY_INFO.address}. This policy explains how we handle personal data collected through this website and our services.`,
-    ],
-  },
-  {
-    heading: 'What we collect',
-    body: [
-      'Contact details you provide via our contact form (such as your name, email address, company, and message).',
-      'Basic technical data your browser sends (such as IP address and user agent), used for security and to operate the site.',
-    ],
-  },
-  {
-    heading: 'How we use it',
-    body: [
-      'To respond to your enquiry and provide the services you ask about.',
-      'To protect the website from spam and abuse (for example, via Cloudflare Turnstile).',
-      'We do not sell your personal data, and we only share it with processors needed to deliver our services (such as email and hosting providers).',
-    ],
-  },
-  {
-    heading: 'Legal basis & retention',
-    body: [
-      'We process contact enquiries on the basis of legitimate interest and, where relevant, to take steps before entering a contract. We keep enquiry data only as long as needed to deal with your request and our legitimate business records.',
-    ],
-  },
-  {
-    heading: 'Your rights',
-    body: [
-      'Under GDPR you have the right to access, correct, or erase your personal data, and to object to or restrict its processing. To exercise any of these rights, contact us at ' + COMPANY_INFO.email + '.',
-    ],
-  },
-  {
-    heading: 'Contact',
-    body: [
-      `For any privacy questions, email ${COMPANY_INFO.email}.`,
-    ],
-  },
-];
+import LegalLayout from "../layouts/LegalLayout.astro";
 ---
 
-<BaseLayout title={title} description={description}>
-  <article class="consult-page">
-    <section class="consult-subhero">
-      <div class="container-wide">
-        <div class="legal-head">
-          <div class="consult-eyebrow">Legal</div>
-          <h1 class="consult-subhero-title">{title}</h1>
-          <p class="consult-lead">{description}</p>
-          <p class="legal-updated">Last updated: {lastUpdated}</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="consult-section">
-      <div class="container-wide">
-        <div class="legal-body">
-          <p class="legal-note">This is a starter privacy policy and should be reviewed by your legal adviser before relying on it.</p>
-          {sections.map((section) => (
-            <div class="legal-section">
-              <h2>{section.heading}</h2>
-              {section.body.map((p) => <p>{p}</p>)}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  </article>
-</BaseLayout>
-
-<style>
-  .legal-head { max-width: 44rem; }
-  .legal-updated {
-    margin-top: 1rem;
-    color: var(--text-tertiary);
-    font-size: 0.875rem;
-  }
-  .legal-body { max-width: 44rem; }
-  .legal-note {
-    margin: 0 0 2rem;
-    padding: 0.85rem 1rem;
-    border: 1px solid var(--border-primary);
-    border-radius: 0.5rem;
-    background: var(--bg-secondary);
-    color: var(--text-secondary);
-    font-size: 0.875rem;
-  }
-  .legal-section { margin-bottom: 2rem; }
-  .legal-section h2 {
-    margin: 0 0 0.6rem;
-    color: var(--text-primary);
-    font-size: 1.25rem;
-    font-weight: 600;
-  }
-  .legal-section p {
-    margin: 0 0 0.75rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
-</style>
+<LegalLayout title="Centrix Privacy Notice" description="How Centrix collects, uses and protects personal data, and your privacy rights.">
+  <p>This notice explains how Centrix uses personal data when you visit centrix.ie, contact us, receive marketing or work with us as a client, supplier or business contact. It also explains your rights and how to contact us.</p>
+  <h2>1 Who we are and how to contact us</h2>
+  <p>Centrix, Downestown, Duleek, Co. Meath, Ireland, is the controller for the personal data used for the purposes described in this notice.</p>
+  <p>Our Data Protection Officer can be contacted at <a href="mailto:data@centrix.ie">data@centrix.ie</a>. General enquiries should be sent to <a href="mailto:info@centrix.ie">info@centrix.ie</a>. Report suspected security issues to <a href="mailto:security@centrix.ie">security@centrix.ie</a>.</p>
+  <p>When we handle personal data in a client’s systems solely under that client’s instructions, we normally act as a processor. The client’s privacy notice and our agreed data processing terms apply to that activity. Our <a href="/data-protection">Data Protection Statement</a> explains these responsibilities.</p>
+  <h2>2 The information we use</h2>
+  <p>Contact and enquiry information: name, business email, company, role, telephone number where supplied, service interest, message and correspondence.</p>
+  <p>Client and supplier administration: contact details, quotations, contracts, project correspondence, support records, invoices and payment status.</p>
+  <p>Marketing information: contact details, preferences, subscription or permission records, objections and unsubscribe records.</p>
+  <p>Website and security information: IP address, browser information, request details, timestamps and security events. Turnstile also evaluates technical browser and connection signals to distinguish genuine visitors from automated abuse.</p>
+  <p>Privacy and security reports: your contact details, the issue raised, relevant evidence and records of our response.</p>
+  <p>We usually collect information directly from you or through your use of the website. Business contact information can also be provided by your organisation, an authorised colleague or a referrer. Where we receive information indirectly, we provide appropriate privacy information within the applicable legal timeframe.</p>
+  <p>Please do not send passwords, recovery codes, private keys or unnecessary sensitive personal data through the contact form or ordinary email. Ask us to arrange a suitable secure channel.</p>
+  <h2>3 Whether you must provide information</h2>
+  <p>Providing an enquiry is voluntary. We need enough information to understand it and respond. Contract and billing details may be necessary to provide a service or meet legal duties. We will explain a specific requirement when collecting the information. Marketing is optional and is not a condition of making an enquiry.</p>
+  <h2>4 Our purposes and lawful bases</h2>
+  <p>Enquiries and proposals: legitimate interests in responding to requests and developing business relationships. Where you personally would be the contracting party, necessary pre-contract steps taken at your request may be the basis instead.</p>
+  <p>Service and supplier administration: performing a contract with you personally, or legitimate interests in managing the relationship with your organisation.</p>
+  <p>Accounts, taxes and compliance: applicable legal obligations. Managing disputes and protecting legal rights may also be based on legitimate interests.</p>
+  <p>Website delivery, security and traffic analysis: legitimate interests in operating a reliable website, preventing abuse and understanding service performance. Consent is obtained separately where required for device storage or access.</p>
+  <p>Marketing: consent, or legitimate interests where the limited existing-customer exception to electronic marketing consent law applies. We assess the effect on your rights when relying on legitimate interests.</p>
+  <p>Privacy requests and security reports: legal obligations where applicable, and legitimate interests in resolving concerns and protecting people, systems and information.</p>
+  <h2>5 Marketing choices</h2>
+  <p>We send marketing emails about Centrix services where permitted. We use consent unless the existing-customer exception applies: details were obtained during a sale, the marketing concerns our own similar services, an easy free opt-out was offered at collection and in each message, and the applicable 12-month condition is met. An enquiry alone does not meet that exception.</p>
+  <p>You can unsubscribe using the method in an email or contact <a href="mailto:data@centrix.ie">data@centrix.ie</a>. We will stop direct marketing to you, including related profiling, and keep only the minimum suppression information needed to respect your choice. Withdrawing consent does not affect earlier lawful processing. Necessary service and billing messages are separate from marketing.</p>
+  <h2>6 Our providers and other recipients</h2>
+  <p>Cloudflare supports website hosting and delivery, contact-form processing, Turnstile protection and dashboard analytics. GitHub supports the website hosting and deployment arrangements. Microsoft provides our business email, through which enquiry and business correspondence is handled.</p>
+  <p>Cloudflare acts as a processor when providing Turnstile protection for us and as an independent controller for signals it uses to improve its bot detection. Its Turnstile Privacy Addendum explains that separate use: <a href="https://www.cloudflare.com/turnstile-privacy-policy/">https://www.cloudflare.com/turnstile-privacy-policy/</a></p>
+  <p>We share information only as needed for the relevant purpose, including with professional advisers, banks, payment service providers or public authorities where appropriate or legally required. We do not sell personal data. Providers acting on our instructions must be covered by appropriate processing terms.</p>
+  <h2>7 How long we keep information</h2>
+  <p>Our standard retention periods are set out below. We delete or anonymise information when its period ends, unless a specific legal obligation, investigation or legal claim requires a documented extension.</p>
+  <div class="legal-table"><table><caption>Personal data retention periods</caption><thead><tr><th scope="col">Record</th><th scope="col">Retention period</th></tr></thead><tbody>
+  <tr><th scope="row">Unsuccessful enquiries</th><td>12 months after the last meaningful contact.</td></tr>
+  <tr><th scope="row">Contracts and key project records</th><td>6 years after the engagement ends.</td></tr>
+  <tr><th scope="row">Invoices and tax records</th><td>6 years after the relevant accounting period; longer where the law requires.</td></tr>
+  <tr><th scope="row">Routine support tickets</th><td>24 months after closure.</td></tr>
+  <tr><th scope="row">Routine website and security logs retained by Centrix</th><td>Up to 90 days from collection.</td></tr>
+  <tr><th scope="row">Temporary client data copied for support</th><td>Within 30 days of completing the task, or sooner if the client agreement requires.</td></tr>
+  <tr><th scope="row">Deleted data in Centrix-controlled backups</th><td>Expires within 90 days of deletion from live systems.</td></tr>
+  <tr><th scope="row">Inactive marketing contacts</th><td>Remove from active marketing after 24 months without meaningful engagement, or sooner when consent or another required permission ends.</td></tr>
+  <tr><th scope="row">Privacy requests and security reports</th><td>3 years after closure. Unnecessary sensitive evidence is removed sooner.</td></tr>
+  <tr><th scope="row">Marketing opt-out record</th><td>Only the minimum needed, for as long as necessary to prevent further marketing.</td></tr>
+  </tbody></table></div>
+  <p>Meaningful marketing engagement includes a reply, purchase, requested contact or renewed subscription; sending another marketing email does not itself restart our inactivity period. Permission to send marketing must remain valid independently of this retention limit.</p>
+  <p>Client data processed on a client’s behalf follows that client’s lawful instructions and agreed return or deletion terms. The six-year period for key project records does not justify keeping complete client datasets.</p>
+  <p>Backup data awaiting expiry remains protected and is not used for ordinary business purposes. Where a backup is restored, applicable deletions are reapplied. Providers’ independent controller records may follow their own legal retention requirements; contact <a href="mailto:data@centrix.ie">data@centrix.ie</a> for information about the relevant processing.</p>
+  <h2>8 International processing</h2>
+  <p>Our providers operate internationally. Website, security and communications data may be processed outside the European Economic Area, including in the United States. The location depends on the service and its support and subprocessing arrangements; this notice does not promise Ireland-only or EEA-only processing.</p>
+  <p>For restricted transfers, the relevant contractual arrangements use an applicable adequacy decision or appropriate safeguards, including European Commission Standard Contractual Clauses and supplementary measures where required. Contact <a href="mailto:data@centrix.ie">data@centrix.ie</a> for information about destinations and a copy of the applicable safeguards, subject to appropriate redaction of confidential information.</p>
+  <h2>9 Cookies and automated processing</h2>
+  <p>Our <a href="/cookies">Cookie Policy</a> explains default Cloudflare Turnstile, server-side dashboard analytics and security-related technologies. Dashboard analytics does not require an analytics cookie on your device. Technical connection data can still be personal data.</p>
+  <p>Automated security checks may challenge or block traffic or form submissions. If a genuine enquiry is blocked, contact <a href="mailto:info@centrix.ie">info@centrix.ie</a>. We do not use the personal data covered by this notice for solely automated decisions producing legal or similarly significant effects. Centrix does not submit customer information to AI tools.</p>
+  <h2>10 Your rights</h2>
+  <p>Subject to the conditions in data protection law, you can request access, correction, erasure or restriction of your personal data. You can request portability where the processing qualifies, including eligible automated processing based on consent or a contract.</p>
+  <p>You can object to processing based on legitimate interests for reasons relating to your situation. You can object to direct marketing at any time without giving a reason. You can withdraw consent at any time where we rely on it.</p>
+  <p>Send requests to <a href="mailto:data@centrix.ie">data@centrix.ie</a>. We may request proportionate information to confirm identity. Requests are normally free. We respond without undue delay and within one month, subject to lawful extensions of up to two further months for complex or numerous requests. We explain any extension within the first month. If we cannot fulfil a request, we explain the reason and available complaint and court remedies.</p>
+  <h2>11 Complaints and updates</h2>
+  <p>You can complain to the Irish Data Protection Commission at <a href="https://www.dataprotection.ie/">https://www.dataprotection.ie/</a> or 6 Pembroke Row, Dublin 2, D02 X963, Ireland. You can also contact the competent supervisory authority where you live, work or where an alleged infringement occurred. You do not have to contact us first.</p>
+  <p>We update this notice when our practices change and provide further notice where required. Its last-updated date identifies this version.</p>
+</LegalLayout>

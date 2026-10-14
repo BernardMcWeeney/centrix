@@ -32,24 +32,26 @@ const includes = [
 ];
 
 const process = [
-  { title: 'Access', description: 'We set up read-only Global Reader access — no changes are made to your tenant.' },
+  { title: 'Access', description: 'We agree time-limited, product-specific read permissions or a supervised review. No production configuration changes are made during the assessment.' },
   { title: 'Assess', description: 'We evaluate the six security areas against best practice and real-world risk.' },
   { title: 'Report', description: 'You get an executive summary, technical report, and a ranked top-20 backlog.' },
   { title: 'Plan', description: 'We deliver a 30/60/90 roadmap and can move into a remediation phase with you.' },
 ];
 
 const faqs = [
+  { question: 'Can we book a focused Entra ID, Defender or Intune assessment?', answer: 'Yes. Choose an Entra ID identity and access review, a Defender protection and response review, an Intune device security review, or combine them under one agreed scope. Product coverage depends on your licences and deployment.' },
+  { question: 'Is this independent of our current managed service provider?', answer: 'Centrix can review an existing deployment as a second opinion and discuss the evidence with your current provider. You retain control over who implements the recommendations. This is a configuration assessment, not a compliance certification or intrusive penetration test.' },
   {
     question: 'How long does the assessment take?',
     answer: 'Most assessments complete within 5–10 business days depending on tenant complexity, with preliminary findings in the first week.',
   },
   {
     question: 'Do you need admin access to our tenant?',
-    answer: 'We require Global Reader (read-only) access. We never make changes to your environment during the assessment phase.',
+    answer: 'We agree the least-privilege read permissions required for each product in scope, or review evidence with your team. Global Reader alone does not cover every Defender or Intune configuration. Access is removed when the engagement ends.',
   },
   {
     question: 'Will this disrupt our users?',
-    answer: 'No. The assessment is entirely read-only and runs in the background — users will not notice anything.',
+    answer: 'The configuration review is read-only. We agree evidence collection with your team, and any active testing or production change requires a separate authorised scope.',
   },
   {
     question: 'How is this different from Microsoft Secure Score?',
@@ -57,17 +59,17 @@ const faqs = [
   },
   {
     question: 'Can you implement the recommendations?',
-    answer: 'Yes. Most clients move into a remediation phase after the assessment, either fixed-scope or time-and-materials.',
+    answer: 'Yes. Remediation is quoted separately. You can also use the report with your internal team or current IT provider; an assessment does not require moving support to Centrix.',
   },
 ];
 ---
 
 <BuyerServicePage
-  metaTitle="Microsoft 365 Security Assessment | Centrix"
-  metaDescription="Comprehensive read-only evaluation of your Microsoft 365 tenant with actionable findings and a 30/60/90 remediation roadmap in 5-10 days."
-  eyebrow="Microsoft 365 Security Assessment"
-  heading="A clear picture of your Microsoft 365 security"
-  lead="A comprehensive, read-only evaluation of your Microsoft 365 tenant — actionable findings, a prioritised backlog, and a 30/60/90 remediation roadmap."
+  metaTitle="Independent Microsoft 365 Security Assessment Ireland"
+  metaDescription="Independent Microsoft 365 security assessment in Ireland. Review Entra ID, Defender and Intune with evidence-backed findings and a prioritised remediation plan."
+  eyebrow="Independent Microsoft 365 Security Assessment"
+  heading="Independent Microsoft 365 security assessments for Irish businesses"
+  lead="Centrix provides an independent second opinion on your Microsoft Entra ID, Defender and Intune configuration. Based in Duleek, County Meath, we help businesses across Ireland understand their exposure, review an existing provider’s setup and plan practical improvements. Choose a focused product assessment or an agreed combined tenant review."
   primaryCta={{ label: 'Book a security assessment', href: '/contact?service=m365-security-assessment' }}
   secondaryCta={{ label: 'Microsoft 365 security', href: '/services/microsoft-365' }}
   proof={['Read-only, non-disruptive', 'Six security areas reviewed', 'Top 20 prioritised backlog', '30/60/90 roadmap']}
@@ -78,7 +80,13 @@ const faqs = [
   mediaSrc="/products/microsoft-365-security.png"
   mediaLabel="Microsoft 365 security imagery"
   mediaIcon="shield"
+  serviceSchema
+  includedDescription="Centrix reviews the agreed configuration and evidence, explains gaps and documents priorities. Assessment and remediation are scoped separately."
   related={[
+    { label: 'Entra ID security assessment', href: '/services/microsoft-365/entra-id-security-assessment' },
+    { label: 'Microsoft Defender assessment', href: '/services/microsoft-365/defender-security-assessment' },
+    { label: 'Intune security assessment', href: '/services/microsoft-365/intune-security-assessment' },
+
     { label: 'Microsoft 365 security', href: '/services/microsoft-365' },
     { label: 'Identity & access', href: '/services/identity' },
     { label: 'Intune & endpoint management', href: '/services/intune' },

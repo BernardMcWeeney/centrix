@@ -1,0 +1,104 @@
+---
+import BuyerServicePage from "../../../components/BuyerServicePage.astro";
+const service = {
+  "name": "Microsoft Intune",
+  "title": "Independent Microsoft Intune Security Assessment Ireland",
+  "description": "Independent Intune assessment for Irish businesses. Review device compliance, security baselines, enrolment, app protection and policy conflicts.",
+  "icon": "device",
+  "includes": [
+    "Device inventory, enrolment restrictions, ownership and unmanaged device gaps",
+    "Compliance policies, assignments, exceptions and Conditional Access integration",
+    "Configuration profiles, security baselines, conflicting settings and deployment status",
+    "Encryption, recovery key permissions, local administrator controls and Windows LAPS where supported",
+    "Endpoint security policies and integration with Microsoft Defender",
+    "App protection, application deployment and update management for platforms in scope",
+    "Role-based administration, scope tags and device retirement or wipe procedures",
+    "Device security findings, prioritised remediation and a phased improvement plan"
+  ],
+  "process": [
+    {
+      "title": "Agree the scope",
+      "description": "Confirm products, licences, tenant size, business priorities and the evidence required. We agree a written scope and quote before work starts."
+    },
+    {
+      "title": "Review with limited access",
+      "description": "Use agreed read-only permissions or a supervised review. Access is time limited and matched to the products in scope; configuration changes require separate approval."
+    },
+    {
+      "title": "Explain the findings",
+      "description": "Receive an executive summary, technical findings with supporting evidence, limitations and a prioritised remediation backlog."
+    },
+    {
+      "title": "Plan the next steps",
+      "description": "Discuss the findings with your IT team or existing provider. Agree a practical 30/60/90 day roadmap and optional follow-up validation."
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Can you review an existing Intune deployment?",
+      "answer": "Yes. The assessment is designed for existing deployments as well as preparation for a rollout. We review assignments, device status, policy conflicts and the operational processes behind enrolment and retirement."
+    },
+    {
+      "question": "Which device platforms can be assessed?",
+      "answer": "We agree the Windows, macOS, iOS/iPadOS and Android platforms in scope. Available controls differ by operating system, ownership model and licence. Findings explain these limits rather than applying a single baseline to every device."
+    },
+    {
+      "question": "Can you review work carried out by our existing IT provider?",
+      "answer": "Yes. Centrix can provide an independent second opinion on an existing configuration and share the findings with your internal team or current managed service provider. You do not need to move your ongoing support to Centrix."
+    },
+    {
+      "question": "Does an assessment include remediation?",
+      "answer": "The assessment reports on the agreed scope. Implementation and any retest are quoted separately, so you can ask Centrix, your own team or your existing provider to address the findings."
+    },
+    {
+      "question": "How is access to our tenant handled?",
+      "answer": "We agree the minimum product-specific read permissions or a supervised evidence review. You retain control of access and revoke it when the engagement ends. We do not request shared passwords or make production changes during the assessment."
+    },
+    {
+      "question": "Is this penetration testing or a compliance certification?",
+      "answer": "This is a configuration and security posture assessment. Intrusive testing requires a separately authorised scope. The report supports security decisions and evidence gathering; it does not certify compliance or guarantee that incidents cannot occur."
+    },
+    {
+      "question": "Do you work with small businesses across Ireland?",
+      "answer": "Centrix is based in Duleek, County Meath and supports Irish businesses of different sizes. Assessments can be delivered remotely with agreed access. Scope and price depend on the environment, licences and depth of review."
+    }
+  ],
+  "related": [
+    {
+      "label": "Combined Microsoft 365 security assessment",
+      "href": "/services/microsoft-365/security-assessment"
+    },
+    {
+      "label": "Microsoft Entra ID assessment",
+      "href": "/services/microsoft-365/entra-id-security-assessment"
+    },
+    {
+      "label": "Microsoft Defender assessment",
+      "href": "/services/microsoft-365/defender-security-assessment"
+    }
+  ]
+};
+---
+<BuyerServicePage
+  metaTitle={service.title}
+  metaDescription={service.description}
+  eyebrow={`Independent ${service.name} assessment`}
+  heading={`Independent ${service.name} security assessment for Irish businesses`}
+  lead={"Centrix provides an independent review of your Microsoft Intune configuration, with evidence-backed findings and practical recommendations. Based in Duleek, County Meath, we help businesses across Ireland assess their existing setup, including work delivered by another IT provider."}
+  primaryCta={{ label: 'Request an assessment scope', href: '/contact?service=intune-security-assessment' }}
+  secondaryCta={{ label: 'Compare Microsoft security assessments', href: '/services/microsoft-365/security-assessment' }}
+  proof={['Independent second opinion', 'Agreed read-only review', 'Executive and technical reports', 'Prioritised remediation roadmap']}
+  outcomes={[
+    { title: 'Understand your exposure', description: "Check whether device policies reach the right users and devices, identify configuration conflicts, and understand gaps between reported compliance and actual policy deployment.", icon: service.icon },
+    { title: 'Give your team a clear backlog', description: 'Findings explain the evidence, business impact, priority and recommended action, with dependencies and limitations documented.', icon: 'compliance' },
+    { title: 'Choose who delivers the improvements', description: 'Use the report with your own IT team, current provider or Centrix. Remediation is a separate decision after the assessment.', icon: 'check' },
+  ]}
+  includes={service.includes}
+  includedDescription="Centrix reviews the agreed configuration and evidence, documents gaps and explains what to address first. Product coverage and licences are confirmed before the review."
+  process={service.process}
+  faqs={service.faqs}
+  related={service.related}
+  mediaSrc="/products/microsoft-365-security.png"
+  mediaLabel={`${service.name} security assessment`}
+  serviceSchema
+/>

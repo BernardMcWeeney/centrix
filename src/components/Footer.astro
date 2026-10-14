@@ -20,6 +20,7 @@ const footerLinks = {
     { label: 'Contact', href: '/contact' },
   ],
   resources: [
+    { label: 'Microsoft Security Assessments', href: '/services/microsoft-365/security-assessment' },
     { label: 'Cloud Migration', href: '/services/microsoft-365/cloud-migration' },
     { label: 'UniFi Network Audit', href: '/unifi-network-audit' },
     { label: 'NIS2 & GDPR Readiness', href: '/services/security/nis2-gdpr-readiness' },
@@ -89,10 +90,13 @@ const footerLinks = {
         <p class="footer-copyright">
           &copy; {currentYear} {COMPANY_INFO.name}. All rights reserved.
         </p>
-        <div class="footer-legal">
-          <a href="/privacy" class="footer-legal-link">Privacy</a>
-          <a href="/terms" class="footer-legal-link">Terms</a>
-        </div>
+        <nav class="footer-legal" aria-label="Legal policies">
+          <a href="/privacy" class="footer-legal-link">Privacy Notice</a>
+          <a href="/terms" class="footer-legal-link">Website Terms</a>
+          <a href="/data-protection" class="footer-legal-link">Data Protection</a>
+          <a href="/cookies" class="footer-legal-link">Cookie Policy</a>
+          <a href="/security-reporting" class="footer-legal-link">Security Reporting</a>
+        </nav>
       </div>
     </div>
   </div>
@@ -219,6 +223,8 @@ const footerLinks = {
 
   .footer-legal {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     gap: 1rem;
   }

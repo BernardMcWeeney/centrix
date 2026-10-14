@@ -38,6 +38,8 @@ interface Props {
   mediaIcon?: string;
   mediaSrc?: string;
   hideMedia?: boolean;
+  includedDescription?: string;
+  serviceSchema?: boolean;
 }
 
 const {
@@ -59,11 +61,45 @@ const {
   mediaIcon = 'camera',
   mediaSrc,
   hideMedia = false,
+  includedDescription = 'Centrix scopes the work clearly, implements the agreed controls, and hands over documentation your team can actually use.',
+  serviceSchema = false,
 } = Astro.props;
 
 const showMedia = Boolean(mediaSrc) || !hideMedia;
 
 const heroImageLabel = mediaLabel ?? `${eyebrow} imagery`;
+const origin = Astro.site ?? new URL(Astro.url.origin);
+const pageUrl = new URL(Astro.url.pathname, origin).href;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': new URL('/#organization', origin).href,
+      name: 'Centrix',
+      url: origin.href,
+      address: { '@type': 'PostalAddress', addressLocality: 'Duleek', addressRegion: 'County Meath', addressCountry: 'IE' },
+    },
+    {
+      '@type': 'Service',
+      '@id': `${pageUrl}#service`,
+      name: eyebrow,
+      description: metaDescription,
+      url: pageUrl,
+      serviceType: eyebrow,
+      areaServed: { '@type': 'Country', name: 'Ireland' },
+      provider: { '@id': new URL('/#organization', origin).href },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: origin.href },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: new URL('/services', origin).href },
+        { '@type': 'ListItem', position: 3, name: eyebrow, item: pageUrl },
+      ],
+    },
+  ],
+};
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription}>
@@ -132,7 +168,7 @@ const heroImageLabel = mediaLabel ?? `${eyebrow} imagery`;
             <span class="consult-kicker">Included</span>
             <h2>Practical delivery, documented properly</h2>
             <p>
-              Centrix scopes the work clearly, implements the agreed controls, and hands over documentation your team can actually use.
+              {includedDescription}
             </p>
           </div>
           <div class="consult-check-list">
@@ -206,4 +242,5 @@ const heroImageLabel = mediaLabel ?? `${eyebrow} imagery`;
       </div>
     </section>
   </article>
+  {serviceSchema && <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, '\\u003c')} />}
 </BaseLayout>

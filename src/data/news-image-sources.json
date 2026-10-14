@@ -1,0 +1,47 @@
+{
+  "microsoft-digital-defense-report-2026": {
+    "image": "https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/10/Microsoft-Digital-Defense-Report.jpg",
+    "local": "microsoft-digital-defense-report-2026.jpg",
+    "source": "https://www.microsoft.com/en-us/security/blog/2026/10/01/insights-from-the-2026-microsoft-digital-defense-report/"
+  },
+  "ubiquiti-unifi-network-10-6": {
+    "image": "https://cdn.blog.svc.ui.com/Network_10_6_Thumb_3606b99ba7.jpg",
+    "local": "ubiquiti-unifi-network-10-6.jpg",
+    "source": "https://blog.ui.com/article/introducing-unifi-network-10-6"
+  },
+  "meta-muse-small-business": {
+    "image": "https://about.fb.com/wp-content/uploads/2026/09/The-Future-Is-for-Everyone_Muse-for-Small-Business_Social-Share.png?w=1200",
+    "local": "meta-muse-small-business.png",
+    "source": "https://about.fb.com/news/2026/09/introducing-muse-small-business/"
+  },
+  "ubiquiti-protect-7-3": {
+    "image": "https://cdn.blog.svc.ui.com/Protect_73_Thumb_babee72837.jpg",
+    "local": "ubiquiti-protect-7-3.jpg",
+    "source": "https://blog.ui.com/article/introducing-protect-7-3"
+  },
+  "ubiquiti-unifi-network-10-5": {
+    "image": "https://cdn.blog.svc.ui.com/Network_10_5_Thumb_ea2c6b6bf5.jpg",
+    "local": "ubiquiti-unifi-network-10-5.jpg",
+    "source": "https://blog.ui.com/article/introducing-network-10-5"
+  },
+  "ubiquiti-unifi-network-11": {
+    "image": "https://cdn.blog.svc.ui.com/Network_11_Thumb_3c2bbdd542.jpg",
+    "local": "ubiquiti-unifi-network-11.jpg",
+    "source": "https://blog.ui.com/article/introducing-unifi-network-11"
+  },
+  "meta-muse-wonder-models": {
+    "image": "https://about.fb.com/wp-content/uploads/2026/10/museWonder_socialShare.jpg?w=1200",
+    "local": "meta-muse-wonder-models.jpg",
+    "source": "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/"
+  },
+  "microsoft-security-september-2026": {
+    "image": "https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/09/In-The-Loop_SEPT_Blog.jpg",
+    "local": "microsoft-security-september-2026.jpg",
+    "source": "https://www.microsoft.com/en-us/security/blog/2026/09/24/whats-new-in-microsoft-security-september-2026/"
+  },
+  "chatgpt-gpt-6-intelligent-ui": {
+    "source": "https://openai.com/index/gpt-6-for-everyone/",
+    "image": "https://images.ctfassets.net/kftzwdyauwt9/2Lloa30t4rkhVDUrjMwj8/79818c07610f31b41eab0074f628be5b/gpt-6-central-limit-theorem-clean-opening-first-frame.png",
+    "local": "chatgpt-gpt-6-intelligent-ui.webp"
+  }
+}
